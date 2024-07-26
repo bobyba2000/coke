@@ -28,7 +28,7 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   void getData() {
-    List<ContestantModel> contestants = List.generate(30, (index) => generateContestant(index));
+    List<ContestantModel> contestants = List.generate(3000, (index) => generateContestant(index));
     datas = contestants;
     if (mounted) {
       setState(() {});

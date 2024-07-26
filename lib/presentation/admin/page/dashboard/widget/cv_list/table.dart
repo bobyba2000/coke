@@ -1,6 +1,8 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
 import 'package:flutter/material.dart';
+import 'package:sprintf/sprintf.dart';
 
 enum ColumnTitle {
   name,
@@ -117,7 +119,18 @@ class _ListContestantTableState extends State<ListContestantTable> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final start = (currentPage) * sizePerPage;
     final end = (currentPage + 1) * sizePerPage > widget.contestants.length ? widget.contestants.length : (currentPage + 1) * sizePerPage;
+    int fromPage = currentPage - 1;
+    int toPage = fromPage + 4;
+    if (toPage > totalPages - 1) {
+      fromPage = totalPages - 4;
+      toPage = totalPages - 1;
+    }
+    if (fromPage < 0) {
+      fromPage = 0;
+      toPage = totalPages > 4 ? 4 : totalPages;
+    }
     final viewContestants = widget.contestants.sublist(currentPage * sizePerPage, end);
     return SizedBox(
       width: double.infinity,
@@ -152,43 +165,59 @@ class _ListContestantTableState extends State<ListContestantTable> {
           ),
           8.hSpace,
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: List.generate(
-              totalPages,
-              (index) {
-                final isSelected = index == currentPage;
-                return InkWell(
-                  onTap: () {
-                    if (!isSelected) {
-                      setState(() {
-                        currentPage = index;
-                      });
-                    }
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: !isSelected
-                          ? Border.all(
-                              color: theme.dividerColor,
-                            )
-                          : null,
-                      color: isSelected ? theme.colorScheme.primary : null,
-                    ),
-                    height: 30,
-                    width: 30,
-                    alignment: Alignment.center,
-                    child: Text(
-                      '${index + 1}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isSelected ? theme.colorScheme.onPrimary : null,
-                        fontWeight: isSelected ? FontWeight.bold : null,
-                      ),
-                    ),
+            children: [
+              Text(
+                sprintf(S.current.showTotalCV, [
+                  (start + 1).toString(),
+                  end.toString(),
+                  widget.contestants.length.toString(),
+                ]),
+                style: theme.textTheme.bodyMedium,
+              ),
+              24.wSpace,
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: List.generate(
+                    toPage - fromPage + 1,
+                    (value) {
+                      final index = value + fromPage;
+                      final isSelected = index == currentPage;
+                      return InkWell(
+                        onTap: () {
+                          if (!isSelected) {
+                            setState(() {
+                              currentPage = index;
+                            });
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: !isSelected
+                                ? Border.all(
+                                    color: theme.dividerColor,
+                                  )
+                                : null,
+                            color: isSelected ? theme.colorScheme.primary : null,
+                          ),
+                          height: 30,
+                          width: 30,
+                          alignment: Alignment.center,
+                          child: Text(
+                            '${index + 1}',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: isSelected ? theme.colorScheme.onPrimary : null,
+                              fontWeight: isSelected ? FontWeight.bold : null,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
+                ),
+              ),
+            ],
           )
         ],
       ),

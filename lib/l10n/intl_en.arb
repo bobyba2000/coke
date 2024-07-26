@@ -93,5 +93,6 @@
     "others": "Others",
     "cefr": "CEFR",
     "personalResume": "Personal resume", 
+    "showTotalCV": "Showing %s to %s of %s CVs",
     "unknownError": "Unknown Error"
 }
