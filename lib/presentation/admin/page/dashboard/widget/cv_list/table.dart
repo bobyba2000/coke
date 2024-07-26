@@ -78,7 +78,7 @@ enum ColumnTitle {
       case ColumnTitle.gpa:
         return 80.wMax;
       case ColumnTitle.graduationYear:
-        return 80.wMax;
+        return 150.wMax;
       case ColumnTitle.desiredPathway:
         return 200.wMax;
       case ColumnTitle.availability:
@@ -253,11 +253,16 @@ class _TableRowWidgetState extends State<TableRowWidget> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return InkWell(
-      onTap: () {},
-      onHover: (value) {
-        isHover = value;
-        setState(() {});
+    return MouseRegion(
+      onEnter: (event) {
+        setState(() {
+          isHover = true;
+        });
+      },
+      onExit: (event) {
+        setState(() {
+          isHover = false;
+        });
       },
       child: Container(
         decoration: BoxDecoration(

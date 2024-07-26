@@ -39,8 +39,8 @@ class _DashboardPageState extends State<DashboardPage> {
     return ContestantModel(
       personalInfo: generatePersonalInfo(index),
       educationInfo: generateEducationInfo(index),
-      careerInfo: generateCareerInfo(),
-      exhibition: generateExhibitionInfo(),
+      careerInfo: generateCareerInfo(index),
+      exhibition: generateExhibitionInfo(index),
       attachment: generateAttachment(),
     );
   }
@@ -58,18 +58,18 @@ class _DashboardPageState extends State<DashboardPage> {
 
   EducationInfoModel generateEducationInfo(int index) {
     return EducationInfoModel(
-      education: EducationLevel.bachelor,
-      graduationYear: GraduationYear.before2024,
+      education: EducationLevel.values[index % EducationLevel.values.length],
+      graduationYear: GraduationYear.values[index % GraduationYear.values.length],
       university: 'HCMUS',
       major: 'IT',
       gpa: 8,
     );
   }
 
-  CareerInfoModel generateCareerInfo() {
+  CareerInfoModel generateCareerInfo(int index) {
     return CareerInfoModel(
       desiredPathway: DesiredPathwayModel(
-        role: InternshipRole.sales, // Assuming a default value
+        role: InternshipRole.values[index % InternshipRole.values.length],
         location: WorkingLocationModel(
           first: 'City A',
           second: 'City B',
@@ -83,7 +83,7 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  ExhibitionInfoModel generateExhibitionInfo() {
+  ExhibitionInfoModel generateExhibitionInfo(int index) {
     return ExhibitionInfoModel(
       achivement: AchivementModel(
         name: 'Achievement Name',
@@ -101,16 +101,16 @@ class _DashboardPageState extends State<DashboardPage> {
       ],
       experiences: [
         WorkingExperienceModel(
-          type: WorkingType.partTime,
+          type: WorkingType.values[index % WorkingType.values.length],
           startDate: DateTime(2022, 1, 1),
           endDate: DateTime(2023, 1, 1),
-          industry: CompanyIndustry.itSoftware,
+          industry: CompanyIndustry.values[index % CompanyIndustry.values.length],
           companyName: 'Company Name',
           jobTitle: 'Job Title',
         ),
       ],
       english: EnglishProfiencyModel(
-        certification: EnglistCertification.ielts,
+        certification: EnglistCertification.values[index % EnglistCertification.values.length],
         detail: 'IELTS 7.5',
       ),
     );
