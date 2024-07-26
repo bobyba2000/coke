@@ -1,9 +1,16 @@
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:coke_platform/model/firebase/contestant/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'table.dart';
+
 class CVListWidget extends StatefulWidget {
-  const CVListWidget({super.key});
+  final List<ContestantModel> contestants;
+  const CVListWidget({
+    super.key,
+    required this.contestants,
+  });
 
   @override
   State<CVListWidget> createState() => _CVListWidgetState();
@@ -62,9 +69,13 @@ class _CVListWidgetState extends State<CVListWidget> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+            child: ListContestantTable(
+              contestants: widget.contestants,
+            ),
           )
         ],
       ),
     );
   }
 }
+
