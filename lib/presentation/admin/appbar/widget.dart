@@ -1,3 +1,4 @@
+import 'package:coke_platform/common/widget/language.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,6 +50,8 @@ class _AdminAppbarWidgetState extends State<AdminAppbarWidget> {
           Assets.images.logo.image(
             width: 160,
           ),
+          const Spacer(),
+          const LanguageSwitch(),
         ],
       ),
     );
