@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ThemeData themeData(BuildContext context) {
   return ThemeData(
+    useMaterial3: false,
     primaryColor: const Color(0xFFE51D2A),
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
