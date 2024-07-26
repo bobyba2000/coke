@@ -1,0 +1,8 @@
+{
+    "landingPage": "Landing Page",
+    "dashboard": "Dashboard",
+    "totalCVs": "Total CVs",
+    "totalCVsSubmitted": "Total CVs submitted in this campaign",
+    "cvList": "List of CVs",
+    "unknownError": "Unknown Error"
+}
