@@ -1,3 +1,4 @@
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'model.g.dart';
 
@@ -5,10 +6,33 @@ enum InternshipRole {
   procurement,
   tradeMarketing,
   rgm,
+  rtm,
   keyAccountOnPremise,
   keyAccountOffPremise,
   it,
   sales;
+
+  @override
+  String toString() {
+    switch (this) {
+      case procurement:
+        return S.current.procurement;
+      case tradeMarketing:
+        return S.current.tradeMarketing;
+      case rgm:
+        return S.current.revenueGrowthManagement;
+      case keyAccountOnPremise:
+        return S.current.keyAccountOnPremise;
+      case keyAccountOffPremise:
+        return S.current.keyAccountOffPremise;
+      case it:
+        return S.current.it;
+      case sales:
+        return S.current.sales;
+      case rtm:
+        return S.current.routeToMarket;
+    }
+  }
 }
 
 @JsonSerializable()
@@ -23,8 +47,7 @@ class WorkingLocationModel {
     required this.willingToChange,
   });
 
-  factory WorkingLocationModel.fromJson(Map<String, dynamic> json) =>
-      _$WorkingLocationModelFromJson(json);
+  factory WorkingLocationModel.fromJson(Map<String, dynamic> json) => _$WorkingLocationModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$WorkingLocationModelToJson(this);
 }
@@ -39,8 +62,7 @@ class DesiredPathwayModel {
     required this.location,
   });
 
-  factory DesiredPathwayModel.fromJson(Map<String, dynamic> json) =>
-      _$DesiredPathwayModelFromJson(json);
+  factory DesiredPathwayModel.fromJson(Map<String, dynamic> json) => _$DesiredPathwayModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$DesiredPathwayModelToJson(this);
 }
@@ -50,6 +72,20 @@ enum AvailabilityType {
   shiftOff1To2PerWeek,
   shiftOff3PerWeek,
   shiftOffMoreThan3;
+
+  @override
+  String toString() {
+    switch (this) {
+      case fulltime6Months:
+        return S.current.fulltime6Months;
+      case shiftOff1To2PerWeek:
+        return S.current.shiftOff1To2;
+      case shiftOff3PerWeek:
+        return S.current.shiftOff3;
+      case shiftOffMoreThan3:
+        return S.current.shiftOffOver3;
+    }
+  }
 }
 
 @JsonSerializable()
@@ -62,8 +98,7 @@ class AvailabilityModel {
     required this.note,
   });
 
-  factory AvailabilityModel.fromJson(Map<String, dynamic> json) =>
-      _$AvailabilityModelFromJson(json);
+  factory AvailabilityModel.fromJson(Map<String, dynamic> json) => _$AvailabilityModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AvailabilityModelToJson(this);
 }
@@ -78,8 +113,7 @@ class CareerInfoModel {
     required this.availability,
   });
 
-  factory CareerInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$CareerInfoModelFromJson(json);
+  factory CareerInfoModel.fromJson(Map<String, dynamic> json) => _$CareerInfoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CareerInfoModelToJson(this);
 }

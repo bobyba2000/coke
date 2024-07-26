@@ -24,8 +24,7 @@ class ContestantModel {
     required this.attachment,
   });
 
-  factory ContestantModel.fromJson(Map<String, dynamic> json) =>
-      _$ContestantModelFromJson(json);
+  factory ContestantModel.fromJson(Map<String, dynamic> json) => _$ContestantModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ContestantModelToJson(this);
 }

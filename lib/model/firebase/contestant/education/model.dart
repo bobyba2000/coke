@@ -1,3 +1,4 @@
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'model.g.dart';
 
@@ -5,6 +6,18 @@ enum EducationLevel {
   master,
   bachelor,
   college;
+
+  @override
+  String toString() {
+    switch (this) {
+      case master:
+        return S.current.masterDegree;
+      case bachelor:
+        return S.current.bachelorDegree;
+      case college:
+        return S.current.collegeDegree;
+    }
+  }
 }
 
 enum GraduationYear {
@@ -12,6 +25,20 @@ enum GraduationYear {
   in2024,
   in2025,
   from2026;
+
+  @override
+  String toString() {
+    switch (this) {
+      case before2024:
+        return S.current.before2024;
+      case in2024:
+        return S.current.within2024;
+      case in2025:
+        return S.current.within2025;
+      case from2026:
+        return S.current.above2026;
+    }
+  }
 }
 
 @JsonSerializable()
