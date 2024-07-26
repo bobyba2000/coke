@@ -76,10 +76,20 @@ class _OverviewWidgetState extends State<OverviewWidget> {
                   ],
                 ),
               ),
-              Text(
-                widget.totalCVs.toStringWithSeperator(),
-                style: textTheme.displayLarge?.copyWith(
-                  color: colorScheme.primary,
+              RichText(
+                text: TextSpan(
+                  text: widget.totalCVs.toStringWithSeperator(),
+                  style: textTheme.displayLarge?.copyWith(
+                    color: colorScheme.primary,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: '/ ${OthersConstant.maxCVCount.toString()}',
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF6c757d),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
