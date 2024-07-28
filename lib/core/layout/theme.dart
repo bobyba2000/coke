@@ -36,7 +36,7 @@ ThemeData themeData(BuildContext context) {
         fontWeight: FontWeight.bold,
       ),
       displaySmall: TextStyle(
-        fontSize: 14.spMax,
+        fontSize: 16.spMax,
         fontWeight: FontWeight.bold,
       ),
       bodyLarge: TextStyle(

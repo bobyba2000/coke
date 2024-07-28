@@ -85,10 +85,12 @@ class _DashboardPageState extends State<DashboardPage> {
 
   ExhibitionInfoModel generateExhibitionInfo(int index) {
     return ExhibitionInfoModel(
-      achivement: AchivementModel(
-        name: 'Achievement Name',
-        accomplishment: 'Description of accomplishment',
-      ),
+      achivements: [
+        AchivementModel(
+          name: 'Achievement Name',
+          accomplishment: 'Description of accomplishment',
+        ),
+      ],
       skills: [
         SkillModel(
           skill: 'Skill 1',
@@ -104,7 +106,7 @@ class _DashboardPageState extends State<DashboardPage> {
           type: WorkingType.values[index % WorkingType.values.length],
           startDate: DateTime(2022, 1, 1),
           endDate: DateTime(2023, 1, 1),
-          industry: CompanyIndustry.values[index % CompanyIndustry.values.length],
+          industry: CompanyIndustry.values[index % CompanyIndustry.values.length].toString(),
           companyName: 'Company Name',
           jobTitle: 'Job Title',
         ),

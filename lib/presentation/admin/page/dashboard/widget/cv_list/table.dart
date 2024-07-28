@@ -272,7 +272,8 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.availability:
         return '${contestant.careerInfo.availability.type} ${contestant.careerInfo.availability.note}';
       case ColumnTitle.english:
-        return '${contestant.exhibition.english.certification} - ${contestant.exhibition.english.detail}';
+        final certification = contestant.exhibition.english?.certification;
+        return certification == null ? '' : '$certification - ${contestant.exhibition.english?.detail ?? ''}';
       case ColumnTitle.resume:
         return contestant.attachment.resumeCV;
     }

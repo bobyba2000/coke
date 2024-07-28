@@ -33,6 +33,83 @@ enum InternshipRole {
         return S.current.routeToMarket;
     }
   }
+
+  List<String> get suggestionSkills {
+    switch (this) {
+      case procurement:
+        return [
+          'Critical thinking',
+          'Data analysis',
+          'Financial acumen',
+          'Problem-solving',
+          'Digital Literacy',
+          'Business process improvement',
+          'Attention to details',
+          'Communication',
+          'Inventory Management',
+          'Data Management'
+        ];
+      case tradeMarketing:
+        return [
+          'Communication',
+          'Presentation',
+          'Problem-solving',
+          'Stakeholder Management',
+          'Numerical skill',
+        ];
+      case rgm:
+        return [
+          'Communication',
+          'Presentation',
+          'Problem-solving',
+          'Stakeholder Management',
+          'Numerical skill',
+        ];
+      case keyAccountOnPremise:
+        return [
+          'Communication',
+          'Presentation',
+          'Problem-solving',
+          'Stakeholder Management',
+          'Numerical skill',
+        ];
+      case keyAccountOffPremise:
+        return [
+          'Event planning and execution',
+          'Numerical skill',
+          'Creative thinking',
+          'Presentation',
+          'Stakeholder management',
+          'Problem-solving',
+          'Communications'
+        ];
+      case it:
+        return ['Python', 'Machine Learning', 'SQL', 'Cloud based tools', 'Business acumen', 'Communication', 'Data Analysis'];
+      case sales:
+        return [
+          'Selling',
+          'Critical Thinking',
+          'Problem-solving',
+          'Stakeholder Management',
+          'Negotiation',
+          'Influencing',
+          'Numerical Skill',
+        ];
+      case rtm:
+        return [
+          'Data analysis',
+          'Data Visualization',
+          'Project management',
+          'Communication',
+          'Presentation',
+          'Stakeholder management',
+          'System design',
+          'Data Modelling',
+          'Business process improvement',
+          'Agility'
+        ];
+    }
+  }
 }
 
 @JsonSerializable()

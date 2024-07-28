@@ -2,9 +2,11 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:coke_platform/model/firebase/contestant/education/model.dart';
+import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
 import 'package:coke_platform/model/firebase/contestant/personal/model.dart';
 import 'package:coke_platform/presentation/application/form/career/widget.dart';
 import 'package:coke_platform/presentation/application/form/education/widget.dart';
+import 'package:coke_platform/presentation/application/form/exhibition/widget.dart';
 import 'package:coke_platform/presentation/application/form/personal/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -76,9 +78,9 @@ enum ApplyStep {
       case ApplyStep.education:
         return EducationInfoWidget(onFinish: onFinish);
       case ApplyStep.career:
-        return Container();
+        return CareerInfoWidget(onFinish: onFinish);
       case ApplyStep.exhibition:
-        return Container();
+        return ProfileExhibitionWidget(onFinish: onFinish);
       case ApplyStep.attachment:
         return Container();
       case ApplyStep.review:
@@ -99,6 +101,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
   PersonalInfoModel? personal;
   EducationInfoModel? education;
   CareerInfoModel? career;
+  ExhibitionInfoModel? exhibition;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -157,39 +160,36 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
             ],
           ),
           64.hMax.hSpace,
-          CareerInfoWidget(
-            onFinish: (career) {
-              this.career = career;
+          step.form(
+            (value) {
+              switch (step) {
+                case ApplyStep.personal:
+                  personal = value;
+                  step = ApplyStep.education;
+                  break;
+                case ApplyStep.education:
+                  education = value;
+                  step = ApplyStep.career;
+                  break;
+                case ApplyStep.career:
+                  career = value;
+                  step = ApplyStep.exhibition;
+                  break;
+                case ApplyStep.exhibition:
+                  exhibition = value;
+                  step = ApplyStep.attachment;
+                  break;
+                case ApplyStep.attachment:
+                  step = ApplyStep.review;
+                  break;
+                case ApplyStep.review:
+                  break;
+              }
+              if (mounted) {
+                setState(() {});
+              }
             },
           ),
-          // step.form(
-          //   (value) {
-          //     switch (step) {
-          //       case ApplyStep.personal:
-          //         personal = value;
-          //         step = ApplyStep.education;
-          //         break;
-          //       case ApplyStep.education:
-          //         education = value;
-          //         step = ApplyStep.career;
-          //         break;
-          //       case ApplyStep.career:
-          //         step = ApplyStep.exhibition;
-          //         break;
-          //       case ApplyStep.exhibition:
-          //         step = ApplyStep.attachment;
-          //         break;
-          //       case ApplyStep.attachment:
-          //         step = ApplyStep.review;
-          //         break;
-          //       case ApplyStep.review:
-          //         break;
-          //     }
-          //     if (mounted) {
-          //       setState(() {});
-          //     }
-          //   },
-          // ),
         ],
       ),
     );

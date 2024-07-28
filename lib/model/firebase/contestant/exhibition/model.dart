@@ -109,9 +109,9 @@ enum CompanyIndustry {
 @JsonSerializable()
 class WorkingExperienceModel {
   final WorkingType type;
-  final DateTime startDate;
-  final DateTime endDate;
-  final CompanyIndustry industry;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final String industry;
   final String companyName;
   final String jobTitle;
 
@@ -184,13 +184,13 @@ class EnglishProfiencyModel {
 
 @JsonSerializable()
 class ExhibitionInfoModel {
-  final AchivementModel achivement;
+  final List<AchivementModel> achivements;
   final List<SkillModel> skills;
   final List<WorkingExperienceModel> experiences;
-  final EnglishProfiencyModel english;
+  final EnglishProfiencyModel? english;
 
   ExhibitionInfoModel({
-    required this.achivement,
+    required this.achivements,
     required this.skills,
     required this.experiences,
     required this.english,

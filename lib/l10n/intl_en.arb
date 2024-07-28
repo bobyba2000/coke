@@ -155,5 +155,15 @@
     "workAtHCMHeadOffice": "You will work at HCM - Head Office.",
     "helperAvailabilityText": "Please share your availablity to work fulltime during 6-month internship, starting from Sep 2024. If you're undergraduate student and require few shifts off for school, kindly provide full details.\n(Shift=Half-day= 01 morning OR 01 afternoon)",
     "note": "Note",
+    "skillHelperText": "Which are your competitive skills that are relevant to this position? With each skill, please provide a detailed write-up of a project or experience where you demonstrated it. Include specific details about your role, the challenges you faced, the actions you took, and the outcomes of your efforts.  (a maximum of 120 words)",
+    "skill": "Skill",
+    "add": "Add",
+    "achivementsHelperText": "Please let us know one of your greatest accomplishments in any intellectual student's competition if any",
+    "workingType": "Type of working experience",
+    "industry": "Industry",
+    "job": "Job",
+    "experienceHelperText": "Please share your relevant working experiences",
+    "englistHelperText": "Please claim if you have any English certification with specific score, or other proof of your English proficiency",
+    "detail": "Detail",
     "unknownError": "Unknown Error"
 }
