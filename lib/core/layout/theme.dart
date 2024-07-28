@@ -51,7 +51,6 @@ ThemeData themeData(BuildContext context) {
       titleMedium: TextStyle(
         fontSize: 16.spMax,
         fontWeight: FontWeight.w400,
-        color: Colors.white,
       ),
       headlineMedium: TextStyle(
         fontSize: 18.spMax,
