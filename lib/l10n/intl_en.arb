@@ -148,5 +148,12 @@
     "telecommunication": "Telecommunication",
     "agricultureFeedForestry": "Agriculture - Feed – Forestry",
     "helperGpaText": "If your cumulative GPA is measured on a different grading system, please convert it to an equivalent GPA on a standard 10.0 cale.",
+    "internshipRole": "Internship Role",
+    "workingLocation": "Working Location",
+    "priority1": "Priority 1",
+    "priority2": "Priority 2",
+    "workAtHCMHeadOffice": "You will work at HCM - Head Office.",
+    "helperAvailabilityText": "Please share your availablity to work fulltime during 6-month internship, starting from Sep 2024. If you're undergraduate student and require few shifts off for school, kindly provide full details.\n(Shift=Half-day= 01 morning OR 01 afternoon)",
+    "note": "Note",
     "unknownError": "Unknown Error"
 }

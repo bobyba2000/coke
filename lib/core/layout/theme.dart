@@ -23,6 +23,9 @@ ThemeData themeData(BuildContext context) {
       elevation: 0,
       backgroundColor: Colors.white,
     ),
+    radioTheme: const RadioThemeData(
+      fillColor: MaterialStatePropertyAll(Color(0xFFE51D2A)),
+    ),
     textTheme: TextTheme(
       titleLarge: TextStyle(
         fontSize: 35.spMax,

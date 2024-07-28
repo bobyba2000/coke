@@ -1,7 +1,9 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:coke_platform/model/firebase/contestant/education/model.dart';
 import 'package:coke_platform/model/firebase/contestant/personal/model.dart';
+import 'package:coke_platform/presentation/application/form/career/widget.dart';
 import 'package:coke_platform/presentation/application/form/education/widget.dart';
 import 'package:coke_platform/presentation/application/form/personal/widget.dart';
 import 'package:flutter/material.dart';
@@ -96,6 +98,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
   ApplyStep step = ApplyStep.personal;
   PersonalInfoModel? personal;
   EducationInfoModel? education;
+  CareerInfoModel? career;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -154,34 +157,39 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
             ],
           ),
           64.hMax.hSpace,
-          step.form(
-            (value) {
-              switch (step) {
-                case ApplyStep.personal:
-                  personal = value;
-                  step = ApplyStep.education;
-                  break;
-                case ApplyStep.education:
-                  education = value;
-                  step = ApplyStep.career;
-                  break;
-                case ApplyStep.career:
-                  step = ApplyStep.exhibition;
-                  break;
-                case ApplyStep.exhibition:
-                  step = ApplyStep.attachment;
-                  break;
-                case ApplyStep.attachment:
-                  step = ApplyStep.review;
-                  break;
-                case ApplyStep.review:
-                  break;
-              }
-              if (mounted) {
-                setState(() {});
-              }
+          CareerInfoWidget(
+            onFinish: (career) {
+              this.career = career;
             },
           ),
+          // step.form(
+          //   (value) {
+          //     switch (step) {
+          //       case ApplyStep.personal:
+          //         personal = value;
+          //         step = ApplyStep.education;
+          //         break;
+          //       case ApplyStep.education:
+          //         education = value;
+          //         step = ApplyStep.career;
+          //         break;
+          //       case ApplyStep.career:
+          //         step = ApplyStep.exhibition;
+          //         break;
+          //       case ApplyStep.exhibition:
+          //         step = ApplyStep.attachment;
+          //         break;
+          //       case ApplyStep.attachment:
+          //         step = ApplyStep.review;
+          //         break;
+          //       case ApplyStep.review:
+          //         break;
+          //     }
+          //     if (mounted) {
+          //       setState(() {});
+          //     }
+          //   },
+          // ),
         ],
       ),
     );

@@ -17,6 +17,8 @@ class AppDropDownWidget<T> extends StatefulWidget {
   final double? borderRadius;
   final bool outline;
   final TextAlign? textAlign;
+  final bool isNeedToReset;
+  final String? helperText;
 
   const AppDropDownWidget({
     Key? key,
@@ -36,6 +38,8 @@ class AppDropDownWidget<T> extends StatefulWidget {
     this.inputBorder,
     this.borderRadius,
     this.textAlign = TextAlign.right,
+    this.isNeedToReset = false,
+    this.helperText,
   }) : super(key: key);
 
   @override
@@ -43,6 +47,7 @@ class AppDropDownWidget<T> extends StatefulWidget {
 }
 
 class _AppDropDownWidgetState<T> extends State<AppDropDownWidget<T>> {
+  bool isLoading = false;
   @override
   void didUpdateWidget(covariant AppDropDownWidget<T> oldWidget) {
     if (widget.value != oldWidget.value || widget.items != oldWidget.items) {
@@ -52,18 +57,28 @@ class _AppDropDownWidgetState<T> extends State<AppDropDownWidget<T>> {
   }
 
   void checkValue() {
-    for (var item in widget.items) {
-      if (item.value == widget.value) {
-        value = item.value;
-        if (mounted) {
-          setState(() {});
-        }
-        return;
-      }
-    }
     setState(() {
-      value = null;
+      if (widget.isNeedToReset) {
+        isLoading = true;
+      }
     });
+    Future.delayed(Duration(milliseconds: widget.isNeedToReset ? 200 : 0)).then(
+      (value) {
+        isLoading = false;
+        for (var item in widget.items) {
+          if (item.value == widget.value) {
+            value = item.value;
+            if (mounted) {
+              setState(() {});
+            }
+            return;
+          }
+        }
+        setState(() {
+          value = null;
+        });
+      },
+    );
   }
 
   @override
@@ -105,26 +120,31 @@ class _AppDropDownWidgetState<T> extends State<AppDropDownWidget<T>> {
                 ],
               ),
             )),
-        DropdownButtonHideUnderline(
-          child: DropdownButtonFormField(
-            isDense: true,
-            value: value,
-            isExpanded: true,
-            onChanged: widget.onChanged,
-            validator: widget.validator,
-            borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
-            decoration: InputDecoration(
-              border: widget.inputBorder ?? (widget.outline ? const OutlineInputBorder() : null),
-              filled: widget.filled,
-              alignLabelWithHint: true,
-              fillColor: widget.filledColor,
+        if (!isLoading)
+          DropdownButtonHideUnderline(
+            child: DropdownButtonFormField(
               isDense: true,
-              hintText: widget.hintText,
-              contentPadding: const EdgeInsets.all(15),
+              value: value,
+              isExpanded: true,
+              onChanged: widget.onChanged,
+              validator: widget.validator,
+              borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
+              decoration: InputDecoration(
+                helperText: widget.helperText,
+                border: widget.inputBorder ?? (widget.outline ? const OutlineInputBorder() : null),
+                focusedBorder: widget.inputBorder ?? (widget.outline ? const OutlineInputBorder() : null),
+                enabledBorder: widget.inputBorder ?? (widget.outline ? const OutlineInputBorder() : null),
+                disabledBorder: widget.inputBorder ?? (widget.outline ? const OutlineInputBorder() : null),
+                filled: widget.filled,
+                alignLabelWithHint: true,
+                fillColor: widget.filledColor,
+                isDense: true,
+                hintText: widget.hintText,
+                contentPadding: const EdgeInsets.all(15),
+              ),
+              items: widget.items,
             ),
-            items: widget.items,
           ),
-        ),
       ],
     );
   }
