@@ -59,5 +59,7 @@ class DefaultFirebaseOptions {
     projectId: 'coke-b1218',
     authDomain: 'coke-b1218.firebaseapp.com',
     storageBucket: 'coke-b1218.appspot.com',
+    databaseURL:
+        'https://coke-b1218-default-rtdb.asia-southeast1.firebasedatabase.app',
   );
 }

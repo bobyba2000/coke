@@ -73,7 +73,10 @@ enum ApplyStep {
     }
   }
 
-  Widget form(Function(dynamic value) onFinish) {
+  Widget form(
+    Function(dynamic value) onFinish, {
+    Widget? review,
+  }) {
     switch (this) {
       case ApplyStep.personal:
         return PersonalInformationWidget(onFinish: onFinish);
@@ -84,9 +87,9 @@ enum ApplyStep {
       case ApplyStep.exhibition:
         return ProfileExhibitionWidget(onFinish: onFinish);
       case ApplyStep.attachment:
-        return Container();
+        return AttachmentWidget(onFinish: onFinish);
       case ApplyStep.review:
-        return Container();
+        return review!;
     }
   }
 }
@@ -104,6 +107,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
   EducationInfoModel? education;
   CareerInfoModel? career;
   ExhibitionInfoModel? exhibition;
+  AttachmentViewModel? attachment;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -152,7 +156,9 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
                         height: 16.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.w),
-                          color: e.index > step.index ? const Color(0xFFe9ecef) : colorScheme.primary,
+                          color: e.index > step.index
+                              ? const Color(0xFFe9ecef)
+                              : colorScheme.primary,
                         ),
                       ),
                     ),
@@ -162,37 +168,37 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
             ],
           ),
           64.hMax.hSpace,
-          AttachmentWidget(),
-          // step.form(
-          //   (value) {
-          //     switch (step) {
-          //       case ApplyStep.personal:
-          //         personal = value;
-          //         step = ApplyStep.education;
-          //         break;
-          //       case ApplyStep.education:
-          //         education = value;
-          //         step = ApplyStep.career;
-          //         break;
-          //       case ApplyStep.career:
-          //         career = value;
-          //         step = ApplyStep.exhibition;
-          //         break;
-          //       case ApplyStep.exhibition:
-          //         exhibition = value;
-          //         step = ApplyStep.attachment;
-          //         break;
-          //       case ApplyStep.attachment:
-          //         step = ApplyStep.review;
-          //         break;
-          //       case ApplyStep.review:
-          //         break;
-          //     }
-          //     if (mounted) {
-          //       setState(() {});
-          //     }
-          //   },
-          // ),
+          step.form(
+            (value) {
+              switch (step) {
+                case ApplyStep.personal:
+                  personal = value;
+                  step = ApplyStep.education;
+                  break;
+                case ApplyStep.education:
+                  education = value;
+                  step = ApplyStep.career;
+                  break;
+                case ApplyStep.career:
+                  career = value;
+                  step = ApplyStep.exhibition;
+                  break;
+                case ApplyStep.exhibition:
+                  exhibition = value;
+                  step = ApplyStep.attachment;
+                  break;
+                case ApplyStep.attachment:
+                  attachment = value;
+                  step = ApplyStep.review;
+                  break;
+                case ApplyStep.review:
+                  break;
+              }
+              if (mounted) {
+                setState(() {});
+              }
+            },
+          ),
         ],
       ),
     );

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CustomOutlinedButton extends StatefulWidget {
   final String title;
   final VoidCallback onTap;
+  final bool enabled;
   const CustomOutlinedButton({
     super.key,
     required this.title,
     required this.onTap,
+    this.enabled = false,
   });
 
   @override
@@ -19,9 +21,18 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final background = isHover ? colorScheme.primary : colorScheme.onPrimary;
-    final foreground = isHover ? colorScheme.onPrimary : colorScheme.primary;
-    final border = isHover ? null : Border.all(color: colorScheme.primary);
+    final background =
+        widget.enabled && isHover ? colorScheme.primary : colorScheme.onPrimary;
+    final foreground = widget.enabled && isHover
+        ? colorScheme.onPrimary
+        : widget.enabled
+            ? colorScheme.primary
+            : Colors.grey;
+    final border = widget.enabled && isHover
+        ? null
+        : Border.all(
+            color: widget.enabled ? colorScheme.primary : Colors.grey,
+          );
     return InkWell(
       onTap: widget.onTap,
       onHover: (value) {
