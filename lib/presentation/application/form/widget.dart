@@ -8,6 +8,7 @@ import 'package:coke_platform/presentation/application/form/career/widget.dart';
 import 'package:coke_platform/presentation/application/form/education/widget.dart';
 import 'package:coke_platform/presentation/application/form/exhibition/widget.dart';
 import 'package:coke_platform/presentation/application/form/personal/widget.dart';
+import 'package:coke_platform/presentation/application/form/preview/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -52,7 +53,7 @@ enum ApplyStep {
       case ApplyStep.attachment:
         return 0.725;
       case ApplyStep.review:
-        return 0.1;
+        return 1;
     }
   }
 
@@ -198,6 +199,15 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
                 setState(() {});
               }
             },
+            review: step == ApplyStep.review
+                ? PersonalPreview(
+                    personal: personal!,
+                    education: education!,
+                    career: career!,
+                    exhibition: exhibition!,
+                    attachment: attachment!,
+                  )
+                : null,
           ),
         ],
       ),

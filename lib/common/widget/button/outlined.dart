@@ -8,7 +8,7 @@ class CustomOutlinedButton extends StatefulWidget {
     super.key,
     required this.title,
     required this.onTap,
-    this.enabled = false,
+    this.enabled = true,
   });
 
   @override

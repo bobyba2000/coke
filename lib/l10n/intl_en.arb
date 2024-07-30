@@ -168,5 +168,7 @@
     "uploadDropFile": "Drag and drop your file here or click",
     "cvHelperText": "(Upload in PDF format, file size < 2MB)",
     "accomplishmentRecords": "Records of other accomplishments",
+    "achivement": "Achivement",
+    "submit": "Submit",
     "unknownError": "Unknown Error"
 }
