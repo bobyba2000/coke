@@ -165,5 +165,8 @@
     "experienceHelperText": "Please share your relevant working experiences",
     "englistHelperText": "Please claim if you have any English certification with specific score, or other proof of your English proficiency",
     "detail": "Detail",
+    "uploadDropFile": "Upload or drop your file here",
+    "cvHelperText": "(Upload in PDF format, file size < 2MB)",
+    "accomplishmentRecords": "Records of other accomplishments",
     "unknownError": "Unknown Error"
 }

@@ -35,6 +35,8 @@ dependencies:
   sprintf: ^7.0.0
   shared_preferences: ^2.2.3
   table_calendar: ^3.0.9
+  flutter_dropzone: ^4.0.1
+  file_picker: ^8.0.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

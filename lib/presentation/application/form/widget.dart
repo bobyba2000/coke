@@ -11,6 +11,8 @@ import 'package:coke_platform/presentation/application/form/personal/widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'attachment/widget.dart';
+
 enum ApplyStep {
   personal,
   education,
@@ -160,36 +162,37 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
             ],
           ),
           64.hMax.hSpace,
-          step.form(
-            (value) {
-              switch (step) {
-                case ApplyStep.personal:
-                  personal = value;
-                  step = ApplyStep.education;
-                  break;
-                case ApplyStep.education:
-                  education = value;
-                  step = ApplyStep.career;
-                  break;
-                case ApplyStep.career:
-                  career = value;
-                  step = ApplyStep.exhibition;
-                  break;
-                case ApplyStep.exhibition:
-                  exhibition = value;
-                  step = ApplyStep.attachment;
-                  break;
-                case ApplyStep.attachment:
-                  step = ApplyStep.review;
-                  break;
-                case ApplyStep.review:
-                  break;
-              }
-              if (mounted) {
-                setState(() {});
-              }
-            },
-          ),
+          AttachmentWidget(),
+          // step.form(
+          //   (value) {
+          //     switch (step) {
+          //       case ApplyStep.personal:
+          //         personal = value;
+          //         step = ApplyStep.education;
+          //         break;
+          //       case ApplyStep.education:
+          //         education = value;
+          //         step = ApplyStep.career;
+          //         break;
+          //       case ApplyStep.career:
+          //         career = value;
+          //         step = ApplyStep.exhibition;
+          //         break;
+          //       case ApplyStep.exhibition:
+          //         exhibition = value;
+          //         step = ApplyStep.attachment;
+          //         break;
+          //       case ApplyStep.attachment:
+          //         step = ApplyStep.review;
+          //         break;
+          //       case ApplyStep.review:
+          //         break;
+          //     }
+          //     if (mounted) {
+          //       setState(() {});
+          //     }
+          //   },
+          // ),
         ],
       ),
     );
