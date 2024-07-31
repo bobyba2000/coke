@@ -1,6 +1,7 @@
 import 'package:coke_platform/config/firebase.dart';
 import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/core/router/index.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,6 +11,15 @@ import 'common/utility/locale.dart';
 import 'core/layout/theme.dart';
 import 'generated/l10n.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +48,7 @@ class MyApp extends StatelessWidget {
           builder: (context, child) {
             return MaterialApp.router(
               routerConfig: AppRouter.router,
+              scrollBehavior: MyCustomScrollBehavior(),
               debugShowCheckedModeBanner: false,
               theme: themeData(context),
               localizationsDelegates: const [

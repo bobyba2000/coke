@@ -450,6 +450,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                         resumeCV: resumeUrl,
                         accomplishment: attachmentUrl,
                       ),
+                      submitTime: DateTime.now(),
                     );
                     await contestantService.update(contestant);
                     DialogUtility.showConfirmDialog(

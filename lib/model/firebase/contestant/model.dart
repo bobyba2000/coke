@@ -16,6 +16,7 @@ class ContestantModel {
   final CareerInfoModel careerInfo;
   final ExhibitionInfoModel exhibition;
   final AttachmentModel attachment;
+  final DateTime submitTime;
 
   ContestantModel({
     required this.key,
@@ -24,6 +25,7 @@ class ContestantModel {
     required this.careerInfo,
     required this.exhibition,
     required this.attachment,
+    required this.submitTime,
   });
 
   factory ContestantModel.fromJson(Map<String, dynamic> json) =>

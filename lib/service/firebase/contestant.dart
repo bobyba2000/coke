@@ -21,4 +21,19 @@ class FirebaseContestantService {
           jsonDecode(jsonEncode(model.toJson())),
         );
   }
+
+  Future<List<ContestantModel>> list() async {
+    final response = await FirebaseDatabase.instance
+        .ref(FirebasePath.contestant)
+        .orderByChild('submitTime')
+        .once();
+    List<ContestantModel> res = [];
+    if (response.snapshot.exists) {
+      for (var snapshot in response.snapshot.children) {
+        final data = jsonDecode(jsonEncode(snapshot.value));
+        res.add(ContestantModel.fromJson(data));
+      }
+    }
+    return res;
+  }
 }

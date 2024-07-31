@@ -66,13 +66,13 @@ class DialogUtility {
         title: Text(
           title,
           style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
         ),
         content: Text(
           message,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
         ),
         actions: [
@@ -90,7 +90,7 @@ class DialogUtility {
             child: Text(
               confirmText ?? S.current.confirm,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onBackground,
                   ),
             ),
           ),

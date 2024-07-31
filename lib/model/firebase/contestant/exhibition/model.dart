@@ -12,7 +12,8 @@ class AchivementModel {
     required this.accomplishment,
   });
 
-  factory AchivementModel.fromJson(Map<String, dynamic> json) => _$AchivementModelFromJson(json);
+  factory AchivementModel.fromJson(Map<String, dynamic> json) =>
+      _$AchivementModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AchivementModelToJson(this);
 }
@@ -27,7 +28,8 @@ class SkillModel {
     required this.description,
   });
 
-  factory SkillModel.fromJson(Map<String, dynamic> json) => _$SkillModelFromJson(json);
+  factory SkillModel.fromJson(Map<String, dynamic> json) =>
+      _$SkillModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SkillModelToJson(this);
 }
@@ -124,7 +126,8 @@ class WorkingExperienceModel {
     required this.jobTitle,
   });
 
-  factory WorkingExperienceModel.fromJson(Map<String, dynamic> json) => _$WorkingExperienceModelFromJson(json);
+  factory WorkingExperienceModel.fromJson(Map<String, dynamic> json) =>
+      _$WorkingExperienceModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$WorkingExperienceModelToJson(this);
 }
@@ -177,15 +180,19 @@ class EnglishProfiencyModel {
     required this.detail,
   });
 
-  factory EnglishProfiencyModel.fromJson(Map<String, dynamic> json) => _$EnglishProfiencyModelFromJson(json);
+  factory EnglishProfiencyModel.fromJson(Map<String, dynamic> json) =>
+      _$EnglishProfiencyModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$EnglishProfiencyModelToJson(this);
 }
 
 @JsonSerializable()
 class ExhibitionInfoModel {
+  @JsonKey(defaultValue: [])
   final List<AchivementModel> achivements;
+  @JsonKey(defaultValue: [])
   final List<SkillModel> skills;
+  @JsonKey(defaultValue: [])
   final List<WorkingExperienceModel> experiences;
   final EnglishProfiencyModel? english;
 
@@ -196,7 +203,8 @@ class ExhibitionInfoModel {
     required this.english,
   });
 
-  factory ExhibitionInfoModel.fromJson(Map<String, dynamic> json) => _$ExhibitionInfoModelFromJson(json);
+  factory ExhibitionInfoModel.fromJson(Map<String, dynamic> json) =>
+      _$ExhibitionInfoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExhibitionInfoModelToJson(this);
 }

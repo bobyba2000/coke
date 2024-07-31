@@ -1,5 +1,7 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/presentation/admin/page/dashboard/widget/overview.dart';
+import 'package:coke_platform/service/firebase/contestant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
@@ -15,6 +17,8 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   List<ContestantModel> datas = [];
+  final contestantService =
+      AppDependencies.injector.get<FirebaseContestantService>();
 
   @override
   void initState() {
@@ -23,11 +27,16 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   void getData() {
-    List<ContestantModel> contestants = [];
-    datas = contestants;
-    if (mounted) {
-      setState(() {});
-    }
+    contestantService.list().then(
+      (value) {
+        datas = value;
+        if (mounted) {
+          setState(() {});
+        }
+      },
+    ).onError((error, stackTrace) {
+      print(error);
+    });
   }
 
   // ContestantModel generateContestant(int index) {
