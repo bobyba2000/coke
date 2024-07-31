@@ -17,7 +17,9 @@ class AttachmentViewModel {
 
 class AttachmentWidget extends StatefulWidget {
   final Function(AttachmentViewModel attachment) onFinish;
-  const AttachmentWidget({super.key, required this.onFinish});
+  final VoidCallback onBack;
+  const AttachmentWidget(
+      {super.key, required this.onFinish, required this.onBack});
 
   @override
   State<AttachmentWidget> createState() => _AttachmentWidgetState();
@@ -57,19 +59,32 @@ class _AttachmentWidgetState extends State<AttachmentWidget> {
           },
         ),
         64.h.hSpace,
-        CustomOutlinedButton(
-          enabled: resume != null,
-          title: S.current.continueWord,
-          onTap: () {
-            if (resume != null) {
-              widget.onFinish.call(
-                AttachmentViewModel(
-                  resume: resume!,
-                  accomplishment: accomplishment,
-                ),
-              );
-            }
-          },
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomOutlinedButton(
+              title: S.current.back,
+              color: Colors.black,
+              onTap: () {
+                widget.onBack.call();
+              },
+            ),
+            16.wSpace,
+            CustomOutlinedButton(
+              enabled: resume != null,
+              title: S.current.continueWord,
+              onTap: () {
+                if (resume != null) {
+                  widget.onFinish.call(
+                    AttachmentViewModel(
+                      resume: resume!,
+                      accomplishment: accomplishment,
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
         ),
       ],
     );

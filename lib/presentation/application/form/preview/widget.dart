@@ -1,16 +1,28 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/common/utility/dialog.dart';
+import 'package:coke_platform/common/utility/loading_utility.dart';
 import 'package:coke_platform/common/widget/button/outlined.dart';
+import 'package:coke_platform/constants/firebase_path.dart';
+import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:coke_platform/model/firebase/contestant/attachment/model.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:coke_platform/model/firebase/contestant/education/model.dart';
 import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
+import 'package:coke_platform/model/firebase/contestant/model.dart';
 import 'package:coke_platform/model/firebase/contestant/personal/model.dart';
 import 'package:coke_platform/presentation/application/form/attachment/widget.dart';
+import 'package:coke_platform/service/firebase/contestant.dart';
+import 'package:coke_platform/service/firebase/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class PersonalPreview extends StatefulWidget {
+  final VoidCallback onBack;
   final PersonalInfoModel personal;
   final EducationInfoModel education;
   final CareerInfoModel career;
@@ -23,6 +35,7 @@ class PersonalPreview extends StatefulWidget {
     required this.career,
     required this.exhibition,
     required this.attachment,
+    required this.onBack,
   });
 
   @override
@@ -387,11 +400,80 @@ class _PersonalPreviewState extends State<PersonalPreview> {
             },
           ),
           64.h.hSpace,
-          Center(
-            child: CustomOutlinedButton(
-              title: S.current.submit,
-              onTap: () {},
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomOutlinedButton(
+                title: S.current.back,
+                color: Colors.black,
+                onTap: () {
+                  widget.onBack.call();
+                },
+              ),
+              16.wSpace,
+              CustomOutlinedButton(
+                title: S.current.submit,
+                onTap: () async {
+                  final storageService =
+                      AppDependencies.injector.get<FirebaseStorageService>();
+                  final contestantService =
+                      AppDependencies.injector.get<FirebaseContestantService>();
+                  final key = contestantService.generateKey();
+                  late String resumeUrl;
+                  String? attachmentUrl;
+                  try {
+                    LoadingUtility.show();
+                    await Future.wait(
+                      [
+                        () async {
+                          resumeUrl = await storageService.upload(
+                              '${FirebasePath.contestant}/$key/resume',
+                              widget.attachment.resume);
+                        }.call(),
+                        () async {
+                          if (widget.attachment.accomplishment != null) {
+                            attachmentUrl = await storageService.upload(
+                              '${FirebasePath.contestant}/$key/accomplishment',
+                              widget.attachment.accomplishment!,
+                            );
+                          }
+                        }.call(),
+                      ],
+                    );
+                    final contestant = ContestantModel(
+                      key: key,
+                      personalInfo: widget.personal,
+                      educationInfo: widget.education,
+                      careerInfo: widget.career,
+                      exhibition: widget.exhibition,
+                      attachment: AttachmentModel(
+                        resumeCV: resumeUrl,
+                        accomplishment: attachmentUrl,
+                      ),
+                    );
+                    await contestantService.update(contestant);
+                    DialogUtility.showConfirmDialog(
+                      context,
+                      title: S.current.thankyou,
+                      message: S.current.applySuccessfully,
+                      onConfirm: () {
+                        Navigator.pop(context);
+                      },
+                    ).then((value) {
+                      context.go('/');
+                    });
+                  } catch (e) {
+                    DialogUtility.showErrorDialog(
+                      context,
+                      title: S.current.error,
+                      message: S.current.unknownError,
+                    );
+                  } finally {
+                    LoadingUtility.dismiss();
+                  }
+                },
+              ),
+            ],
           ),
         ],
       ),

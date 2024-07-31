@@ -32,16 +32,20 @@ class WorkingExperienceViewModel {
 
 class ProfileExhibitionWidget extends StatefulWidget {
   final Function(ExhibitionInfoModel exhibition) onFinish;
+  final VoidCallback onBack;
   const ProfileExhibitionWidget({
     super.key,
     required this.onFinish,
+    required this.onBack,
   });
 
   @override
-  State<ProfileExhibitionWidget> createState() => _ProfileExhibitionWidgetState();
+  State<ProfileExhibitionWidget> createState() =>
+      _ProfileExhibitionWidgetState();
 }
 
-class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with Validator {
+class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
+    with Validator {
   final allSkills = [
     'Inventory Management',
     'SQL',
@@ -434,7 +438,8 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                         children: [
                           Text(
                             '${S.current.job} ${e.key + 1}',
-                            style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                            style: textTheme.bodyLarge
+                                ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           4.hSpace,
                           Row(
@@ -461,9 +466,10 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                                   getSuggestData: (value) async {
                                     return industries
                                         .where(
-                                          (element) => element.toLowerCase().contains(
-                                                value.toLowerCase(),
-                                              ),
+                                          (element) =>
+                                              element.toLowerCase().contains(
+                                                    value.toLowerCase(),
+                                                  ),
                                         )
                                         .toList();
                                   },
@@ -510,9 +516,10 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                                   getSuggestData: (value) async {
                                     return companies
                                         .where(
-                                          (element) => element.toLowerCase().contains(
-                                                value.toLowerCase(),
-                                              ),
+                                          (element) =>
+                                              element.toLowerCase().contains(
+                                                    value.toLowerCase(),
+                                                  ),
                                         )
                                         .toList();
                                   },
@@ -613,14 +620,16 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                               label: S.current.detail,
                               validator: checkRequired,
                               inputFormatters: [
-                                FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,1}')),
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'^(\d+)?\.?\d{0,1}')),
                               ],
                               suffixIcon: Padding(
                                 padding: const EdgeInsets.only(right: 16),
                                 child: Text(
                                   '/9.0',
                                   style: textTheme.bodyLarge?.copyWith(
-                                    color: colorScheme.onBackground.withOpacity(0.5),
+                                    color: colorScheme.onBackground
+                                        .withOpacity(0.5),
                                   ),
                                 ),
                               ),
@@ -641,7 +650,8 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                                 child: Text(
                                   '/990',
                                   style: textTheme.bodyLarge?.copyWith(
-                                    color: colorScheme.onBackground.withOpacity(0.5),
+                                    color: colorScheme.onBackground
+                                        .withOpacity(0.5),
                                   ),
                                 ),
                               ),
@@ -662,7 +672,8 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                                 child: Text(
                                   '/120',
                                   style: textTheme.bodyLarge?.copyWith(
-                                    color: colorScheme.onBackground.withOpacity(0.5),
+                                    color: colorScheme.onBackground
+                                        .withOpacity(0.5),
                                   ),
                                 ),
                               ),
@@ -715,45 +726,67 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
             ],
           ),
           64.h.hSpace,
-          CustomOutlinedButton(
-            title: S.current.continueWord,
-            onTap: () {
-              if (form.currentState!.validate()) {
-                widget.onFinish.call(
-                  ExhibitionInfoModel(
-                    achivements: achivements
-                        .where((element) => element.name.isNotEmpty)
-                        .map(
-                          (e) => AchivementModel(
-                            name: e.name,
-                            accomplishment: e.accomplishment,
-                          ),
-                        )
-                        .toList(),
-                    skills: skills
-                        .where((element) => element.skill.isNotEmpty)
-                        .map((e) => SkillModel(
-                              skill: e.skill,
-                              description: e.description,
-                            ))
-                        .toList(),
-                    experiences: experiences
-                        .where((element) => element.companyName != null && element.type != null && element.companyName != '')
-                        .map(
-                          (e) => WorkingExperienceModel(
-                            type: e.type!,
-                            startDate: e.fromDate,
-                            endDate: e.toDate,
-                            industry: e.industry ?? '',
-                            companyName: e.companyName ?? '',
-                            jobTitle: e.title ?? '',
-                          ),
-                        )
-                        .toList(), english: certification == null ? null : EnglishProfiencyModel(certification: certification!, detail: certDetail,),
-                  ),
-                );
-              }
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomOutlinedButton(
+                title: S.current.back,
+                color: Colors.black,
+                onTap: () {
+                  widget.onBack.call();
+                },
+              ),
+              16.wSpace,
+              CustomOutlinedButton(
+                title: S.current.continueWord,
+                onTap: () {
+                  if (form.currentState!.validate()) {
+                    widget.onFinish.call(
+                      ExhibitionInfoModel(
+                        achivements: achivements
+                            .where((element) => element.name.isNotEmpty)
+                            .map(
+                              (e) => AchivementModel(
+                                name: e.name,
+                                accomplishment: e.accomplishment,
+                              ),
+                            )
+                            .toList(),
+                        skills: skills
+                            .where((element) => element.skill.isNotEmpty)
+                            .map((e) => SkillModel(
+                                  skill: e.skill,
+                                  description: e.description,
+                                ))
+                            .toList(),
+                        experiences: experiences
+                            .where((element) =>
+                                element.companyName != null &&
+                                element.type != null &&
+                                element.companyName != '')
+                            .map(
+                              (e) => WorkingExperienceModel(
+                                type: e.type!,
+                                startDate: e.fromDate,
+                                endDate: e.toDate,
+                                industry: e.industry ?? '',
+                                companyName: e.companyName ?? '',
+                                jobTitle: e.title ?? '',
+                              ),
+                            )
+                            .toList(),
+                        english: certification == null
+                            ? null
+                            : EnglishProfiencyModel(
+                                certification: certification!,
+                                detail: certDetail,
+                              ),
+                      ),
+                    );
+                  }
+                },
+              ),
+            ],
           ),
         ],
       ),

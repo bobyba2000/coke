@@ -10,6 +10,7 @@ part 'model.g.dart';
 
 @JsonSerializable()
 class ContestantModel {
+  final String? key;
   final PersonalInfoModel personalInfo;
   final EducationInfoModel educationInfo;
   final CareerInfoModel careerInfo;
@@ -17,6 +18,7 @@ class ContestantModel {
   final AttachmentModel attachment;
 
   ContestantModel({
+    required this.key,
     required this.personalInfo,
     required this.educationInfo,
     required this.careerInfo,
@@ -24,7 +26,8 @@ class ContestantModel {
     required this.attachment,
   });
 
-  factory ContestantModel.fromJson(Map<String, dynamic> json) => _$ContestantModelFromJson(json);
+  factory ContestantModel.fromJson(Map<String, dynamic> json) =>
+      _$ContestantModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ContestantModelToJson(this);
 }

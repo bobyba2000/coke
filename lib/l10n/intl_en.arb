@@ -48,7 +48,7 @@
     "yourAvailability": "Your Availability",
     "fulltime6Months": "I can work full-time during 6 months",
     "shiftOff1To2": "I need 1-2 shifts off per week for school",
-    "shiftOff3": "'I need 3 shifts off per week for school",
+    "shiftOff3": "I need 3 shifts off per week for school",
     "shiftOffOver3": "I need more than 3 shifts off per week for school",
     "profileExhibition": "Profile Exhibition",
     "skills": "Skills",
@@ -170,5 +170,12 @@
     "accomplishmentRecords": "Records of other accomplishments",
     "achivement": "Achivement",
     "submit": "Submit",
-    "unknownError": "Unknown Error"
+    "back": "Back",
+    "unknownError": "Unknown Error. Please try again.",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok",
+    "error": "Error",
+    "thankyou": "Thank you",
+    "applySuccessfully": "Thank you for your submission. We will let you know your result soon."
 }

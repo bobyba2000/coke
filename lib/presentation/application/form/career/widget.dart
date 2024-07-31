@@ -10,7 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CareerInfoWidget extends StatefulWidget {
   final Function(CareerInfoModel career) onFinish;
-  const CareerInfoWidget({super.key, required this.onFinish});
+  final VoidCallback onBack;
+  const CareerInfoWidget(
+      {super.key, required this.onFinish, required this.onBack});
 
   @override
   State<CareerInfoWidget> createState() => _CareerInfoWidgetState();
@@ -65,14 +67,15 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
       )
       .toList();
 
-  List<DropdownMenuItem<AvailabilityType>> availabilities = AvailabilityType.values
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(e.toString()),
-        ),
-      )
-      .toList();
+  List<DropdownMenuItem<AvailabilityType>> availabilities =
+      AvailabilityType.values
+          .map(
+            (e) => DropdownMenuItem(
+              value: e,
+              child: Text(e.toString()),
+            ),
+          )
+          .toList();
 
   AvailabilityType? availability;
   String? note;
@@ -170,7 +173,8 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                           children: [
                             Expanded(
                               child: AppDropDownWidget<String>(
-                                label: '${S.current.workingLocation} - ${S.current.priority1}',
+                                label:
+                                    '${S.current.workingLocation} - ${S.current.priority1}',
                                 required: true,
                                 validator: (value) {
                                   if (value == null) {
@@ -192,7 +196,8 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                                       priority2 = null;
                                     }
                                     priority2Locations = locations
-                                        .where((element) => element != priority1)
+                                        .where(
+                                            (element) => element != priority1)
                                         .map(
                                           (e) => DropdownMenuItem(
                                             value: e,
@@ -210,7 +215,8 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                             16.wSpace,
                             Expanded(
                               child: AppDropDownWidget<String>(
-                                label: '${S.current.workingLocation} - ${S.current.priority2}',
+                                label:
+                                    '${S.current.workingLocation} - ${S.current.priority2}',
                                 required: true,
                                 isNeedToReset: true,
                                 validator: (value) {
@@ -308,7 +314,8 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                   setState(() {});
                 },
               ),
-              if (availability != null && availability != AvailabilityType.fulltime6Months)
+              if (availability != null &&
+                  availability != AvailabilityType.fulltime6Months)
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: TextFieldWidget(
@@ -323,28 +330,41 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
             ],
           ),
           64.h.hSpace,
-          CustomOutlinedButton(
-            title: S.current.continueWord,
-            onTap: () {
-              if (form.currentState!.validate()) {
-                widget.onFinish.call(
-                  CareerInfoModel(
-                    desiredPathway: DesiredPathwayModel(
-                      role: role!,
-                      location: WorkingLocationModel(
-                        first: priority1!,
-                        second: priority2,
-                        willingToChange: willingToReallocate,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomOutlinedButton(
+                title: S.current.back,
+                color: Colors.black,
+                onTap: () {
+                  widget.onBack.call();
+                },
+              ),
+              16.wSpace,
+              CustomOutlinedButton(
+                title: S.current.continueWord,
+                onTap: () {
+                  if (form.currentState!.validate()) {
+                    widget.onFinish.call(
+                      CareerInfoModel(
+                        desiredPathway: DesiredPathwayModel(
+                          role: role!,
+                          location: WorkingLocationModel(
+                            first: priority1!,
+                            second: priority2,
+                            willingToChange: willingToReallocate,
+                          ),
+                        ),
+                        availability: AvailabilityModel(
+                          type: availability!,
+                          note: note,
+                        ),
                       ),
-                    ),
-                    availability: AvailabilityModel(
-                      type: availability!,
-                      note: note,
-                    ),
-                  ),
-                );
-              }
-            },
+                    );
+                  }
+                },
+              ),
+            ],
           ),
         ],
       ),

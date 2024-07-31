@@ -2,12 +2,7 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/presentation/admin/page/dashboard/widget/overview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:coke_platform/model/firebase/contestant/attachment/model.dart';
-import 'package:coke_platform/model/firebase/contestant/career/model.dart';
-import 'package:coke_platform/model/firebase/contestant/education/model.dart';
-import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
-import 'package:coke_platform/model/firebase/contestant/personal/model.dart';
 
 import 'widget/cv_list/widget.dart';
 
@@ -28,102 +23,102 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   void getData() {
-    List<ContestantModel> contestants = List.generate(3000, (index) => generateContestant(index));
+    List<ContestantModel> contestants = [];
     datas = contestants;
     if (mounted) {
       setState(() {});
     }
   }
 
-  ContestantModel generateContestant(int index) {
-    return ContestantModel(
-      personalInfo: generatePersonalInfo(index),
-      educationInfo: generateEducationInfo(index),
-      careerInfo: generateCareerInfo(index),
-      exhibition: generateExhibitionInfo(index),
-      attachment: generateAttachment(),
-    );
-  }
+  // ContestantModel generateContestant(int index) {
+  //   return ContestantModel(
+  //     personalInfo: generatePersonalInfo(index),
+  //     educationInfo: generateEducationInfo(index),
+  //     careerInfo: generateCareerInfo(index),
+  //     exhibition: generateExhibitionInfo(index),
+  //     attachment: generateAttachment(),
+  //   );
+  // }
 
-  PersonalInfoModel generatePersonalInfo(int index) {
-    return PersonalInfoModel(
-      fullName: 'Full Name $index',
-      yearOfBirth: 2000 + index % 10,
-      email: 'email$index@example.com',
-      phoneNo: '123-456-789$index',
-      hometown: 'Hometown $index',
-      currentLocation: 'Current Location $index',
-    );
-  }
+  // PersonalInfoModel generatePersonalInfo(int index) {
+  //   return PersonalInfoModel(
+  //     fullName: 'Full Name $index',
+  //     yearOfBirth: 2000 + index % 10,
+  //     email: 'email$index@example.com',
+  //     phoneNo: '123-456-789$index',
+  //     hometown: 'Hometown $index',
+  //     currentLocation: 'Current Location $index',
+  //   );
+  // }
 
-  EducationInfoModel generateEducationInfo(int index) {
-    return EducationInfoModel(
-      education: EducationLevel.values[index % EducationLevel.values.length],
-      graduationYear: GraduationYear.values[index % GraduationYear.values.length],
-      university: 'HCMUS',
-      major: 'IT',
-      gpa: 8,
-    );
-  }
+  // EducationInfoModel generateEducationInfo(int index) {
+  //   return EducationInfoModel(
+  //     education: EducationLevel.values[index % EducationLevel.values.length],
+  //     graduationYear: GraduationYear.values[index % GraduationYear.values.length],
+  //     university: 'HCMUS',
+  //     major: 'IT',
+  //     gpa: 8,
+  //   );
+  // }
 
-  CareerInfoModel generateCareerInfo(int index) {
-    return CareerInfoModel(
-      desiredPathway: DesiredPathwayModel(
-        role: InternshipRole.values[index % InternshipRole.values.length],
-        location: WorkingLocationModel(
-          first: 'City A',
-          second: 'City B',
-          willingToChange: true,
-        ),
-      ),
-      availability: AvailabilityModel(
-        type: AvailabilityType.fulltime6Months,
-        note: 'Available for 6 months full-time',
-      ),
-    );
-  }
+  // CareerInfoModel generateCareerInfo(int index) {
+  //   return CareerInfoModel(
+  //     desiredPathway: DesiredPathwayModel(
+  //       role: InternshipRole.values[index % InternshipRole.values.length],
+  //       location: WorkingLocationModel(
+  //         first: 'City A',
+  //         second: 'City B',
+  //         willingToChange: true,
+  //       ),
+  //     ),
+  //     availability: AvailabilityModel(
+  //       type: AvailabilityType.fulltime6Months,
+  //       note: 'Available for 6 months full-time',
+  //     ),
+  //   );
+  // }
 
-  ExhibitionInfoModel generateExhibitionInfo(int index) {
-    return ExhibitionInfoModel(
-      achivements: [
-        AchivementModel(
-          name: 'Achievement Name',
-          accomplishment: 'Description of accomplishment',
-        ),
-      ],
-      skills: [
-        SkillModel(
-          skill: 'Skill 1',
-          description: 'Description of skill 1',
-        ),
-        SkillModel(
-          skill: 'Skill 2',
-          description: 'Description of skill 2',
-        ),
-      ],
-      experiences: [
-        WorkingExperienceModel(
-          type: WorkingType.values[index % WorkingType.values.length],
-          startDate: DateTime(2022, 1, 1),
-          endDate: DateTime(2023, 1, 1),
-          industry: CompanyIndustry.values[index % CompanyIndustry.values.length].toString(),
-          companyName: 'Company Name',
-          jobTitle: 'Job Title',
-        ),
-      ],
-      english: EnglishProfiencyModel(
-        certification: EnglistCertification.values[index % EnglistCertification.values.length],
-        detail: 'IELTS 7.5',
-      ),
-    );
-  }
+  // ExhibitionInfoModel generateExhibitionInfo(int index) {
+  //   return ExhibitionInfoModel(
+  //     achivements: [
+  //       AchivementModel(
+  //         name: 'Achievement Name',
+  //         accomplishment: 'Description of accomplishment',
+  //       ),
+  //     ],
+  //     skills: [
+  //       SkillModel(
+  //         skill: 'Skill 1',
+  //         description: 'Description of skill 1',
+  //       ),
+  //       SkillModel(
+  //         skill: 'Skill 2',
+  //         description: 'Description of skill 2',
+  //       ),
+  //     ],
+  //     experiences: [
+  //       WorkingExperienceModel(
+  //         type: WorkingType.values[index % WorkingType.values.length],
+  //         startDate: DateTime(2022, 1, 1),
+  //         endDate: DateTime(2023, 1, 1),
+  //         industry: CompanyIndustry.values[index % CompanyIndustry.values.length].toString(),
+  //         companyName: 'Company Name',
+  //         jobTitle: 'Job Title',
+  //       ),
+  //     ],
+  //     english: EnglishProfiencyModel(
+  //       certification: EnglistCertification.values[index % EnglistCertification.values.length],
+  //       detail: 'IELTS 7.5',
+  //     ),
+  //   );
+  // }
 
-  AttachmentModel generateAttachment() {
-    return AttachmentModel(
-      resumeCV: 'link_to_resume_cv',
-      accomplishment: 'link_to_accomplishment',
-    );
-  }
+  // AttachmentModel generateAttachment() {
+  //   return AttachmentModel(
+  //     resumeCV: 'link_to_resume_cv',
+  //     accomplishment: 'link_to_accomplishment',
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

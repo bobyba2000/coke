@@ -4,7 +4,7 @@ part 'model.g.dart';
 @JsonSerializable()
 class AttachmentModel {
   final String resumeCV;
-  final String accomplishment;
+  final String? accomplishment;
 
   AttachmentModel({
     required this.resumeCV,

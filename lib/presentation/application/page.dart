@@ -30,6 +30,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                     BackgroundImage(),
                     45.hSpace,
                     ApplyFormWidget(),
+                    64.hMax.hSpace,
                   ],
                 ),
               ),

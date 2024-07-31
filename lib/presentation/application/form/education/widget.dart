@@ -13,13 +13,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EducationInfoWidget extends StatefulWidget {
   final Function(EducationInfoModel education) onFinish;
-  const EducationInfoWidget({super.key, required this.onFinish});
+  final VoidCallback onBack;
+  const EducationInfoWidget(
+      {super.key, required this.onFinish, required this.onBack});
 
   @override
   State<EducationInfoWidget> createState() => _EducationInfoWidgetState();
 }
 
-class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validator {
+class _EducationInfoWidgetState extends State<EducationInfoWidget>
+    with Validator {
   EducationLevel? level;
   String university = '';
   String major = '';
@@ -110,7 +113,8 @@ class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validato
                   validator: checkRequired,
                   required: true,
                   inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'^(\d+)?\.?\d{0,2}')),
                   ],
                   onChanged: (value) {
                     gpa = double.tryParse(value);
@@ -154,21 +158,34 @@ class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validato
             ],
           ),
           64.h.hSpace,
-          CustomOutlinedButton(
-            title: S.current.continueWord,
-            onTap: () {
-              if (form.currentState!.validate()) {
-                widget.onFinish.call(
-                  EducationInfoModel(
-                    education: level!,
-                    university: university,
-                    major: major,
-                    gpa: gpa!,
-                    graduationYear: year!,
-                  ),
-                );
-              }
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomOutlinedButton(
+                title: S.current.back,
+                color: Colors.black,
+                onTap: () {
+                  widget.onBack.call();
+                },
+              ),
+              16.wSpace,
+              CustomOutlinedButton(
+                title: S.current.continueWord,
+                onTap: () {
+                  if (form.currentState!.validate()) {
+                    widget.onFinish.call(
+                      EducationInfoModel(
+                        education: level!,
+                        university: university,
+                        major: major,
+                        gpa: gpa!,
+                        graduationYear: year!,
+                      ),
+                    );
+                  }
+                },
+              ),
+            ],
           ),
         ],
       ),

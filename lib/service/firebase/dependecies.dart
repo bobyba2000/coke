@@ -1,0 +1,10 @@
+import 'package:coke_platform/core/dependencies/app_dependencies.dart';
+import 'package:coke_platform/service/firebase/contestant.dart';
+import 'package:coke_platform/service/firebase/storage.dart';
+
+class FirebaseDependecies {
+  static void init() {
+    AppDependencies.injector.registerSingleton(FirebaseContestantService());
+    AppDependencies.injector.registerSingleton(FirebaseStorageService());
+  }
+}

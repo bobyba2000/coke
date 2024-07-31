@@ -75,20 +75,33 @@ enum ApplyStep {
   }
 
   Widget form(
-    Function(dynamic value) onFinish, {
+    Function(dynamic value) onFinish,
+    VoidCallback onBack, {
     Widget? review,
   }) {
     switch (this) {
       case ApplyStep.personal:
         return PersonalInformationWidget(onFinish: onFinish);
       case ApplyStep.education:
-        return EducationInfoWidget(onFinish: onFinish);
+        return EducationInfoWidget(
+          onFinish: onFinish,
+          onBack: onBack,
+        );
       case ApplyStep.career:
-        return CareerInfoWidget(onFinish: onFinish);
+        return CareerInfoWidget(
+          onFinish: onFinish,
+          onBack: onBack,
+        );
       case ApplyStep.exhibition:
-        return ProfileExhibitionWidget(onFinish: onFinish);
+        return ProfileExhibitionWidget(
+          onFinish: onFinish,
+          onBack: onBack,
+        );
       case ApplyStep.attachment:
-        return AttachmentWidget(onFinish: onFinish);
+        return AttachmentWidget(
+          onFinish: onFinish,
+          onBack: onBack,
+        );
       case ApplyStep.review:
         return review!;
     }
@@ -103,7 +116,7 @@ class ApplyFormWidget extends StatefulWidget {
 }
 
 class _ApplyFormWidgetState extends State<ApplyFormWidget> {
-  ApplyStep step = ApplyStep.personal;
+  ApplyStep currentStep = ApplyStep.personal;
   PersonalInfoModel? personal;
   EducationInfoModel? education;
   CareerInfoModel? career;
@@ -129,7 +142,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
             alignment: Alignment.center,
             children: [
               LinearProgressIndicator(
-                value: step.step,
+                value: currentStep.step,
                 color: colorScheme.primary,
                 minHeight: 10.w,
                 backgroundColor: const Color(0xFFe9ecef),
@@ -157,7 +170,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
                         height: 16.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.w),
-                          color: e.index > step.index
+                          color: e.index > currentStep.index
                               ? const Color(0xFFe9ecef)
                               : colorScheme.primary,
                         ),
@@ -169,46 +182,88 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
             ],
           ),
           64.hMax.hSpace,
-          step.form(
-            (value) {
-              switch (step) {
-                case ApplyStep.personal:
-                  personal = value;
-                  step = ApplyStep.education;
-                  break;
-                case ApplyStep.education:
-                  education = value;
-                  step = ApplyStep.career;
-                  break;
-                case ApplyStep.career:
-                  career = value;
-                  step = ApplyStep.exhibition;
-                  break;
-                case ApplyStep.exhibition:
-                  exhibition = value;
-                  step = ApplyStep.attachment;
-                  break;
-                case ApplyStep.attachment:
-                  attachment = value;
-                  step = ApplyStep.review;
-                  break;
-                case ApplyStep.review:
-                  break;
-              }
-              if (mounted) {
-                setState(() {});
-              }
-            },
-            review: step == ApplyStep.review
-                ? PersonalPreview(
-                    personal: personal!,
-                    education: education!,
-                    career: career!,
-                    exhibition: exhibition!,
-                    attachment: attachment!,
-                  )
-                : null,
-          ),
+          ...List.generate(ApplyStep.values.length, (index) {
+            final step = ApplyStep.values[index];
+            return Visibility(
+              maintainState: true,
+              visible: step == currentStep,
+              child: Builder(
+                builder: (context) {
+                  if (step == ApplyStep.review) {
+                    if (personal != null &&
+                        education != null &&
+                        career != null &&
+                        exhibition != null &&
+                        attachment != null) {
+                      return PersonalPreview(
+                        personal: personal!,
+                        education: education!,
+                        career: career!,
+                        exhibition: exhibition!,
+                        attachment: attachment!,
+                        onBack: () {
+                          currentStep = ApplyStep.values[currentStep.index - 1];
+                          setState(() {});
+                        },
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  }
+                  return step.form(
+                    (value) {
+                      switch (step) {
+                        case ApplyStep.personal:
+                          personal = value;
+                          currentStep = ApplyStep.education;
+                          break;
+                        case ApplyStep.education:
+                          education = value;
+                          currentStep = ApplyStep.career;
+                          break;
+                        case ApplyStep.career:
+                          career = value;
+                          currentStep = ApplyStep.exhibition;
+                          break;
+                        case ApplyStep.exhibition:
+                          exhibition = value;
+                          currentStep = ApplyStep.attachment;
+                          break;
+                        case ApplyStep.attachment:
+                          attachment = value;
+                          currentStep = ApplyStep.review;
+                          break;
+                        case ApplyStep.review:
+                          break;
+                      }
+                      if (mounted) {
+                        setState(() {});
+                      }
+                    },
+                    () {
+                      setState(() {
+                        currentStep = ApplyStep.values[currentStep.index - 1];
+                      });
+                    },
+                    review: step == ApplyStep.review
+                        ? PersonalPreview(
+                            personal: personal!,
+                            education: education!,
+                            career: career!,
+                            exhibition: exhibition!,
+                            attachment: attachment!,
+                            onBack: () {
+                              setState(() {
+                                currentStep =
+                                    ApplyStep.values[currentStep.index - 1];
+                              });
+                            },
+                          )
+                        : null,
+                  );
+                },
+              ),
+            );
+          }),
         ],
       ),
     );
