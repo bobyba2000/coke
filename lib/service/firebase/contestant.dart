@@ -34,6 +34,6 @@ class FirebaseContestantService {
         res.add(ContestantModel.fromJson(data));
       }
     }
-    return res;
+    return res.reversed.toList();
   }
 }

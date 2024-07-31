@@ -177,5 +177,6 @@
     "ok": "Ok",
     "error": "Error",
     "thankyou": "Thank you",
-    "applySuccessfully": "Thank you for your submission. We will let you know your result soon."
+    "applySuccessfully": "Thank you for your submission. We will let you know your result soon.",
+    "download": "Download"
 }

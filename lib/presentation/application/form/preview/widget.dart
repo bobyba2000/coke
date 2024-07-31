@@ -427,13 +427,13 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                       [
                         () async {
                           resumeUrl = await storageService.upload(
-                              '${FirebasePath.contestant}/$key/resume',
+                              '${FirebasePath.contestant}/$key/${widget.attachment.resume.fileName}',
                               widget.attachment.resume);
                         }.call(),
                         () async {
                           if (widget.attachment.accomplishment != null) {
                             attachmentUrl = await storageService.upload(
-                              '${FirebasePath.contestant}/$key/accomplishment',
+                              '${FirebasePath.contestant}/$key/${widget.attachment.accomplishment!.fileName}',
                               widget.attachment.accomplishment!,
                             );
                           }

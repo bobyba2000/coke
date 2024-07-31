@@ -1,6 +1,7 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
+import 'package:coke_platform/presentation/admin/page/dashboard/widget/cv_list/preview.dart';
 import 'package:flutter/material.dart';
 import 'package:sprintf/sprintf.dart';
 
@@ -120,7 +121,9 @@ class _ListContestantTableState extends State<ListContestantTable> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final start = (currentPage) * sizePerPage;
-    final end = (currentPage + 1) * sizePerPage > widget.contestants.length ? widget.contestants.length : (currentPage + 1) * sizePerPage;
+    final end = (currentPage + 1) * sizePerPage > widget.contestants.length
+        ? widget.contestants.length
+        : (currentPage + 1) * sizePerPage;
     int fromPage = currentPage - 1;
     int toPage = fromPage + 4;
     if (toPage > totalPages - 1) {
@@ -131,7 +134,8 @@ class _ListContestantTableState extends State<ListContestantTable> {
       fromPage = 0;
       toPage = totalPages > 4 ? 4 : totalPages;
     }
-    final viewContestants = widget.contestants.sublist(currentPage * sizePerPage, end);
+    final viewContestants =
+        widget.contestants.sublist(currentPage * sizePerPage, end);
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -198,7 +202,8 @@ class _ListContestantTableState extends State<ListContestantTable> {
                                     color: theme.dividerColor,
                                   )
                                 : null,
-                            color: isSelected ? theme.colorScheme.primary : null,
+                            color:
+                                isSelected ? theme.colorScheme.primary : null,
                           ),
                           height: 30,
                           width: 30,
@@ -207,7 +212,9 @@ class _ListContestantTableState extends State<ListContestantTable> {
                             '${index + 1}',
                             style: TextStyle(
                               fontSize: 12,
-                              color: isSelected ? theme.colorScheme.onPrimary : null,
+                              color: isSelected
+                                  ? theme.colorScheme.onPrimary
+                                  : null,
                               fontWeight: isSelected ? FontWeight.bold : null,
                             ),
                           ),
@@ -273,7 +280,9 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         return '${contestant.careerInfo.availability.type} ${contestant.careerInfo.availability.note}';
       case ColumnTitle.english:
         final certification = contestant.exhibition.english?.certification;
-        return certification == null ? '' : '$certification - ${contestant.exhibition.english?.detail ?? ''}';
+        return certification == null
+            ? ''
+            : '$certification - ${contestant.exhibition.english?.detail ?? ''}';
       case ColumnTitle.resume:
         return contestant.attachment.resumeCV;
     }
@@ -283,16 +292,19 @@ class _TableRowWidgetState extends State<TableRowWidget> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return MouseRegion(
-      onEnter: (event) {
+    return InkWell(
+      onHover: (value) {
         setState(() {
-          isHover = true;
+          isHover = value;
         });
       },
-      onExit: (event) {
-        setState(() {
-          isHover = false;
-        });
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) => PreviewContestantDialog(
+            contestant: widget.contestant,
+          ),
+        );
       },
       child: Container(
         decoration: BoxDecoration(
