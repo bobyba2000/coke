@@ -57,7 +57,9 @@ class _FileDropzoneFieldState extends State<FileDropzoneField> {
               children: [
                 Text(
                   widget.label ?? '',
-                  style: textTheme.bodyMedium,
+                  style: textTheme.displaySmall?.copyWith(
+                    color: colorScheme.onBackground,
+                  ),
                 ),
                 if (widget.required)
                   Text(
@@ -126,8 +128,7 @@ class _FileDropzoneFieldState extends State<FileDropzoneField> {
               child: Stack(
                 children: [
                   DropzoneView(
-                    onCreated: (DropzoneViewController ctrl) =>
-                        controller = ctrl,
+                    onCreated: (DropzoneViewController ctrl) => controller = ctrl,
                     operation: DragOperation.copy,
                     cursor: CursorType.grab,
                     onDrop: (value) {

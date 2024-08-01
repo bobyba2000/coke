@@ -27,6 +27,16 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
   String email = '';
   String preferName = '';
   final form = GlobalKey<FormState>();
+  List<int> years = [];
+
+  @override
+  void initState() {
+    for (var i = 1995; i < 2010; i++) {
+      years.add(i);
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +81,7 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
               Expanded(
                 child: AutoCompleteWidget(
                   getSuggestData: (value) async {
-                    return [1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006]
+                    return years
                         .where(
                           (element) => element.toString().contains(value),
                         )
@@ -82,6 +92,12 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                   formatters: [
                     FilteringTextInputFormatter.digitsOnly,
                   ],
+                  onChanged: (value) {
+                    birth = int.tryParse(value);
+                  },
+                  onTapItem: (value) {
+                    birth = value;
+                  },
                   validator: (value) {
                     if (value == null || value == '') {
                       return S.current.inputRequired;

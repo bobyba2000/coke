@@ -226,7 +226,6 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
   void initState() {
     allSkills.sort();
     competitions.sort();
-    prizes.sort();
     companies.sort();
     industries.sort();
     super.initState();

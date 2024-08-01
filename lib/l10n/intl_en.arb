@@ -194,5 +194,7 @@
     "addSkill": "Add Skill",
     "internship": "Internship",
     "addWorkingExperience": "Add more working experience",
-    "typeOfEnglish": "Type of English proficiency record"
+    "typeOfEnglish": "Type of English proficiency record",
+    "pleaseUploadPersonalResume": "Please upload your Personal Resume",
+    "pleaseUploadOther": "Please upload the records of other accomplishment (if any)"
 }
