@@ -11,8 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CareerInfoWidget extends StatefulWidget {
   final Function(CareerInfoModel career) onFinish;
   final VoidCallback onBack;
-  const CareerInfoWidget(
-      {super.key, required this.onFinish, required this.onBack});
+  const CareerInfoWidget({super.key, required this.onFinish, required this.onBack});
 
   @override
   State<CareerInfoWidget> createState() => _CareerInfoWidgetState();
@@ -67,15 +66,14 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
       )
       .toList();
 
-  List<DropdownMenuItem<AvailabilityType>> availabilities =
-      AvailabilityType.values
-          .map(
-            (e) => DropdownMenuItem(
-              value: e,
-              child: Text(e.toString()),
-            ),
-          )
-          .toList();
+  List<DropdownMenuItem<AvailabilityType>> availabilities = AvailabilityType.values
+      .map(
+        (e) => DropdownMenuItem(
+          value: e,
+          child: Text(e.toString()),
+        ),
+      )
+      .toList();
 
   AvailabilityType? availability;
   String? note;
@@ -106,6 +104,13 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                 S.current.desiredPathway,
                 style: textTheme.displaySmall?.copyWith(
                   color: colorScheme.onBackground,
+                ),
+              ),
+              Text(
+                S.current.desiredPathwayHelperText,
+                style: textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onBackground.withOpacity(0.5),
+                  fontStyle: FontStyle.italic,
                 ),
               ),
               8.hSpace,
@@ -143,7 +148,7 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                     if (role != InternshipRole.sales) {
                       priority1 = 'HCM - Head Office';
                       priority2 = null;
-                      willingToReallocate = false;
+                      willingToReallocate = null;
                     } else {
                       priority1 = null;
                       willingToReallocate = true;
@@ -173,8 +178,7 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                           children: [
                             Expanded(
                               child: AppDropDownWidget<String>(
-                                label:
-                                    '${S.current.workingLocation} - ${S.current.priority1}',
+                                label: '${S.current.workingLocation} - ${S.current.priority1}',
                                 required: true,
                                 validator: (value) {
                                   if (value == null) {
@@ -196,8 +200,7 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                                       priority2 = null;
                                     }
                                     priority2Locations = locations
-                                        .where(
-                                            (element) => element != priority1)
+                                        .where((element) => element != priority1)
                                         .map(
                                           (e) => DropdownMenuItem(
                                             value: e,
@@ -215,8 +218,7 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                             16.wSpace,
                             Expanded(
                               child: AppDropDownWidget<String>(
-                                label:
-                                    '${S.current.workingLocation} - ${S.current.priority2}',
+                                label: '${S.current.workingLocation} - ${S.current.priority2}',
                                 required: true,
                                 isNeedToReset: true,
                                 validator: (value) {
@@ -246,35 +248,9 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                           style: textTheme.bodyLarge,
                         ),
                         2.hSpace,
-                        Row(
-                          children: [
-                            Radio(
-                              value: true,
-                              groupValue: willingToReallocate,
-                              onChanged: (value) {
-                                willingToReallocate = true;
-                                setState(() {});
-                              },
-                            ),
-                            Text(
-                              S.current.yes,
-                              style: textTheme.bodyMedium,
-                            ),
-                            16.wSpace,
-                            Radio(
-                              value: false,
-                              groupValue: willingToReallocate,
-                              onChanged: (value) {
-                                willingToReallocate = false;
-                                setState(() {});
-                              },
-                            ),
-                            Text(
-                              S.current.no,
-                              style: textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
+                        ReallocateOption(onChange: (value) {
+                          willingToReallocate = value;
+                        })
                       ],
                     )
                   : role == null
@@ -290,8 +266,21 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                S.current.yourAvailability,
+                style: textTheme.displaySmall?.copyWith(
+                  color: colorScheme.onBackground,
+                ),
+              ),
+              Text(
+                S.current.yourAvailabilityHelperText,
+                style: textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onBackground.withOpacity(0.5),
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              8.hSpace,
               AppDropDownWidget<AvailabilityType>(
-                label: S.current.yourAvailability,
                 helperText: S.current.helperAvailabilityText,
                 required: true,
                 validator: (value) {
@@ -314,14 +303,11 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                   setState(() {});
                 },
               ),
-              if (availability != null &&
-                  availability != AvailabilityType.fulltime6Months)
+              if (availability != null && availability != AvailabilityType.fulltime6Months)
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: TextFieldWidget(
                     label: S.current.note,
-                    required: true,
-                    validator: checkRequired,
                     onChanged: (value) {
                       note = value;
                     },
@@ -368,6 +354,54 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ReallocateOption extends StatefulWidget {
+  final void Function(bool value) onChange;
+  const ReallocateOption({super.key, required this.onChange});
+
+  @override
+  State<ReallocateOption> createState() => _ReallocateOptionState();
+}
+
+class _ReallocateOptionState extends State<ReallocateOption> {
+  bool willingToReallocate = true;
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    return Row(
+      children: [
+        Radio(
+          value: true,
+          groupValue: willingToReallocate,
+          onChanged: (value) {
+            willingToReallocate = true;
+            widget.onChange.call(willingToReallocate);
+            setState(() {});
+          },
+        ),
+        Text(
+          S.current.yes,
+          style: textTheme.bodyMedium,
+        ),
+        16.wSpace,
+        Radio(
+          value: false,
+          groupValue: willingToReallocate,
+          onChanged: (value) {
+            willingToReallocate = false;
+            widget.onChange.call(willingToReallocate);
+            setState(() {});
+          },
+        ),
+        Text(
+          S.current.no,
+          style: textTheme.bodyMedium,
+        ),
+      ],
     );
   }
 }

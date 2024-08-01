@@ -5,7 +5,6 @@ part 'model.g.dart';
 enum InternshipRole {
   procurement,
   tradeMarketing,
-  rgm,
   rtm,
   keyAccountOnPremise,
   keyAccountOffPremise,
@@ -19,8 +18,6 @@ enum InternshipRole {
         return S.current.procurement;
       case tradeMarketing:
         return S.current.tradeMarketing;
-      case rgm:
-        return S.current.revenueGrowthManagement;
       case keyAccountOnPremise:
         return S.current.keyAccountOnPremise;
       case keyAccountOffPremise:
@@ -50,14 +47,6 @@ enum InternshipRole {
           'Data Management'
         ];
       case tradeMarketing:
-        return [
-          'Communication',
-          'Presentation',
-          'Problem-solving',
-          'Stakeholder Management',
-          'Numerical skill',
-        ];
-      case rgm:
         return [
           'Communication',
           'Presentation',
