@@ -12,8 +12,7 @@ class AchivementModel {
     required this.accomplishment,
   });
 
-  factory AchivementModel.fromJson(Map<String, dynamic> json) =>
-      _$AchivementModelFromJson(json);
+  factory AchivementModel.fromJson(Map<String, dynamic> json) => _$AchivementModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AchivementModelToJson(this);
 }
@@ -28,23 +27,25 @@ class SkillModel {
     required this.description,
   });
 
-  factory SkillModel.fromJson(Map<String, dynamic> json) =>
-      _$SkillModelFromJson(json);
+  factory SkillModel.fromJson(Map<String, dynamic> json) => _$SkillModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SkillModelToJson(this);
 }
 
 enum WorkingType {
   partTime,
+  internship,
   fullTime;
 
   @override
   String toString() {
     switch (this) {
       case WorkingType.partTime:
-        return S.current.partimeInternship;
+        return S.current.partime;
       case WorkingType.fullTime:
         return S.current.fulltime;
+      case WorkingType.internship:
+        return S.current.internship;
     }
   }
 }
@@ -126,8 +127,7 @@ class WorkingExperienceModel {
     required this.jobTitle,
   });
 
-  factory WorkingExperienceModel.fromJson(Map<String, dynamic> json) =>
-      _$WorkingExperienceModelFromJson(json);
+  factory WorkingExperienceModel.fromJson(Map<String, dynamic> json) => _$WorkingExperienceModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$WorkingExperienceModelToJson(this);
 }
@@ -180,8 +180,7 @@ class EnglishProfiencyModel {
     required this.detail,
   });
 
-  factory EnglishProfiencyModel.fromJson(Map<String, dynamic> json) =>
-      _$EnglishProfiencyModelFromJson(json);
+  factory EnglishProfiencyModel.fromJson(Map<String, dynamic> json) => _$EnglishProfiencyModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$EnglishProfiencyModelToJson(this);
 }
@@ -203,8 +202,7 @@ class ExhibitionInfoModel {
     required this.english,
   });
 
-  factory ExhibitionInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$ExhibitionInfoModelFromJson(json);
+  factory ExhibitionInfoModel.fromJson(Map<String, dynamic> json) => _$ExhibitionInfoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ExhibitionInfoModelToJson(this);
 }

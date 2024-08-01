@@ -34,6 +34,7 @@ class TextFieldWidget extends StatefulWidget {
   final TextStyle? hintStyle;
   final String? helperText;
   final String? aboveHelperText;
+  final int? maxLength;
 
   const TextFieldWidget({
     super.key,
@@ -69,6 +70,7 @@ class TextFieldWidget extends StatefulWidget {
     this.hintStyle,
     this.helperText,
     this.aboveHelperText,
+    this.maxLength,
   });
 
   @override
@@ -157,6 +159,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           maxLines: widget.maxLines ?? 1,
           enabled: widget.enabled,
           autofocus: widget.autoFocus ?? false,
+          maxLength: widget.maxLength,
           decoration: InputDecoration(
             helperMaxLines: 4,
             helperText: widget.helperText,

@@ -40,12 +40,10 @@ class ProfileExhibitionWidget extends StatefulWidget {
   });
 
   @override
-  State<ProfileExhibitionWidget> createState() =>
-      _ProfileExhibitionWidgetState();
+  State<ProfileExhibitionWidget> createState() => _ProfileExhibitionWidgetState();
 }
 
-class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
-    with Validator {
+class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with Validator {
   final allSkills = [
     'Inventory Management',
     'SQL',
@@ -96,9 +94,6 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
   ];
 
   final List<String> prizes = [
-    'Quán quân',
-    'Champion',
-    'Runner-up',
     'Top 1',
     'Top 2',
     'Top 3',
@@ -295,14 +290,15 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                           onTapItem: (value) {
                             e.skill = value;
                           },
-                          label: S.current.skill,
+                          label: S.current.skillSelection,
                         ),
                       ),
                       16.wSpace,
                       Expanded(
                         child: TextFieldWidget(
                           initText: e.description,
-                          label: S.current.description,
+                          label: S.current.skillDemonstration,
+                          maxLength: 120,
                           onChanged: (value) {
                             e.description = value;
                           },
@@ -317,7 +313,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                 Align(
                   alignment: Alignment.centerRight,
                   child: CustomOutlinedButton(
-                    title: S.current.add,
+                    title: S.current.addSkill,
                     onTap: () {
                       skills.add(SkillViewModel());
                       setState(() {});
@@ -438,8 +434,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                         children: [
                           Text(
                             '${S.current.job} ${e.key + 1}',
-                            style: textTheme.bodyLarge
-                                ?.copyWith(fontWeight: FontWeight.bold),
+                            style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           4.hSpace,
                           Row(
@@ -466,10 +461,9 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                                   getSuggestData: (value) async {
                                     return industries
                                         .where(
-                                          (element) =>
-                                              element.toLowerCase().contains(
-                                                    value.toLowerCase(),
-                                                  ),
+                                          (element) => element.toLowerCase().contains(
+                                                value.toLowerCase(),
+                                              ),
                                         )
                                         .toList();
                                   },
@@ -491,6 +485,10 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                               Expanded(
                                 child: DatePickerWidget(
                                   label: S.current.fromDate,
+                                  hintText: 'mm-yyyy',
+                                  isMonthOnly: true,
+                                  helperText: 'e.g. 07-2024',
+                                  dateFormat: 'MM-yyyy',
                                   onChanged: (value) {
                                     e.value.fromDate = value;
                                   },
@@ -500,6 +498,10 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                               Expanded(
                                 child: DatePickerWidget(
                                   label: S.current.toDate,
+                                  hintText: 'mm-yyyy',
+                                  isMonthOnly: true,
+                                  helperText: 'e.g. 07-2024',
+                                  dateFormat: 'MM-yyyy',
                                   onChanged: (value) {
                                     e.value.toDate = value;
                                   },
@@ -516,10 +518,9 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                                   getSuggestData: (value) async {
                                     return companies
                                         .where(
-                                          (element) =>
-                                              element.toLowerCase().contains(
-                                                    value.toLowerCase(),
-                                                  ),
+                                          (element) => element.toLowerCase().contains(
+                                                value.toLowerCase(),
+                                              ),
                                         )
                                         .toList();
                                   },
@@ -553,7 +554,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                 Align(
                   alignment: Alignment.centerRight,
                   child: CustomOutlinedButton(
-                    title: S.current.add,
+                    title: S.current.addWorkingExperience,
                     onTap: () {
                       experiences.add(WorkingExperienceViewModel());
                       setState(() {});
@@ -585,7 +586,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                 children: [
                   Expanded(
                     child: AppDropDownWidget(
-                      label: S.current.workingType,
+                      label: S.current.typeOfEnglish,
                       items: certificates,
                       onChanged: (cert) {
                         certification = null;
@@ -620,16 +621,14 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                               label: S.current.detail,
                               validator: checkRequired,
                               inputFormatters: [
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'^(\d+)?\.?\d{0,1}')),
+                                FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,1}')),
                               ],
                               suffixIcon: Padding(
                                 padding: const EdgeInsets.only(right: 16),
                                 child: Text(
                                   '/9.0',
                                   style: textTheme.bodyLarge?.copyWith(
-                                    color: colorScheme.onBackground
-                                        .withOpacity(0.5),
+                                    color: colorScheme.onBackground.withOpacity(0.5),
                                   ),
                                 ),
                               ),
@@ -650,8 +649,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                                 child: Text(
                                   '/990',
                                   style: textTheme.bodyLarge?.copyWith(
-                                    color: colorScheme.onBackground
-                                        .withOpacity(0.5),
+                                    color: colorScheme.onBackground.withOpacity(0.5),
                                   ),
                                 ),
                               ),
@@ -672,8 +670,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                                 child: Text(
                                   '/120',
                                   style: textTheme.bodyLarge?.copyWith(
-                                    color: colorScheme.onBackground
-                                        .withOpacity(0.5),
+                                    color: colorScheme.onBackground.withOpacity(0.5),
                                   ),
                                 ),
                               ),
@@ -760,10 +757,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget>
                                 ))
                             .toList(),
                         experiences: experiences
-                            .where((element) =>
-                                element.companyName != null &&
-                                element.type != null &&
-                                element.companyName != '')
+                            .where((element) => element.companyName != null && element.type != null && element.companyName != '')
                             .map(
                               (e) => WorkingExperienceModel(
                                 type: e.type!,
