@@ -9,6 +9,7 @@ class PersonalInfoModel {
   final String phoneNo;
   final String hometown;
   final String currentLocation;
+  final String preferName;
 
   PersonalInfoModel({
     required this.fullName,
@@ -17,10 +18,10 @@ class PersonalInfoModel {
     required this.phoneNo,
     required this.hometown,
     required this.currentLocation,
+    required this.preferName, 
   });
 
-  factory PersonalInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$PersonalInfoModelFromJson(json);
+  factory PersonalInfoModel.fromJson(Map<String, dynamic> json) => _$PersonalInfoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$PersonalInfoModelToJson(this);
 }

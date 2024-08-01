@@ -178,5 +178,6 @@
     "error": "Lỗi",
     "thankyou": "Cảm ơn bạn",
     "applySuccessfully": "Cảm ơn bạn đã gửi đơn. Chúng tôi sẽ thông báo cho bạn kết quả sớm.",
-    "download": "Tải xuống"
+    "download": "Tải xuống",
+    "preferName": "Tên thay thế"
 }

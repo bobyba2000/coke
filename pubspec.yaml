@@ -34,9 +34,9 @@ dependencies:
   sprintf: ^7.0.0
   shared_preferences: ^2.2.3
   table_calendar: ^3.0.9
-  flutter_dropzone: ^3.0.7
+  flutter_dropzone: ^4.0.1
   firebase_core: ^2.24.2
-  file_picker: ^8.0.0+1
+  file_picker: ^8.0.5
   firebase_storage: ^11.6.0
   firebase_database: ^10.4.0
   dotted_border: ^2.1.0

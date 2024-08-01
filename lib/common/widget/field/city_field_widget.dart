@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:coke_platform/common/widget/field/auto_complete_widget.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/local/city/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,6 +38,7 @@ class _CityFieldWidgetState extends State<CityFieldWidget> {
     final data = await rootBundle.loadString(Assets.resources.cities);
     final json = jsonDecode(data);
     cities = (json as List<dynamic>).map<CityModel>((e) => CityModel.fromJson(e)).toList();
+    cities.sort((a, b) => a.toString().compareTo(b.toString()));
     if (mounted) {
       setState(() {});
     }
@@ -51,13 +53,14 @@ class _CityFieldWidgetState extends State<CityFieldWidget> {
       getSuggestData: (value) async {
         return cities
             .where(
-              (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+              (element) => element.toString().toLowerCase().contains(value.toLowerCase()),
             )
             .map(
-              (e) => e.name,
+              (e) => e.toString(),
             )
             .toList();
       },
+      hintText: S.current.addressHint,
       onTapItem: (value) {
         widget.onChange.call(value);
       },

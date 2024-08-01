@@ -178,5 +178,8 @@
     "error": "Error",
     "thankyou": "Thank you",
     "applySuccessfully": "Thank you for your submission. We will let you know your result soon.",
-    "download": "Download"
+    "download": "Download",
+    "preferName": "Preferred Name",
+    "invalidYear": "Please enter the valid year of birth.",
+    "addressHint": "Select your permanent address (on your ID card)"
 }

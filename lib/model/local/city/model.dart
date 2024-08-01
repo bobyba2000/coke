@@ -1,3 +1,4 @@
+import 'package:coke_platform/common/utility/locale.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'model.g.dart';
@@ -6,16 +7,25 @@ part 'model.g.dart';
 class CityModel {
   final String name;
   final String code;
+  final String enName;
   final String nameWithType;
 
   CityModel({
     required this.name,
     required this.code,
     required this.nameWithType,
+    required this.enName,
   });
 
-  factory CityModel.fromJson(Map<String, dynamic> json) =>
-      _$CityModelFromJson(json);
+  @override
+  String toString() {
+    if (LocaleUtility.locale.value.languageCode == 'en') {
+      return enName;
+    }
+    return name;
+  }
+
+  factory CityModel.fromJson(Map<String, dynamic> json) => _$CityModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CityModelToJson(this);
 }

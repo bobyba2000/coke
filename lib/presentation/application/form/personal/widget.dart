@@ -1,8 +1,8 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/validator.dart';
 import 'package:coke_platform/common/widget/button/outlined.dart';
+import 'package:coke_platform/common/widget/field/auto_complete_widget.dart';
 import 'package:coke_platform/common/widget/field/city_field_widget.dart';
-import 'package:coke_platform/common/widget/field/dropdown_widget.dart';
 import 'package:coke_platform/common/widget/field/textfield_widget.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/personal/model.dart';
@@ -24,6 +24,7 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
   String hometown = '';
   String currentLocation = '';
   String email = '';
+  String preferName = '';
   final form = GlobalKey<FormState>();
 
   @override
@@ -44,6 +45,7 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
           ),
           64.h.hSpace,
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: TextFieldWidget(
@@ -57,34 +59,35 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
               ),
               16.wSpace,
               Expanded(
-                child: AppDropDownWidget<int>(
+                child: TextFieldWidget(
+                  label: S.current.preferName,
+                  onChanged: (value) {
+                    preferName = value;
+                  },
+                ),
+              ),
+              16.wSpace,
+              Expanded(
+                child: AutoCompleteWidget(
+                  getSuggestData: (value) async {
+                    return [1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006]
+                        .where(
+                          (element) => element.toString().contains(value),
+                        )
+                        .toList();
+                  },
+                  
                   label: S.current.yearOfBirth,
                   required: true,
                   validator: (value) {
-                    if (value == null) {
+                    if (value == null || value == '') {
                       return S.current.inputRequired;
                     }
+                    final yearRegex = RegExp(r'^(19[0-9]{2}|20[0-1][0-9]|202[0-3])$');
+                    if (!yearRegex.hasMatch(value)) {
+                      return S.current.invalidYear;
+                    }
                     return null;
-                  },
-                  inputBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Theme.of(context).dividerColor,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  items: [1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006]
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(
-                            e.toString(),
-                            style: textTheme.bodyLarge,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    birth = value;
                   },
                 ),
               ),
@@ -124,6 +127,7 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                   label: S.current.homeTown,
                   required: true,
                   validator: checkRequired,
+                  
                   onChange: (String city) {
                     hometown = city;
                   },
@@ -155,6 +159,7 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                     phoneNo: phone,
                     hometown: hometown,
                     currentLocation: currentLocation,
+                    preferName: preferName,
                   ),
                 );
               }
