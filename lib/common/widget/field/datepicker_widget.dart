@@ -22,6 +22,7 @@ class DatePickerWidget extends StatefulWidget {
   final DateTime? lastDate;
   final String? dateFormat;
   final bool isMonthOnly;
+  final String? helperText;
   const DatePickerWidget({
     Key? key,
     this.onChanged,
@@ -39,7 +40,7 @@ class DatePickerWidget extends StatefulWidget {
     this.firstDate,
     this.lastDate,
     this.dateFormat,
-    this.isMonthOnly = false,
+    this.isMonthOnly = false, this.helperText,
   }) : super(key: key);
 
   @override
@@ -117,6 +118,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
       readOnly: widget.readOnly ?? true,
       labelStyle: widget.labelStyle,
       validator: widget.validator,
+      helperText: widget.helperText,
       suffixIcon: Padding(
         padding: const EdgeInsets.only(right: 8),
         child: Icon(

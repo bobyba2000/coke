@@ -116,7 +116,7 @@ class ApplyFormWidget extends StatefulWidget {
 }
 
 class _ApplyFormWidgetState extends State<ApplyFormWidget> {
-  ApplyStep currentStep = ApplyStep.personal;
+  ApplyStep currentStep = ApplyStep.education;
   PersonalInfoModel? personal;
   EducationInfoModel? education;
   CareerInfoModel? career;
