@@ -33,6 +33,7 @@ class TextFieldWidget extends StatefulWidget {
   final Color? cursorColor;
   final TextStyle? hintStyle;
   final String? helperText;
+  final String? aboveHelperText;
 
   const TextFieldWidget({
     super.key,
@@ -67,6 +68,7 @@ class TextFieldWidget extends StatefulWidget {
     this.cursorColor,
     this.hintStyle,
     this.helperText,
+    this.aboveHelperText,
   });
 
   @override
@@ -126,6 +128,13 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 ],
               ),
             )),
+        if (widget.aboveHelperText != null)
+          Text(
+            widget.aboveHelperText!,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Colors.grey,
+                ),
+          ),
         TextFormField(
           focusNode: widget.focusNode,
           controller: inputController,
@@ -149,65 +158,66 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           enabled: widget.enabled,
           autofocus: widget.autoFocus ?? false,
           decoration: InputDecoration(
-              helperMaxLines: 4,
-              helperText: widget.helperText,
-              filled: widget.filled ?? true,
-              hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+            helperMaxLines: 4,
+            helperText: widget.helperText,
+            filled: widget.filled ?? true,
+            hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: Colors.grey,
+                ),
+            border: widget.border ??
+                OutlineInputBorder(
+                  borderSide: BorderSide(
                     color: Theme.of(context).dividerColor,
                   ),
-              border: widget.border ??
-                  OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Theme.of(context).dividerColor,
-                    ),
-                    borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+            enabledBorder: widget.border ??
+                OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).dividerColor,
                   ),
-              enabledBorder: widget.border ??
-                  OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Theme.of(context).dividerColor,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+            focusedBorder: widget.border ??
+                OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).dividerColor,
                   ),
-              focusedBorder: widget.border ??
-                  OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Theme.of(context).dividerColor,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+            errorBorder: widget.border ??
+                OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.error,
                   ),
-              errorBorder: widget.border ??
-                  OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-              fillColor: Colors.white,
-              hintText: widget.hintText,
-              contentPadding: widget.padding ?? const EdgeInsets.all(15),
-              suffixIconConstraints: const BoxConstraints(maxHeight: 24),
-              prefixIconConstraints: const BoxConstraints(
-                maxHeight: 24,
-              ),
-              prefixIcon: widget.prefixIcon,
-              suffixIcon: widget.obscureText
-                  ? GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () {
-                        setState(() {
-                          _obscureText = !_obscureText;
-                        });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Icon(
-                          _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                          color: const Color(0xFF646464),
-                        ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+            fillColor: Colors.white,
+            hintText: widget.hintText,
+            contentPadding: widget.padding ?? const EdgeInsets.all(15),
+            suffixIconConstraints: const BoxConstraints(maxHeight: 24),
+            prefixIconConstraints: const BoxConstraints(
+              maxHeight: 24,
+            ),
+            prefixIcon: widget.prefixIcon,
+            suffixIcon: widget.obscureText
+                ? GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Icon(
+                        _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                        color: const Color(0xFF646464),
                       ),
-                    )
-                  : widget.suffixIcon),
+                    ),
+                  )
+                : widget.suffixIcon,
+          ),
           keyboardType: widget.textInputType,
           onChanged: widget.onChanged,
           validator: widget.validator,

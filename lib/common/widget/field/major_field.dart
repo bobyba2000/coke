@@ -4,66 +4,69 @@ import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 enum Major {
-  economics,
   foreignTrade,
   humanResources,
-  lawLegalStudies,
-  marketingIntegratedCommunications,
-  logisticsSupplyChainManagement,
+  lawAndLegalStudies,
+  marketingAndIntegratedCommunications,
+  logisticsAndSupplyChainManagement,
   industrialManagement,
-  dataAnalysis,
   financeBanking,
   accountingAuditing,
   naturalScience,
-  socialScienceHumanity,
-  computerScienceIT,
-  dataEngineeringScience,
-  medicineHealthcareSciences,
+  socialScienceAndHumanity,
+  computerScienceAndIT,
+  informationSystem,
+  computerEngineering,
+  cyberSecurityAndDataPrivacy,
+  dataScience,
+  softwareEngineering,
+  medicineAndHealthcareSciences,
   architectureDesignConstruction,
   engineeringRelatedMajors,
-  automation,
   telecommunication,
   agricultureFeedForestry;
 
   @override
   String toString() {
     switch (this) {
-      case Major.economics:
-        return S.current.economics;
       case Major.foreignTrade:
         return S.current.foreignTrade;
       case Major.humanResources:
         return S.current.humanResources;
-      case Major.lawLegalStudies:
+      case Major.lawAndLegalStudies:
         return S.current.lawAndLegalStudies;
-      case Major.marketingIntegratedCommunications:
-        return S.current.marketing;
-      case Major.logisticsSupplyChainManagement:
-        return S.current.logisticsMajor;
+      case Major.marketingAndIntegratedCommunications:
+        return S.current.marketingAndIntegratedCommunications;
+      case Major.logisticsAndSupplyChainManagement:
+        return S.current.logisticsAndSupplyChainManagement;
       case Major.industrialManagement:
         return S.current.industrialManagement;
-      case Major.dataAnalysis:
-        return S.current.dataAnalysis;
       case Major.financeBanking:
         return S.current.financeBanking;
       case Major.accountingAuditing:
         return S.current.accountingAuditing;
       case Major.naturalScience:
         return S.current.naturalScience;
-      case Major.socialScienceHumanity:
+      case Major.socialScienceAndHumanity:
         return S.current.socialScienceAndHumanity;
-      case Major.computerScienceIT:
+      case Major.computerScienceAndIT:
         return S.current.computerScienceAndIT;
-      case Major.dataEngineeringScience:
-        return S.current.dataEngineering;
-      case Major.medicineHealthcareSciences:
-        return S.current.medicineAndHealthcare;
+      case Major.informationSystem:
+        return S.current.informationSystem;
+      case Major.computerEngineering:
+        return S.current.computerEngineering;
+      case Major.cyberSecurityAndDataPrivacy:
+        return S.current.cyberSecurityAndDataPrivacy;
+      case Major.dataScience:
+        return S.current.dataScience;
+      case Major.softwareEngineering:
+        return S.current.softwareEngineering;
+      case Major.medicineAndHealthcareSciences:
+        return S.current.medicineAndHealthcareSciences;
       case Major.architectureDesignConstruction:
         return S.current.architectureDesignConstruction;
       case Major.engineeringRelatedMajors:
         return S.current.engineeringRelatedMajors;
-      case Major.automation:
-        return S.current.automation;
       case Major.telecommunication:
         return S.current.telecommunication;
       case Major.agricultureFeedForestry:
@@ -99,6 +102,7 @@ class _MajorFieldWidgetState extends State<MajorFieldWidget> {
       required: widget.required,
       validator: widget.validator,
       label: widget.label,
+      hintText: S.current.majorHintText,
       getSuggestData: (value) async {
         return majors
             .where(

@@ -170,9 +170,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
                         height: 16.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.w),
-                          color: e.index > currentStep.index
-                              ? const Color(0xFFe9ecef)
-                              : colorScheme.primary,
+                          color: e.index > currentStep.index ? const Color(0xFFe9ecef) : colorScheme.primary,
                         ),
                       ),
                     ),
@@ -190,11 +188,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
               child: Builder(
                 builder: (context) {
                   if (step == ApplyStep.review) {
-                    if (personal != null &&
-                        education != null &&
-                        career != null &&
-                        exhibition != null &&
-                        attachment != null) {
+                    if (personal != null && education != null && career != null && exhibition != null && attachment != null) {
                       return PersonalPreview(
                         personal: personal!,
                         education: education!,
@@ -253,8 +247,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
                             attachment: attachment!,
                             onBack: () {
                               setState(() {
-                                currentStep =
-                                    ApplyStep.values[currentStep.index - 1];
+                                currentStep = ApplyStep.values[currentStep.index - 1];
                               });
                             },
                           )

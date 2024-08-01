@@ -16,6 +16,7 @@ class AutoCompleteWidget<T> extends StatefulWidget {
   final bool required;
   final FormFieldValidator<String>? validator;
   final List<TextInputFormatter> formatters;
+  final String? helperText;
   const AutoCompleteWidget({
     super.key,
     required this.getSuggestData,
@@ -28,7 +29,9 @@ class AutoCompleteWidget<T> extends StatefulWidget {
     this.hintStyle,
     this.onChanged,
     this.required = false,
-    this.validator,  this.formatters = const [],
+    this.validator,
+    this.formatters = const [],
+    this.helperText,
   });
 
   @override
@@ -83,7 +86,11 @@ class _AutoCompleteWidgetState<T> extends State<AutoCompleteWidget<T>> {
             focusedBorder: _inputBorder,
             focusedErrorBorder: _inputBorder,
             hintText: widget.hintText,
-            hintStyle: widget.hintStyle,
+            hintStyle: widget.hintStyle ??
+                Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Colors.grey,
+                    ),
+            helperText: widget.helperText,
           ),
           onTapItem: (data) {
             _controller.text = data.toString();

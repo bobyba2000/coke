@@ -47,7 +47,7 @@ class EducationInfoModel {
   final String university;
   final String major;
   final num gpa;
-  final GraduationYear graduationYear;
+  final DateTime graduationYear;
 
   EducationInfoModel({
     required this.education,

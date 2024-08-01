@@ -1,6 +1,7 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/validator.dart';
 import 'package:coke_platform/common/widget/button/outlined.dart';
+import 'package:coke_platform/common/widget/field/datepicker_widget.dart';
 import 'package:coke_platform/common/widget/field/dropdown_widget.dart';
 import 'package:coke_platform/common/widget/field/major_field.dart';
 import 'package:coke_platform/common/widget/field/textfield_widget.dart';
@@ -14,20 +15,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class EducationInfoWidget extends StatefulWidget {
   final Function(EducationInfoModel education) onFinish;
   final VoidCallback onBack;
-  const EducationInfoWidget(
-      {super.key, required this.onFinish, required this.onBack});
+  const EducationInfoWidget({super.key, required this.onFinish, required this.onBack});
 
   @override
   State<EducationInfoWidget> createState() => _EducationInfoWidgetState();
 }
 
-class _EducationInfoWidgetState extends State<EducationInfoWidget>
-    with Validator {
+class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validator {
   EducationLevel? level;
   String university = '';
   String major = '';
   double? gpa;
-  GraduationYear? year;
+  DateTime? year;
   final form = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -110,46 +109,39 @@ class _EducationInfoWidgetState extends State<EducationInfoWidget>
               Expanded(
                 child: TextFieldWidget(
                   label: S.current.gpa,
-                  validator: checkRequired,
+                  validator: (value) {
+                    if (value == null || value == '') {
+                      return S.current.inputRequired;
+                    }
+                    final gpa = double.tryParse(value);
+                    if (gpa != null) {
+                      if (gpa >= 0 && gpa <= 10) {
+                        return null;
+                      }
+                    }
+                    return S.current.gpaValid;
+                  },
+                  // aboveHelperText: S.current.aboveHelperGpaText,
+                  hintText: S.current.gpaText,
                   required: true,
                   inputFormatters: [
-                    FilteringTextInputFormatter.allow(
-                        RegExp(r'^(\d+)?\.?\d{0,2}')),
+                    FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
                   ],
                   onChanged: (value) {
                     gpa = double.tryParse(value);
                   },
-                  helperText: S.current.helperGpaText,
+                  helperText: S.current.aboveHelperGpaText,
                 ),
               ),
               16.wSpace,
               Expanded(
-                child: AppDropDownWidget<GraduationYear>(
+                child: DatePickerWidget(
                   label: S.current.graduationYear,
                   required: true,
-                  validator: (value) {
-                    if (value == null) {
-                      return S.current.inputRequired;
-                    }
-                    return null;
-                  },
-                  inputBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Theme.of(context).dividerColor,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  items: GraduationYear.values
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(
-                            e.toString(),
-                            style: textTheme.bodyLarge,
-                          ),
-                        ),
-                      )
-                      .toList(),
+                  validator: checkRequired,
+                  hintText: 'mm-yyyy',
+                  isMonthOnly: true,
+                  dateFormat: 'MM-yyyy',
                   onChanged: (value) {
                     year = value;
                   },

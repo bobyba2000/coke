@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import 'textfield_widget.dart';
@@ -20,6 +21,7 @@ class DatePickerWidget extends StatefulWidget {
   final DateTime? firstDate;
   final DateTime? lastDate;
   final String? dateFormat;
+  final bool isMonthOnly;
   const DatePickerWidget({
     Key? key,
     this.onChanged,
@@ -37,6 +39,7 @@ class DatePickerWidget extends StatefulWidget {
     this.firstDate,
     this.lastDate,
     this.dateFormat,
+    this.isMonthOnly = false,
   }) : super(key: key);
 
   @override
@@ -67,7 +70,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
     if (widget.dateFormat != null) {
       return DateFormat(widget.dateFormat).format(date);
     }
-    return DateFormat('dd/MM/yyyy').format(date);
+    return DateFormat('dd-MM-yyyy').format(date);
   }
 
   @override
@@ -78,17 +81,33 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
         if (widget.readOnly == true) {
           return;
         }
-        showDatePicker(
-          initialDate: selectedDate ?? DateTime.now(),
-          context: context,
-          firstDate: widget.firstDate ?? DateTime(1890),
-          lastDate: widget.lastDate ?? DateTime(2100),
-        ).then((value) {
-          if (value == null) return;
-          selectedDate = value;
-          dateText.text = convertDateToString(value);
-          widget.onChanged?.call(value);
-        });
+        if (widget.isMonthOnly) {
+          showMonthPicker(
+            selectedMonthBackgroundColor: Theme.of(context).primaryColor,
+            selectedMonthTextColor: Theme.of(context).colorScheme.onPrimary,
+            initialDate: selectedDate ?? DateTime.now(),
+            context: context,
+            firstDate: widget.firstDate ?? DateTime(1890),
+            lastDate: widget.lastDate ?? DateTime(2100),
+          ).then((value) {
+            if (value == null) return;
+            selectedDate = value;
+            dateText.text = convertDateToString(value);
+            widget.onChanged?.call(value);
+          });
+        } else {
+          showDatePicker(
+            initialDate: selectedDate ?? DateTime.now(),
+            context: context,
+            firstDate: widget.firstDate ?? DateTime(1890),
+            lastDate: widget.lastDate ?? DateTime(2100),
+          ).then((value) {
+            if (value == null) return;
+            selectedDate = value;
+            dateText.text = convertDateToString(value);
+            widget.onChanged?.call(value);
+          });
+        }
       },
       label: widget.label,
       textAlign: widget.textAlign,
