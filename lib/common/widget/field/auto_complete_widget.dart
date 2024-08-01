@@ -15,6 +15,7 @@ class AutoCompleteWidget<T> extends StatefulWidget {
   final void Function(String)? onChanged;
   final bool required;
   final FormFieldValidator<String>? validator;
+  final List<TextInputFormatter> formatters;
   const AutoCompleteWidget({
     super.key,
     required this.getSuggestData,
@@ -27,7 +28,7 @@ class AutoCompleteWidget<T> extends StatefulWidget {
     this.hintStyle,
     this.onChanged,
     this.required = false,
-    this.validator,
+    this.validator,  this.formatters = const [],
   });
 
   @override
@@ -74,6 +75,7 @@ class _AutoCompleteWidgetState<T> extends State<AutoCompleteWidget<T>> {
           asyncSuggestions: widget.getSuggestData,
           validator: widget.validator,
           inputTextStyle: widget.style ?? const TextStyle(),
+          inputFormatter: widget.formatters,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(15),
             border: _inputBorder,

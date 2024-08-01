@@ -7,6 +7,7 @@ import 'package:coke_platform/common/widget/field/textfield_widget.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/personal/model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PersonalInformationWidget extends StatefulWidget {
@@ -76,9 +77,11 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                         )
                         .toList();
                   },
-                  
                   label: S.current.yearOfBirth,
                   required: true,
+                  formatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
                   validator: (value) {
                     if (value == null || value == '') {
                       return S.current.inputRequired;
@@ -127,7 +130,6 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                   label: S.current.homeTown,
                   required: true,
                   validator: checkRequired,
-                  
                   onChange: (String city) {
                     hometown = city;
                   },
