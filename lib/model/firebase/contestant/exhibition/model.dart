@@ -1,5 +1,12 @@
+import 'package:coke_platform/common/utility/string.dart';
+import 'package:coke_platform/constants/others.dart';
+import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:coke_platform/model/data/request/point/model.dart';
+import 'package:coke_platform/model/firebase/contestant/career/model.dart';
+import 'package:coke_platform/service/point.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:logger/logger.dart';
 part 'model.g.dart';
 
 @JsonSerializable()
@@ -194,6 +201,10 @@ class ExhibitionInfoModel {
   @JsonKey(defaultValue: [])
   final List<WorkingExperienceModel> experiences;
   final EnglishProfiencyModel? english;
+  num skillPoint = 0;
+  num experiencesPoint = 0;
+  num achivementsPoint = 0;
+  num englishPoint = 0;
 
   ExhibitionInfoModel({
     required this.achivements,
@@ -201,6 +212,162 @@ class ExhibitionInfoModel {
     required this.experiences,
     required this.english,
   });
+
+  Future<void> calculatePoint(InternshipRole role) async {
+    skillPoint = 0;
+    experiencesPoint = 0;
+    achivementsPoint = 0;
+    englishPoint = 0;
+    final service = AppDependencies.injector.get<PointService>();
+    try {
+      final response = await service.calcSkillPoint(
+        PointRequestModel(role: role, skills: skills),
+      );
+      skillPoint += (response.data?.totalPoint ?? 0);
+    } catch (e) {
+      Logger().e(e);
+    }
+
+    final competitions = [
+      'Battle of Mind (BAT)',
+      'Unilever\'s Future Leaders\' League (UFLL)',
+      'L\'Oreal Brandstorm',
+      'HSBC Business Challenge',
+      'Nielsen Case Competition',
+      'P&G CEO Challenge',
+      'Vietnam Young Lions',
+      'Marketing On Air',
+      'Doanh Nhân Tập Sự',
+      'Ứng viên tài năng'
+    ];
+
+    int competitionCount = 0;
+    for (var achivement in achivements) {
+      final isExist = competitions.any((element) => StringUtility.compare(achivement.name, element) > 0.7);
+      if (isExist) {
+        competitionCount += 1;
+        if (achivement.accomplishment == 'Top 1' || achivement.accomplishment == 'Top 2') {
+          achivementsPoint += 5;
+        } else {
+          for (var i = 3; i < 11; i++) {
+            if (achivement.accomplishment == 'Top $i') {
+              achivementsPoint += 2;
+              break;
+            }
+          }
+        }
+      }
+      if (competitionCount >= 2) {
+        break;
+      }
+    }
+
+    int companyCount = 0;
+    for (var experience in experiences) {
+      num point = 0;
+      final industry = experience.industry;
+      final isExist = CompanyIndustry.values.any((element) =>
+          StringUtility.compare(
+            industry,
+            element.toString(),
+          ) >
+          0.7);
+      if (isExist) {
+        point += 2;
+      }
+      final isCompanyExist = OthersConstant.companies.any((element) => StringUtility.compare(experience.companyName, element) > 0.7);
+      if (isCompanyExist) {
+        point += 2;
+      }
+
+      List<String> titles = [];
+      switch (role) {
+        case InternshipRole.procurement:
+          titles = OthersConstant.procurementTitles;
+          break;
+        case InternshipRole.tradeMarketing:
+          titles = OthersConstant.tradeMarketingTitles;
+          break;
+        case InternshipRole.rtm:
+          titles = OthersConstant.rtmTitles;
+          break;
+        case InternshipRole.it:
+          titles = OthersConstant.itTitles;
+          break;
+        case InternshipRole.sales:
+          titles = OthersConstant.saleTitles;
+          break;
+        default:
+          titles = OthersConstant.keyAccountTitles;
+          break;
+      }
+      final isTitleExist = titles.any((element) => StringUtility.compare(experience.jobTitle, element) > 0.7);
+      if (isTitleExist) {
+        point += 2;
+      }
+
+      if (point > 0) {
+        experiencesPoint += point;
+        companyCount++;
+      }
+
+      if (companyCount >= 3) {
+        break;
+      }
+    }
+
+    if (english != null) {
+      final cert = english!.certification;
+      final detail = english!.detail;
+      switch (cert) {
+        case EnglistCertification.ielts:
+          final point = num.tryParse(detail) ?? 0;
+          if (point >= 7) {
+            englishPoint = 5;
+          } else if (point >= 5.5) {
+            englishPoint = 3;
+          }
+          break;
+        case EnglistCertification.toeic:
+          final point = num.tryParse(detail) ?? 0;
+          if (point >= 800) {
+            englishPoint = 5;
+          } else if (point >= 600) {
+            englishPoint = 3;
+          }
+          break;
+        case EnglistCertification.toefl:
+          final point = num.tryParse(detail) ?? 0;
+          if (point >= 80) {
+            englishPoint = 5;
+          } else if (point >= 61) {
+            englishPoint = 3;
+          }
+          break;
+        case EnglistCertification.cambridge:
+          if (detail == 'CAE' || detail == 'CPE') {
+            englishPoint = 5;
+          } else if (detail == 'FCE') {
+            englishPoint = 3;
+          }
+          break;
+        case EnglistCertification.cefr:
+          if (detail == 'C1' || detail == 'C2') {
+            englishPoint = 5;
+          } else if (detail == 'B2') {
+            englishPoint = 3;
+          }
+          break;
+        case EnglistCertification.oversea:
+        case EnglistCertification.englishMajor:
+        case EnglistCertification.englishInstruction:
+          englishPoint = 5;
+          break;
+        case EnglistCertification.others:
+          englishPoint = 0;
+      }
+    }
+  }
 
   factory ExhibitionInfoModel.fromJson(Map<String, dynamic> json) => _$ExhibitionInfoModelFromJson(json);
 

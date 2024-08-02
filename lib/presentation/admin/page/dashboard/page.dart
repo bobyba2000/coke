@@ -5,6 +5,7 @@ import 'package:coke_platform/service/firebase/contestant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
+import 'package:logger/logger.dart';
 
 import 'widget/cv_list/widget.dart';
 
@@ -35,7 +36,7 @@ class _DashboardPageState extends State<DashboardPage> {
         }
       },
     ).onError((error, stackTrace) {
-      print(error);
+      Logger().e(error);
     });
   }
 

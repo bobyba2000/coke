@@ -5,6 +5,6 @@ extension DateTimeExtension on DateTime? {
     if (this == null) {
       return '';
     }
-    return DateFormat('EEE, hh:mm a').format(this!);
+    return DateFormat('MM-yyyy').format(this!);
   }
 }

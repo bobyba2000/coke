@@ -5,6 +5,7 @@ import 'package:coke_platform/common/widget/field/auto_complete_widget.dart';
 import 'package:coke_platform/common/widget/field/datepicker_widget.dart';
 import 'package:coke_platform/common/widget/field/dropdown_widget.dart';
 import 'package:coke_platform/common/widget/field/textfield_widget.dart';
+import 'package:coke_platform/constants/others.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
 import 'package:flutter/material.dart';
@@ -102,71 +103,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
     'Top 10',
   ];
 
-  final List<String> companies = [
-    'Abbott',
-    'Ab-inbev',
-    'Acecook',
-    'AEON',
-    'AstraZeneca',
-    'Bosch',
-    'British American Tobacco',
-    'CP',
-    'CJ Foods',
-    'Viettel',
-    'Marico South East Asia',
-    'Thiên Long',
-    'SYNGENTA',
-    'Daikin',
-    'Deloitte',
-    'Diana Unicharm',
-    'DKSH',
-    'FPT',
-    'Greenfeed',
-    'GSK',
-    'Home Credit',
-    'Honda',
-    'Insee',
-    'KPMG',
-    'L\'Oréal',
-    'Lazada',
-    'Lotte Mart',
-    'Maersk',
-    'Manulife',
-    'Masan',
-    'Momo',
-    'Mondelez',
-    'NashTech',
-    'Nestle',
-    'NutiFood',
-    'Pfizer',
-    'PNJ',
-    'Prudential',
-    'Sabeco',
-    'Samsung',
-    'Sanofi',
-    'Schneider',
-    'Shopee',
-    'Suntory PepsiCo',
-    'One Mount',
-    'Techcombank',
-    'Unilever',
-    'Vinamilk',
-    'Vietcombank',
-    'VNG',
-    'Wipro Consumer',
-    'Central Retail',
-    'Heineken',
-    'Nielsen',
-    'BCG',
-    'Intel',
-    'P&G',
-    'PWC',
-    'EY',
-    'Mindshare',
-    'GroupM',
-    'Dentsu',
-    'Ogilvy'
-  ];
+  final companies = [...OthersConstant.companies];
 
   final industries = CompanyIndustry.values.map((e) => e.toString()).toList();
 

@@ -15,23 +15,19 @@ class FirebaseContestantService {
   }
 
   Future<void> update(ContestantModel model) {
-    return FirebaseDatabase.instance
-        .ref('${FirebasePath.contestant}/${model.key}')
-        .set(
+    return FirebaseDatabase.instance.ref('${FirebasePath.contestant}/${model.key}').set(
           jsonDecode(jsonEncode(model.toJson())),
         );
   }
 
   Future<List<ContestantModel>> list() async {
-    final response = await FirebaseDatabase.instance
-        .ref(FirebasePath.contestant)
-        .orderByChild('submitTime')
-        .once();
+    final response = await FirebaseDatabase.instance.ref(FirebasePath.contestant).orderByChild('submitTime').once();
     List<ContestantModel> res = [];
     if (response.snapshot.exists) {
       for (var snapshot in response.snapshot.children) {
         final data = jsonDecode(jsonEncode(snapshot.value));
-        res.add(ContestantModel.fromJson(data));
+        final contestant = ContestantModel.fromJson(data);
+        res.add(contestant);
       }
     }
     return res.reversed.toList();

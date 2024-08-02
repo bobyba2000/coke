@@ -28,8 +28,31 @@ class ContestantModel {
     required this.submitTime,
   });
 
-  factory ContestantModel.fromJson(Map<String, dynamic> json) =>
-      _$ContestantModelFromJson(json);
+  num get personalPoint {
+    return personalInfo.calculatePoint(careerInfo.desiredPathway.role);
+  }
+
+  num get educationPoint {
+    return educationInfo.calculatePoint(careerInfo.desiredPathway.role);
+  }
+
+  num get careerPoint {
+    return careerInfo.calculatePoint;
+  }
+
+  num get exhibitionPoint {
+    return exhibition.achivementsPoint + exhibition.englishPoint + exhibition.experiencesPoint + exhibition.skillPoint;
+  }
+
+  num get attachmentPoint {
+    return attachment.point;
+  }
+
+  num get totalPoint {
+    return personalPoint + educationPoint + careerPoint + exhibitionPoint + attachmentPoint;
+  }
+
+  factory ContestantModel.fromJson(Map<String, dynamic> json) => _$ContestantModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ContestantModelToJson(this);
 }

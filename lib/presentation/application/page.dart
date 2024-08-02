@@ -22,14 +22,14 @@ class _ApplicationPageState extends State<ApplicationPage> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ApplicationAppbar(),
+            const ApplicationAppbar(),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    BackgroundImage(),
+                    const BackgroundImage(),
                     45.hSpace,
-                    ApplyFormWidget(),
+                    const ApplyFormWidget(),
                     64.hMax.hSpace,
                   ],
                 ),

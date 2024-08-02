@@ -13,7 +13,7 @@ class AppDependencies {
   static void init() {
     injector.registerFactory(
       () => RestUtils(
-        'https://api.weatherapi.com/v1/',
+        'https://vco-website-641c533760ca.herokuapp.com/',
       ),
     );
     DataModelDependencies.init();

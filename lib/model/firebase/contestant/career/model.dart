@@ -174,6 +174,28 @@ class CareerInfoModel {
   final DesiredPathwayModel desiredPathway;
   final AvailabilityModel availability;
 
+  num get calculatePoint {
+    final role = desiredPathway.role;
+    num point = 0;
+    if (role == InternshipRole.sales) {
+      if (desiredPathway.location.willingToChange == true) {
+        point += 5;
+      }
+    } else {
+      point += 5;
+    }
+
+    if (availability.type == AvailabilityType.fulltime6Months) {
+      point += 5;
+    } else if (availability.type == AvailabilityType.shiftOff1To2PerWeek) {
+      if (role != InternshipRole.sales && role != InternshipRole.tradeMarketing) {
+        point += 3;
+      }
+    }
+
+    return point;
+  }
+
   CareerInfoModel({
     required this.desiredPathway,
     required this.availability,

@@ -1,9 +1,9 @@
+import 'package:coke_platform/common/extension/datetime_extension.dart';
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PreviewContestantDialog extends StatelessWidget {
@@ -44,11 +44,24 @@ class PreviewContestantDialog extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'I/ ${S.current.personalInformation}',
-                        style: textTheme.displayLarge?.copyWith(
-                          color: colorScheme.onBackground,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'I/ ${S.current.personalInformation}',
+                              style: textTheme.displayLarge?.copyWith(
+                                color: colorScheme.onBackground,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Total Point: ${contestant.personalPoint}',
+                            style: textTheme.bodyLarge?.copyWith(
+                              color: colorScheme.onBackground.withOpacity(0.5),
+                              fontStyle: FontStyle.italic,
+                            ),
+                          )
+                        ],
                       ),
                       16.hSpace,
                       Wrap(
@@ -100,11 +113,24 @@ class PreviewContestantDialog extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'II/ ${S.current.educationBackground}',
-                        style: textTheme.displayLarge?.copyWith(
-                          color: colorScheme.onBackground,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'II/ ${S.current.educationBackground}',
+                              style: textTheme.displayLarge?.copyWith(
+                                color: colorScheme.onBackground,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Total Point: ${contestant.educationPoint}',
+                            style: textTheme.bodyLarge?.copyWith(
+                              color: colorScheme.onBackground.withOpacity(0.5),
+                              fontStyle: FontStyle.italic,
+                            ),
+                          )
+                        ],
                       ),
                       16.hSpace,
                       Wrap(
@@ -120,7 +146,7 @@ class PreviewContestantDialog extends StatelessWidget {
                           data(
                             context,
                             S.current.graduationYear,
-                            education.graduationYear.toString(),
+                            education.graduationYear.toUIDateString,
                           ),
                           data(
                             context,
@@ -151,11 +177,24 @@ class PreviewContestantDialog extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'III/ ${S.current.careerAspiration}',
-                        style: textTheme.displayLarge?.copyWith(
-                          color: colorScheme.onBackground,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'III/ ${S.current.careerAspiration}',
+                              style: textTheme.displayLarge?.copyWith(
+                                color: colorScheme.onBackground,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Total Point: ${contestant.careerPoint}',
+                            style: textTheme.bodyLarge?.copyWith(
+                              color: colorScheme.onBackground.withOpacity(0.5),
+                              fontStyle: FontStyle.italic,
+                            ),
+                          )
+                        ],
                       ),
                       16.hSpace,
                       Wrap(
@@ -179,15 +218,11 @@ class PreviewContestantDialog extends StatelessWidget {
                               S.current.priority2,
                               career.desiredPathway.location.second.toString(),
                             ),
-                          if (career.desiredPathway.location.willingToChange !=
-                              null)
+                          if (career.desiredPathway.location.willingToChange != null)
                             data(
                               context,
                               S.current.willingToRelocate,
-                              career.desiredPathway.location.willingToChange ==
-                                      true
-                                  ? S.current.yes
-                                  : S.current.no,
+                              career.desiredPathway.location.willingToChange == true ? S.current.yes : S.current.no,
                             ),
                           data(
                             context,
@@ -197,7 +232,7 @@ class PreviewContestantDialog extends StatelessWidget {
                           data(
                             context,
                             S.current.note,
-                            career.availability.note.toString(),
+                            career.availability.note ?? '',
                           ),
                         ],
                       ),
@@ -230,15 +265,13 @@ class PreviewContestantDialog extends StatelessWidget {
                           data(
                             context,
                             S.current.fromDate,
-                            DateFormat('dd/MM/yyyy')
-                                .format(experience.startDate!),
+                            experience.startDate!.toUIDateString,
                           ),
                         if (experience.endDate != null)
                           data(
                             context,
                             S.current.toDate,
-                            DateFormat('dd/MM/yyyy')
-                                .format(experience.endDate!),
+                            experience.endDate!.toUIDateString,
                           ),
                         data(
                           context,
@@ -291,11 +324,24 @@ class PreviewContestantDialog extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'IV/ ${S.current.profileExhibition}',
-                        style: textTheme.displayLarge?.copyWith(
-                          color: colorScheme.onBackground,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'IV/ ${S.current.profileExhibition}',
+                              style: textTheme.displayLarge?.copyWith(
+                                color: colorScheme.onBackground,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Total Point: ${contestant.exhibitionPoint}',
+                            style: textTheme.bodyLarge?.copyWith(
+                              color: colorScheme.onBackground.withOpacity(0.5),
+                              fontStyle: FontStyle.italic,
+                            ),
+                          )
+                        ],
                       ),
                       16.hSpace,
                       Wrap(
@@ -349,11 +395,24 @@ class PreviewContestantDialog extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'V/ ${S.current.attachment}',
-                        style: textTheme.displayLarge?.copyWith(
-                          color: colorScheme.onBackground,
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'V/ ${S.current.attachment}',
+                              style: textTheme.displayLarge?.copyWith(
+                                color: colorScheme.onBackground,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Total Point: ${contestant.attachmentPoint}',
+                            style: textTheme.bodyLarge?.copyWith(
+                              color: colorScheme.onBackground.withOpacity(0.5),
+                              fontStyle: FontStyle.italic,
+                            ),
+                          )
+                        ],
                       ),
                       16.hSpace,
                       Row(
@@ -378,8 +437,7 @@ class PreviewContestantDialog extends StatelessWidget {
                             const Spacer(),
                             TextButton(
                               onPressed: () {
-                                launchUrl(
-                                    Uri.parse(attachment.accomplishment!));
+                                launchUrl(Uri.parse(attachment.accomplishment!));
                               },
                               child: Text(
                                 S.current.download,

@@ -196,14 +196,11 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                           S.current.priority2,
                           career.desiredPathway.location.second.toString(),
                         ),
-                      if (career.desiredPathway.location.willingToChange !=
-                          null)
+                      if (career.desiredPathway.location.willingToChange != null)
                         data(
                           context,
                           S.current.willingToRelocate,
-                          career.desiredPathway.location.willingToChange == true
-                              ? S.current.yes
-                              : S.current.no,
+                          career.desiredPathway.location.willingToChange == true ? S.current.yes : S.current.no,
                         ),
                       data(
                         context,
@@ -414,10 +411,8 @@ class _PersonalPreviewState extends State<PersonalPreview> {
               CustomOutlinedButton(
                 title: S.current.submit,
                 onTap: () async {
-                  final storageService =
-                      AppDependencies.injector.get<FirebaseStorageService>();
-                  final contestantService =
-                      AppDependencies.injector.get<FirebaseContestantService>();
+                  final storageService = AppDependencies.injector.get<FirebaseStorageService>();
+                  final contestantService = AppDependencies.injector.get<FirebaseContestantService>();
                   final key = contestantService.generateKey();
                   late String resumeUrl;
                   String? attachmentUrl;
@@ -427,8 +422,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                       [
                         () async {
                           resumeUrl = await storageService.upload(
-                              '${FirebasePath.contestant}/$key/${widget.attachment.resume.fileName}',
-                              widget.attachment.resume);
+                              '${FirebasePath.contestant}/$key/${widget.attachment.resume.fileName}', widget.attachment.resume);
                         }.call(),
                         () async {
                           if (widget.attachment.accomplishment != null) {
@@ -452,6 +446,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                       ),
                       submitTime: DateTime.now(),
                     );
+                    await contestant.exhibition.calculatePoint(widget.career.desiredPathway.role);
                     await contestantService.update(contestant);
                     DialogUtility.showConfirmDialog(
                       context,

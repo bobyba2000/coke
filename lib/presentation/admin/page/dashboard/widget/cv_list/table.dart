@@ -20,7 +20,8 @@ enum ColumnTitle {
   desiredPathway,
   availability,
   english,
-  resume;
+  resume,
+  totalPoint;
 
   @override
   String toString() {
@@ -55,6 +56,8 @@ enum ColumnTitle {
         return 'English Proficiency';
       case resume:
         return 'Resume';
+      case ColumnTitle.totalPoint:
+        return 'Total Point';
     }
   }
 
@@ -90,6 +93,8 @@ enum ColumnTitle {
         return 200.wMax;
       case ColumnTitle.resume:
         return 80.wMax;
+      case ColumnTitle.totalPoint:
+        return 80.wMax;
     }
   }
 }
@@ -121,9 +126,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final start = (currentPage) * sizePerPage;
-    final end = (currentPage + 1) * sizePerPage > widget.contestants.length
-        ? widget.contestants.length
-        : (currentPage + 1) * sizePerPage;
+    final end = (currentPage + 1) * sizePerPage > widget.contestants.length ? widget.contestants.length : (currentPage + 1) * sizePerPage;
     int fromPage = currentPage - 1;
     int toPage = fromPage + 4;
     if (toPage > totalPages - 1) {
@@ -134,8 +137,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
       fromPage = 0;
       toPage = totalPages > 4 ? 4 : totalPages;
     }
-    final viewContestants =
-        widget.contestants.sublist(currentPage * sizePerPage, end);
+    final viewContestants = widget.contestants.sublist(currentPage * sizePerPage, end);
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -202,8 +204,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
                                     color: theme.dividerColor,
                                   )
                                 : null,
-                            color:
-                                isSelected ? theme.colorScheme.primary : null,
+                            color: isSelected ? theme.colorScheme.primary : null,
                           ),
                           height: 30,
                           width: 30,
@@ -212,9 +213,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
                             '${index + 1}',
                             style: TextStyle(
                               fontSize: 12,
-                              color: isSelected
-                                  ? theme.colorScheme.onPrimary
-                                  : null,
+                              color: isSelected ? theme.colorScheme.onPrimary : null,
                               fontWeight: isSelected ? FontWeight.bold : null,
                             ),
                           ),
@@ -280,11 +279,11 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         return '${contestant.careerInfo.availability.type} ${contestant.careerInfo.availability.note}';
       case ColumnTitle.english:
         final certification = contestant.exhibition.english?.certification;
-        return certification == null
-            ? ''
-            : '$certification - ${contestant.exhibition.english?.detail ?? ''}';
+        return certification == null ? '' : '$certification - ${contestant.exhibition.english?.detail ?? ''}';
       case ColumnTitle.resume:
         return contestant.attachment.resumeCV;
+      case ColumnTitle.totalPoint:
+        return contestant.totalPoint.toString();
     }
   }
 
