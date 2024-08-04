@@ -44,7 +44,7 @@ class _AdminSidebarWidgetState extends State<AdminSidebarWidget> {
           final item = items[index];
           return SidebarItemWidget(
             item: item,
-            isCurrent: true,
+            isCurrent: index == 0,
           );
         },
         separatorBuilder: (context, index) => 12.hSpace,

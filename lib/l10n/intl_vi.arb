@@ -194,5 +194,10 @@
     "typeOfEnglish": "Loại chứng chỉ tiếng Anh",
     "pleaseUploadPersonalResume": "Please upload your Personal Resume",
     "pleaseUploadOther": "Please upload the records of other accomplishment (if any)",
-    "applyNow": "Ứng tuyển"
+    "applyNow": "Ứng tuyển",
+    "signOut": "Đăng xuất",
+    "changePassword": "Đổi mật khẩu",
+    "newPassword": "Mật khẩu mới",
+    "confirmPassword": "Nhập lại mật khẩu",
+    "password": "Mật khẩu"
 }

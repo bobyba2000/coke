@@ -1,4 +1,3 @@
-import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/appbar/widget.dart';
 import 'package:flutter/material.dart';
 

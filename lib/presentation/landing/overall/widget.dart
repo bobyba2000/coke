@@ -13,7 +13,6 @@ class LadingOverallWidget extends StatefulWidget {
 class _LadingOverallWidgetState extends State<LadingOverallWidget> {
   @override
   Widget build(BuildContext context) {
-
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
@@ -25,12 +24,14 @@ class _LadingOverallWidgetState extends State<LadingOverallWidget> {
           color: colorScheme.primary,
           child: Row(
             children: [
-              Expanded(child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  120.h.hSpace,
-                ],
-              ),),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    120.h.hSpace,
+                  ],
+                ),
+              ),
             ],
           ),
         ),

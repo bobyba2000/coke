@@ -197,5 +197,10 @@
     "typeOfEnglish": "Type of English proficiency record",
     "pleaseUploadPersonalResume": "Please upload your Personal Resume",
     "pleaseUploadOther": "Please upload the records of other accomplishment (if any)",
-    "applyNow": "Apply Now"
+    "applyNow": "Apply Now",
+    "signOut": "Sign out",
+    "changePassword": "Change Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "password": "Password"
 }

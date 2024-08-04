@@ -8,26 +8,30 @@ class AdminPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        // crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            margin: const EdgeInsets.only(top: 60),
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AdminSidebarWidget(),
-                Expanded(
-                  child: DashboardPage(),
-                ),
-              ],
+    return Title(
+      color: Theme.of(context).colorScheme.primary,
+      title: 'Admin',
+      child: Scaffold(
+        body: Stack(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 60),
+              child: const Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AdminSidebarWidget(),
+                  Expanded(
+                    child: DashboardPage(),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const AdminAppbarWidget(),
-        ],
+            const AdminAppbarWidget(),
+          ],
+        ),
       ),
     );
   }

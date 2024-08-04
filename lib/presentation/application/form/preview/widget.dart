@@ -210,7 +210,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                       data(
                         context,
                         S.current.note,
-                        career.availability.note.toString(),
+                        career.availability.note?.toString() ?? '',
                       ),
                     ],
                   ),

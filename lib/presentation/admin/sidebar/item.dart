@@ -5,12 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SidebarItemModel {
   final String title;
   final IconData icon;
-  final String path;
+  final String? path;
+  final VoidCallback? onTap;
 
   SidebarItemModel({
     required this.title,
     required this.icon,
-    required this.path,
+    this.path,
+    this.onTap,
   });
 }
 
@@ -35,10 +37,9 @@ class _SidebarItemWidgetState extends State<SidebarItemWidget> {
     final colorScheme = theme.colorScheme;
     final isActive = isHover || widget.isCurrent;
     final background = isActive ? colorScheme.primary.withOpacity(0.7) : null;
-    final foreground =
-        isActive ? colorScheme.onPrimary : const Color(0xFF6c757d);
+    final foreground = isActive ? colorScheme.onPrimary : const Color(0xFF6c757d);
     return InkWell(
-      onTap: () {},
+      onTap: widget.item.onTap ?? () {},
       onHover: (value) {
         isHover = value;
         setState(() {});
