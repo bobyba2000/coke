@@ -201,10 +201,34 @@ class ExhibitionInfoModel {
   @JsonKey(defaultValue: [])
   final List<WorkingExperienceModel> experiences;
   final EnglishProfiencyModel? english;
-  num skillPoint = 0;
-  num experiencesPoint = 0;
-  num achivementsPoint = 0;
+  List<num> skillPoints = [];
+  List<num> experiencePoints = [];
+  List<num> achivementPoints = [];
   num englishPoint = 0;
+
+  num get achivementsPoint {
+    num res = 0;
+    for (var point in achivementPoints) {
+      res += point;
+    }
+    return res;
+  }
+
+  num get experiencesPoint {
+    num res = 0;
+    for (var point in experiencePoints) {
+      res += point;
+    }
+    return res;
+  }
+
+  num get skillPoint {
+    num res = 0;
+    for (var point in skillPoints) {
+      res += point;
+    }
+    return res;
+  }
 
   ExhibitionInfoModel({
     required this.achivements,
@@ -214,16 +238,16 @@ class ExhibitionInfoModel {
   });
 
   Future<void> calculatePoint(InternshipRole role) async {
-    skillPoint = 0;
-    experiencesPoint = 0;
-    achivementsPoint = 0;
+    skillPoints = [];
+    experiencePoints = [];
+    achivementPoints = [];
     englishPoint = 0;
     final service = AppDependencies.injector.get<PointService>();
     try {
       final response = await service.calcSkillPoint(
         PointRequestModel(role: role, skills: skills),
       );
-      skillPoint += (response.data?.totalPoint ?? 0);
+      skillPoints = response.data?.data.map((e) => e.totalPoint).toList() ?? [];
     } catch (e) {
       Logger().e(e);
     }
@@ -241,28 +265,25 @@ class ExhibitionInfoModel {
       'Ứng viên tài năng'
     ];
 
-    int competitionCount = 0;
     for (var achivement in achivements) {
       final isExist = competitions.any((element) => StringUtility.compare(achivement.name, element) > 0.7);
       if (isExist) {
-        competitionCount += 1;
         if (achivement.accomplishment == 'Top 1' || achivement.accomplishment == 'Top 2') {
-          achivementsPoint += 5;
+          achivementPoints.add(5);
         } else {
           for (var i = 3; i < 11; i++) {
             if (achivement.accomplishment == 'Top $i') {
-              achivementsPoint += 2;
+              achivementPoints.add(2);
               break;
             }
           }
         }
       }
-      if (competitionCount >= 2) {
+      if (achivementPoints.length >= 2) {
         break;
       }
     }
 
-    int companyCount = 0;
     for (var experience in experiences) {
       num point = 0;
       final industry = experience.industry;
@@ -307,11 +328,10 @@ class ExhibitionInfoModel {
       }
 
       if (point > 0) {
-        experiencesPoint += point;
-        companyCount++;
+        experiencePoints.add(point);
       }
 
-      if (companyCount >= 3) {
+      if (experiencePoints.length >= 3) {
         break;
       }
     }

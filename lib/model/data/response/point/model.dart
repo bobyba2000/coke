@@ -3,8 +3,22 @@ import 'package:json_annotation/json_annotation.dart';
 part 'model.g.dart';
 
 @JsonSerializable()
+class PointModel {
+  final num totalPoint;
+
+  PointModel({required this.totalPoint});
+  factory PointModel.fromJson(Map<String, dynamic> json) {
+    return _$PointModelFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() {
+    return _$PointModelToJson(this);
+  }
+}
+
+@JsonSerializable()
 class PointResponseModel extends BaseResponseModel {
-   num? totalPoint;
+  List<PointModel> data = [];
 
   PointResponseModel();
   @override
