@@ -114,4 +114,10 @@ class OthersConstant {
     'Market',
     'Sales',
   ];
+
+  static const int maxSkillCount = 5;
+
+  static const int maxAchivementCount = 2;
+
+  static const int maxExperiencesCount = 3;
 }

@@ -202,5 +202,6 @@
     "changePassword": "Change Password",
     "newPassword": "New Password",
     "confirmPassword": "Confirm Password",
-    "password": "Password"
+    "password": "Password",
+    "export": "Export"
 }

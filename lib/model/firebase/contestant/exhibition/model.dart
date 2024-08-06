@@ -201,8 +201,11 @@ class ExhibitionInfoModel {
   @JsonKey(defaultValue: [])
   final List<WorkingExperienceModel> experiences;
   final EnglishProfiencyModel? english;
+  @JsonKey(defaultValue: [])
   List<num> skillPoints = [];
+  @JsonKey(defaultValue: [])
   List<num> experiencePoints = [];
+  @JsonKey(defaultValue: [])
   List<num> achivementPoints = [];
   num englishPoint = 0;
 
@@ -270,6 +273,7 @@ class ExhibitionInfoModel {
       if (isExist) {
         if (achivement.accomplishment == 'Top 1' || achivement.accomplishment == 'Top 2') {
           achivementPoints.add(5);
+          continue;
         } else {
           for (var i = 3; i < 11; i++) {
             if (achivement.accomplishment == 'Top $i') {
@@ -277,10 +281,10 @@ class ExhibitionInfoModel {
               break;
             }
           }
+          continue;
         }
-      }
-      if (achivementPoints.length >= 2) {
-        break;
+      } else {
+        achivementPoints.add(0);
       }
     }
 
@@ -326,14 +330,7 @@ class ExhibitionInfoModel {
       if (isTitleExist) {
         point += 2;
       }
-
-      if (point > 0) {
-        experiencePoints.add(point);
-      }
-
-      if (experiencePoints.length >= 3) {
-        break;
-      }
+      experiencePoints.add(point);
     }
 
     if (english != null) {

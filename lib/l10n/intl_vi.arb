@@ -199,5 +199,6 @@
     "changePassword": "Đổi mật khẩu",
     "newPassword": "Mật khẩu mới",
     "confirmPassword": "Nhập lại mật khẩu",
-    "password": "Mật khẩu"
+    "password": "Mật khẩu",
+    "export": "Export"
 }

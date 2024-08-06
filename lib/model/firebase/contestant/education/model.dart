@@ -182,21 +182,21 @@ class EducationInfoModel {
     return isExist ? 5 : 0;
   }
 
-  num calculatePoint(InternshipRole role) {
-    num point = 0;
-
+  num educationPoint(InternshipRole role) {
     if (role == InternshipRole.sales) {
       if (education != EducationLevel.master) {
-        point += 5;
+        return 5;
       }
     } else {
       if (education != EducationLevel.college) {
-        point += 5;
+        return 5;
       }
     }
+    return 0;
+  }
 
-    point += calculateMajorPoint(role);
-
+  num gpaPoint(InternshipRole role) {
+    num point = 0;
     if (gpa >= 8.5) {
       point += 5;
     } else if (gpa >= 7) {
@@ -206,7 +206,11 @@ class EducationInfoModel {
         point += 3;
       }
     }
+    return point;
+  }
 
+  num graduationYearPoint(InternshipRole role) {
+    num point = 0;
     if (graduationYear.isBefore(DateTime(2024))) {
       point += 0;
     } else if (graduationYear.isBefore(DateTime(2025))) {
@@ -216,6 +220,19 @@ class EducationInfoModel {
         point += 2;
       }
     }
+    return point;
+  }
+
+  num calculatePoint(InternshipRole role) {
+    num point = 0;
+
+    point += educationPoint(role);
+
+    point += calculateMajorPoint(role);
+
+    point += gpaPoint(role);
+
+    point += graduationYearPoint(role);
 
     return point;
   }

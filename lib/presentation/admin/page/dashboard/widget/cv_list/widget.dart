@@ -1,7 +1,12 @@
+import 'package:coke_platform/common/utility/loading_utility.dart';
+import 'package:coke_platform/common/widget/button/outlined.dart';
+import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
+import 'package:coke_platform/service/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:logger/logger.dart';
 
 import 'table.dart';
 
@@ -58,9 +63,27 @@ class _CVListWidgetState extends State<CVListWidget> {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
-            child: Text(
-              S.current.cvList,
-              style: textTheme.displaySmall,
+            child: Row(
+              children: [
+                Text(
+                  S.current.cvList,
+                  style: textTheme.displaySmall,
+                ),
+                const Spacer(),
+                CustomOutlinedButton(
+                  title: S.current.export,
+                  onTap: () async {
+                    LoadingUtility.show();
+                    final excel = AppDependencies.injector.get<ExcelService>();
+                    try {
+                      await excel.createExcel(widget.contestants);
+                    } catch (e) {
+                      Logger().e(e);
+                    }
+                    LoadingUtility.dismiss();
+                  },
+                ),
+              ],
             ),
           ),
           const Divider(
@@ -78,4 +101,3 @@ class _CVListWidgetState extends State<CVListWidget> {
     );
   }
 }
-

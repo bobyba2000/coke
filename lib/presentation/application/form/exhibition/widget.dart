@@ -245,7 +245,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                 ),
               ),
               8.hSpace,
-              if (skills.length < 5)
+              if (skills.length < OthersConstant.maxSkillCount)
                 Align(
                   alignment: Alignment.centerRight,
                   child: CustomOutlinedButton(
@@ -329,7 +329,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                 ),
               ),
               8.hSpace,
-              if (achivements.length < 2)
+              if (achivements.length < OthersConstant.maxAchivementCount)
                 Align(
                   alignment: Alignment.centerRight,
                   child: CustomOutlinedButton(
@@ -486,7 +486,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                     ),
                   ),
               8.hSpace,
-              if (experiences.length < 3)
+              if (experiences.length < OthersConstant.maxExperiencesCount)
                 Align(
                   alignment: Alignment.centerRight,
                   child: CustomOutlinedButton(

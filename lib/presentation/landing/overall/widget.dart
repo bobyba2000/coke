@@ -14,7 +14,7 @@ class _LadingOverallWidgetState extends State<LadingOverallWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
+    // final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
     return Stack(
       alignment: Alignment.bottomCenter,
