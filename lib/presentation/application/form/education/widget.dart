@@ -122,7 +122,7 @@ class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validato
                     return S.current.gpaValid;
                   },
                   // aboveHelperText: S.current.aboveHelperGpaText,
-                  hintText: S.current.gpaText,
+                  hintText: S.current.gpaHintText,
                   required: true,
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}')),
@@ -130,7 +130,7 @@ class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validato
                   onChanged: (value) {
                     gpa = double.tryParse(value);
                   },
-                  helperText: S.current.aboveHelperGpaText,
+                  helperText: S.current.gpaText,
                 ),
               ),
               16.wSpace,

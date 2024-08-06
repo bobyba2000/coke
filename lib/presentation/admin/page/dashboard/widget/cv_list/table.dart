@@ -105,7 +105,7 @@ enum ColumnTitle {
       case gpa:
         return 'GPA';
       case graduationYear:
-        return 'Graduation Year';
+        return 'Graduation Time';
       case internRole:
         return 'Intern Role';
       case english:
@@ -197,7 +197,7 @@ enum ColumnTitle {
       case ColumnTitle.gpaPoint:
         return 'GPA Point';
       case ColumnTitle.graduationYearPoint:
-        return 'Graduation Year Point';
+        return 'Graduation Time Point';
       case ColumnTitle.desiredPathwayPoint:
         return 'Desired Pathway Point';
       case ColumnTitle.availabilityPoint:

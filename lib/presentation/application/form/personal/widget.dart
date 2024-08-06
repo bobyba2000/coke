@@ -146,6 +146,7 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                   label: S.current.homeTown,
                   required: true,
                   validator: checkRequired,
+                  hintText: S.current.addressHint,
                   onChange: (String city) {
                     hometown = city;
                   },
@@ -156,6 +157,7 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                 child: CityFieldWidget(
                   label: S.current.currentLivingLocation,
                   required: true,
+                  hintText: S.current.currentLocationHelperText,
                   validator: checkRequired,
                   onChange: (String city) {
                     currentLocation = city;

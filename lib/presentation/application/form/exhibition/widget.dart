@@ -12,6 +12,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+class WordCountInputFormatter extends TextInputFormatter {
+  final int maxWords;
+
+  WordCountInputFormatter({required this.maxWords});
+
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final words = newValue.text.trim().split(RegExp(r'\s+'));
+
+    if (words.length <= maxWords) {
+      return newValue;
+    }
+
+    return oldValue;
+  }
+}
+
 class SkillViewModel {
   String skill = '';
   String description = '';
@@ -168,6 +188,11 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
     super.initState();
   }
 
+  int _countWords(String text) {
+    final words = text.trim().split(RegExp(r'\s+'));
+    return words.length;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -211,6 +236,8 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                     children: [
                       Expanded(
                         child: AutoCompleteWidget(
+                          validator: checkRequired,
+                          required: true,
                           getSuggestData: (value) async {
                             return allSkills
                                 .where(
@@ -234,9 +261,19 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                         child: TextFieldWidget(
                           initText: e.description,
                           label: S.current.skillDemonstration,
-                          maxLength: 120,
+                          inputFormatters: [
+                            WordCountInputFormatter(maxWords: 120),
+                          ],
                           onChanged: (value) {
                             e.description = value;
+                          },
+                          validator: (value) {
+                            if (value != null) {
+                              if (_countWords(value) > 120) {
+                                return 'The text must not exceed 120 words';
+                              }
+                            }
+                            return null;
                           },
                         ),
                       ),
@@ -423,7 +460,6 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                                   label: S.current.fromDate,
                                   hintText: 'mm-yyyy',
                                   isMonthOnly: true,
-                                  helperText: 'e.g. 07-2024',
                                   dateFormat: 'MM-yyyy',
                                   onChanged: (value) {
                                     e.value.fromDate = value;
@@ -436,7 +472,6 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                                   label: S.current.toDate,
                                   hintText: 'mm-yyyy',
                                   isMonthOnly: true,
-                                  helperText: 'e.g. 07-2024',
                                   dateFormat: 'MM-yyyy',
                                   onChanged: (value) {
                                     e.value.toDate = value;
@@ -522,6 +557,13 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                 children: [
                   Expanded(
                     child: AppDropDownWidget(
+                      validator: (value) {
+                        if (value == null) {
+                          return checkRequired(null);
+                        }
+                        return null;
+                      },
+                      required: true,
                       label: S.current.typeOfEnglish,
                       items: certificates,
                       onChanged: (cert) {

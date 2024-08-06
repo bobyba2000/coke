@@ -316,7 +316,8 @@ class ExhibitionInfoModel {
         case InternshipRole.rtm:
           titles = OthersConstant.rtmTitles;
           break;
-        case InternshipRole.it:
+        case InternshipRole.itDataAnalyst:
+        case InternshipRole.itPrivacy:
           titles = OthersConstant.itTitles;
           break;
         case InternshipRole.sales:

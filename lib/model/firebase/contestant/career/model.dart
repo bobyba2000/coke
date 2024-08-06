@@ -8,7 +8,8 @@ enum InternshipRole {
   rtm,
   keyAccountOnPremise,
   keyAccountOffPremise,
-  it,
+  itDataAnalyst,
+  itPrivacy,
   sales;
 
   @override
@@ -22,8 +23,10 @@ enum InternshipRole {
         return S.current.keyAccountOnPremise;
       case keyAccountOffPremise:
         return S.current.keyAccountOffPremise;
-      case it:
-        return S.current.it;
+      case InternshipRole.itDataAnalyst:
+        return S.current.itDataAnalyst;
+      case InternshipRole.itPrivacy:
+        return S.current.itPrivacy;
       case sales:
         return S.current.sales;
       case rtm:
@@ -72,7 +75,8 @@ enum InternshipRole {
           'Problem-solving',
           'Communications'
         ];
-      case it:
+      case InternshipRole.itDataAnalyst:
+      case InternshipRole.itPrivacy:
         return ['Python', 'Machine Learning', 'SQL', 'Cloud based tools', 'Business acumen', 'Communication', 'Data Analysis'];
       case sales:
         return [

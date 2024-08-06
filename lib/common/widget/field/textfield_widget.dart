@@ -197,6 +197,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 ),
             fillColor: Colors.white,
             hintText: widget.hintText,
+            helperStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Colors.grey,
+                ),
             contentPadding: widget.padding ?? const EdgeInsets.all(15),
             suffixIconConstraints: const BoxConstraints(maxHeight: 24),
             prefixIconConstraints: const BoxConstraints(

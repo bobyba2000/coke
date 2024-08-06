@@ -62,7 +62,8 @@ class EducationInfoModel {
   num calculateMajorPoint(InternshipRole role) {
     List<String> fields = [];
     switch (role) {
-      case InternshipRole.it:
+      case InternshipRole.itDataAnalyst:
+      case InternshipRole.itPrivacy:
         fields = [
           'Computer Science & Information Technology',
           'Machine Learning',

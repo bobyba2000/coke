@@ -100,11 +100,21 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                S.current.desiredPathway,
-                style: textTheme.displaySmall?.copyWith(
-                  color: colorScheme.onBackground,
-                ),
+              Row(
+                children: [
+                  Text(
+                    S.current.desiredPathway,
+                    style: textTheme.displaySmall?.copyWith(
+                      color: colorScheme.onBackground,
+                    ),
+                  ),
+                  Text(
+                    "*",
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          color: Colors.red,
+                        ),
+                  ),
+                ],
               ),
               Text(
                 S.current.desiredPathwayHelperText,
@@ -115,7 +125,6 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
               ),
               8.hSpace,
               AppDropDownWidget<InternshipRole>(
-                label: S.current.internshipRole,
                 required: true,
                 validator: (value) {
                   if (value == null) {
@@ -266,11 +275,21 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                S.current.yourAvailability,
-                style: textTheme.displaySmall?.copyWith(
-                  color: colorScheme.onBackground,
-                ),
+              Row(
+                children: [
+                  Text(
+                    S.current.yourAvailability,
+                    style: textTheme.displaySmall?.copyWith(
+                      color: colorScheme.onBackground,
+                    ),
+                  ),
+                  Text(
+                    "*",
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          color: Colors.red,
+                        ),
+                  ),
+                ],
               ),
               Text(
                 S.current.yourAvailabilityHelperText,
@@ -281,7 +300,6 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
               ),
               8.hSpace,
               AppDropDownWidget<AvailabilityType>(
-                helperText: S.current.helperAvailabilityText,
                 required: true,
                 validator: (value) {
                   if (value == null) {

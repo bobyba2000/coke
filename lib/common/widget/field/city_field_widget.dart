@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:coke_platform/common/widget/field/auto_complete_widget.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
-import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/local/city/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +11,7 @@ class CityFieldWidget extends StatefulWidget {
   final bool required;
   final Function(String city) onChange;
   final FormFieldValidator<String>? validator;
+  final String? hintText;
 
   const CityFieldWidget({
     super.key,
@@ -19,6 +19,7 @@ class CityFieldWidget extends StatefulWidget {
     this.required = false,
     required this.onChange,
     this.validator,
+    this.hintText,
   });
 
   @override
@@ -60,7 +61,7 @@ class _CityFieldWidgetState extends State<CityFieldWidget> {
             )
             .toList();
       },
-      hintText: S.current.addressHint,
+      hintText: widget.hintText,
       onTapItem: (value) {
         widget.onChange.call(value);
       },

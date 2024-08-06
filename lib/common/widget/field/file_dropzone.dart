@@ -25,11 +25,12 @@ class FileDropzoneField extends StatefulWidget {
   final String? label;
   final bool required;
   final Function(FileModel? file) onChange;
+  final String? helperText;
   const FileDropzoneField({
     super.key,
     this.label,
     this.required = false,
-    required this.onChange,
+    required this.onChange, this.helperText,
   });
 
   @override
@@ -154,7 +155,7 @@ class _FileDropzoneFieldState extends State<FileDropzoneField> {
                           ),
                           2.hSpace,
                           Text(
-                            S.current.cvHelperText,
+                           widget.helperText ?? S.current.cvHelperText,
                             style: textTheme.bodyMedium?.copyWith(
                               color: colorScheme.onBackground.withOpacity(0.5),
                               fontStyle: FontStyle.italic,

@@ -18,8 +18,7 @@ class AttachmentViewModel {
 class AttachmentWidget extends StatefulWidget {
   final Function(AttachmentViewModel attachment) onFinish;
   final VoidCallback onBack;
-  const AttachmentWidget(
-      {super.key, required this.onFinish, required this.onBack});
+  const AttachmentWidget({super.key, required this.onFinish, required this.onBack});
 
   @override
   State<AttachmentWidget> createState() => _AttachmentWidgetState();
@@ -54,6 +53,7 @@ class _AttachmentWidgetState extends State<AttachmentWidget> {
         16.hSpace,
         FileDropzoneField(
           label: S.current.accomplishmentRecords,
+          helperText: S.current.accomplishmentHelperText,
           onChange: (value) {
             accomplishment = value;
           },
