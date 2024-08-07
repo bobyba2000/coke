@@ -1,7 +1,10 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 
 enum LanguageType {
   vietnam,
@@ -28,7 +31,8 @@ enum LanguageType {
 }
 
 class LanguageSwitch extends StatelessWidget {
-  const LanguageSwitch({super.key});
+  final bool needToRefresh;
+  const LanguageSwitch({super.key,  this.needToRefresh  = false});
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +48,9 @@ class LanguageSwitch extends StatelessWidget {
                     final languageCode = e == LanguageType.vietnam ? 'vi' : 'en';
                     LocaleUtility.saveLocale(languageCode);
                     LocaleUtility.locale.value = Locale(languageCode);
+                    if (needToRefresh) {
+                      html.window.location.reload();
+                    }
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

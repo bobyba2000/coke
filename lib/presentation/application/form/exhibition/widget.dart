@@ -564,7 +564,6 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                         return null;
                       },
                       required: true,
-                      label: S.current.typeOfEnglish,
                       items: certificates,
                       onChanged: (cert) {
                         certification = null;

@@ -60,7 +60,7 @@ class _AutoCompleteWidgetState<T> extends State<AutoCompleteWidget<T>> {
               children: [
                 Text(
                   widget.label ?? '',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 Visibility(
                   visible: widget.required,
@@ -91,6 +91,9 @@ class _AutoCompleteWidgetState<T> extends State<AutoCompleteWidget<T>> {
                       color: Colors.grey,
                     ),
             helperText: widget.helperText,
+            suffixIcon: const Icon(
+              Icons.arrow_drop_down,
+            ),
           ),
           onTapItem: (data) {
             _controller.text = data.toString();
@@ -258,6 +261,7 @@ class _AsyncAutocompleteState<T> extends State<AsyncAutocomplete<T>> {
     _controller.addListener(() => updateSuggestions(_controller.text));
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) openOverlay();
+      if (!_focusNode.hasFocus) closeOverlay();
     });
   }
 
@@ -301,12 +305,16 @@ class _AsyncAutocompleteState<T> extends State<AsyncAutocomplete<T>> {
   }
 
   void closeOverlay() {
-    if (_hasOpenedOverlay) {
-      _overlayEntry!.remove();
-      setState(() {
-        _hasOpenedOverlay = false;
-      });
-    }
+    Future.delayed(const Duration(milliseconds: 300)).then(
+      (value) {
+        if (_hasOpenedOverlay) {
+          _overlayEntry!.remove();
+          setState(() {
+            _hasOpenedOverlay = false;
+          });
+        }
+      },
+    );
   }
 
   Future<void> updateSuggestions(String input) async {

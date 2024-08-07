@@ -30,7 +30,8 @@ class FileDropzoneField extends StatefulWidget {
     super.key,
     this.label,
     this.required = false,
-    required this.onChange, this.helperText,
+    required this.onChange,
+    this.helperText,
   });
 
   @override
@@ -129,6 +130,7 @@ class _FileDropzoneFieldState extends State<FileDropzoneField> {
               child: Stack(
                 children: [
                   DropzoneView(
+                    mime: const ['pdf'],
                     onCreated: (DropzoneViewController ctrl) => controller = ctrl,
                     operation: DragOperation.copy,
                     cursor: CursorType.grab,
@@ -155,7 +157,7 @@ class _FileDropzoneFieldState extends State<FileDropzoneField> {
                           ),
                           2.hSpace,
                           Text(
-                           widget.helperText ?? S.current.cvHelperText,
+                            widget.helperText ?? S.current.cvHelperText,
                             style: textTheme.bodyMedium?.copyWith(
                               color: colorScheme.onBackground.withOpacity(0.5),
                               fontStyle: FontStyle.italic,
@@ -180,7 +182,10 @@ class _FileDropzoneFieldState extends State<FileDropzoneField> {
   }
 
   Future<void> uploadFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
 
     if (result != null) {
       Uint8List fileBytes = result.files.first.bytes!;

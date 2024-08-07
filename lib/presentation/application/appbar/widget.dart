@@ -21,7 +21,9 @@ class ApplicationAppbar extends StatelessWidget {
             width: 160,
           ),
           const Spacer(),
-          const LanguageSwitch(),
+          const LanguageSwitch(
+            needToRefresh: true,
+          ),
         ],
       ),
     );

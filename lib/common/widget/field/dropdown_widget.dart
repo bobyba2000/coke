@@ -103,7 +103,7 @@ class _AppDropDownWidgetState<T> extends State<AppDropDownWidget<T>> {
                 children: [
                   Text(
                     widget.label ?? "",
-                    style: widget.labelStyle ?? Theme.of(context).textTheme.bodyMedium,
+                    style: widget.labelStyle ?? Theme.of(context).textTheme.titleMedium,
                   ),
                   Visibility(
                     visible: widget.required!,

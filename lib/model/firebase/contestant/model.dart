@@ -1,5 +1,6 @@
 import 'package:coke_platform/model/firebase/contestant/attachment/model.dart';
 import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
+import 'package:coke_platform/model/firebase/contestant/other/model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'career/model.dart';
@@ -16,6 +17,7 @@ class ContestantModel {
   final CareerInfoModel careerInfo;
   final ExhibitionInfoModel exhibition;
   final AttachmentModel attachment;
+  final ContestantOtherModel? others;
   final DateTime submitTime;
 
   ContestantModel({
@@ -26,6 +28,7 @@ class ContestantModel {
     required this.exhibition,
     required this.attachment,
     required this.submitTime,
+    this.others,
   });
 
   num get personalPoint {

@@ -23,23 +23,21 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
   String? priority2;
   bool? willingToReallocate;
   List<String> locations = [
-    'North East',
-    'North West',
-    'Ha Noi',
-    'Central Provinces',
-    'South Provinces',
-    'Ho Chi Minh',
-    'Mekong Delta',
+    S.current.northEast,
+    S.current.northWest,
+    S.current.hanoi,
+    S.current.centralProvinces,
+    S.current.hoChiMinh,
+    S.current.mekongDelta,
   ];
 
   List<DropdownMenuItem<String>> priority1Locations = [
-    'North East',
-    'North West',
-    'Ha Noi',
-    'Central Provinces',
-    'South Provinces',
-    'Ho Chi Minh',
-    'Mekong Delta',
+    S.current.northEast,
+    S.current.northWest,
+    S.current.hanoi,
+    S.current.centralProvinces,
+    S.current.hoChiMinh,
+    S.current.mekongDelta,
   ]
       .map(
         (e) => DropdownMenuItem(
@@ -50,13 +48,12 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
       .toList();
 
   List<DropdownMenuItem<String>> priority2Locations = [
-    'North East',
-    'North West',
-    'Ha Noi',
-    'Central Provinces',
-    'South Provinces',
-    'Ho Chi Minh',
-    'Mekong Delta',
+    S.current.northEast,
+    S.current.northWest,
+    S.current.hanoi,
+    S.current.centralProvinces,
+    S.current.hoChiMinh,
+    S.current.mekongDelta,
   ]
       .map(
         (e) => DropdownMenuItem(
@@ -184,6 +181,7 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
                               child: AppDropDownWidget<String>(

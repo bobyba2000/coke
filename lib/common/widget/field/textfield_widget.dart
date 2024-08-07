@@ -116,13 +116,13 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 children: [
                   Text(
                     widget.label ?? "",
-                    style: widget.labelStyle ?? Theme.of(context).textTheme.bodyMedium,
+                    style: widget.labelStyle ?? Theme.of(context).textTheme.titleMedium,
                   ),
                   Visibility(
                     visible: widget.required,
                     child: Text(
                       "*",
-                      style: (widget.labelStyle ?? Theme.of(context).textTheme.bodyMedium)?.copyWith(color: Colors.red),
+                      style: (widget.labelStyle ?? Theme.of(context).textTheme.titleMedium)?.copyWith(color: Colors.red),
                     ),
                   ),
                   const Spacer(),

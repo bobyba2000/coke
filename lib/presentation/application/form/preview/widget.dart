@@ -445,6 +445,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                         accomplishment: attachmentUrl,
                       ),
                       submitTime: DateTime.now(),
+                      others: widget.attachment.other,
                     );
                     await contestant.exhibition.calculatePoint(widget.career.desiredPathway.role);
                     await contestantService.update(contestant);
