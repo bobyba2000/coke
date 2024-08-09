@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -79,21 +80,19 @@ class _AutoCompleteWidgetState<T> extends State<AutoCompleteWidget<T>> {
           validator: widget.validator,
           inputTextStyle: widget.style ?? const TextStyle(),
           inputFormatter: widget.formatters,
+          maxListHeight: 300,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(15),
             border: _inputBorder,
             enabledBorder: _inputBorder,
             focusedBorder: _inputBorder,
             focusedErrorBorder: _inputBorder,
-            hintText: widget.hintText,
+            hintText: widget.hintText ?? S.current.pleaseFillIn,
             hintStyle: widget.hintStyle ??
                 Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Colors.grey,
                     ),
             helperText: widget.helperText,
-            suffixIcon: const Icon(
-              Icons.arrow_drop_down,
-            ),
           ),
           onTapItem: (data) {
             _controller.text = data.toString();

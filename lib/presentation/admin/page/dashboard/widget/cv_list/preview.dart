@@ -292,7 +292,7 @@ class PreviewContestantDialog extends StatelessWidget {
                       data(
                         context,
                         '${S.current.skill} ${index + 1}',
-                        skill.skill,
+                        skill.skill.toString(),
                       ),
                     );
                     skills.add(

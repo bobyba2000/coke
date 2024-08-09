@@ -105,10 +105,37 @@ enum InternshipRole {
   }
 }
 
+enum LocationModel {
+  northEast,
+  northWest,
+  hanoi,
+  centralProvinces,
+  hochiminh,
+  mekongDelta;
+
+  @override
+  String toString() {
+    switch (this) {
+      case LocationModel.northEast:
+        return S.current.northEast;
+      case LocationModel.northWest:
+        return S.current.northWest;
+      case LocationModel.hanoi:
+        return S.current.hanoi;
+      case LocationModel.centralProvinces:
+        return S.current.centralProvinces;
+      case LocationModel.hochiminh:
+        return S.current.hoChiMinh;
+      case LocationModel.mekongDelta:
+        return S.current.mekongDelta;
+    }
+  }
+}
+
 @JsonSerializable()
 class WorkingLocationModel {
-  final String first;
-  final String? second;
+  final LocationModel first;
+  final LocationModel? second;
   final bool? willingToChange;
 
   WorkingLocationModel({

@@ -270,7 +270,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                   data(
                     context,
                     '${S.current.skill} ${index + 1}',
-                    skill.skill,
+                    skill.skill.toString(),
                   ),
                 );
                 skills.add(
@@ -392,6 +392,41 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                       style: theme.textTheme.bodyMedium,
                     ),
                   ),
+                  Visibility(
+                    visible: attachment.accomplishment != null,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        16.hSpace,
+                        Text(
+                          S.current.accomplishment,
+                          style: textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        8.hSpace,
+                        Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.16),
+                                offset: Offset(0, 1),
+                                blurRadius: 4,
+                              )
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(16),
+                          child: Text(
+                            attachment.accomplishment?.fileName ?? '',
+                            style: theme.textTheme.bodyMedium,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               );
             },
@@ -451,7 +486,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                     await contestantService.update(contestant);
                     DialogUtility.showConfirmDialog(
                       context,
-                      title: S.current.thankyou,
+                      title: S.current.applied,
                       message: S.current.applySuccessfully,
                       onConfirm: () {
                         Navigator.pop(context);

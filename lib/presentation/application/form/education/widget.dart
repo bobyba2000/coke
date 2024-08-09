@@ -141,7 +141,7 @@ class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validato
                   validator: checkRequired,
                   hintText: 'mm-yyyy',
                   isMonthOnly: true,
-                  helperText: 'e.g. 07-2024',
+                  helperText: S.current.graduationYearHelperText,
                   dateFormat: 'MM-yyyy',
                   onChanged: (value) {
                     year = value;

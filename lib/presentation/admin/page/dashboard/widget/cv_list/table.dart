@@ -502,9 +502,9 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.internRole:
         return contestant.careerInfo.desiredPathway.role.toString();
       case ColumnTitle.workingLocationPriority1:
-        return contestant.careerInfo.desiredPathway.location.first;
+        return contestant.careerInfo.desiredPathway.location.first.toString();
       case ColumnTitle.workingLocationPriority2:
-        return contestant.careerInfo.desiredPathway.location.second ?? '';
+        return contestant.careerInfo.desiredPathway.location.second?.toString() ?? '';
       case ColumnTitle.willingToChange:
         return contestant.careerInfo.desiredPathway.location.willingToChange?.toString() ?? '';
       case ColumnTitle.availabilityType:
@@ -529,7 +529,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         }
       case ColumnTitle.skill1:
         if (skills.isNotEmpty) {
-          return skills[0].skill;
+          return skills[0].skill.toString();
         }
       case ColumnTitle.skill1Desc:
         if (skills.isNotEmpty) {
@@ -537,7 +537,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         }
       case ColumnTitle.skill2:
         if (skills.length > 1) {
-          return skills[1].skill;
+          return skills[1].skill.toString();
         }
       case ColumnTitle.skill2Desc:
         if (skills.length > 1) {
@@ -545,7 +545,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         }
       case ColumnTitle.skill3:
         if (skills.length > 2) {
-          return skills[2].skill;
+          return skills[2].skill.toString();
         }
       case ColumnTitle.skill3Desc:
         if (skills.length > 2) {
@@ -553,7 +553,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         }
       case ColumnTitle.skill4:
         if (skills.length > 3) {
-          return skills[3].skill;
+          return skills[3].skill.toString();
         }
       case ColumnTitle.skill4Desc:
         if (skills.length > 3) {
@@ -561,7 +561,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         }
       case ColumnTitle.skill5:
         if (skills.length > 4) {
-          return skills[4].skill;
+          return skills[4].skill.toString();
         }
       case ColumnTitle.skill5Desc:
         if (skills.length > 4) {

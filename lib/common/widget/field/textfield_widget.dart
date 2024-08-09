@@ -1,3 +1,4 @@
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
@@ -196,8 +197,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                   borderRadius: BorderRadius.circular(8),
                 ),
             fillColor: Colors.white,
-            hintText: widget.hintText,
-            helperStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            hintText: widget.hintText ?? S.current.pleaseFillIn,
+            helperStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Colors.grey,
                 ),
             contentPadding: widget.padding ?? const EdgeInsets.all(15),

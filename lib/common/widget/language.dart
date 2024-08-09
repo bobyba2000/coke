@@ -7,24 +7,24 @@ import 'package:flutter/material.dart';
 import 'dart:html' as html;
 
 enum LanguageType {
-  vietnam,
-  england;
+  vietnamese,
+  english;
 
   @override
   String toString() {
     switch (this) {
-      case LanguageType.vietnam:
+      case LanguageType.vietnamese:
         return 'Việt Nam';
-      case LanguageType.england:
-        return 'England';
+      case LanguageType.english:
+        return 'English';
     }
   }
 
   Widget get icon {
     switch (this) {
-      case LanguageType.vietnam:
+      case LanguageType.vietnamese:
         return Assets.images.vi.image();
-      case LanguageType.england:
+      case LanguageType.english:
         return Assets.images.en.image();
     }
   }
@@ -32,20 +32,20 @@ enum LanguageType {
 
 class LanguageSwitch extends StatelessWidget {
   final bool needToRefresh;
-  const LanguageSwitch({super.key,  this.needToRefresh  = false});
+  const LanguageSwitch({super.key, this.needToRefresh = false});
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: LocaleUtility.locale,
       builder: (BuildContext context, Locale value, Widget? child) {
-        final data = value.languageCode == 'vi' ? LanguageType.vietnam : LanguageType.england;
+        final data = value.languageCode == 'vi' ? LanguageType.vietnamese : LanguageType.english;
         return PopupMenuButton(
           itemBuilder: (context) => LanguageType.values
               .map(
                 (e) => PopupMenuItem(
                   onTap: () {
-                    final languageCode = e == LanguageType.vietnam ? 'vi' : 'en';
+                    final languageCode = e == LanguageType.vietnamese ? 'vi' : 'en';
                     LocaleUtility.saveLocale(languageCode);
                     LocaleUtility.locale.value = Locale(languageCode);
                     if (needToRefresh) {

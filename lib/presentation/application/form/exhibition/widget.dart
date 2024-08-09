@@ -33,7 +33,7 @@ class WordCountInputFormatter extends TextInputFormatter {
 }
 
 class SkillViewModel {
-  String skill = '';
+  Skill? skill;
   String description = '';
 }
 
@@ -44,7 +44,7 @@ class CompetionViewModel {
 
 class WorkingExperienceViewModel {
   WorkingType? type;
-  String? industry;
+  CompanyIndustry? industry;
   DateTime? fromDate;
   DateTime? toDate;
   String? companyName;
@@ -65,42 +65,6 @@ class ProfileExhibitionWidget extends StatefulWidget {
 }
 
 class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with Validator {
-  final allSkills = [
-    'Inventory Management',
-    'SQL',
-    'Attention to details',
-    'Problem-solving',
-    'Communication',
-    'Data Visualization',
-    'Event planning and execution',
-    'Business acumen',
-    'Numerical skill',
-    'Agility',
-    'Critical thinking',
-    'Data Management',
-    'Digital Literacy',
-    'Selling',
-    'Data Modelling',
-    'Negotiation',
-    'Python',
-    'Project management',
-    'Stakeholder Management',
-    'Presentation',
-    'Critical Thinking',
-    'Creative thinking',
-    'System design',
-    'Stakeholder management',
-    'Communications',
-    'Business process improvement',
-    'Financial acumen',
-    'Influencing',
-    'Cloud based tools',
-    'Data Analysis',
-    'Data analysis',
-    'Machine Learning',
-    'Numerical Skill',
-  ];
-
   final List<String> competitions = [
     'Battle of Mind (BAT)',
     'Unilever\'s Future Leaders\' League (UFLL)',
@@ -124,8 +88,6 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
   ];
 
   final companies = [...OthersConstant.companies];
-
-  final industries = CompanyIndustry.values.map((e) => e.toString()).toList();
 
   List<SkillViewModel> skills = [
     SkillViewModel(),
@@ -175,16 +137,38 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
       )
       .toList();
 
+  final skillDetails = Skill.values
+      .map(
+        (e) => DropdownMenuItem(
+          value: e,
+          child: Text(
+            e.toString(),
+          ),
+        ),
+      )
+      .toList();
+
+  final industries = CompanyIndustry.values
+      .map(
+        (e) => DropdownMenuItem(
+          value: e,
+          child: Text(
+            e.toString(),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      )
+      .toList();
+
   EnglistCertification? certification;
   String certDetail = '';
   final form = GlobalKey<FormState>();
 
   @override
   void initState() {
-    allSkills.sort();
     competitions.sort();
     companies.sort();
-    industries.sort();
     super.initState();
   }
 
@@ -235,25 +219,25 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: AutoCompleteWidget(
-                          validator: checkRequired,
+                        child: AppDropDownWidget(
+                          label: S.current.skillSelection,
                           required: true,
-                          getSuggestData: (value) async {
-                            return allSkills
-                                .where(
-                                  (element) => element.toLowerCase().contains(
-                                        value.toLowerCase(),
-                                      ),
-                                )
-                                .toList();
+                          validator: (value) {
+                            if (value == null) {
+                              return S.current.inputRequired;
+                            }
+                            return null;
                           },
+                          items: skillDetails,
                           onChanged: (value) {
                             e.skill = value;
                           },
-                          onTapItem: (value) {
-                            e.skill = value;
-                          },
-                          label: S.current.skillSelection,
+                          inputBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Theme.of(context).dividerColor,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
                       ),
                       16.wSpace,
@@ -268,11 +252,14 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                             e.description = value;
                           },
                           validator: (value) {
-                            if (value != null) {
-                              if (_countWords(value) > 120) {
-                                return 'The text must not exceed 120 words';
-                              }
+                            if (value == null || value == '') {
+                              return S.current.inputRequired;
                             }
+
+                            if (_countWords(value) > 120) {
+                              return S.current.exceed120Words;
+                            }
+
                             return null;
                           },
                         ),
@@ -430,23 +417,18 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                               ),
                               16.wSpace,
                               Expanded(
-                                child: AutoCompleteWidget(
-                                  getSuggestData: (value) async {
-                                    return industries
-                                        .where(
-                                          (element) => element.toLowerCase().contains(
-                                                value.toLowerCase(),
-                                              ),
-                                        )
-                                        .toList();
-                                  },
+                                child: AppDropDownWidget(
+                                  label: S.current.industry,
+                                  items: industries,
                                   onChanged: (value) {
                                     e.value.industry = value;
                                   },
-                                  onTapItem: (value) {
-                                    e.value.industry = value;
-                                  },
-                                  label: S.current.industry,
+                                  inputBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Theme.of(context).dividerColor,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
                                 ),
                               ),
                             ],
@@ -552,8 +534,8 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                   fontStyle: FontStyle.italic,
                 ),
               ),
-              16.hSpace,
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: AppDropDownWidget(
@@ -563,8 +545,8 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                         }
                         return null;
                       },
-                      required: true,
                       items: certificates,
+                      label: '',
                       onChanged: (cert) {
                         certification = null;
                         setState(() {});
@@ -659,6 +641,8 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                             return AppDropDownWidget(
                               label: S.current.detail,
                               items: cambridgeDetails,
+                              validator: checkRequired,
+                              required: true,
                               onChanged: (value) {
                                 certDetail = value ?? '';
                               },
@@ -673,6 +657,8 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                             return AppDropDownWidget(
                               label: S.current.detail,
                               items: cefrDetails,
+                              required: true,
+                              validator: checkRequired,
                               onChanged: (value) {
                                 certDetail = value ?? '';
                               },
@@ -687,6 +673,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                             return TextFieldWidget(
                               label: S.current.detail,
                               validator: checkRequired,
+                              required: true,
                               onChanged: (value) {
                                 certDetail = value;
                               },
@@ -727,20 +714,21 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                             )
                             .toList(),
                         skills: skills
-                            .where((element) => element.skill.isNotEmpty)
+                            .where((element) => element.skill != null)
                             .map((e) => SkillModel(
-                                  skill: e.skill,
+                                  skill: e.skill!,
                                   description: e.description,
                                 ))
                             .toList(),
                         experiences: experiences
-                            .where((element) => element.companyName != null && element.type != null && element.companyName != '')
+                            .where((element) =>
+                                element.companyName != null && element.type != null && element.companyName != '' && element.industry != null)
                             .map(
                               (e) => WorkingExperienceModel(
                                 type: e.type!,
                                 startDate: e.fromDate,
                                 endDate: e.toDate,
-                                industry: e.industry ?? '',
+                                industry: e.industry!,
                                 companyName: e.companyName ?? '',
                                 jobTitle: e.title ?? '',
                               ),

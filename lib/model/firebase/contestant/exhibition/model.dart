@@ -24,9 +24,120 @@ class AchivementModel {
   Map<String, dynamic> toJson() => _$AchivementModelToJson(this);
 }
 
+enum Skill {
+  agility,
+  attentionToDetails,
+  businessAcumen,
+  businessProcessImprovement,
+  cloudBasedTools,
+  communication,
+  creativeThinking,
+  criticalThinking,
+  dataAnalysis,
+  dataManagement,
+  dataModeling,
+  dataVisualization,
+  digitalLiteracy,
+  digitalMarketing,
+  eventPlanningExecution,
+  financialAcumen,
+  forecasting,
+  influencing,
+  inventoryManagement,
+  machineLearning,
+  marketResearch,
+  materialDesign,
+  msOffice,
+  negotiation,
+  nielsonReporting,
+  numericalSkill,
+  powerBI,
+  presentation,
+  problemSolving,
+  projectManagement,
+  python,
+  selling,
+  sql,
+  stakeholderManagement;
+
+  @override
+  String toString() {
+    switch (this) {
+      case Skill.agility:
+        return S.current.agility;
+      case Skill.attentionToDetails:
+        return S.current.attentionToDetails;
+      case Skill.businessAcumen:
+        return S.current.businessAcumen;
+      case Skill.businessProcessImprovement:
+        return S.current.businessProcessImprovement;
+      case Skill.cloudBasedTools:
+        return S.current.cloudBasedTools;
+      case Skill.communication:
+        return S.current.communication;
+      case Skill.creativeThinking:
+        return S.current.creativeThinking;
+      case Skill.criticalThinking:
+        return S.current.criticalThinking;
+      case Skill.dataAnalysis:
+        return S.current.dataAnalysis;
+      case Skill.dataManagement:
+        return S.current.dataManagement;
+      case Skill.dataModeling:
+        return S.current.dataModeling;
+      case Skill.dataVisualization:
+        return S.current.dataVisualization;
+      case Skill.digitalLiteracy:
+        return S.current.digitalLiteracy;
+      case Skill.digitalMarketing:
+        return S.current.digitalMarketing;
+      case Skill.eventPlanningExecution:
+        return S.current.eventPlanningExecution;
+      case Skill.financialAcumen:
+        return S.current.financialAcumen;
+      case Skill.forecasting:
+        return S.current.forecasting;
+      case Skill.influencing:
+        return S.current.influencing;
+      case Skill.inventoryManagement:
+        return S.current.inventoryManagement;
+      case Skill.machineLearning:
+        return S.current.machineLearning;
+      case Skill.marketResearch:
+        return S.current.marketResearch;
+      case Skill.materialDesign:
+        return S.current.materialDesign;
+      case Skill.msOffice:
+        return S.current.msOffice;
+      case Skill.negotiation:
+        return S.current.negotiation;
+      case Skill.nielsonReporting:
+        return S.current.nielsonReporting;
+      case Skill.numericalSkill:
+        return S.current.numericalSkill;
+      case Skill.powerBI:
+        return S.current.powerBI;
+      case Skill.presentation:
+        return S.current.presentation;
+      case Skill.problemSolving:
+        return S.current.problemSolving;
+      case Skill.projectManagement:
+        return S.current.projectManagement;
+      case Skill.python:
+        return S.current.python;
+      case Skill.selling:
+        return S.current.selling;
+      case Skill.sql:
+        return S.current.sql;
+      case Skill.stakeholderManagement:
+        return S.current.stakeholderManagement;
+    }
+  }
+}
+
 @JsonSerializable(fieldRename: FieldRename.kebab)
 class SkillModel {
-  final String skill;
+  final Skill skill;
   final String description;
 
   SkillModel({
@@ -109,9 +220,7 @@ enum CompanyIndustry {
       case tourism:
         return S.current.tourism;
       case garmentFashion:
-        return S.current.tourism;
-      default:
-        return super.toString();
+        return S.current.garment_fashion;
     }
   }
 }
@@ -121,7 +230,7 @@ class WorkingExperienceModel {
   final WorkingType type;
   final DateTime? startDate;
   final DateTime? endDate;
-  final String industry;
+  final CompanyIndustry industry;
   final String companyName;
   final String jobTitle;
 
@@ -291,12 +400,7 @@ class ExhibitionInfoModel {
     for (var experience in experiences) {
       num point = 0;
       final industry = experience.industry;
-      final isExist = CompanyIndustry.values.any((element) =>
-          StringUtility.compare(
-            industry,
-            element.toString(),
-          ) >
-          0.7);
+      const isExist = true;
       if (isExist) {
         point += 2;
       }

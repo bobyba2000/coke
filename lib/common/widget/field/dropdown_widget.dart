@@ -1,3 +1,4 @@
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class AppDropDownWidget<T> extends StatefulWidget {
@@ -139,7 +140,7 @@ class _AppDropDownWidgetState<T> extends State<AppDropDownWidget<T>> {
                 alignLabelWithHint: true,
                 fillColor: widget.filledColor,
                 isDense: true,
-                hintText: widget.hintText,
+                hintText: widget.hintText ?? S.current.pleaseSelect,
                 contentPadding: const EdgeInsets.all(15),
               ),
               items: widget.items,

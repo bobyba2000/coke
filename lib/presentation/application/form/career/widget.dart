@@ -19,46 +19,25 @@ class CareerInfoWidget extends StatefulWidget {
 
 class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
   InternshipRole? role;
-  String? priority1;
-  String? priority2;
+  LocationModel? priority1;
+  LocationModel? priority2;
   bool? willingToReallocate;
-  List<String> locations = [
-    S.current.northEast,
-    S.current.northWest,
-    S.current.hanoi,
-    S.current.centralProvinces,
-    S.current.hoChiMinh,
-    S.current.mekongDelta,
-  ];
+  List<LocationModel> locations = LocationModel.values;
 
-  List<DropdownMenuItem<String>> priority1Locations = [
-    S.current.northEast,
-    S.current.northWest,
-    S.current.hanoi,
-    S.current.centralProvinces,
-    S.current.hoChiMinh,
-    S.current.mekongDelta,
-  ]
+  List<DropdownMenuItem<LocationModel>> priority1Locations = LocationModel.values
       .map(
         (e) => DropdownMenuItem(
           value: e,
-          child: Text(e),
+          child: Text(e.toString(),),
         ),
       )
       .toList();
 
-  List<DropdownMenuItem<String>> priority2Locations = [
-    S.current.northEast,
-    S.current.northWest,
-    S.current.hanoi,
-    S.current.centralProvinces,
-    S.current.hoChiMinh,
-    S.current.mekongDelta,
-  ]
+  List<DropdownMenuItem<LocationModel>> priority2Locations = LocationModel.values
       .map(
         (e) => DropdownMenuItem(
           value: e,
-          child: Text(e),
+          child: Text(e.toString(),),
         ),
       )
       .toList();
@@ -152,7 +131,7 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                     role = value;
 
                     if (role != InternshipRole.sales) {
-                      priority1 = 'HCM - Head Office';
+                      priority1 = LocationModel.hochiminh;
                       priority2 = null;
                       willingToReallocate = null;
                     } else {
@@ -184,7 +163,7 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
-                              child: AppDropDownWidget<String>(
+                              child: AppDropDownWidget(
                                 label: '${S.current.workingLocation} - ${S.current.priority1}',
                                 required: true,
                                 validator: (value) {
@@ -224,7 +203,7 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
                             ),
                             16.wSpace,
                             Expanded(
-                              child: AppDropDownWidget<String>(
+                              child: AppDropDownWidget(
                                 label: '${S.current.workingLocation} - ${S.current.priority2}',
                                 required: true,
                                 isNeedToReset: true,
