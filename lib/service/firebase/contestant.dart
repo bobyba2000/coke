@@ -30,6 +30,13 @@ class FirebaseContestantService {
         res.add(contestant);
       }
     }
-    return res.reversed.toList();
+
+    res = res.reversed.toList();
+
+    // for (var contestant in res) {
+    //   await contestant.exhibition.calculatePoint(contestant.careerInfo.desiredPathway.role);
+    //   update(contestant);
+    // }
+    return res;
   }
 }

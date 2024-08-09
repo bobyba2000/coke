@@ -377,7 +377,7 @@ class ExhibitionInfoModel {
                 point = 1;
               }
 
-              if (role.desiredSkills.contains(e.skill)) {
+              if (role.essentialSkills.contains(e.skill)) {
                 point = point * 2;
               }
             }
