@@ -356,10 +356,35 @@ class ExhibitionInfoModel {
     englishPoint = 0;
     final service = AppDependencies.injector.get<PointService>();
     try {
-      final response = await service.calcSkillPoint(
-        PointRequestModel(role: role, skills: skills),
+      skillPoints = await Future.wait(
+        skills.map(
+          (e) async {
+            num point = 0;
+            int countWords(String text) {
+              final words = text.trim().split(RegExp(r'\s+'));
+              return words.length;
+            }
+
+            if (role.desiredSkills.contains(e.skill) || role.essentialSkills.contains(e.skill)) {
+              if (countWords(e.description) > 80) {
+                final descriptionPoint = await service.calcSkillPoint(
+                  PointRequestModel(
+                    skills: [e],
+                  ),
+                );
+                point += descriptionPoint.data?.data.first.point ?? 0;
+              } else {
+                point = 1;
+              }
+
+              if (role.desiredSkills.contains(e.skill)) {
+                point = point * 2;
+              }
+            }
+            return point;
+          },
+        ),
       );
-      skillPoints = response.data?.data.map((e) => e.totalPoint).toList() ?? [];
     } catch (e) {
       Logger().e(e);
     }
@@ -380,7 +405,13 @@ class ExhibitionInfoModel {
     for (var achivement in achivements) {
       final isExist = competitions.any((element) => StringUtility.compare(achivement.name, element) > 0.7);
       if (isExist) {
-        if (achivement.accomplishment == 'Top 1' || achivement.accomplishment == 'Top 2') {
+        if (achivement.accomplishment == 'Top 1' ||
+            achivement.accomplishment == 'Top 2' ||
+            achivement.accomplishment == 'Champion' ||
+            achivement.accomplishment == 'Vô địch' ||
+            achivement.accomplishment == 'Quán quân' ||
+            achivement.accomplishment == 'Á quân' ||
+            achivement.accomplishment == 'Runner-up') {
           achivementPoints.add(5);
           continue;
         } else {
@@ -397,10 +428,16 @@ class ExhibitionInfoModel {
       }
     }
 
+    num dateDifference = 0;
     for (var experience in experiences) {
       num point = 0;
+      if (experience.startDate == null || experience.endDate == null) {
+        experiencePoints.add(0);
+        continue;
+      }
+      dateDifference += experience.endDate!.difference(experience.startDate!).inDays;
       final industry = experience.industry;
-      const isExist = true;
+      final isExist = role == InternshipRole.sales ? true : role.industries.contains(industry);
       if (isExist) {
         point += 2;
       }
@@ -431,11 +468,14 @@ class ExhibitionInfoModel {
           titles = OthersConstant.keyAccountTitles;
           break;
       }
-      final isTitleExist = titles.any((element) => StringUtility.compare(experience.jobTitle, element) > 0.7);
+      final isTitleExist = titles.any((element) => StringUtility.compare(experience.jobTitle, element) > 0.6);
       if (isTitleExist) {
         point += 2;
       }
       experiencePoints.add(point);
+    }
+    if (dateDifference < 365) {
+      experiencePoints = List.generate(experiences.length, (index) => 0);
     }
 
     if (english != null) {

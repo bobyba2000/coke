@@ -4,9 +4,9 @@ part 'model.g.dart';
 
 @JsonSerializable()
 class PointModel {
-  final num totalPoint;
+  final num point;
 
-  PointModel({required this.totalPoint});
+  PointModel({required this.point});
   factory PointModel.fromJson(Map<String, dynamic> json) {
     return _$PointModelFromJson(json);
   }

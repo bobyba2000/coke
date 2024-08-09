@@ -1,4 +1,5 @@
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'model.g.dart';
 
@@ -34,73 +35,169 @@ enum InternshipRole {
     }
   }
 
-  List<String> get suggestionSkills {
+  List<Skill> get desiredSkills {
     switch (this) {
-      case procurement:
+      case InternshipRole.sales:
         return [
-          'Critical thinking',
-          'Data analysis',
-          'Financial acumen',
-          'Problem-solving',
-          'Digital Literacy',
-          'Business process improvement',
-          'Attention to details',
-          'Communication',
-          'Inventory Management',
-          'Data Management'
-        ];
-      case tradeMarketing:
-        return [
-          'Communication',
-          'Presentation',
-          'Problem-solving',
-          'Stakeholder Management',
-          'Numerical skill',
-        ];
-      case keyAccountOnPremise:
-        return [
-          'Communication',
-          'Presentation',
-          'Problem-solving',
-          'Stakeholder Management',
-          'Numerical skill',
-        ];
-      case keyAccountOffPremise:
-        return [
-          'Event planning and execution',
-          'Numerical skill',
-          'Creative thinking',
-          'Presentation',
-          'Stakeholder management',
-          'Problem-solving',
-          'Communications'
+          Skill.influencing,
+          Skill.numericalSkill,
         ];
       case InternshipRole.itDataAnalyst:
+        return [
+          Skill.businessAcumen,
+          Skill.attentionToDetails,
+        ];
       case InternshipRole.itPrivacy:
-        return ['Python', 'Machine Learning', 'SQL', 'Cloud based tools', 'Business acumen', 'Communication', 'Data Analysis'];
-      case sales:
         return [
-          'Selling',
-          'Critical Thinking',
-          'Problem-solving',
-          'Stakeholder Management',
-          'Negotiation',
-          'Influencing',
-          'Numerical Skill',
+          Skill.businessAcumen,
+          Skill.stakeholderManagement,
         ];
-      case rtm:
+      case InternshipRole.procurement:
         return [
-          'Data analysis',
-          'Data Visualization',
-          'Project management',
-          'Communication',
-          'Presentation',
-          'Stakeholder management',
-          'System design',
-          'Data Modelling',
-          'Business process improvement',
-          'Agility'
+          Skill.businessProcessImprovement,
+          Skill.attentionToDetails,
+          Skill.communication,
+          Skill.inventoryManagement,
+          Skill.dataManagement,
         ];
+      case InternshipRole.tradeMarketing:
+        return [
+          Skill.projectManagement,
+          Skill.creativeThinking,
+        ];
+      case InternshipRole.rtm:
+        return [
+          Skill.agility,
+          Skill.businessProcessImprovement,
+          Skill.dataAnalysis,
+          Skill.dataVisualization,
+        ];
+      case InternshipRole.keyAccountOnPremise:
+        return []; // No skills listed for this role
+      case InternshipRole.keyAccountOffPremise:
+        return [
+          Skill.stakeholderManagement,
+          Skill.problemSolving,
+          Skill.communication,
+        ];
+      default:
+        return [];
+    }
+  }
+
+  List<Skill> get essentialSkills {
+    switch (this) {
+      case InternshipRole.sales:
+        return [
+          Skill.selling,
+          Skill.criticalThinking,
+          Skill.problemSolving,
+          Skill.stakeholderManagement,
+          Skill.negotiation,
+        ];
+      case InternshipRole.itDataAnalyst:
+        return [
+          Skill.dataAnalysis,
+          Skill.dataModeling,
+          Skill.powerBI,
+          Skill.python,
+          Skill.communication,
+        ];
+      case InternshipRole.itPrivacy:
+        return [
+          Skill.dataManagement,
+          Skill.forecasting, // Using Risk Analysis as Forecasting, replace with the right skill if needed
+          Skill.criticalThinking,
+          Skill.problemSolving,
+          Skill.communication,
+        ];
+      case InternshipRole.procurement:
+        return [
+          Skill.criticalThinking,
+          Skill.dataAnalysis,
+          Skill.financialAcumen,
+          Skill.problemSolving,
+          Skill.digitalLiteracy,
+        ];
+      case InternshipRole.tradeMarketing:
+        return [
+          Skill.numericalSkill,
+          Skill.communication,
+          Skill.presentation,
+          Skill.problemSolving,
+          Skill.stakeholderManagement,
+        ];
+      case InternshipRole.rtm:
+        return [
+          Skill.projectManagement,
+          Skill.stakeholderManagement,
+          Skill.criticalThinking,
+          Skill.communication,
+          Skill.presentation,
+        ];
+      case InternshipRole.keyAccountOnPremise:
+        return [
+          Skill.communication,
+          Skill.presentation,
+          Skill.problemSolving,
+          Skill.stakeholderManagement,
+          Skill.numericalSkill,
+        ];
+      case InternshipRole.keyAccountOffPremise:
+        return [
+          Skill.eventPlanningExecution,
+          Skill.numericalSkill,
+          Skill.creativeThinking,
+          Skill.presentation,
+        ];
+      default:
+        return [];
+    }
+  }
+
+  List<CompanyIndustry> get industries {
+    switch (this) {
+      case InternshipRole.itDataAnalyst:
+        return [
+          CompanyIndustry.fmcg,
+          CompanyIndustry.engineering,
+          CompanyIndustry.hardwareTechnology,
+          CompanyIndustry.itSoftware,
+        ];
+      case InternshipRole.itPrivacy:
+        return [
+          CompanyIndustry.fmcg,
+          CompanyIndustry.engineering,
+          CompanyIndustry.hardwareTechnology,
+          CompanyIndustry.itSoftware,
+        ];
+      case InternshipRole.procurement:
+        return [
+          CompanyIndustry.fmcg,
+          CompanyIndustry.engineering,
+          CompanyIndustry.construction,
+        ];
+      case InternshipRole.tradeMarketing:
+        return [
+          CompanyIndustry.fmcg,
+          CompanyIndustry.prCommunications,
+        ];
+      case InternshipRole.rtm:
+        return [
+          CompanyIndustry.fmcg,
+        ];
+      case InternshipRole.keyAccountOnPremise:
+        return [
+          CompanyIndustry.fmcg,
+          CompanyIndustry.retail,
+        ];
+      case InternshipRole.keyAccountOffPremise:
+        return [
+          CompanyIndustry.fmcg,
+          CompanyIndustry.retail,
+        ];
+      default:
+        return [];
     }
   }
 }
