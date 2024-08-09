@@ -242,6 +242,10 @@ class ExcelService {
           if (experiencesPoints.length > 2) {
             return experiencesPoints[2];
           }
+        case ColumnTitle.englishPoint:
+          return contestant.exhibition.englishPoint;
+        case ColumnTitle.attachmentPoint:
+          return contestant.attachmentPoint;
       }
 
       return '';

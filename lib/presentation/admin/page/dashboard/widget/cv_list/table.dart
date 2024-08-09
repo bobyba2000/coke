@@ -77,6 +77,8 @@ enum ColumnTitle {
   experiencePoint1,
   experiencePoint2,
   experiencePoint3,
+  englishPoint,
+  attachmentPoint,
   totalPoint;
 
   @override
@@ -222,6 +224,10 @@ enum ColumnTitle {
         return 'Experience 2 Point';
       case ColumnTitle.experiencePoint3:
         return 'Experience 3 Point';
+      case ColumnTitle.englishPoint:
+        return 'English Point';
+      case ColumnTitle.attachmentPoint:
+        return 'Attachment Point';
     }
   }
 
@@ -687,6 +693,10 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         if (experiencesPoints.length > 2) {
           return experiencesPoints[2].toString();
         }
+      case ColumnTitle.englishPoint:
+        return contestant.exhibition.englishPoint.toString();
+      case ColumnTitle.attachmentPoint:
+        return contestant.attachmentPoint.toString();
     }
 
     return '';
