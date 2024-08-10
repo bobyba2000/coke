@@ -1,7 +1,7 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/validator.dart';
 import 'package:coke_platform/common/widget/button/outlined.dart';
-import 'package:coke_platform/common/widget/field/dropdown_widget.dart';
+import 'package:coke_platform/common/widget/field/custom_dropdown.dart';
 import 'package:coke_platform/common/widget/field/file_dropzone.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/other/model.dart';
@@ -36,14 +36,7 @@ class _AttachmentWidgetState extends State<AttachmentWidget> with Validator {
   ProgramChannel? channel;
   final form = GlobalKey<FormState>();
 
-  final channels = ProgramChannel.values
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(e.toString()),
-        ),
-      )
-      .toList();
+  final channels = ProgramChannel.values;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -95,26 +88,16 @@ class _AttachmentWidgetState extends State<AttachmentWidget> with Validator {
                 },
               ),
               16.hSpace,
-              AppDropDownWidget(
+              CustomDropdown(
                 items: channels,
-                required: true,
                 label: S.current.hearProgramFrom,
-                validator: (value) {
-                  if (value == null) {
-                    return S.current.inputRequired;
-                  }
-                  return null;
-                },
-                onChanged: (value) {
+                value: channel,
+                validator: checkRequired,
+                onSelect: (value) {
                   channel = value;
                 },
-                inputBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).dividerColor,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              )
+                required: true,
+              ),
             ],
           ),
         ),

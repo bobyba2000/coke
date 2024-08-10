@@ -258,6 +258,7 @@
     "exceed120Words": "Bạn không được nhập quá 120 chữ.",
     "riskAnalysis": "Phân tích rủi ro",
     "dataProtection": "Bảo vệ Dữ liệu",
-    "english": "English",
-    "vietnamese": "Vietnamese"
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt",
+    "delete": "Xóa"
 }

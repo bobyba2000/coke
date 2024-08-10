@@ -207,6 +207,7 @@ enum LocationModel {
   northWest,
   hanoi,
   centralProvinces,
+  southProvinces,
   hochiminh,
   mekongDelta;
 
@@ -225,6 +226,8 @@ enum LocationModel {
         return S.current.hoChiMinh;
       case LocationModel.mekongDelta:
         return S.current.mekongDelta;
+      case LocationModel.southProvinces:
+        return S.current.southProvinces;
     }
   }
 }

@@ -2,8 +2,8 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/validator.dart';
 import 'package:coke_platform/common/widget/button/outlined.dart';
 import 'package:coke_platform/common/widget/field/auto_complete_widget.dart';
+import 'package:coke_platform/common/widget/field/custom_dropdown.dart';
 import 'package:coke_platform/common/widget/field/datepicker_widget.dart';
-import 'package:coke_platform/common/widget/field/dropdown_widget.dart';
 import 'package:coke_platform/common/widget/field/textfield_widget.dart';
 import 'package:coke_platform/constants/others.dart';
 import 'package:coke_platform/generated/l10n.dart';
@@ -101,65 +101,9 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
     WorkingExperienceViewModel(),
   ];
 
-  final workingTypes = WorkingType.values
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(e.toString()),
-        ),
-      )
-      .toList();
+  final cambridgeDetails = ['KET', 'PET', 'PEC', 'PCE', 'CAE', 'CPE'];
 
-  final certificates = EnglistCertification.values
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(e.toString()),
-        ),
-      )
-      .toList();
-
-  final cambridgeDetails = ['KET', 'PET', 'PEC', 'PCE', 'CAE', 'CPE']
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(e),
-        ),
-      )
-      .toList();
-
-  final cefrDetails = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(e),
-        ),
-      )
-      .toList();
-
-  final skillDetails = Skill.values
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(
-            e.toString(),
-          ),
-        ),
-      )
-      .toList();
-
-  final industries = CompanyIndustry.values
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(
-            e.toString(),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-      )
-      .toList();
+  final cefrDetails = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
   EnglistCertification? certification;
   String certDetail = '';
@@ -212,63 +156,91 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                 ),
               ),
               16.hSpace,
-              ...skills.map(
-                (e) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: AppDropDownWidget(
-                          label: S.current.skillSelection,
-                          required: true,
-                          validator: (value) {
-                            if (value == null) {
-                              return S.current.inputRequired;
-                            }
-                            return null;
-                          },
-                          items: skillDetails,
-                          onChanged: (value) {
-                            e.skill = value;
-                          },
-                          inputBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Theme.of(context).dividerColor,
+              ...skills.asMap().entries.map(
+                (e) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              '${S.current.skill} ${e.key + 1}',
+                              style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                             ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                      ),
-                      16.wSpace,
-                      Expanded(
-                        child: TextFieldWidget(
-                          initText: e.description,
-                          required: true,
-                          label: S.current.skillDemonstration,
-                          maxWords: 120,
-                          inputFormatters: [
-                            WordCountInputFormatter(maxWords: 120),
+                            const Spacer(),
+                            Visibility(
+                              visible: skills.length > 1,
+                              child: TextButton(
+                                onPressed: () {
+                                  skills.remove(e.value);
+                                  setState(() {});
+                                },
+                                child: Text(
+                                  S.current.delete,
+                                ),
+                              ),
+                            ),
                           ],
-                          onChanged: (value) {
-                            e.description = value;
-                          },
-                          validator: (value) {
-                            if (value == null || value == '') {
-                              return S.current.inputRequired;
-                            }
-
-                            if (_countWords(value) > 120) {
-                              return S.current.exceed120Words;
-                            }
-
-                            return null;
-                          },
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: CustomDropdown(
+                                label: S.current.skillSelection,
+                                items: Skill.values,
+                                value: e.value.skill,
+                                getItems: () {
+                                  final previousSkills = skills.map((element) => element.skill).toList();
+                                  previousSkills.removeAt(e.key);
+                                  final selectableSkills = Skill.values
+                                      .where(
+                                        (value) => !previousSkills.contains(value),
+                                      )
+                                      .toList();
+                                  return selectableSkills;
+                                },
+                                onSelect: (value) {
+                                  e.value.skill = value;
+                                },
+                                required: true,
+                                validator: checkRequired,
+                              ),
+                            ),
+                            16.wSpace,
+                            Expanded(
+                              child: TextFieldWidget(
+                                initText: e.value.description,
+                                required: true,
+                                label: S.current.skillDemonstration,
+                                maxWords: 120,
+                                inputFormatters: [
+                                  WordCountInputFormatter(maxWords: 120),
+                                ],
+                                onChanged: (value) {
+                                  e.value.description = value;
+                                },
+                                validator: (value) {
+                                  if (value == null || value == '') {
+                                    return S.current.inputRequired;
+                                  }
+
+                                  if (_countWords(value) > 120) {
+                                    return S.current.exceed120Words;
+                                  }
+
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
               8.hSpace,
               if (skills.length < OthersConstant.maxSkillCount)
@@ -303,57 +275,83 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                 ),
               ),
               16.hSpace,
-              ...achivements.map(
-                (e) => Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: AutoCompleteWidget(
-                          getSuggestData: (value) async {
-                            return competitions
-                                .where(
-                                  (element) => element.toLowerCase().contains(
-                                        value.toLowerCase(),
-                                      ),
-                                )
-                                .toList();
-                          },
-                          onChanged: (value) {
-                            e.name = value;
-                          },
-                          onTapItem: (value) {
-                            e.name = value;
-                          },
-                          label: S.current.competitionName,
-                        ),
+              ...achivements.asMap().entries.map(
+                    (e) => Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                '${S.current.achivement} ${e.key + 1}',
+                                style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              const Spacer(),
+                              Visibility(
+                                visible: achivements.length > 1,
+                                child: TextButton(
+                                  onPressed: () {
+                                    achivements.remove(e.value);
+                                    setState(() {});
+                                  },
+                                  child: Text(
+                                    S.current.delete,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: AutoCompleteWidget(
+                                  getSuggestData: (value) async {
+                                    return competitions
+                                        .where(
+                                          (element) => element.toLowerCase().contains(
+                                                value.toLowerCase(),
+                                              ),
+                                        )
+                                        .toList();
+                                  },
+                                  onChanged: (value) {
+                                    e.value.name = value;
+                                  },
+                                  onTapItem: (value) {
+                                    e.value.name = value;
+                                  },
+                                  label: S.current.competitionName,
+                                ),
+                              ),
+                              16.wSpace,
+                              Expanded(
+                                child: AutoCompleteWidget(
+                                  getSuggestData: (value) async {
+                                    return prizes
+                                        .where(
+                                          (element) => element.toLowerCase().contains(
+                                                value.toLowerCase(),
+                                              ),
+                                        )
+                                        .toList();
+                                  },
+                                  onChanged: (value) {
+                                    e.value.accomplishment = value;
+                                  },
+                                  onTapItem: (value) {
+                                    e.value.accomplishment = value;
+                                  },
+                                  label: S.current.accomplishment,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      16.wSpace,
-                      Expanded(
-                        child: AutoCompleteWidget(
-                          getSuggestData: (value) async {
-                            return prizes
-                                .where(
-                                  (element) => element.toLowerCase().contains(
-                                        value.toLowerCase(),
-                                      ),
-                                )
-                                .toList();
-                          },
-                          onChanged: (value) {
-                            e.accomplishment = value;
-                          },
-                          onTapItem: (value) {
-                            e.accomplishment = value;
-                          },
-                          label: S.current.accomplishment,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
               8.hSpace,
               if (achivements.length < OthersConstant.maxAchivementCount)
                 Align(
@@ -394,43 +392,51 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            '${S.current.job} ${e.key + 1}',
-                            style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                          Row(
+                            children: [
+                              Text(
+                                '${S.current.job} ${e.key + 1}',
+                                style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              const Spacer(),
+                              Visibility(
+                                visible: experiences.length > 1,
+                                child: TextButton(
+                                  onPressed: () {
+                                    experiences.remove(e.value);
+                                    setState(() {});
+                                  },
+                                  child: Text(
+                                    S.current.delete,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          4.hSpace,
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
-                                child: AppDropDownWidget(
-                                  label: S.current.workingType,
-                                  items: workingTypes,
-                                  onChanged: (value) {
+                                child: CustomDropdown(
+                                  value: e.value.type,
+                                  items: WorkingType.values,
+                                  onSelect: (value) {
                                     e.value.type = value;
                                   },
-                                  inputBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Theme.of(context).dividerColor,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
+                                  required: false,
+                                  label: S.current.workingType,
                                 ),
                               ),
                               16.wSpace,
                               Expanded(
-                                child: AppDropDownWidget(
-                                  label: S.current.industry,
-                                  items: industries,
-                                  onChanged: (value) {
+                                child: CustomDropdown(
+                                  value: e.value.industry,
+                                  items: CompanyIndustry.values,
+                                  onSelect: (value) {
                                     e.value.industry = value;
                                   },
-                                  inputBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Theme.of(context).dividerColor,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
+                                  required: false,
+                                  label: S.current.industry,
                                 ),
                               ),
                             ],
@@ -536,36 +542,24 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                   fontStyle: FontStyle.italic,
                 ),
               ),
+              8.hSpace,
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Expanded(
-                    child: AppDropDownWidget(
-                      validator: (value) {
-                        if (value == null) {
-                          return checkRequired(null);
-                        }
-                        return null;
+                    child: CustomDropdown(
+                      maxHeight: 200,
+                      items: EnglistCertification.values,
+                      value: certification,
+                      onSelect: (value) {
+                        certification = value;
+                        certDetail = '';
+                        Future.delayed(const Duration(milliseconds: 400), () {
+                          setState(() {});
+                        });
                       },
-                      items: certificates,
-                      label: '',
-                      onChanged: (cert) {
-                        certification = null;
-                        setState(() {});
-                        Future.delayed(const Duration(milliseconds: 400)).then(
-                          (value) {
-                            certification = cert;
-                            certDetail = '';
-                            setState(() {});
-                          },
-                        );
-                      },
-                      inputBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Theme.of(context).dividerColor,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
+                      required: true,
+                      validator: checkRequired,
                     ),
                   ),
                   16.wSpace,
@@ -640,36 +634,29 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                               },
                             );
                           case EnglistCertification.cambridge:
-                            return AppDropDownWidget(
-                              label: S.current.detail,
+                            return CustomDropdown(
                               items: cambridgeDetails,
-                              validator: checkRequired,
-                              required: true,
-                              onChanged: (value) {
-                                certDetail = value ?? '';
-                              },
-                              inputBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Theme.of(context).dividerColor,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            );
-                          case EnglistCertification.cefr:
-                            return AppDropDownWidget(
                               label: S.current.detail,
-                              items: cefrDetails,
-                              required: true,
-                              validator: checkRequired,
-                              onChanged: (value) {
+                              maxHeight: 150,
+                              value: certDetail,
+                              onSelect: (value) {
                                 certDetail = value ?? '';
                               },
-                              inputBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Theme.of(context).dividerColor,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
+                              required: true,
+                              validator: checkRequired,
+                            );
+
+                          case EnglistCertification.cefr:
+                            return CustomDropdown(
+                              value: certDetail,
+                              items: cefrDetails,
+                              label: S.current.detail,
+                              maxHeight: 150,
+                              onSelect: (value) {
+                                certDetail = value ?? '';
+                              },
+                              required: true,
+                              validator: checkRequired,
                             );
                           default:
                             return TextFieldWidget(

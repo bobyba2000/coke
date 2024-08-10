@@ -45,6 +45,7 @@ dependencies:
   firebase_storage: 11.7.4
   firebase_auth_web: 5.11.4
   excel: ^4.0.3
+  collection: ^1.18.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

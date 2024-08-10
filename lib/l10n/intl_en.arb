@@ -258,6 +258,7 @@
     "exceed120Words": "You are not allowed to enter more than 120 words.",
     "riskAnalysis": "Risk Analysis",
     "dataProtection": "Data Protection",
-    "english": "Tiếng Anh",
-    "vietnamese": "Tiếng Việt"
+    "english": "English",
+    "vietnamese": "Vietnamese",
+    "delete": "Delete"
 }

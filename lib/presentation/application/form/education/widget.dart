@@ -1,8 +1,8 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/validator.dart';
 import 'package:coke_platform/common/widget/button/outlined.dart';
+import 'package:coke_platform/common/widget/field/custom_dropdown.dart';
 import 'package:coke_platform/common/widget/field/datepicker_widget.dart';
-import 'package:coke_platform/common/widget/field/dropdown_widget.dart';
 import 'package:coke_platform/common/widget/field/major_field.dart';
 import 'package:coke_platform/common/widget/field/textfield_widget.dart';
 import 'package:coke_platform/common/widget/field/university_field.dart';
@@ -49,34 +49,18 @@ class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validato
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: AppDropDownWidget<EducationLevel>(
-                  label: S.current.educationLevel,
+                child: CustomDropdown(
+                  value: level,
+                  items: EducationLevel.values,
+                  onSelect: (value) {
+                    level = value;
+                  },
                   required: true,
                   validator: (value) {
                     if (value == null) {
                       return S.current.inputRequired;
                     }
                     return null;
-                  },
-                  inputBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Theme.of(context).dividerColor,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  items: EducationLevel.values
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(
-                            e.toString(),
-                            style: textTheme.bodyLarge,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    level = value;
                   },
                 ),
               ),

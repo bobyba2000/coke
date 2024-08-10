@@ -1,7 +1,7 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/validator.dart';
 import 'package:coke_platform/common/widget/button/outlined.dart';
-import 'package:coke_platform/common/widget/field/dropdown_widget.dart';
+import 'package:coke_platform/common/widget/field/custom_dropdown.dart';
 import 'package:coke_platform/common/widget/field/textfield_widget.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
@@ -121,14 +121,7 @@ class AvailabilityWidget extends StatefulWidget {
 }
 
 class _AvailabilityWidgetState extends State<AvailabilityWidget> {
-  List<DropdownMenuItem<AvailabilityType>> availabilities = AvailabilityType.values
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(e.toString()),
-        ),
-      )
-      .toList();
+  List<AvailabilityType> availabilities = AvailabilityType.values;
 
   AvailabilityType? availability;
   String? note;
@@ -165,29 +158,17 @@ class _AvailabilityWidgetState extends State<AvailabilityWidget> {
           ),
         ),
         8.hSpace,
-        AppDropDownWidget<AvailabilityType>(
-          required: true,
-          validator: (value) {
-            if (value == null) {
-              return S.current.inputRequired;
-            }
-            return null;
-          },
-          inputBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).dividerColor,
-            ),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          value: availability,
+        CustomDropdown(
           items: availabilities,
-          onChanged: (value) {
+          onSelect: (value) {
             availability = value;
             note = null;
             widget.onChangeNote.call(note);
             widget.onChangeType.call(availability);
             setState(() {});
           },
+          required: true,
+          value: availability,
         ),
         if (availability != null && availability != AvailabilityType.fulltime6Months)
           Padding(
@@ -230,27 +211,9 @@ class _DesiredPathwayWidgetState extends State<DesiredPathwayWidget> {
 
   List<LocationModel> locations = LocationModel.values;
 
-  List<DropdownMenuItem<LocationModel>> priority1Locations = LocationModel.values
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(
-            e.toString(),
-          ),
-        ),
-      )
-      .toList();
+  List<LocationModel> priority1Locations = LocationModel.values;
 
-  List<DropdownMenuItem<LocationModel>> priority2Locations = LocationModel.values
-      .map(
-        (e) => DropdownMenuItem(
-          value: e,
-          child: Text(
-            e.toString(),
-          ),
-        ),
-      )
-      .toList();
+  List<LocationModel> priority2Locations = LocationModel.values;
 
   @override
   Widget build(BuildContext context) {
@@ -285,33 +248,9 @@ class _DesiredPathwayWidgetState extends State<DesiredPathwayWidget> {
           ),
         ),
         8.hSpace,
-        AppDropDownWidget<InternshipRole>(
-          required: true,
-          validator: (value) {
-            if (value == null) {
-              return S.current.inputRequired;
-            }
-            return null;
-          },
-          inputBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).dividerColor,
-            ),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          value: role,
-          items: InternshipRole.values
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: Text(
-                    e.toString(),
-                    style: textTheme.bodyLarge,
-                  ),
-                ),
-              )
-              .toList(),
-          onChanged: (value) {
+        CustomDropdown(
+          items: InternshipRole.values,
+          onSelect: (value) {
             if (role != value) {
               role = value;
 
@@ -322,17 +261,7 @@ class _DesiredPathwayWidgetState extends State<DesiredPathwayWidget> {
               } else {
                 priority1 = null;
                 willingToReallocate = true;
-                priority2Locations = locations
-                    .where((element) => element != priority1)
-                    .map(
-                      (e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(
-                          e.toString(),
-                        ),
-                      ),
-                    )
-                    .toList();
+                priority2Locations = locations;
               }
               widget.onChangeRole.call(role);
               widget.onChangeLocationPriority1.call(priority1);
@@ -340,6 +269,14 @@ class _DesiredPathwayWidgetState extends State<DesiredPathwayWidget> {
               widget.onChangeWillingToAllocate.call(willingToReallocate);
               setState(() {});
             }
+          },
+          value: role,
+          required: true,
+          validator: (value) {
+            if (value == null) {
+              return S.current.inputRequired;
+            }
+            return null;
           },
         ),
         16.hSpace,
@@ -352,70 +289,49 @@ class _DesiredPathwayWidgetState extends State<DesiredPathwayWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: AppDropDownWidget(
-                          label: '${S.current.workingLocation} - ${S.current.priority1}',
-                          required: true,
+                        child: CustomDropdown(
+                          value: priority1,
+                          items: priority1Locations,
                           validator: (value) {
                             if (value == null) {
                               return S.current.inputRequired;
                             }
                             return null;
                           },
-                          inputBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Theme.of(context).dividerColor,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          items: priority1Locations,
-                          onChanged: (value) {
+                          onSelect: (value) {
                             if (priority1 != value) {
                               priority1 = value;
                               if (priority2 == value) {
                                 priority2 = null;
                               }
-                              priority2Locations = locations
-                                  .where((element) => element != priority1)
-                                  .map(
-                                    (e) => DropdownMenuItem(
-                                      value: e,
-                                      child: Text(
-                                        e.toString(),
-                                      ),
-                                    ),
-                                  )
-                                  .toList();
+                              priority2Locations = locations.where((element) => element != priority1).toList();
+
                               widget.onChangeLocationPriority1.call(priority1);
                               widget.onChangeLocationPriority2.call(priority2);
                               setState(() {});
                             }
                           },
+                          label: '${S.current.workingLocation} - ${S.current.priority1}',
+                          required: true,
                         ),
                       ),
                       16.wSpace,
                       Expanded(
-                        child: AppDropDownWidget(
-                          label: '${S.current.workingLocation} - ${S.current.priority2}',
-                          required: true,
-                          isNeedToReset: true,
+                        child: CustomDropdown(
+                          value: priority2,
+                          items: priority2Locations,
                           validator: (value) {
                             if (value == null) {
                               return S.current.inputRequired;
                             }
                             return null;
                           },
-                          inputBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Theme.of(context).dividerColor,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          value: priority2,
-                          items: priority2Locations,
-                          onChanged: (value) {
+                          onSelect: (value) {
                             widget.onChangeLocationPriority2.call(priority2);
                             priority2 = value;
                           },
+                          label: '${S.current.workingLocation} - ${S.current.priority2}',
+                          required: true,
                         ),
                       ),
                     ],
