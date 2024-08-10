@@ -255,5 +255,9 @@
     "pleaseSelect": "Vui lòng lựa chọn",
     "gpaHintText": "Điền theo định dạng X.X/10.0",
     "graduationYearHelperText": "Ví dụ: 07-2024",
-    "exceed120Words": "Bạn không được nhập quá 120 chữ."
+    "exceed120Words": "Bạn không được nhập quá 120 chữ.",
+    "riskAnalysis": "Phân tích rủi ro",
+    "dataProtection": "Bảo vệ Dữ liệu",
+    "english": "English",
+    "vietnamese": "Vietnamese"
 }

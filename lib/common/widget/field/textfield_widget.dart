@@ -36,6 +36,7 @@ class TextFieldWidget extends StatefulWidget {
   final String? helperText;
   final String? aboveHelperText;
   final int? maxLength;
+  final int? maxWords;
 
   const TextFieldWidget({
     super.key,
@@ -72,6 +73,7 @@ class TextFieldWidget extends StatefulWidget {
     this.helperText,
     this.aboveHelperText,
     this.maxLength,
+    this.maxWords,
   });
 
   @override
@@ -81,6 +83,15 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
   late bool _obscureText;
   late TextEditingController inputController;
+  String text = '';
+
+  int countWords() {
+    if (text.trim() == '') {
+      return 0;
+    }
+    final words = text.trim().split(RegExp(r'\s+'));
+    return words.length;
+  }
 
   @override
   void initState() {
@@ -226,9 +237,25 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 : widget.suffixIcon,
           ),
           keyboardType: widget.textInputType,
-          onChanged: widget.onChanged,
+          onChanged: (value) {
+            text = value;
+            widget.onChanged?.call(text);
+            if (widget.maxWords != null) {
+              setState(() {});
+            }
+          },
           validator: widget.validator,
         ),
+        if (widget.maxWords != null)
+          Align(
+            alignment: Alignment.centerRight,
+            child: Text(
+              '${countWords()}/${widget.maxWords}',
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Colors.grey,
+                  ),
+            ),
+          ),
       ],
     );
   }

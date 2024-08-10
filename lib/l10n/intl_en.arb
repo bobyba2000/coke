@@ -255,5 +255,9 @@
     "pleaseFillIn": "Please fill in",
     "pleaseSelect": "Please select",
     "graduationYearHelperText": "e.g. 07-2024",
-    "exceed120Words": "You are not allowed to enter more than 120 words."
+    "exceed120Words": "You are not allowed to enter more than 120 words.",
+    "riskAnalysis": "Risk Analysis",
+    "dataProtection": "Data Protection",
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt"
 }

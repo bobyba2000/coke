@@ -58,7 +58,9 @@ enum Skill {
   python,
   selling,
   sql,
-  stakeholderManagement;
+  stakeholderManagement,
+  riskAnalysis,
+  dataProtection;
 
   @override
   String toString() {
@@ -131,6 +133,10 @@ enum Skill {
         return S.current.sql;
       case Skill.stakeholderManagement:
         return S.current.stakeholderManagement;
+      case Skill.riskAnalysis:
+        return S.current.riskAnalysis;
+      case Skill.dataProtection:
+        return S.current.dataProtection;
     }
   }
 }

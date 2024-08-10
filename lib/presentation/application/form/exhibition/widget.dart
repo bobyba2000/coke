@@ -244,7 +244,9 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                       Expanded(
                         child: TextFieldWidget(
                           initText: e.description,
+                          required: true,
                           label: S.current.skillDemonstration,
+                          maxWords: 120,
                           inputFormatters: [
                             WordCountInputFormatter(maxWords: 120),
                           ],

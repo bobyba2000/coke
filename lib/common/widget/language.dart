@@ -3,6 +3,7 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
 
@@ -14,9 +15,9 @@ enum LanguageType {
   String toString() {
     switch (this) {
       case LanguageType.vietnamese:
-        return 'Việt Nam';
+        return S.current.vietnamese;
       case LanguageType.english:
-        return 'English';
+        return S.current.english;
     }
   }
 
