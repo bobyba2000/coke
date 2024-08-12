@@ -1,4 +1,6 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/common/utility/dialog.dart';
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/application/appbar/widget.dart';
 import 'package:coke_platform/presentation/application/background/widget.dart';
 import 'package:coke_platform/presentation/application/form/widget.dart';
@@ -12,6 +14,20 @@ class ApplicationPage extends StatefulWidget {
 }
 
 class _ApplicationPageState extends State<ApplicationPage> {
+  @override
+  void initState() {
+    Future.delayed(
+      const Duration(milliseconds: 200),
+      () {
+        DialogUtility.showLanguagePicker(
+          context,
+          title: S.current.languagePickerApplyPage,
+        );
+      },
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Title(

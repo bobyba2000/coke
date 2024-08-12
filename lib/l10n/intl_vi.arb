@@ -260,5 +260,7 @@
     "dataProtection": "Bảo vệ Dữ liệu",
     "english": "Tiếng Anh",
     "vietnamese": "Tiếng Việt",
-    "delete": "Xóa"
+    "delete": "Xóa",
+    "languagePickerApplyPage": "Bạn muốn điền đơn ứng tuyển bằng ngôn ngữ nào?",
+    "languagePickerLandingPage": "Vui lòng chọn ngôn ngữ hiển thị của website​"
 }

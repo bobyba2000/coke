@@ -260,5 +260,8 @@
     "dataProtection": "Data Protection",
     "english": "English",
     "vietnamese": "Vietnamese",
-    "delete": "Delete"
+    "delete": "Delete",
+    "languagePickerApplyPage": "What language would you like to use to fill out the application?",
+    "languagePickerLandingPage": "Please select the language of the website​"
+
 }
