@@ -421,7 +421,13 @@ class ExhibitionInfoModel {
           achivementPoints.add(5);
           continue;
         } else {
-          for (var i = 3; i < 11; i++) {
+          for (var i = 3; i < 6; i++) {
+            if (achivement.accomplishment == 'Top $i') {
+              achivementPoints.add(5);
+              break;
+            }
+          }
+          for (var i = 6; i < 10; i++) {
             if (achivement.accomplishment == 'Top $i') {
               achivementPoints.add(2);
               break;
