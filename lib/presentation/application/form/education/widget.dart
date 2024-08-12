@@ -51,6 +51,7 @@ class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validato
               Expanded(
                 child: CustomDropdown(
                   value: level,
+                  label: S.current.educationLevel,
                   items: EducationLevel.values,
                   onSelect: (value) {
                     level = value;
