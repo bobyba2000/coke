@@ -97,6 +97,7 @@ class _AttachmentWidgetState extends State<AttachmentWidget> with Validator {
                   channel = value;
                 },
                 required: true,
+                maxHeight: 200,
               ),
             ],
           ),

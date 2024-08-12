@@ -544,11 +544,12 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
               ),
               8.hSpace,
               Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: CustomDropdown(
                       maxHeight: 200,
+                      label: '',
                       items: EnglistCertification.values,
                       value: certification,
                       onSelect: (value) {
