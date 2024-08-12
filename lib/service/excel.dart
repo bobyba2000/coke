@@ -1,4 +1,5 @@
 import 'package:coke_platform/common/extension/datetime_extension.dart';
+import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
 import 'package:coke_platform/presentation/admin/page/dashboard/widget/cv_list/table.dart';
 import 'package:excel/excel.dart';
@@ -23,6 +24,7 @@ class ExcelService {
       final experiences = contestant.exhibition.experiences;
       final experiencesPoints = contestant.exhibition.experiencePoints;
       final role = contestant.careerInfo.desiredPathway.role;
+      final personal = contestant.personalInfo;
       switch (title) {
         case ColumnTitle.name:
           return contestant.personalInfo.fullName;
@@ -57,11 +59,17 @@ class ExcelService {
         case ColumnTitle.internRole:
           return contestant.careerInfo.desiredPathway.role.toString();
         case ColumnTitle.workingLocationPriority1:
-          return contestant.careerInfo.desiredPathway.location.first;
+          if (role == InternshipRole.sales) {
+            return contestant.careerInfo.desiredPathway.location.first;
+          }
         case ColumnTitle.workingLocationPriority2:
-          return contestant.careerInfo.desiredPathway.location.second ?? '';
+          if (role == InternshipRole.sales) {
+            return contestant.careerInfo.desiredPathway.location.second ?? '';
+          }
         case ColumnTitle.willingToChange:
-          return contestant.careerInfo.desiredPathway.location.willingToChange?.toString() ?? '';
+          if (role == InternshipRole.sales) {
+            return contestant.careerInfo.desiredPathway.location.willingToChange?.toString() ?? '';
+          }
         case ColumnTitle.availabilityType:
           return contestant.careerInfo.availability.type.toString();
         case ColumnTitle.availabilityNote:
@@ -198,8 +206,10 @@ class ExcelService {
           return contestant.educationInfo.gpaPoint(role);
         case ColumnTitle.graduationYearPoint:
           return contestant.educationInfo.graduationYearPoint(role);
-        case ColumnTitle.desiredPathwayPoint:
-          return contestant.careerInfo.desiredPathwayPoint;
+        case ColumnTitle.reallocate:
+          if (role == InternshipRole.sales) {
+            return contestant.careerInfo.desiredPathwayPoint;
+          }
         case ColumnTitle.availabilityPoint:
           return contestant.careerInfo.availabilityPoint;
         case ColumnTitle.achivementPoint1:
@@ -246,6 +256,32 @@ class ExcelService {
           return contestant.exhibition.englishPoint;
         case ColumnTitle.attachmentPoint:
           return contestant.attachmentPoint;
+        case ColumnTitle.locationPriority1Point:
+          if (role == InternshipRole.sales) {
+            return contestant.careerInfo.locationPriority1Point(
+              personal.hometown,
+              personal.currentLocation,
+            );
+          }
+        case ColumnTitle.locationPriority2Point:
+          if (role == InternshipRole.sales) {
+            return contestant.careerInfo.locationPriority2Point(
+              personal.hometown,
+              personal.currentLocation,
+            );
+          }
+        case ColumnTitle.experience1Industry:
+          if (experiences.isNotEmpty) {
+            return experiences[0].industry.toString();
+          }
+        case ColumnTitle.experience2Industry:
+          if (experiences.length > 1) {
+            return experiences[1].industry.toString();
+          }
+        case ColumnTitle.experience3Industry:
+          if (experiences.length > 2) {
+            return experiences[2].industry.toString();
+          }
       }
 
       return '';

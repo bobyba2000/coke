@@ -43,16 +43,19 @@ enum ColumnTitle {
   skill5Desc,
   experience1Type,
   experience1Company,
+  experience1Industry,
   experience1JobTitle,
   experience1StartDate,
   experience1EndDate,
   experience2Type,
   experience2Company,
+  experience2Industry,
   experience2JobTitle,
   experience2StartDate,
   experience2EndDate,
   experience3Type,
   experience3Company,
+  experience3Industry,
   experience3JobTitle,
   experience3StartDate,
   experience3EndDate,
@@ -65,7 +68,9 @@ enum ColumnTitle {
   majorPoint,
   gpaPoint,
   graduationYearPoint,
-  desiredPathwayPoint,
+  locationPriority1Point,
+  locationPriority2Point,
+  reallocate,
   availabilityPoint,
   achivementPoint1,
   achivementPoint2,
@@ -145,7 +150,7 @@ enum ColumnTitle {
       case ColumnTitle.skill3:
         return 'Skill 3';
       case ColumnTitle.skill3Desc:
-        return 'Skill 2 Description';
+        return 'Skill 3 Description';
       case ColumnTitle.skill4:
         return 'Skill 4';
       case ColumnTitle.skill4Desc:
@@ -200,8 +205,8 @@ enum ColumnTitle {
         return 'GPA Point';
       case ColumnTitle.graduationYearPoint:
         return 'Graduation Time Point';
-      case ColumnTitle.desiredPathwayPoint:
-        return 'Desired Pathway Point';
+      case ColumnTitle.reallocate:
+        return 'Reallocate Point';
       case ColumnTitle.availabilityPoint:
         return 'Availability Point';
       case ColumnTitle.achivementPoint1:
@@ -228,6 +233,16 @@ enum ColumnTitle {
         return 'English Point';
       case ColumnTitle.attachmentPoint:
         return 'Attachment Point';
+      case ColumnTitle.locationPriority1Point:
+        return 'Location - Priority 1';
+      case ColumnTitle.locationPriority2Point:
+        return 'Location - Priority 2';
+      case ColumnTitle.experience1Industry:
+        return 'Working Experience 1 - Industry';
+      case ColumnTitle.experience2Industry:
+        return 'Working Experience 2 - Industry';
+      case ColumnTitle.experience3Industry:
+        return 'Working Experience 3 - Industry';
     }
   }
 
@@ -297,7 +312,7 @@ enum ColumnTitle {
       case ColumnTitle.majorPoint:
       case ColumnTitle.gpaPoint:
       case ColumnTitle.graduationYearPoint:
-      case ColumnTitle.desiredPathwayPoint:
+      case ColumnTitle.reallocate:
       case ColumnTitle.availabilityPoint:
       case ColumnTitle.achivementPoint1:
       case ColumnTitle.achivementPoint2:
@@ -474,6 +489,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
     final experiences = contestant.exhibition.experiences;
     final experiencesPoints = contestant.exhibition.experiencePoints;
     final role = contestant.careerInfo.desiredPathway.role;
+    final personal = contestant.personalInfo;
     switch (title) {
       case ColumnTitle.name:
         return contestant.personalInfo.fullName;
@@ -649,7 +665,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         return contestant.educationInfo.gpaPoint(role).toString();
       case ColumnTitle.graduationYearPoint:
         return contestant.educationInfo.graduationYearPoint(role).toString();
-      case ColumnTitle.desiredPathwayPoint:
+      case ColumnTitle.reallocate:
         return contestant.careerInfo.desiredPathwayPoint.toString();
       case ColumnTitle.availabilityPoint:
         return contestant.careerInfo.availabilityPoint.toString();
@@ -697,6 +713,22 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         return contestant.exhibition.englishPoint.toString();
       case ColumnTitle.attachmentPoint:
         return contestant.attachmentPoint.toString();
+      case ColumnTitle.locationPriority1Point:
+        return contestant.careerInfo.locationPriority1Point(personal.hometown, personal.currentLocation).toString();
+      case ColumnTitle.locationPriority2Point:
+        return contestant.careerInfo.locationPriority2Point(personal.hometown, personal.currentLocation).toString();
+      case ColumnTitle.experience1Industry:
+        if (experiences.isNotEmpty) {
+          return experiences[0].industry.toString();
+        }
+      case ColumnTitle.experience2Industry:
+        if (experiences.length > 1) {
+          return experiences[1].industry.toString();
+        }
+      case ColumnTitle.experience3Industry:
+        if (experiences.length > 2) {
+          return experiences[2].industry.toString();
+        }
     }
 
     return '';

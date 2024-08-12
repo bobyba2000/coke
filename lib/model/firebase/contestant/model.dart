@@ -40,7 +40,10 @@ class ContestantModel {
   }
 
   num get careerPoint {
-    return careerInfo.calculatePoint;
+    return careerInfo.calculatePoint(
+      personalInfo.hometown,
+      personalInfo.currentLocation,
+    );
   }
 
   num get exhibitionPoint {

@@ -230,6 +230,52 @@ enum LocationModel {
         return S.current.southProvinces;
     }
   }
+
+  List<String> get priorityLocation {
+    switch (this) {
+      case LocationModel.northEast:
+        return [
+          'Nam Định',
+          'Nam Dinh',
+          'Thanh Hóa',
+          'Thanh Hoa',
+        ];
+      case LocationModel.northWest:
+        return [
+          'Bắc Ninh',
+          'Bac Ninh',
+          'Bac Giang',
+          'Bắc Giang',
+        ];
+      case LocationModel.hanoi:
+        return [
+          'Hà Nội',
+          'Hanoi',
+        ];
+      case LocationModel.centralProvinces:
+        return [
+          'Quang Nam',
+          'Quảng Nam',
+          'Quang Ngai',
+          'Quảng Ngãi',
+          'Gia Lai',
+        ];
+      case LocationModel.hochiminh:
+        return [
+          'Hồ Chí Minh',
+          'Ho Chi Minh City',
+        ];
+      case LocationModel.mekongDelta:
+        return ['Can Tho', 'Cần Thơ', 'Tiền Giang', 'Tien Giang'];
+      case LocationModel.southProvinces:
+        return [
+          'Bà Rịa - Vũng Tàu',
+          'Ba Ria - Vung Tau',
+          'Binh Thuan',
+          'Bình Thuận',
+        ];
+    }
+  }
 }
 
 @JsonSerializable()
@@ -312,10 +358,39 @@ class CareerInfoModel {
       if (desiredPathway.location.willingToChange == true) {
         point += 5;
       }
-    } else {
-      point += 5;
     }
     return point;
+  }
+
+  num locationPriority1Point(String hometown, String currentLiving) {
+    final firstLocation = desiredPathway.location.first;
+    final role = desiredPathway.role;
+    if (role == InternshipRole.sales) {
+      if (firstLocation.priorityLocation.contains(hometown)) {
+        return 5;
+      }
+      if (firstLocation.priorityLocation.contains(currentLiving)) {
+        return 3;
+      }
+    }
+    return 0;
+  }
+
+  num locationPriority2Point(String hometown, String currentLiving) {
+    final secondLocation = desiredPathway.location.second;
+    if (secondLocation == null) {
+      return 0;
+    }
+    final role = desiredPathway.role;
+    if (role == InternshipRole.sales) {
+      if (secondLocation.priorityLocation.contains(hometown)) {
+        return 2;
+      }
+      if (secondLocation.priorityLocation.contains(currentLiving)) {
+        return 1;
+      }
+    }
+    return 0;
   }
 
   num get availabilityPoint {
@@ -332,10 +407,15 @@ class CareerInfoModel {
     return point;
   }
 
-  num get calculatePoint {
+  num calculatePoint(
+    String hometown,
+    String currentLiving,
+  ) {
     num point = 0;
     point += desiredPathwayPoint;
     point += availabilityPoint;
+    point += locationPriority1Point(hometown, currentLiving);
+    point += locationPriority2Point(hometown, currentLiving);
     return point;
   }
 
