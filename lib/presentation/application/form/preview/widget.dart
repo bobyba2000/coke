@@ -463,7 +463,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                       DialogUtility.showErrorDialog(
                         context,
                         title: S.current.error,
-                        message: 'This account has been registered. You cannot apply with this account anymore.',
+                        message: S.current.usedEmail,
                       );
                       return;
                     }
