@@ -3,10 +3,12 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/dialog.dart';
 import 'package:coke_platform/common/utility/loading_utility.dart';
+import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/common/widget/button/outlined.dart';
 import 'package:coke_platform/constants/firebase_path.dart';
 import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:coke_platform/model/data/request/mail/model.dart';
 import 'package:coke_platform/model/firebase/contestant/attachment/model.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:coke_platform/model/firebase/contestant/education/model.dart';
@@ -16,6 +18,7 @@ import 'package:coke_platform/model/firebase/contestant/personal/model.dart';
 import 'package:coke_platform/presentation/application/form/attachment/widget.dart';
 import 'package:coke_platform/service/firebase/contestant.dart';
 import 'package:coke_platform/service/firebase/storage.dart';
+import 'package:coke_platform/service/mail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -446,6 +449,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
               CustomOutlinedButton(
                 title: S.current.submit,
                 onTap: () async {
+                  final mailService = AppDependencies.injector.get<MailService>();
                   final storageService = AppDependencies.injector.get<FirebaseStorageService>();
                   final contestantService = AppDependencies.injector.get<FirebaseContestantService>();
                   final key = contestantService.generateKey();
@@ -453,6 +457,16 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                   String? attachmentUrl;
                   try {
                     LoadingUtility.show();
+                    final response = await mailService.sendMail(MailRequestModel(
+                        name: widget.personal.preferName, email: widget.personal.email, language: LocaleUtility.locale.value.languageCode));
+                    if (response.isSuccessful == false) {
+                      DialogUtility.showErrorDialog(
+                        context,
+                        title: S.current.error,
+                        message: 'This account has been registered. You cannot apply with this account anymore.',
+                      );
+                      return;
+                    }
                     await Future.wait(
                       [
                         () async {
