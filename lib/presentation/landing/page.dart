@@ -46,113 +46,110 @@ class _LandingPageState extends State<LandingPage> {
     final screenHeight = 900.h;
     return Scaffold(
       backgroundColor: ColorConstants.teal,
-      body: Stack(
+      body: ScrollTransformView(
         children: [
-          Expanded(
-            child: ScrollTransformView(
-              children: [
-                ScrollTransformItem(
-                  builder: (scrollOffset) {
-                    final offScreenPercentage = min(scrollOffset / 900.h, 1.0);
-                    final width = screenWidth - (screenWidth * 0.2 * offScreenPercentage);
-                    final height = screenHeight - (screenHeight * 0.2 * offScreenPercentage);
-                    return Opacity(
-                      opacity: 1 - offScreenPercentage,
-                      child: LadingOverallWidget(
-                        width: width,
-                        height: height,
-                      ),
-                    );
-                  },
-                  offsetBuilder: (scrollOffset) {
-                    final offScreenPercentage = min(scrollOffset / 900.h, 1.0);
-                    final heightShrinkAmount = 900.h * 0.2 * offScreenPercentage;
-                    final bool startMoving = scrollOffset >= 900.h;
-                    final onScreenOffset = scrollOffset + heightShrinkAmount / 3;
-                    return Offset(
-                      0,
-                      !startMoving ? onScreenOffset : (onScreenOffset - (scrollOffset - 900.h * 0.5)),
-                    );
-                  },
+          ScrollTransformItem(
+            builder: (scrollOffset) {
+              final offScreenPercentage = min(scrollOffset / 900.h, 1.0);
+              final width = screenWidth - (screenWidth * 0.2 * offScreenPercentage);
+              final height = screenHeight - (screenHeight * 0.2 * offScreenPercentage);
+              return Opacity(
+                opacity: 1 - offScreenPercentage,
+                child: LadingOverallWidget(
+                  width: width,
+                  height: height,
                 ),
-                ScrollTransformItem(
-                  offsetBuilder: (scrollOffset) => Offset(
-                    0,
-                    -900.h,
-                  ),
-                  builder: (context) {
-                    return SizedBox(
-                      width: 1400.w,
-                      height: 900.h,
-                      child: Column(
+              );
+            },
+            offsetBuilder: (scrollOffset) {
+              final offScreenPercentage = min(scrollOffset / 900.h, 1.0);
+              final heightShrinkAmount = 900.h * 0.2 * offScreenPercentage;
+              final bool startMoving = scrollOffset >= 900.h;
+              final onScreenOffset = scrollOffset + heightShrinkAmount / 3;
+              return Offset(
+                0,
+                !startMoving ? onScreenOffset : (onScreenOffset - (scrollOffset - 900.h * 0.5)),
+              );
+            },
+          ),
+          ScrollTransformItem(
+            offsetBuilder: (scrollOffset) => Offset(
+              0,
+              -900.h,
+            ),
+            builder: (context) {
+              return SizedBox(
+                width: 1400.w,
+                height: 900.h,
+                child: Column(
+                  children: [
+                    const LandingPageAppbar(),
+                    Expanded(
+                      child: Row(
                         children: [
-                          const LandingPageAppbar(),
                           Expanded(
-                            child: Row(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Assets.images.cokeFresh.image(),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                                        child: Assets.images.fizzUp.image(),
-                                      ),
-                                      40.h.hSpace,
-                                    ],
-                                  ),
+                                Assets.images.cokeFresh.image(),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                                  child: Assets.images.fizzUp.image(),
                                 ),
-                                Expanded(
-                                  child: Assets.images.model.image(),
-                                ),
+                                40.h.hSpace,
                               ],
                             ),
                           ),
+                          Expanded(
+                            child: Assets.images.model.image(),
+                          ),
                         ],
                       ),
-                    );
-                  },
+                    ),
+                  ],
                 ),
-                ScrollTransformItem(
-                  builder: (scrollOffset) {
-                    final box = aboutKey.currentContext!.findRenderObject() as RenderBox;
-                    return Container(
-                      color: ColorConstants.colorEA213C,
-                      width: 1400.w,
-                      height: box.size.height,
-                      padding: const EdgeInsets.all(16),
-                    );
-                  },
-                  offsetBuilder: (scrollOffset) {
-                    final box = aboutKey.currentContext!.findRenderObject() as RenderBox;
-                    return Offset(
-                      0,
-                      -box.size.height,
-                    );
-                  },
-                ),
-                ScrollTransformItem(
-                  key: aboutKey,
-                  builder: (scrollOffset) {
-                    return Container(
-                      width: 1400.w,
-                      padding: const EdgeInsets.all(16),
-                      child: const AboutWidget(),
-                    );
-                  },
-                  offsetBuilder: (scrollOffset) {
-                    final box = aboutKey.currentContext!.findRenderObject() as RenderBox;
-                    final offScreenPercentage = min(scrollOffset / (box.size.height * 2), 1.0);
-                    final dx = min(1400.w * offScreenPercentage * (screenWidth / screenHeight) - 1400.w, 0.0);
-                    return Offset(
-                      dx,
-                      -box.size.height * 2,
-                    );
-                  },
-                ),
-              ],
-            ),
+              );
+            },
+          ),
+          ScrollTransformItem(
+            builder: (scrollOffset) {
+              final box = aboutKey.currentContext?.findRenderObject() as RenderBox?;
+              final height = box?.size.height ?? 400.h;
+              return Container(
+                color: ColorConstants.colorEA213C,
+                width: 1400.w,
+                height: height,
+                padding: const EdgeInsets.all(16),
+              );
+            },
+            offsetBuilder: (scrollOffset) {
+              final box = aboutKey.currentContext?.findRenderObject() as RenderBox?;
+              final height = box?.size.height ?? 400.h;
+              return Offset(
+                0,
+                -height,
+              );
+            },
+          ),
+          ScrollTransformItem(
+            key: aboutKey,
+            builder: (scrollOffset) {
+              return Container(
+                width: 1400.w,
+                padding: const EdgeInsets.all(16),
+                child: const AboutWidget(),
+              );
+            },
+            offsetBuilder: (scrollOffset) {
+              final box = aboutKey.currentContext?.findRenderObject() as RenderBox?;
+              final height = box?.size.height ?? 400.h;
+              final offScreenPercentage = min(scrollOffset / (height * 2), 1.0);
+              final dx = min(1400.w * offScreenPercentage * (screenWidth / screenHeight) - 1400.w, 0.0);
+              return Offset(
+                dx,
+                -height * 2,
+              );
+            },
           ),
         ],
       ),
