@@ -24,7 +24,7 @@ class EducationInfoWidget extends StatefulWidget {
 class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validator {
   EducationLevel? level;
   String university = '';
-  String major = '';
+  Major? major;
   double? gpa;
   DateTime? year;
   final form = GlobalKey<FormState>();
@@ -155,7 +155,7 @@ class _EducationInfoWidgetState extends State<EducationInfoWidget> with Validato
                       EducationInfoModel(
                         education: level!,
                         university: university,
-                        major: major,
+                        major: major!,
                         gpa: gpa!,
                         graduationYear: year!,
                       ),

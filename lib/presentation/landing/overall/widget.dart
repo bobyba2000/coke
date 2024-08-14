@@ -1,15 +1,12 @@
-import 'dart:ui';
-
-import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LadingOverallWidget extends StatefulWidget {
   final double width;
   final double height;
-  const LadingOverallWidget({super.key, required this.width, required this.height});
+  const LadingOverallWidget(
+      {super.key, required this.width, required this.height});
 
   @override
   State<LadingOverallWidget> createState() => _LadingOverallWidgetState();

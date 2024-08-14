@@ -284,5 +284,9 @@
     "saleRole": "Sales Role (General Trade channel)​",
     "saleRoleContent": "Final year students or Fresh Graduates from University/ College nationwide​;Less than 1 year of working experience​;GPA from 6.0/10 or equivalent​;Open for any educational major​;Working Location: at a city/province in one of our 7 sales regions nationwide – North East, North West, Ha Noi, Central Provinces, South Provinces, Ho Chi Minh, Mekong Delta​",
     "otherRole": "Other roles",
-    "otherRoleContent": "Third-year or Final year students or Fresh Graduates from University nationwide​;Less than 1 year of working experience​;GPA from 7.0/10.0 or equivalent​;Educational major differs depending on the specific requirements of functional roles​;Working Location: Ho Chi Minh city​;English proficiency​"
+    "otherRoleContent": "Third-year or Final year students or Fresh Graduates from University nationwide​;Less than 1 year of working experience​;GPA from 7.0/10.0 or equivalent​;Educational major differs depending on the specific requirements of functional roles​;Working Location: Ho Chi Minh city​;English proficiency​",
+    "economicsBusinessAdministration": "Economics/ Business Administration",
+    "foreignTradeInternationalBusiness": "Foreign Trade/ International Business",
+    "marketingIntegratedCommunications": "Marketing and Integrated Communications",
+    "dataAnalysisDataIntelligence": "Data Analysis, Data Intelligence,..."
 }

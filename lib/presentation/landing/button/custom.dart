@@ -71,7 +71,10 @@ class BrokenBorderPainter extends CustomPainter {
       size.height - strokeWidth,
     );
 
-    final rrect = RRect.fromRectAndRadius(rect, Radius.circular(borderRadius));
+    final rrect = RRect.fromRectAndRadius(
+      rect,
+      const Radius.circular(borderRadius),
+    );
 
     final path = Path()..addRRect(rrect);
 
@@ -88,7 +91,8 @@ class BrokenBorderPainter extends CustomPainter {
 
         // Draw the path up to the break
         if (currentOffset < breakStart) {
-          Path borderSegment1 = pathMetric.extractPath(currentOffset, breakStart);
+          Path borderSegment1 =
+              pathMetric.extractPath(currentOffset, breakStart);
           canvas.drawPath(borderSegment1, paint);
         }
 

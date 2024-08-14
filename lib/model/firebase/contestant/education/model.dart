@@ -1,4 +1,4 @@
-import 'package:coke_platform/common/utility/string.dart';
+import 'package:coke_platform/common/widget/field/major_field.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -47,7 +47,7 @@ enum GraduationYear {
 class EducationInfoModel {
   final EducationLevel education;
   final String university;
-  final String major;
+  final Major major;
   final num gpa;
   final DateTime graduationYear;
 
@@ -60,125 +60,40 @@ class EducationInfoModel {
   });
 
   num calculateMajorPoint(InternshipRole role) {
-    List<String> fields = [];
+    List<Major> fields = [];
     switch (role) {
       case InternshipRole.itDataAnalyst:
       case InternshipRole.itPrivacy:
         fields = [
-          'Computer Science & Information Technology',
-          'Machine Learning',
-          'AI Engineering',
-          'Information System',
-          'Business Analyst',
-          'Business Intelligence',
-          'Data Science',
-          'Data Analytics',
-          'Data Engineering'
+          Major.computerScienceAndIT,
+          Major.informationSystem,
+          Major.dataScience,
         ];
         break;
       case InternshipRole.procurement:
         fields = [
-          'Mechanical Engineering',
-          'Kỹ thuật Cơ khí',
-          'Electrical Engineering',
-          'Kỹ thuật Điện',
-          'Electronics Engineering',
-          'Kỹ thuật Điện tử',
-          'Control & Automation Engineering',
-          'Kỹ thuật Điều khiển & Tự động hóa',
-          'Civil Engineering',
-          'Kỹ thuật Xây dựng',
-          'Chemical Engineering',
-          'Kỹ thuật Hóa học',
-          'Aerospace Engineering',
-          'Kỹ thuật Hàng không Vũ trụ',
-          'Biomedical Engineering',
-          'Kỹ thuật Y sinh',
-          'Computer Engineering',
-          'Kỹ thuật Máy tính',
-          'Environmental Engineering',
-          'Kỹ thuật Môi trường',
-          'Industrial Engineering',
-          'Kỹ thuật Công nghiệp',
-          'Materials Engineering',
-          'Kỹ thuật Vật liệu',
-          'Nuclear Engineering',
-          'Kỹ thuật Hạt nhân',
-          'Petroleum Engineering',
-          'Kỹ thuật Dầu khí',
-          'Software Engineering',
-          'Kỹ thuật Phần mềm',
-          'Structural Engineering',
-          'Kỹ thuật Kết cấu'
+          Major.engineeringRelatedMajors,
         ];
         break;
       case InternshipRole.tradeMarketing:
         fields = [
-          'Marketing and Integrated Communications',
-          'Tiếp thị và Truyền thông Tích hợp',
-          'Digital Marketing',
-          'Tiếp thị Kỹ thuật số',
-          'Brand Management',
-          'Quản lý Thương hiệu',
-          'Public Relations',
-          'Quan hệ Công chúng',
-          'Advertising',
-          'Quảng cáo',
-          'Market Research',
-          'Nghiên cứu Thị trường',
-          'Content Marketing',
-          'Tiếp thị Nội dung',
-          'Social Media Marketing',
-          'Tiếp thị Truyền thông Xã hội',
-          'Event Management',
-          'Quản lý Sự kiện',
-          'Sales Promotion',
-          'Khuyến mãi Bán hàng',
-          'Consumer Behavior',
-          'Hành vi Người tiêu dùng'
+          Major.marketingAndIntegratedCommunications,
         ];
         break;
       case InternshipRole.sales:
         return 5;
       default:
         fields = [
-          'Economics',
-          'Kinh tế học',
-          'Business Administration',
-          'Quản trị Kinh doanh',
-          'Foreign Trade',
-          'Thương mại Quốc tế',
-          'International Business',
-          'Kinh doanh Quốc tế',
-          'Marketing and Integrated Communications',
-          'Tiếp thị và Truyền thông Tích hợp',
-          'Data Analysis',
-          'Phân tích Dữ liệu',
-          'Data Intelligence',
-          'Trí tuệ Dữ liệu',
-          'Finance - Banking',
-          'Tài chính - Ngân hàng',
-          'Accounting - Auditing',
-          'Kế toán - Kiểm toán',
-          'Supply Chain Management',
-          'Quản lý Chuỗi cung ứng',
-          'Human Resources Management',
-          'Quản lý Nhân sự',
-          'Strategic Management',
-          'Quản lý Chiến lược',
-          'Operations Management',
-          'Quản lý Hoạt động',
-          'Entrepreneurship',
-          'Khởi nghiệp',
-          'Business Analytics',
-          'Phân tích Kinh doanh',
-          'Risk Management',
-          'Quản lý Rủi ro',
-          'Investment Analysis',
-          'Phân tích Đầu tư'
+          Major.economicsBusinessAdministration,
+          Major.foreignTrade,
+          Major.marketingAndIntegratedCommunications,
+          Major.dataAnalysisDataIntelligence,
+          Major.financeBanking,
+          Major.accountingAuditing,
         ];
+        break;
     }
-    final isExist = fields.any((element) => StringUtility.compare(element, major) > 0.5);
+    final isExist = fields.any((element) => element == major);
 
     return isExist ? 5 : 0;
   }
@@ -218,7 +133,9 @@ class EducationInfoModel {
       point += 5;
     } else if (graduationYear.isBefore(DateTime(2026))) {
       if (role == InternshipRole.sales) {
-        point += 2;
+        point = 2;
+      } else {
+        point = 5;
       }
     }
     return point;
@@ -238,7 +155,8 @@ class EducationInfoModel {
     return point;
   }
 
-  factory EducationInfoModel.fromJson(Map<String, dynamic> json) => _$EducationInfoModelFromJson(json);
+  factory EducationInfoModel.fromJson(Map<String, dynamic> json) =>
+      _$EducationInfoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$EducationInfoModelToJson(this);
 }

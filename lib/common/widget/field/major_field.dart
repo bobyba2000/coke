@@ -1,4 +1,4 @@
-import 'package:coke_platform/common/widget/field/auto_complete_widget.dart';
+import 'package:coke_platform/common/widget/field/custom_dropdown.dart';
 import 'package:coke_platform/generated/l10n.dart';
 
 import 'package:flutter/material.dart';
@@ -24,7 +24,9 @@ enum Major {
   architectureDesignConstruction,
   engineeringRelatedMajors,
   telecommunication,
-  agricultureFeedForestry;
+  agricultureFeedForestry,
+  economicsBusinessAdministration,
+  dataAnalysisDataIntelligence,;
 
   @override
   String toString() {
@@ -71,6 +73,10 @@ enum Major {
         return S.current.telecommunication;
       case Major.agricultureFeedForestry:
         return S.current.agricultureFeedForestry;
+      case Major.economicsBusinessAdministration:
+        return S.current.economicsBusinessAdministration;
+      case Major.dataAnalysisDataIntelligence:
+        return S.current.dataAnalysisDataIntelligence;
     }
   }
 }
@@ -78,7 +84,7 @@ enum Major {
 class MajorFieldWidget extends StatefulWidget {
   final String label;
   final bool required;
-  final Function(String major) onChange;
+  final Function(Major major) onChange;
   final FormFieldValidator<String>? validator;
 
   const MajorFieldWidget({
@@ -98,25 +104,17 @@ class _MajorFieldWidgetState extends State<MajorFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AutoCompleteWidget<String>(
-      required: widget.required,
+    return CustomDropdown(
       validator: widget.validator,
       label: widget.label,
       hintText: S.current.majorHintText,
-      getSuggestData: (value) async {
-        return majors
-            .where(
-              (element) => element.toString().toLowerCase().contains(value.toLowerCase()),
-            )
-            .map(
-              (e) => e.toString(),
-            )
-            .toList();
+      items: majors,
+      onSelect: (value) {
+        if (value != null) {
+          widget.onChange.call(value);
+        }
       },
-      onTapItem: (value) {
-        widget.onChange.call(value);
-      },
-      onChanged: widget.onChange,
+      required: true,
     );
   }
 }

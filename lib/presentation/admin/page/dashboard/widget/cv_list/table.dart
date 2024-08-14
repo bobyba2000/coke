@@ -355,10 +355,21 @@ class _ListContestantTableState extends State<ListContestantTable> {
   }
 
   @override
+  void didUpdateWidget(covariant ListContestantTable oldWidget) {
+    totalPages = (widget.contestants.length / sizePerPage).ceil();
+    if (mounted) {
+      setState(() {});
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final start = (currentPage) * sizePerPage;
-    final end = (currentPage + 1) * sizePerPage > widget.contestants.length ? widget.contestants.length : (currentPage + 1) * sizePerPage;
+    final end = (currentPage + 1) * sizePerPage > widget.contestants.length
+        ? widget.contestants.length
+        : (currentPage + 1) * sizePerPage;
     int fromPage = currentPage - 1;
     int toPage = fromPage + 4;
     if (toPage > totalPages - 1) {
@@ -369,7 +380,8 @@ class _ListContestantTableState extends State<ListContestantTable> {
       fromPage = 0;
       toPage = totalPages > 4 ? 4 : totalPages;
     }
-    final viewContestants = widget.contestants.sublist(currentPage * sizePerPage, end);
+    final viewContestants =
+        widget.contestants.sublist(currentPage * sizePerPage, end);
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -436,7 +448,8 @@ class _ListContestantTableState extends State<ListContestantTable> {
                                     color: theme.dividerColor,
                                   )
                                 : null,
-                            color: isSelected ? theme.colorScheme.primary : null,
+                            color:
+                                isSelected ? theme.colorScheme.primary : null,
                           ),
                           height: 30,
                           width: 30,
@@ -445,7 +458,9 @@ class _ListContestantTableState extends State<ListContestantTable> {
                             '${index + 1}',
                             style: TextStyle(
                               fontSize: 12,
-                              color: isSelected ? theme.colorScheme.onPrimary : null,
+                              color: isSelected
+                                  ? theme.colorScheme.onPrimary
+                                  : null,
                               fontWeight: isSelected ? FontWeight.bold : null,
                             ),
                           ),
@@ -508,7 +523,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.university:
         return contestant.educationInfo.university;
       case ColumnTitle.major:
-        return contestant.educationInfo.major;
+        return contestant.educationInfo.major.toString();
       case ColumnTitle.gpa:
         return contestant.educationInfo.gpa.toString();
       case ColumnTitle.graduationYear:
@@ -526,9 +541,13 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.workingLocationPriority1:
         return contestant.careerInfo.desiredPathway.location.first.toString();
       case ColumnTitle.workingLocationPriority2:
-        return contestant.careerInfo.desiredPathway.location.second?.toString() ?? '';
+        return contestant.careerInfo.desiredPathway.location.second
+                ?.toString() ??
+            '';
       case ColumnTitle.willingToChange:
-        return contestant.careerInfo.desiredPathway.location.willingToChange?.toString() ?? '';
+        return contestant.careerInfo.desiredPathway.location.willingToChange
+                ?.toString() ??
+            '';
       case ColumnTitle.availabilityType:
         return contestant.careerInfo.availability.type.toString();
       case ColumnTitle.availabilityNote:
@@ -714,9 +733,13 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.attachmentPoint:
         return contestant.attachmentPoint.toString();
       case ColumnTitle.locationPriority1Point:
-        return contestant.careerInfo.locationPriority1Point(personal.hometown, personal.currentLocation).toString();
+        return contestant.careerInfo
+            .locationPriority1Point(personal.hometown, personal.currentLocation)
+            .toString();
       case ColumnTitle.locationPriority2Point:
-        return contestant.careerInfo.locationPriority2Point(personal.hometown, personal.currentLocation).toString();
+        return contestant.careerInfo
+            .locationPriority2Point(personal.hometown, personal.currentLocation)
+            .toString();
       case ColumnTitle.experience1Industry:
         if (experiences.isNotEmpty) {
           return experiences[0].industry.toString();
