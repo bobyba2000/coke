@@ -52,8 +52,10 @@ class _LandingPageState extends State<LandingPage> {
               ScrollTransformItem(
                 builder: (scrollOffset) {
                   final offScreenPercentage = min(scrollOffset / 900.h, 1.0);
-                  final width = screenWidth - (screenWidth * 0.2 * offScreenPercentage);
-                  final height = screenHeight - (screenHeight * 0.2 * offScreenPercentage);
+                  final width =
+                      screenWidth + (screenWidth * 0.2 * offScreenPercentage);
+                  final height =
+                      screenHeight - (screenHeight * 0.2 * offScreenPercentage);
                   return Opacity(
                     opacity: 1 - offScreenPercentage,
                     child: LadingOverallWidget(
@@ -69,7 +71,9 @@ class _LandingPageState extends State<LandingPage> {
                   final onScreenOffset = scrollOffset + heightShrinkAmount / 3;
                   return Offset(
                     0,
-                    !startMoving ? onScreenOffset : (onScreenOffset - (scrollOffset - 900.h * 0.5)),
+                    !startMoving
+                        ? onScreenOffset
+                        : (onScreenOffset - (scrollOffset - 900.h * 0.5)),
                   );
                 },
               ),
@@ -93,7 +97,8 @@ class _LandingPageState extends State<LandingPage> {
                                   children: [
                                     Assets.images.cokeFresh.image(),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24),
                                       child: Assets.images.fizzUp.image(),
                                     ),
                                     40.h.hSpace,
@@ -113,7 +118,8 @@ class _LandingPageState extends State<LandingPage> {
               ),
               ScrollTransformItem(
                 builder: (scrollOffset) {
-                  final box = aboutKey.currentContext?.findRenderObject() as RenderBox?;
+                  final box =
+                      aboutKey.currentContext?.findRenderObject() as RenderBox?;
                   final height = box?.size.height ?? 400.h;
                   return Container(
                     decoration: const BoxDecoration(
@@ -132,7 +138,8 @@ class _LandingPageState extends State<LandingPage> {
                   );
                 },
                 offsetBuilder: (scrollOffset) {
-                  final box = aboutKey.currentContext?.findRenderObject() as RenderBox?;
+                  final box =
+                      aboutKey.currentContext?.findRenderObject() as RenderBox?;
                   final height = box?.size.height ?? 400.h;
                   return Offset(
                     0,
@@ -150,10 +157,17 @@ class _LandingPageState extends State<LandingPage> {
                   );
                 },
                 offsetBuilder: (scrollOffset) {
-                  final box = aboutKey.currentContext?.findRenderObject() as RenderBox?;
+                  final box =
+                      aboutKey.currentContext?.findRenderObject() as RenderBox?;
                   final height = box?.size.height ?? 400.h;
-                  final offScreenPercentage = min(scrollOffset / (height * 1.5), 1.0);
-                  final dx = min(1400.w * offScreenPercentage * (screenWidth / screenHeight) - 1400.w, 0.0);
+                  final offScreenPercentage =
+                      min(scrollOffset / (height * 1.5), 1.0);
+                  final dx = min(
+                      1400.w *
+                              offScreenPercentage *
+                              (screenWidth / screenHeight) -
+                          1400.w,
+                      0.0);
                   return Offset(
                     dx,
                     -height * 2,
