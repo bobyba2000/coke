@@ -2,6 +2,7 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AboutWidget extends StatelessWidget {
   const AboutWidget({super.key});
@@ -24,7 +25,7 @@ class AboutWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                12.hSpace,
+                100.h.hSpace,
                 Text(
                   S.current.aboutTheProgram,
                   style: textTheme.displayMedium?.copyWith(

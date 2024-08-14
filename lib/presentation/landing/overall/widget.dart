@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
