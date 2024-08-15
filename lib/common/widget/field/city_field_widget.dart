@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:coke_platform/common/widget/field/auto_complete_widget.dart';
+import 'package:coke_platform/common/widget/field/custom_dropdown.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/model/local/city/model.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 class CityFieldWidget extends StatefulWidget {
   final String label;
   final bool required;
-  final Function(String city) onChange;
+  final Function(CityModel city) onChange;
   final FormFieldValidator<String>? validator;
   final String? hintText;
 
@@ -39,7 +39,7 @@ class _CityFieldWidgetState extends State<CityFieldWidget> {
     final data = await rootBundle.loadString(Assets.resources.cities);
     final json = jsonDecode(data);
     cities = (json as List<dynamic>).map<CityModel>((e) => CityModel.fromJson(e)).toList();
-    cities.sort((a, b) => a.toString().compareTo(b.toString()));
+    cities.sort((a, b) => a.enName.compareTo(b.enName));
     if (mounted) {
       setState(() {});
     }
@@ -47,25 +47,18 @@ class _CityFieldWidgetState extends State<CityFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return AutoCompleteWidget<String>(
+    return CustomDropdown(
+      items: cities,
+      onSelect: (value) {
+        if (value != null) {
+          widget.onChange.call(value);
+        }
+      },
       required: widget.required,
       validator: widget.validator,
       label: widget.label,
-      getSuggestData: (value) async {
-        return cities
-            .where(
-              (element) => element.toString().toLowerCase().contains(value.toLowerCase()),
-            )
-            .map(
-              (e) => e.toString(),
-            )
-            .toList();
-      },
       hintText: widget.hintText,
-      onTapItem: (value) {
-        widget.onChange.call(value);
-      },
-      onChanged: widget.onChange,
+      maxHeight: 200,
     );
   }
 }

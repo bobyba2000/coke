@@ -515,9 +515,9 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.phoneNumber:
         return contestant.personalInfo.phoneNo;
       case ColumnTitle.hometown:
-        return contestant.personalInfo.hometown;
+        return contestant.personalInfo.hometown.toString();
       case ColumnTitle.currentLocation:
-        return contestant.personalInfo.currentLocation;
+        return contestant.personalInfo.currentLocation.toString();
       case ColumnTitle.educationLevel:
         return contestant.educationInfo.education.toString();
       case ColumnTitle.university:
@@ -734,11 +734,11 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         return contestant.attachmentPoint.toString();
       case ColumnTitle.locationPriority1Point:
         return contestant.careerInfo
-            .locationPriority1Point(personal.hometown, personal.currentLocation)
+            .locationPriority1Point(personal.hometown.toString(), personal.currentLocation.toString())
             .toString();
       case ColumnTitle.locationPriority2Point:
         return contestant.careerInfo
-            .locationPriority2Point(personal.hometown, personal.currentLocation)
+            .locationPriority2Point(personal.hometown.toString(), personal.currentLocation.toString())
             .toString();
       case ColumnTitle.experience1Industry:
         if (experiences.isNotEmpty) {

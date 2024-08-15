@@ -92,12 +92,12 @@ class PreviewContestantDialog extends StatelessWidget {
                           data(
                             context,
                             S.current.homeTown,
-                            personal.hometown,
+                            personal.hometown.toString(),
                           ),
                           data(
                             context,
                             S.current.currentLivingLocation,
-                            personal.currentLocation,
+                            personal.currentLocation.toString(),
                           ),
                         ],
                       ),

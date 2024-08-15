@@ -259,15 +259,15 @@ class ExcelService {
         case ColumnTitle.locationPriority1Point:
           if (role == InternshipRole.sales) {
             return contestant.careerInfo.locationPriority1Point(
-              personal.hometown,
-              personal.currentLocation,
+              personal.hometown.toString(),
+              personal.currentLocation.toString(),
             );
           }
         case ColumnTitle.locationPriority2Point:
           if (role == InternshipRole.sales) {
             return contestant.careerInfo.locationPriority2Point(
-              personal.hometown,
-              personal.currentLocation,
+              personal.hometown.toString(),
+              personal.currentLocation.toString(),
             );
           }
         case ColumnTitle.experience1Industry:

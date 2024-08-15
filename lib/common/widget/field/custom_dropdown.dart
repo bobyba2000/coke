@@ -27,7 +27,8 @@ class CustomDropdown<T> extends StatefulWidget {
     required this.required,
     this.validator,
     this.helperText,
-    this.getItems,  this.maxHeight = 300,
+    this.getItems,
+    this.maxHeight = 300,
   });
 
   @override
@@ -118,7 +119,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
               borderRadius: BorderRadius.circular(5),
               color: suggestionBackgroundColor,
               child: Container(
-                constraints:  BoxConstraints(maxHeight: widget.maxHeight),
+                constraints: BoxConstraints(maxHeight: widget.maxHeight),
                 child: Visibility(
                   child: Scrollbar(
                     child: ListView.builder(

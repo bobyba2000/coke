@@ -1,4 +1,5 @@
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
+import 'package:coke_platform/model/local/city/model.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'model.g.dart';
 
@@ -8,8 +9,8 @@ class PersonalInfoModel {
   final num yearOfBirth;
   final String email;
   final String phoneNo;
-  final String hometown;
-  final String currentLocation;
+  final CityModel hometown;
+  final CityModel currentLocation;
   final String preferName;
 
   PersonalInfoModel({

@@ -6,6 +6,7 @@ import 'package:coke_platform/common/widget/field/city_field_widget.dart';
 import 'package:coke_platform/common/widget/field/textfield_widget.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/personal/model.dart';
+import 'package:coke_platform/model/local/city/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,8 +23,8 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
   String fullname = '';
   String phone = '';
   int? birth;
-  String hometown = '';
-  String currentLocation = '';
+  CityModel? hometown;
+  CityModel? currentLocation;
   String email = '';
   String preferName = '';
   final form = GlobalKey<FormState>();
@@ -147,7 +148,7 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                   required: true,
                   validator: checkRequired,
                   hintText: S.current.addressHint,
-                  onChange: (String city) {
+                  onChange: (city) {
                     hometown = city;
                   },
                 ),
@@ -159,7 +160,7 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                   required: true,
                   hintText: S.current.currentLocationHelperText,
                   validator: checkRequired,
-                  onChange: (String city) {
+                  onChange: (city) {
                     currentLocation = city;
                   },
                 ),
@@ -177,8 +178,8 @@ class _PersonalInformationWidgetState extends State<PersonalInformationWidget> w
                     yearOfBirth: birth!,
                     email: email,
                     phoneNo: phone,
-                    hometown: hometown,
-                    currentLocation: currentLocation,
+                    hometown: hometown!,
+                    currentLocation: currentLocation!,
                     preferName: preferName,
                   ),
                 );

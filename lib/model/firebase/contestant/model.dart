@@ -41,8 +41,8 @@ class ContestantModel {
 
   num get careerPoint {
     return careerInfo.calculatePoint(
-      personalInfo.hometown,
-      personalInfo.currentLocation,
+      personalInfo.hometown.toString(),
+      personalInfo.currentLocation.toString(),
     );
   }
 
