@@ -1,5 +1,6 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/dialog.dart';
+import 'package:coke_platform/common/utility/share_preference.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/application/appbar/widget.dart';
 import 'package:coke_platform/presentation/application/background/widget.dart';
@@ -19,10 +20,16 @@ class _ApplicationPageState extends State<ApplicationPage> {
     Future.delayed(
       const Duration(milliseconds: 200),
       () {
-        DialogUtility.showLanguagePicker(
-          context,
-          title: S.current.languagePickerApplyPage,
-        );
+        SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
+          if (!value) {
+            DialogUtility.showLanguagePicker(
+              context,
+              title: S.current.languagePickerApplyPage,
+            ).then(
+              (value) => SharePreferenceUtitlity.markShowLanguagePopup(),
+            );
+          }
+        });
       },
     );
     super.initState();

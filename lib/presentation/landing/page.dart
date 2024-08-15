@@ -1,8 +1,11 @@
 import 'dart:math';
 
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/common/utility/dialog.dart';
+import 'package:coke_platform/common/utility/share_preference.dart';
 import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/appbar/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,15 +24,21 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   @override
   void initState() {
-    // Future.delayed(
-    //   const Duration(milliseconds: 200),
-    //   () {
-    //     DialogUtility.showLanguagePicker(
-    //       context,
-    //       title: S.current.languagePickerLandingPage,
-    //     );
-    //   },
-    // );
+    Future.delayed(
+      const Duration(milliseconds: 200),
+      () {
+        SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
+          if (!value) {
+            DialogUtility.showLanguagePicker(
+              context,
+              title: S.current.languagePickerLandingPage,
+            ).then(
+              (value) => SharePreferenceUtitlity.markShowLanguagePopup(),
+            );
+          }
+        });
+      },
+    );
 
     super.initState();
   }
@@ -50,10 +59,8 @@ class _LandingPageState extends State<LandingPage> {
               ScrollTransformItem(
                 builder: (scrollOffset) {
                   final offScreenPercentage = min(scrollOffset / 900.h, 1.0);
-                  final width =
-                      screenWidth + (screenWidth * 0.2 * offScreenPercentage);
-                  final height =
-                      screenHeight - (screenHeight * 0.2 * offScreenPercentage);
+                  final width = screenWidth + (screenWidth * 0.2 * offScreenPercentage);
+                  final height = screenHeight - (screenHeight * 0.2 * offScreenPercentage);
                   return Opacity(
                     opacity: 1 - offScreenPercentage,
                     child: LadingOverallWidget(
@@ -69,9 +76,7 @@ class _LandingPageState extends State<LandingPage> {
                   final onScreenOffset = scrollOffset + heightShrinkAmount / 3;
                   return Offset(
                     0,
-                    !startMoving
-                        ? onScreenOffset
-                        : (onScreenOffset - (scrollOffset - 900.h * 0.5)),
+                    !startMoving ? onScreenOffset : (onScreenOffset - (scrollOffset - 900.h * 0.5)),
                   );
                 },
               ),
@@ -95,8 +100,7 @@ class _LandingPageState extends State<LandingPage> {
                                   children: [
                                     Assets.images.cokeFresh.image(),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24),
+                                      padding: const EdgeInsets.symmetric(horizontal: 24),
                                       child: Assets.images.fizzUp.image(),
                                     ),
                                     40.h.hSpace,
