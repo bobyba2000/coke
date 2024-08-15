@@ -457,8 +457,13 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                   String? attachmentUrl;
                   try {
                     LoadingUtility.show();
-                    final response = await mailService.sendMail(MailRequestModel(
-                        name: widget.personal.preferName, email: widget.personal.email, language: LocaleUtility.locale.value.languageCode));
+                    final response = await mailService.sendMail(
+                      MailRequestModel(
+                        name: widget.personal.preferName.isEmpty ? widget.personal.fullName : widget.personal.preferName,
+                        email: widget.personal.email,
+                        language: LocaleUtility.locale.value.languageCode,
+                      ),
+                    );
                     if (response.isSuccessful == false) {
                       DialogUtility.showErrorDialog(
                         context,
