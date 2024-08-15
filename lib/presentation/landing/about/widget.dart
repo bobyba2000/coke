@@ -2,6 +2,7 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AboutWidget extends StatelessWidget {
   const AboutWidget({super.key});
@@ -12,22 +13,22 @@ class AboutWidget extends StatelessWidget {
     final textTheme = theme.textTheme;
     final normal = textTheme.bodyLarge?.copyWith(
       color: Colors.white,
-      fontSize: 16,
+      fontSize: 14.spMax,
     );
     final bold = textTheme.bodyLarge?.copyWith(
       fontWeight: FontWeight.bold,
       color: Colors.white,
-      fontSize: 20,
+      fontSize: 20.spMax,
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        300.w.hSpace,
         Text(
           S.current.aboutTheProgram,
           style: textTheme.displaySmall?.copyWith(
             color: ColorConstants.colorFFF220,
-            fontSize: 48,
+            fontSize: 48.spMax,
           ),
         ),
         16.hSpace,
