@@ -1,3 +1,4 @@
+import 'package:coke_platform/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,6 +24,7 @@ ThemeData themeData(BuildContext context) {
       elevation: 0,
       backgroundColor: Colors.white,
     ),
+    fontFamily: FontFamily.poppins,
     radioTheme: const RadioThemeData(
       fillColor: MaterialStatePropertyAll(Color(0xFFE51D2A)),
     ),

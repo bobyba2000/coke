@@ -11,6 +11,85 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'about/widget.dart';
 import 'overall/widget.dart';
 
+class VerticalScrollToHorizontalPageView extends StatefulWidget {
+  @override
+  _VerticalScrollToHorizontalPageViewState createState() =>
+      _VerticalScrollToHorizontalPageViewState();
+}
+
+class _VerticalScrollToHorizontalPageViewState
+    extends State<VerticalScrollToHorizontalPageView> {
+  final PageController _pageController = PageController();
+  final ScrollController _scrollController = ScrollController();
+  bool _isScrolling = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return NotificationListener<ScrollNotification>(
+      onNotification: (scrollNotification) {
+        if (scrollNotification is ScrollEndNotification && !_isScrolling) {
+          _isScrolling = true;
+
+          if (_scrollController.position.pixels > 0) {
+            _pageController.nextPage(
+                duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+          } else {
+            _pageController.previousPage(
+                duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+          }
+
+          Future.delayed(Duration(milliseconds: 300), () {
+            _scrollController.jumpTo(0);
+            _isScrolling = false;
+          });
+        }
+        return true;
+      },
+      child: ListView(
+        controller: _scrollController,
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: PageView(
+              controller: _pageController,
+              scrollDirection: Axis.vertical,
+              children: [
+                Container(
+                  color: Colors.red,
+                  child: Center(
+                    child: Text(
+                      'Section 1',
+                      style: TextStyle(fontSize: 32, color: Colors.white),
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.green,
+                  child: Center(
+                    child: Text(
+                      'Section 2',
+                      style: TextStyle(fontSize: 32, color: Colors.white),
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text(
+                      'Section 3',
+                      style: TextStyle(fontSize: 32, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
 
@@ -40,6 +119,7 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     final screenWidth = 1400.w;
     final screenHeight = 900.h;
+    // return VerticalScrollToHorizontalPageView();
     return Scaffold(
       backgroundColor: ColorConstants.teal,
       body: Stack(
@@ -115,59 +195,41 @@ class _LandingPageState extends State<LandingPage> {
               ),
               ScrollTransformItem(
                 builder: (scrollOffset) {
-                  final box =
-                      aboutKey.currentContext?.findRenderObject() as RenderBox?;
-                  final height = box?.size.height ?? 400.h;
-                  return Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          ColorConstants.colorEA213C,
-                          ColorConstants.color3F6DB8,
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      ),
-                    ),
+                  return Assets.images.about.background.image(
                     width: 1400.w,
-                    height: height,
-                    padding: const EdgeInsets.all(16),
+                    height: 900.h,
+                    fit: BoxFit.cover,
                   );
                 },
                 offsetBuilder: (scrollOffset) {
-                  final box =
-                      aboutKey.currentContext?.findRenderObject() as RenderBox?;
-                  final height = box?.size.height ?? 400.h;
                   return Offset(
                     0,
-                    -height,
+                    -900.h,
                   );
                 },
               ),
               ScrollTransformItem(
-                key: aboutKey,
                 builder: (scrollOffset) {
                   return Container(
                     width: 1400.w,
-                    padding: const EdgeInsets.all(16),
-                    child: const AboutWidget(),
+                    height: 900.h,
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Row(
+                      children: [
+                        40.w.wSpace,
+                        SizedBox(
+                          width: 500.w,
+                          child: const AboutWidget(),
+                        ),
+                      ],
+                    ),
                   );
                 },
                 offsetBuilder: (scrollOffset) {
-                  final box =
-                      aboutKey.currentContext?.findRenderObject() as RenderBox?;
-                  final height = box?.size.height ?? 400.h;
-                  final offScreenPercentage =
-                      min(scrollOffset / (height * 1.5), 1.0);
-                  final dx = min(
-                      1400.w *
-                              offScreenPercentage *
-                              (screenWidth / screenHeight) -
-                          1400.w,
-                      0.0);
                   return Offset(
-                    dx,
-                    -height * 2,
+                    0,
+                    -1800.h,
                   );
                 },
               ),

@@ -59,7 +59,47 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/about/
     - assets/resources/
+    - assets/font/
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/font/Poppins-semi-bold.ttf
+          weight: 600
+        - asset: assets/font/Poppins-bold.ttf
+          weight: 700
+        - asset: assets/font/Poppins-black.ttf
+          weight: 800
+        - asset: assets/font/Poppins-medium.ttf
+          weight: 500
+        - asset: assets/font/Poppins-regular.ttf
+          weight: 400
+        - asset: assets/font/Poppins-light.ttf
+          weight: 300
+        - asset: assets/font/Poppins-light.ttf
+          weight: 200
+        - asset: assets/font/Poppins-semi-bold-italic.otf
+          weight: 600
+          style: italic
+        - asset: assets/font/Poppins-bold-italic.otf
+          weight: 700
+          style: italic
+        - asset: assets/font/Poppins-black-italic.otf
+          weight: 800
+          style: italic
+        - asset: assets/font/Poppins-medium-italic.otf
+          weight: 500
+          style: italic
+        - asset: assets/font/Poppins-italic.otf
+          weight: 400
+          style: italic
+        - asset: assets/font/Poppins-light-italic.otf 
+          weight: 300
+          style: italic
+        - asset: assets/font/Poppins-light-italic.otf
+          weight: 200
+          style: italic
 
 flutter_gen:
   output: lib/generated/
