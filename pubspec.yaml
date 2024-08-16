@@ -47,6 +47,7 @@ dependencies:
   excel: ^4.0.3
   collection: ^1.18.0
   responsive_builder: ^0.7.1
+  flutter_smart_dialog: ^4.9.8
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -62,6 +63,7 @@ flutter:
     - assets/images/about/
     - assets/images/overview/
     - assets/images/essence/
+    - assets/images/career/
     - assets/resources/
     - assets/font/
   fonts:

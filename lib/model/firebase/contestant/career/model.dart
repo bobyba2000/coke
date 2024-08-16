@@ -1,5 +1,6 @@
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'model.g.dart';
 
@@ -12,6 +13,77 @@ enum InternshipRole {
   itDataAnalyst,
   itPrivacy,
   sales;
+
+  String get title {
+    switch (this) {
+      case InternshipRole.procurement:
+        return S.current.procurementTitle;
+      case InternshipRole.tradeMarketing:
+      case InternshipRole.rtm:
+      case InternshipRole.keyAccountOnPremise:
+      case InternshipRole.keyAccountOffPremise:
+        return S.current.commercial;
+      case InternshipRole.itDataAnalyst:
+      case InternshipRole.itPrivacy:
+        return S.current.it;
+      case InternshipRole.sales:
+        return S.current.salesTitle;
+    }
+  }
+
+  String get subtitle {
+    switch (this) {
+      case InternshipRole.procurement:
+        return S.current.directIndirect;
+      case InternshipRole.tradeMarketing:
+        return S.current.tradeMarketingSubtitle;
+      case InternshipRole.rtm:
+        return S.current.routeToMarketSubtitle;
+      case InternshipRole.keyAccountOnPremise:
+      case InternshipRole.keyAccountOffPremise:
+        return S.current.keyAccount;
+      case InternshipRole.itDataAnalyst:
+        return S.current.dataAnalyst;
+      case InternshipRole.itPrivacy:
+        return S.current.privacyCompliance;
+      case InternshipRole.sales:
+        return S.current.salesSubtitle;
+    }
+  }
+
+  String? get content {
+    switch (this) {
+      case InternshipRole.tradeMarketing:
+        return S.current.tradeMarketingContent;
+      case InternshipRole.keyAccountOffPremise:
+        return S.current.offPremise;
+      case InternshipRole.keyAccountOnPremise:
+        return S.current.onPremise;
+      default:
+        return null;
+    }
+  }
+
+  Color get color {
+    switch (this) {
+      case InternshipRole.procurement:
+        return const Color(0xFFfe6a00);
+      case InternshipRole.tradeMarketing:
+        return const Color(0xFFfed700);
+      case InternshipRole.rtm:
+        return const Color(0xFF9933ff);
+      case InternshipRole.keyAccountOnPremise:
+        return const Color(0xFF3f6db8);
+      case InternshipRole.keyAccountOffPremise:
+        return const Color(0xFF3f6db8);
+      case InternshipRole.itDataAnalyst:
+        return const Color(0xFF28a549);
+      case InternshipRole.itPrivacy:
+        return const Color(0xFF28a549);
+      case InternshipRole.sales:
+        return const Color(0xFFfe0036);
+    }
+  }
 
   @override
   String toString() {

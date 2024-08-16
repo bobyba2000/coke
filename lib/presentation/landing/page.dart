@@ -8,6 +8,7 @@ import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/appbar/widget.dart';
+import 'package:coke_platform/presentation/landing/career/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -355,6 +356,18 @@ class _LandingPageState extends State<LandingPage> {
                   );
                 },
               ),
+              ScrollTransformItem(
+                logOffset: true,
+                builder: (scrollOffset) {
+                  return const CareerWidget();
+                },
+                offsetBuilder: (scrollOffset) {
+                  final heightBefore = 900.h + 1200.w + 900.w * 2 + 745.w;
+                  final totalHeight = heightBefore + 780.w;
+                  final percentage = max(min((totalHeight - scrollOffset) / 780.w, 1), 0);
+                  return Offset(0, -780.w * percentage);
+                },
+              )
             ],
           ),
           const Positioned(
