@@ -5,6 +5,7 @@ import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 class WaveContainer extends StatefulWidget {
   final String title;
@@ -208,7 +209,11 @@ class CareerWidget extends StatelessWidget {
             child: WaveContainer(
               title: InternshipRole.sales.title,
               subTitle: InternshipRole.sales.subtitle,
-              onTap: () {},
+              onTap: () {
+                SmartDialog.show(
+                  builder: (context) => InternshipRole.sales.background,
+                );
+              },
               color: InternshipRole.sales.color,
               content: InternshipRole.sales.content,
             ),

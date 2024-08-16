@@ -3,9 +3,9 @@ import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/core/router/index.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import 'common/utility/locale.dart';
 import 'core/layout/theme.dart';
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
                 GlobalCupertinoLocalizations.delegate,
               ],
               locale: value,
-              builder: EasyLoading.init(),
+              builder: FlutterSmartDialog.init(),
               supportedLocales: S.delegate.supportedLocales,
             );
           },

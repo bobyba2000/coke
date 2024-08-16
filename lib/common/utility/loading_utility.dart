@@ -1,14 +1,14 @@
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 class LoadingUtility {
   static Future<void> show() {
-    return EasyLoading.show(
-      dismissOnTap: false,
-      maskType: EasyLoadingMaskType.black,
+    return SmartDialog.showLoading(
+      backDismiss: false,
+      clickMaskDismiss: false,
     );
   }
 
   static Future<void> dismiss() {
-    return EasyLoading.dismiss();
+    return SmartDialog.dismiss();
   }
 }

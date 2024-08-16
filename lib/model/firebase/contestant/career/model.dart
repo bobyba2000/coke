@@ -1,6 +1,9 @@
+import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'model.g.dart';
 
@@ -29,6 +32,96 @@ enum InternshipRole {
       case InternshipRole.sales:
         return S.current.salesTitle;
     }
+  }
+
+  Widget get background {
+    final width = 1200.w;
+    final height = 675.w;
+    switch (this) {
+      case InternshipRole.procurement:
+        return Assets.images.career.procurement.image(
+          height: height,
+          width: width,
+          fit: BoxFit.fitWidth,
+        );
+      case InternshipRole.tradeMarketing:
+        return Assets.images.career.tradeMkt.image(
+          height: height,
+          width: width,
+          fit: BoxFit.fitWidth,
+        );
+      case InternshipRole.rtm:
+        return Assets.images.career.rtm.image(
+          height: height,
+          width: width,
+          fit: BoxFit.fitWidth,
+        );
+      case InternshipRole.keyAccountOnPremise:
+        return Assets.images.career.onPremise.image(
+          height: height,
+          width: width,
+          fit: BoxFit.fitWidth,
+        );
+      case InternshipRole.keyAccountOffPremise:
+        return Assets.images.career.offPremise.image(
+          height: height,
+          width: width,
+          fit: BoxFit.fitWidth,
+        );
+      case InternshipRole.itDataAnalyst:
+        return Assets.images.career.itData.image(
+          height: height,
+          width: width,
+          fit: BoxFit.fitWidth,
+        );
+      case InternshipRole.itPrivacy:
+        return Assets.images.career.itPrivacy.image(
+          height: height,
+          width: width,
+          fit: BoxFit.fitWidth,
+        );
+      case InternshipRole.sales:
+        return Assets.images.career.sales.image(
+          height: height,
+          width: width,
+          fit: BoxFit.fitWidth,
+        );
+    }
+  }
+
+  Future<void> showDialog() async {
+    SmartDialog.show(
+      builder: (context) {
+        Widget left = const Expanded(
+          child: SizedBox.shrink(),
+        );
+        Widget right = const Expanded(
+          child: SizedBox.shrink(),
+        );
+        if (this == sales) {
+          left = Column();
+        }
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          width: 1200.w,
+          height: 675.w,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              background,
+              Row(
+                children: [
+                  left,
+                  right,
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   String get subtitle {
