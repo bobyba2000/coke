@@ -84,7 +84,8 @@ enum ColumnTitle {
   experiencePoint3,
   englishPoint,
   attachmentPoint,
-  totalPoint;
+  totalPoint,
+  status;
 
   @override
   String toString() {
@@ -243,6 +244,8 @@ enum ColumnTitle {
         return 'Working Experience 2 - Industry';
       case ColumnTitle.experience3Industry:
         return 'Working Experience 3 - Industry';
+      case ColumnTitle.status:
+        return 'Status';
     }
   }
 
@@ -367,9 +370,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final start = (currentPage) * sizePerPage;
-    final end = (currentPage + 1) * sizePerPage > widget.contestants.length
-        ? widget.contestants.length
-        : (currentPage + 1) * sizePerPage;
+    final end = (currentPage + 1) * sizePerPage > widget.contestants.length ? widget.contestants.length : (currentPage + 1) * sizePerPage;
     int fromPage = currentPage - 1;
     int toPage = fromPage + 4;
     if (toPage > totalPages - 1) {
@@ -380,8 +381,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
       fromPage = 0;
       toPage = totalPages > 4 ? 4 : totalPages;
     }
-    final viewContestants =
-        widget.contestants.sublist(currentPage * sizePerPage, end);
+    final viewContestants = widget.contestants.sublist(currentPage * sizePerPage, end);
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -448,8 +448,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
                                     color: theme.dividerColor,
                                   )
                                 : null,
-                            color:
-                                isSelected ? theme.colorScheme.primary : null,
+                            color: isSelected ? theme.colorScheme.primary : null,
                           ),
                           height: 30,
                           width: 30,
@@ -458,9 +457,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
                             '${index + 1}',
                             style: TextStyle(
                               fontSize: 12,
-                              color: isSelected
-                                  ? theme.colorScheme.onPrimary
-                                  : null,
+                              color: isSelected ? theme.colorScheme.onPrimary : null,
                               fontWeight: isSelected ? FontWeight.bold : null,
                             ),
                           ),
@@ -533,7 +530,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.resume:
         return contestant.attachment.resumeCV;
       case ColumnTitle.totalPoint:
-        return contestant.totalPoint.toString();
+        return contestant.totalPoint.toUIString();
       case ColumnTitle.preferName:
         return contestant.personalInfo.preferName;
       case ColumnTitle.internRole:
@@ -541,13 +538,9 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.workingLocationPriority1:
         return contestant.careerInfo.desiredPathway.location.first.toString();
       case ColumnTitle.workingLocationPriority2:
-        return contestant.careerInfo.desiredPathway.location.second
-                ?.toString() ??
-            '';
+        return contestant.careerInfo.desiredPathway.location.second?.toString() ?? '';
       case ColumnTitle.willingToChange:
-        return contestant.careerInfo.desiredPathway.location.willingToChange
-                ?.toString() ??
-            '';
+        return contestant.careerInfo.desiredPathway.location.willingToChange?.toString() ?? '';
       case ColumnTitle.availabilityType:
         return contestant.careerInfo.availability.type.toString();
       case ColumnTitle.availabilityNote:
@@ -675,71 +668,67 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.attachments:
         return contestant.attachment.accomplishment?.toString() ?? '';
       case ColumnTitle.personalPoint:
-        return contestant.personalPoint.toString();
+        return contestant.personalPoint.toUIString();
       case ColumnTitle.educationLevelPoint:
-        return contestant.educationInfo.educationPoint(role).toString();
+        return contestant.educationInfo.educationPoint(role).toUIString();
       case ColumnTitle.majorPoint:
-        return contestant.educationInfo.calculateMajorPoint(role).toString();
+        return contestant.educationInfo.calculateMajorPoint(role).toUIString();
       case ColumnTitle.gpaPoint:
-        return contestant.educationInfo.gpaPoint(role).toString();
+        return contestant.educationInfo.gpaPoint(role).toUIString();
       case ColumnTitle.graduationYearPoint:
-        return contestant.educationInfo.graduationYearPoint(role).toString();
+        return contestant.educationInfo.graduationYearPoint(role).toUIString();
       case ColumnTitle.reallocate:
-        return contestant.careerInfo.desiredPathwayPoint.toString();
+        return contestant.careerInfo.desiredPathwayPoint.toUIString();
       case ColumnTitle.availabilityPoint:
-        return contestant.careerInfo.availabilityPoint.toString();
+        return contestant.careerInfo.availabilityPoint.toUIString();
       case ColumnTitle.achivementPoint1:
         if (achivementPoints.isNotEmpty) {
-          return achivementPoints[0].toString();
+          return achivementPoints[0].toUIString();
         }
       case ColumnTitle.achivementPoint2:
         if (achivementPoints.length > 1) {
-          return achivementPoints[1].toString();
+          return achivementPoints[1].toUIString();
         }
       case ColumnTitle.skillPoint1:
         if (skillPoints.isNotEmpty) {
-          return skillPoints[0].toString();
+          return skillPoints[0].toUIString();
         }
       case ColumnTitle.skillPoint2:
         if (skillPoints.length > 1) {
-          return skillPoints[1].toString();
+          return skillPoints[1].toUIString();
         }
       case ColumnTitle.skillPoint3:
         if (skillPoints.length > 2) {
-          return skillPoints[2].toString();
+          return skillPoints[2].toUIString();
         }
       case ColumnTitle.skillPoint4:
         if (skillPoints.length > 3) {
-          return skillPoints[3].toString();
+          return skillPoints[3].toUIString();
         }
       case ColumnTitle.skillPoint5:
         if (skillPoints.length > 4) {
-          return skillPoints[4].toString();
+          return skillPoints[4].toUIString();
         }
       case ColumnTitle.experiencePoint1:
         if (experiencesPoints.isNotEmpty) {
-          return experiencesPoints[0].toString();
+          return experiencesPoints[0].toUIString();
         }
       case ColumnTitle.experiencePoint2:
         if (experiencesPoints.length > 1) {
-          return experiencesPoints[1].toString();
+          return experiencesPoints[1].toUIString();
         }
       case ColumnTitle.experiencePoint3:
         if (experiencesPoints.length > 2) {
-          return experiencesPoints[2].toString();
+          return experiencesPoints[2].toUIString();
         }
       case ColumnTitle.englishPoint:
-        return contestant.exhibition.englishPoint.toString();
+        return contestant.exhibition.englishPoint.toUIString();
       case ColumnTitle.attachmentPoint:
-        return contestant.attachmentPoint.toString();
+        return contestant.attachmentPoint.toUIString();
       case ColumnTitle.locationPriority1Point:
-        return contestant.careerInfo
-            .locationPriority1Point(personal.hometown.toString(), personal.currentLocation.toString())
-            .toString();
+        return contestant.careerInfo.locationPriority1Point(personal.hometown.toString(), personal.currentLocation.toString()).toUIString();
       case ColumnTitle.locationPriority2Point:
-        return contestant.careerInfo
-            .locationPriority2Point(personal.hometown.toString(), personal.currentLocation.toString())
-            .toString();
+        return contestant.careerInfo.locationPriority2Point(personal.hometown.toString(), personal.currentLocation.toString()).toUIString();
       case ColumnTitle.experience1Industry:
         if (experiences.isNotEmpty) {
           return experiences[0].industry.toString();
@@ -752,6 +741,8 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         if (experiences.length > 2) {
           return experiences[2].industry.toString();
         }
+      case ColumnTitle.status:
+        return contestant.status?.toString() ?? '';
     }
 
     return '';

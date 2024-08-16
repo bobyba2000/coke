@@ -319,7 +319,7 @@ class ExhibitionInfoModel {
   @JsonKey(defaultValue: [])
   List<num> skillPoints = [];
   @JsonKey(defaultValue: [])
-  List<num> experiencePoints = [];
+  List<num?> experiencePoints = [];
   @JsonKey(defaultValue: [])
   List<num> achivementPoints = [];
   num englishPoint = 0;
@@ -332,9 +332,12 @@ class ExhibitionInfoModel {
     return res;
   }
 
-  num get experiencesPoint {
+  num? get experiencesPoint {
     num res = 0;
     for (var point in experiencePoints) {
+      if (point == null) {
+        return null;
+      }
       res += point;
     }
     return res;
@@ -486,8 +489,8 @@ class ExhibitionInfoModel {
       }
       experiencePoints.add(point);
     }
-    if (dateDifference < 365) {
-      experiencePoints = List.generate(experiences.length, (index) => 0);
+    if (dateDifference > 365) {
+      experiencePoints = List.generate(experiences.length, (index) => null);
     }
 
     if (english != null) {

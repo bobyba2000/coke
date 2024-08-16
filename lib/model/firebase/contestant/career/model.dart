@@ -558,27 +558,36 @@ class CareerInfoModel {
     return 0;
   }
 
-  num get availabilityPoint {
+  num? get availabilityPoint {
     final role = desiredPathway.role;
-    num point = 0;
     if (availability.type == AvailabilityType.fulltime6Months) {
-      point += 5;
+      return 5;
     } else if (availability.type == AvailabilityType.shiftOff1To2PerWeek) {
-      if (role != InternshipRole.sales && role != InternshipRole.tradeMarketing) {
-        point += 3;
+      if (role == InternshipRole.sales || role == InternshipRole.tradeMarketing) {
+        return null;
+      } else {
+        return 3;
       }
+    } else if (availability.type == AvailabilityType.shiftOff3PerWeek) {
+      if (role == InternshipRole.itDataAnalyst || role == InternshipRole.itPrivacy || role == InternshipRole.procurement) {
+        return 0;
+      }
+      return null;
+    } else {
+      return null;
     }
-
-    return point;
   }
 
-  num calculatePoint(
+  num? calculatePoint(
     String hometown,
     String currentLiving,
   ) {
+    if (availabilityPoint == null) {
+      return null;
+    }
     num point = 0;
     point += desiredPathwayPoint;
-    point += availabilityPoint;
+    point += availabilityPoint!;
     point += locationPriority1Point(hometown, currentLiving);
     point += locationPriority2Point(hometown, currentLiving);
     return point;

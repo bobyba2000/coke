@@ -282,6 +282,8 @@ class ExcelService {
           if (experiences.length > 2) {
             return experiences[2].industry.toString();
           }
+        case ColumnTitle.status:
+          return contestant.status?.toString() ?? '';
       }
 
       return '';
@@ -304,7 +306,12 @@ class ExcelService {
         final col = ColumnTitle.values[i];
         final strValue = cellValue(data, col);
         CellStyle cellStyle = CellStyle();
-        CellValue value = strValue is num ? IntCellValue(strValue.toInt()) : TextCellValue(strValue.toString());
+
+        CellValue value = strValue == null
+            ? const TextCellValue('N/A')
+            : strValue is num
+                ? IntCellValue(strValue.toInt())
+                : TextCellValue(strValue.toString());
 
         final cell = sheet.cell(
           CellIndex.indexByColumnRow(

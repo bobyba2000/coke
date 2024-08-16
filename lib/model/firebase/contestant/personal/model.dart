@@ -23,20 +23,18 @@ class PersonalInfoModel {
     required this.preferName,
   });
 
-  num calculatePoint(InternshipRole role) {
-    num point = 0;
-
+  num? calculatePoint(InternshipRole role) {
     if (yearOfBirth == 2002 || yearOfBirth == 2003) {
-      point += 5;
+      return 5;
     } else if (yearOfBirth == 2001) {
       if (role == InternshipRole.sales) {
-        point += 2;
+        return 2;
       } else {
-        point += 5;
+        return 5;
       }
     }
 
-    return point;
+    return null;
   }
 
   factory PersonalInfoModel.fromJson(Map<String, dynamic> json) => _$PersonalInfoModelFromJson(json);

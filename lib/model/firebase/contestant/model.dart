@@ -9,6 +9,30 @@ import 'personal/model.dart';
 
 part 'model.g.dart';
 
+enum ContestantStatus {
+  rejected,
+  screened;
+
+  @override
+  String toString() {
+    switch (this) {
+      case ContestantStatus.rejected:
+        return 'Auto-Rejected';
+      case ContestantStatus.screened:
+        return 'Screened';
+    }
+  }
+}
+
+extension NumExtension on num? {
+  String toUIString() {
+    if (this == null) {
+      return 'N/A';
+    }
+    return toString();
+  }
+}
+
 @JsonSerializable()
 class ContestantModel {
   final String? key;
@@ -19,6 +43,7 @@ class ContestantModel {
   final AttachmentModel attachment;
   final ContestantOtherModel? others;
   final DateTime submitTime;
+  ContestantStatus? status;
 
   ContestantModel({
     required this.key,
@@ -31,31 +56,37 @@ class ContestantModel {
     this.others,
   });
 
-  num get personalPoint {
+  num? get personalPoint {
     return personalInfo.calculatePoint(careerInfo.desiredPathway.role);
   }
 
-  num get educationPoint {
+  num? get educationPoint {
     return educationInfo.calculatePoint(careerInfo.desiredPathway.role);
   }
 
-  num get careerPoint {
+  num? get careerPoint {
     return careerInfo.calculatePoint(
       personalInfo.hometown.toString(),
       personalInfo.currentLocation.toString(),
     );
   }
 
-  num get exhibitionPoint {
-    return exhibition.achivementsPoint + exhibition.englishPoint + exhibition.experiencesPoint + exhibition.skillPoint;
+  num? get exhibitionPoint {
+    if (exhibition.experiencesPoint == null) {
+      return null;
+    }
+    return exhibition.achivementsPoint + exhibition.englishPoint + exhibition.experiencesPoint! + exhibition.skillPoint;
   }
 
   num get attachmentPoint {
     return attachment.point;
   }
 
-  num get totalPoint {
-    return personalPoint + educationPoint + careerPoint + exhibitionPoint + attachmentPoint;
+  num? get totalPoint {
+    if (exhibitionPoint == null || personalPoint == null || educationPoint == null || careerPoint == null) {
+      return null;
+    }
+    return personalPoint! + educationPoint! + careerPoint! + exhibitionPoint! + attachmentPoint;
   }
 
   factory ContestantModel.fromJson(Map<String, dynamic> json) => _$ContestantModelFromJson(json);

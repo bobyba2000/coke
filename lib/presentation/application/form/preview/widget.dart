@@ -502,6 +502,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                       others: widget.attachment.other,
                     );
                     await contestant.exhibition.calculatePoint(widget.career.desiredPathway.role);
+                    contestant.status = contestant.totalPoint == null ? ContestantStatus.rejected : ContestantStatus.screened;
                     await contestantService.update(contestant);
                     DialogUtility.showConfirmDialog(
                       context,

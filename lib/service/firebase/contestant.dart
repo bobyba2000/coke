@@ -35,6 +35,7 @@ class FirebaseContestantService {
 
     // for (var contestant in res) {
     //   await contestant.exhibition.calculatePoint(contestant.careerInfo.desiredPathway.role);
+    //   contestant.status = contestant.totalPoint != null ? ContestantStatus.screened : ContestantStatus.rejected;
     //   update(contestant);
     // }
     return res;

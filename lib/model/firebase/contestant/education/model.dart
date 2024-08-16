@@ -59,7 +59,7 @@ class EducationInfoModel {
     required this.graduationYear,
   });
 
-  num calculateMajorPoint(InternshipRole role) {
+  num? calculateMajorPoint(InternshipRole role) {
     List<Major> fields = [];
     switch (role) {
       case InternshipRole.itDataAnalyst:
@@ -69,6 +69,9 @@ class EducationInfoModel {
           Major.informationSystem,
           Major.dataScience,
         ];
+        if (!fields.contains(major)) {
+          return null;
+        }
         break;
       case InternshipRole.procurement:
         fields = [
@@ -98,20 +101,23 @@ class EducationInfoModel {
     return isExist ? 5 : 0;
   }
 
-  num educationPoint(InternshipRole role) {
+  num? educationPoint(InternshipRole role) {
     if (role == InternshipRole.sales) {
       if (education != EducationLevel.master) {
         return 5;
+      } else {
+        return null;
       }
     } else {
       if (education != EducationLevel.college) {
         return 5;
+      } else {
+        return null;
       }
     }
-    return 0;
   }
 
-  num gpaPoint(InternshipRole role) {
+  num? gpaPoint(InternshipRole role) {
     num point = 0;
     if (gpa >= 8.5) {
       point += 5;
@@ -122,10 +128,13 @@ class EducationInfoModel {
         point += 3;
       }
     }
+    if (point == 0) {
+      return null;
+    }
     return point;
   }
 
-  num graduationYearPoint(InternshipRole role) {
+  num? graduationYearPoint(InternshipRole role) {
     num point = 0;
     if (graduationYear.isBefore(DateTime(2024))) {
       point += 0;
@@ -137,26 +146,25 @@ class EducationInfoModel {
       } else {
         point = 5;
       }
+    } else {
+      return null;
     }
     return point;
   }
 
-  num calculatePoint(InternshipRole role) {
-    num point = 0;
-
-    point += educationPoint(role);
-
-    point += calculateMajorPoint(role);
-
-    point += gpaPoint(role);
-
-    point += graduationYearPoint(role);
-
-    return point;
+  num? calculatePoint(InternshipRole role) {
+    final eduPoint = educationPoint(role);
+    final majorPoint = calculateMajorPoint(role);
+    final gpaPo = gpaPoint(role);
+    final graduatePoint = graduationYearPoint(role);
+    if (eduPoint == null || majorPoint == null || gpaPo == null || graduatePoint == null) {
+      return null;
+    } else {
+      return eduPoint + majorPoint + gpaPo + graduatePoint;
+    }
   }
 
-  factory EducationInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$EducationInfoModelFromJson(json);
+  factory EducationInfoModel.fromJson(Map<String, dynamic> json) => _$EducationInfoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$EducationInfoModelToJson(this);
 }
