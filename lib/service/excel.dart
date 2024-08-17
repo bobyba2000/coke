@@ -286,6 +286,8 @@ class ExcelService {
           return contestant.status?.toString() ?? '';
         case ColumnTitle.link:
           return contestant.link;
+        case ColumnTitle.totalWorkingTime:
+          return contestant.exhibition.totalWorkingTime;
       }
 
       return '';

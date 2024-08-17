@@ -33,7 +33,7 @@ enum LanguageType {
 
 class LanguageSwitch extends StatelessWidget {
   final bool needToRefresh;
-  const LanguageSwitch({super.key, this.needToRefresh = false});
+  const LanguageSwitch({super.key, this.needToRefresh = true});
 
   @override
   Widget build(BuildContext context) {

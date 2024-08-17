@@ -59,6 +59,7 @@ enum ColumnTitle {
   experience3JobTitle,
   experience3StartDate,
   experience3EndDate,
+  totalWorkingTime,
   english,
   englishDetail,
   resume,
@@ -249,6 +250,8 @@ enum ColumnTitle {
         return 'Status';
       case ColumnTitle.link:
         return 'Contestant\'s Link';
+      case ColumnTitle.totalWorkingTime:
+        return 'Total Working Time (Days)';
     }
   }
 
@@ -748,6 +751,8 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         return contestant.status?.toString() ?? '';
       case ColumnTitle.link:
         return contestant.link;
+      case ColumnTitle.totalWorkingTime:
+        return contestant.exhibition.totalWorkingTime.toString();
     }
 
     return '';

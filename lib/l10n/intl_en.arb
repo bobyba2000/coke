@@ -311,5 +311,7 @@
     "home": "Home",
     "about": "About",
     "candidateProfile": "Candidate Profile",
-    "openOpportunities": "Open Opportunities"
+    "openOpportunities": "Open Opportunities",
+    "login": "Login",
+    "profile": "Profile"
 }

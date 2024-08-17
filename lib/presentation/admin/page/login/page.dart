@@ -97,23 +97,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                                   if (role == 'Admin') {
                                     context.go('/admin');
                                   } else {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                        title: Text(
-                                          'Error',
-                                          style: TextStyle(fontSize: 26.sp, color: Colors.red),
-                                        ),
-                                        content: Text(
-                                          'Your login info is not correct.',
-                                          style: TextStyle(
-                                            fontSize: 18.sp,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                    auth.logout();
+                                    context.go('/contestant');
                                   }
                                 } catch (e) {
                                   showDialog(

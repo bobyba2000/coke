@@ -323,6 +323,8 @@ class ExhibitionInfoModel {
   @JsonKey(defaultValue: [])
   List<num> achivementPoints = [];
   num englishPoint = 0;
+  @JsonKey(defaultValue: 0)
+  num totalWorkingTime = 0;
 
   num get achivementsPoint {
     num res = 0;
@@ -446,7 +448,7 @@ class ExhibitionInfoModel {
     num dateDifference = 0;
     for (var experience in experiences) {
       num point = 0;
-      if (experience.startDate == null || experience.endDate == null) {
+      if (experience.startDate == null || experience.endDate == null || experience.type == WorkingType.partTime) {
         experiencePoints.add(0);
         continue;
       }
@@ -489,6 +491,7 @@ class ExhibitionInfoModel {
       }
       experiencePoints.add(point);
     }
+    totalWorkingTime = dateDifference;
     if (dateDifference > 365) {
       experiencePoints = List.generate(experiences.length, (index) => null);
     }

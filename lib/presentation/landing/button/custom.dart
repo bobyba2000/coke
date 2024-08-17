@@ -32,6 +32,8 @@ class _CustomButtonState extends State<CustomButton> {
             borderRadius: BorderRadius.circular(20),
             color: background,
           ),
+          constraints: const BoxConstraints(minWidth: 100, maxHeight: 30),
+          alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
           margin: const EdgeInsets.all(6),
           duration: const Duration(milliseconds: 200),
