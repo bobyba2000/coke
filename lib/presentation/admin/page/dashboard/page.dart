@@ -2,15 +2,18 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/presentation/admin/page/dashboard/widget/overview.dart';
 import 'package:coke_platform/service/firebase/contestant.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
 import 'package:logger/logger.dart';
 
+import 'widget/cv_list/preview.dart';
 import 'widget/cv_list/widget.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+  final String? contestantKey;
+  const DashboardPage({super.key, this.contestantKey});
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -18,8 +21,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   List<ContestantModel> datas = [];
-  final contestantService =
-      AppDependencies.injector.get<FirebaseContestantService>();
+  final contestantService = AppDependencies.injector.get<FirebaseContestantService>();
 
   @override
   void initState() {
@@ -33,6 +35,19 @@ class _DashboardPageState extends State<DashboardPage> {
         datas = value;
         if (mounted) {
           setState(() {});
+        }
+        if (widget.contestantKey != null) {
+          final contestant = datas.firstWhereOrNull((element) => element.key == widget.contestantKey);
+          if (contestant == null) {
+            return;
+          } else {
+            showDialog(
+              context: context,
+              builder: (context) => PreviewContestantDialog(
+                contestant: contestant,
+              ),
+            );
+          }
         }
       },
     ).onError((error, stackTrace) {

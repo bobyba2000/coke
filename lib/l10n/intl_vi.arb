@@ -261,8 +261,8 @@
     "english": "Tiếng Anh",
     "vietnamese": "Tiếng Việt",
     "delete": "Xóa",
-    "languagePickerApplyPage": "Bạn muốn điền đơn ứng tuyển bằng ngôn ngữ nào?",
-    "languagePickerLandingPage": "Vui lòng chọn ngôn ngữ hiển thị của website​",
+    "languagePickerApplyPage": "Bạn muốn điền đơn ứng tuyển bằng ngôn ngữ nào? / What language would you like to use to fill out the application?​",
+    "languagePickerLandingPage": "Vui lòng chọn ngôn ngữ hiển thị của website / Please select the language of the website​​",
     "aboutTheProgram": "Tổng quan chương trình",
     "aboutTheProgramContent1": "Coke Fresh là chương trình ",
     "aboutTheProgramContent2": "tuyển dụng và phát triển các tập sự trẻ trong vòng 6 tháng",
@@ -306,5 +306,6 @@
     "careerDesired": "Các cơ hội nghề nghiệp​",
     "careerDesiredSubtitle1": "Tập trung vào việc thúc đẩy trải nghiệm nghề nghiệp thực tế kết hợp với việc phát triển kỹ năng, chương trình Coke Fresh mở ra nhiều lộ trình cơ hội phù hợp với đa dạng kỹ năng nổi trội và ngành học khác nhau. ",
     "careerDesiredSubtitle2": "Hãy nhấp vào ",
-    "careerDesiredSubtitle3": "từng cơ hội bên dưới để xem chi tiết và tìm ra mảnh ra ghép phù hợp với bạn!"
+    "careerDesiredSubtitle3": "từng cơ hội bên dưới để xem chi tiết và tìm ra mảnh ra ghép phù hợp với bạn!",
+    "languageTooltip": "Đổi ngôn ngữ"
 }

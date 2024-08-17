@@ -85,7 +85,8 @@ enum ColumnTitle {
   englishPoint,
   attachmentPoint,
   totalPoint,
-  status;
+  status,
+  link;
 
   @override
   String toString() {
@@ -246,6 +247,8 @@ enum ColumnTitle {
         return 'Working Experience 3 - Industry';
       case ColumnTitle.status:
         return 'Status';
+      case ColumnTitle.link:
+        return 'Contestant\'s Link';
     }
   }
 
@@ -743,6 +746,8 @@ class _TableRowWidgetState extends State<TableRowWidget> {
         }
       case ColumnTitle.status:
         return contestant.status?.toString() ?? '';
+      case ColumnTitle.link:
+        return contestant.link;
     }
 
     return '';

@@ -284,6 +284,8 @@ class ExcelService {
           }
         case ColumnTitle.status:
           return contestant.status?.toString() ?? '';
+        case ColumnTitle.link:
+          return contestant.link;
       }
 
       return '';

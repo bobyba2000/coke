@@ -4,7 +4,8 @@ import 'package:coke_platform/presentation/admin/sidebar/widget.dart';
 import 'package:flutter/material.dart';
 
 class AdminPage extends StatelessWidget {
-  const AdminPage({super.key});
+  final String? contestantKey;
+  const AdminPage({super.key, this.contestantKey});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +20,14 @@ class AdminPage extends StatelessWidget {
               height: double.infinity,
               width: double.infinity,
               margin: const EdgeInsets.only(top: 60),
-              child: const Row(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AdminSidebarWidget(),
+                  const AdminSidebarWidget(),
                   Expanded(
-                    child: DashboardPage(),
+                    child: DashboardPage(
+                      contestantKey: contestantKey,
+                    ),
                   ),
                 ],
               ),

@@ -29,18 +29,18 @@ class _CustomButtonState extends State<CustomButton> {
         painter: BrokenBorderPainter(),
         child: AnimatedContainer(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40),
+            borderRadius: BorderRadius.circular(20),
             color: background,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
           margin: const EdgeInsets.all(6),
           duration: const Duration(milliseconds: 200),
           child: Text(
             widget.title,
             style: TextStyle(
-              fontSize: 22,
+              fontSize: 16,
               color: foreground,
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -52,8 +52,8 @@ class _CustomButtonState extends State<CustomButton> {
 class BrokenBorderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    const double borderRadius = 40.0;
-    const double strokeWidth = 2.0;
+    const double borderRadius = 20.0;
+    const double strokeWidth = 1.0;
     final List<Map<String, double>> breaks = [
       {'start': 40, 'width': 20}, // Break 1
       {'start': 240, 'width': 20}, // Break 2
@@ -91,8 +91,7 @@ class BrokenBorderPainter extends CustomPainter {
 
         // Draw the path up to the break
         if (currentOffset < breakStart) {
-          Path borderSegment1 =
-              pathMetric.extractPath(currentOffset, breakStart);
+          Path borderSegment1 = pathMetric.extractPath(currentOffset, breakStart);
           canvas.drawPath(borderSegment1, paint);
         }
 

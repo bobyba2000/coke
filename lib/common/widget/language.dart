@@ -3,6 +3,7 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
 
@@ -41,6 +42,7 @@ class LanguageSwitch extends StatelessWidget {
       builder: (BuildContext context, Locale value, Widget? child) {
         final data = value.languageCode == 'vi' ? LanguageType.vietnamese : LanguageType.english;
         return PopupMenuButton(
+          tooltip: S.current.languageTooltip,
           itemBuilder: (context) => LanguageType.values
               .map(
                 (e) => PopupMenuItem(

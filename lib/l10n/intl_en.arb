@@ -275,8 +275,8 @@
     "english": "English",
     "vietnamese": "Vietnamese",
     "delete": "Delete",
-    "languagePickerApplyPage": "What language would you like to use to fill out the application?",
-    "languagePickerLandingPage": "Please select the language of the website​",
+    "languagePickerApplyPage": "Bạn muốn điền đơn ứng tuyển bằng ngôn ngữ nào? / What language would you like to use to fill out the application?​",
+    "languagePickerLandingPage": "Vui lòng chọn ngôn ngữ hiển thị của website / Please select the language of the website​​",
     "aboutTheProgram": "About the program",
     "aboutTheProgramContent1": "Coke Fresh is ",
     "aboutTheProgramContent2": "a 6-month functional trainee program",
@@ -306,5 +306,6 @@
     "careerDesired": "Diverse Functional Pathways",
     "careerDesiredSubtitle1": "Centered on providing hands-on experience and skill development, our program presents a variety of pathways that fit around our competitive skills alongside your academic pursuits. ",
     "careerDesiredSubtitle2": "Click",
-    "careerDesiredSubtitle3": " on each of the pathways below to explore more details and find your perfect match!"
+    "careerDesiredSubtitle3": " on each of the pathways below to explore more details and find your perfect match!",
+    "languageTooltip": "Change Language"
 }

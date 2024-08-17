@@ -55,7 +55,7 @@ class PreviewContestantDialog extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Total Point: ${contestant.personalPoint}',
+                            'Total Point: ${contestant.personalPoint.toUIString()}',
                             style: textTheme.bodyLarge?.copyWith(
                               color: colorScheme.onBackground.withOpacity(0.5),
                               fontStyle: FontStyle.italic,
@@ -124,7 +124,7 @@ class PreviewContestantDialog extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Total Point: ${contestant.educationPoint}',
+                            'Total Point: ${contestant.educationPoint.toUIString()}',
                             style: textTheme.bodyLarge?.copyWith(
                               color: colorScheme.onBackground.withOpacity(0.5),
                               fontStyle: FontStyle.italic,
@@ -188,7 +188,7 @@ class PreviewContestantDialog extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Total Point: ${contestant.careerPoint}',
+                            'Total Point: ${contestant.careerPoint.toUIString()}',
                             style: textTheme.bodyLarge?.copyWith(
                               color: colorScheme.onBackground.withOpacity(0.5),
                               fontStyle: FontStyle.italic,
@@ -251,6 +251,21 @@ class PreviewContestantDialog extends StatelessWidget {
                     final index = exhibition.experiences.indexOf(experience);
                     experiences.addAll(
                       [
+                        if (index != 0)
+                          const Divider(
+                            thickness: 1,
+                            color: Colors.black,
+                          ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Text(
+                            '${S.current.workingExperience} ${index + 1}',
+                            style: textTheme.displaySmall?.copyWith(
+                              color: Colors.black,
+                              fontSize: 18.spMax,
+                            ),
+                          ),
+                        ),
                         data(
                           context,
                           '${S.current.companyName} ${index + 1}',
@@ -288,6 +303,14 @@ class PreviewContestantDialog extends StatelessWidget {
                   }
                   for (var skill in exhibition.skills) {
                     final index = exhibition.skills.indexOf(skill);
+                    if (index != 0) {
+                      skills.add(
+                        const Divider(
+                          thickness: 1,
+                          color: Colors.black,
+                        ),
+                      );
+                    }
                     skills.add(
                       data(
                         context,
@@ -305,6 +328,14 @@ class PreviewContestantDialog extends StatelessWidget {
                   }
                   for (var achivement in exhibition.achivements) {
                     final index = exhibition.achivements.indexOf(achivement);
+                    if (index != 0) {
+                      achivements.add(
+                        const Divider(
+                          thickness: 1,
+                          color: Colors.black,
+                        ),
+                      );
+                    }
                     achivements.add(
                       data(
                         context,
@@ -335,7 +366,7 @@ class PreviewContestantDialog extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Total Point: ${contestant.exhibitionPoint}',
+                            'Total Point: ${contestant.exhibitionPoint.toUIString()}',
                             style: textTheme.bodyLarge?.copyWith(
                               color: colorScheme.onBackground.withOpacity(0.5),
                               fontStyle: FontStyle.italic,
@@ -343,46 +374,106 @@ class PreviewContestantDialog extends StatelessWidget {
                           )
                         ],
                       ),
-                      16.hSpace,
-                      Wrap(
-                        spacing: 16.h,
-                        runSpacing: 16.w,
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        children: skills,
+                      24.hSpace,
+                      Text(
+                        S.current.skill.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 20.spMax,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      16.hSpace,
-                      Wrap(
-                        spacing: 16.h,
-                        runSpacing: 16.w,
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        children: achivements,
-                      ),
-                      16.hSpace,
-                      if (exhibition.english != null)
-                        Wrap(
+                      12.hSpace,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Wrap(
                           spacing: 16.h,
                           runSpacing: 16.w,
                           crossAxisAlignment: WrapCrossAlignment.start,
+                          children: skills,
+                        ),
+                      ),
+                      const Divider(
+                        color: Colors.black,
+                        height: 48,
+                      ),
+                      Text(
+                        S.current.achivement.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 20.spMax,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      12.hSpace,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Wrap(
+                          spacing: 16.h,
+                          runSpacing: 16.w,
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          children: achivements,
+                        ),
+                      ),
+                      const Divider(
+                        color: Colors.black,
+                        height: 48,
+                      ),
+                      Text(
+                        S.current.workingExperience.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 20.spMax,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      12.hSpace,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Wrap(
+                          spacing: 16.h,
+                          runSpacing: 16.w,
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          children: experiences,
+                        ),
+                      ),
+                      const Divider(
+                        color: Colors.black,
+                        height: 48,
+                      ),
+                      if (exhibition.english != null)
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            data(
-                              context,
-                              S.current.englishCertification,
-                              exhibition.english!.certification.toString(),
+                            Text(
+                              S.current.english.toUpperCase(),
+                              style: TextStyle(
+                                fontSize: 20.spMax,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            data(
-                              context,
-                              S.current.detail,
-                              exhibition.english!.detail.toString(),
-                            )
+                            12.hSpace,
+                            Wrap(
+                              spacing: 16.h,
+                              runSpacing: 16.w,
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              children: [
+                                data(
+                                  context,
+                                  S.current.englishCertification,
+                                  exhibition.english!.certification.toString(),
+                                ),
+                                data(
+                                  context,
+                                  S.current.detail,
+                                  exhibition.english!.detail.toString(),
+                                )
+                              ],
+                            ),
                           ],
                         ),
-                      16.hSpace,
-                      Wrap(
-                        spacing: 16.h,
-                        runSpacing: 16.w,
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        children: experiences,
-                      ),
                     ],
                   );
                 },
@@ -406,7 +497,7 @@ class PreviewContestantDialog extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Total Point: ${contestant.attachmentPoint}',
+                            'Total Point: ${contestant.attachmentPoint.toUIString()}',
                             style: textTheme.bodyLarge?.copyWith(
                               color: colorScheme.onBackground.withOpacity(0.5),
                               fontStyle: FontStyle.italic,
@@ -456,10 +547,16 @@ class PreviewContestantDialog extends StatelessWidget {
     );
   }
 
-  Widget data(BuildContext context, String title, String content) {
+  Widget data(
+    BuildContext context,
+    String title,
+    String content, {
+    double? width,
+  }) {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     return Container(
+      width: width,
       constraints: BoxConstraints(
         minWidth: 400.w,
       ),

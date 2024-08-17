@@ -45,6 +45,10 @@ class ContestantModel {
   final DateTime submitTime;
   ContestantStatus? status;
 
+  String get link {
+    return 'https://bobyba2000.github.io/platform-test/admin?contestant=$key';
+  }
+
   ContestantModel({
     required this.key,
     required this.personalInfo,

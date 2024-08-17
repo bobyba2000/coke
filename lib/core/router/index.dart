@@ -33,7 +33,11 @@ class AppRouter {
           }
         },
         builder: (context, state) {
-          return const AdminPage();
+          final query = state.uri.queryParameters;
+          final contestantKey = query['contestant'];
+          return AdminPage(
+            contestantKey: contestantKey,
+          );
         },
       ),
       GoRoute(
