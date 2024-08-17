@@ -28,6 +28,11 @@ ThemeData themeData(BuildContext context) {
     radioTheme: const RadioThemeData(
       fillColor: MaterialStatePropertyAll(Color(0xFFE51D2A)),
     ),
+    scrollbarTheme: ScrollbarThemeData(
+      trackColor: MaterialStatePropertyAll(
+        Colors.white.withOpacity(0.3),
+      ),
+    ),
     textTheme: TextTheme(
       titleLarge: TextStyle(
         fontSize: 35.spMax,

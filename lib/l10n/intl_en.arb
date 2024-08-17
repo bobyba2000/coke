@@ -307,5 +307,9 @@
     "careerDesiredSubtitle1": "Centered on providing hands-on experience and skill development, our program presents a variety of pathways that fit around our competitive skills alongside your academic pursuits. ",
     "careerDesiredSubtitle2": "Click",
     "careerDesiredSubtitle3": " on each of the pathways below to explore more details and find your perfect match!",
-    "languageTooltip": "Change Language"
+    "languageTooltip": "Change Language",
+    "home": "Home",
+    "about": "About",
+    "candidateProfile": "Candidate Profile",
+    "openOpportunities": "Open Opportunities"
 }
