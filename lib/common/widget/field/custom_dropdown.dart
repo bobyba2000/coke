@@ -43,6 +43,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
   T? selectedValue;
   final LayerLink _layerLink = LayerLink();
   List<T> items = [];
+  bool isHover = false;
 
   InputBorder get _inputBorder => OutlineInputBorder(
         borderSide: BorderSide(
@@ -105,24 +106,34 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
 
       Color suggestionBackgroundColor = scaffold?.widget.backgroundColor ?? theme.scaffoldBackgroundColor;
       final displayItems = widget.getItems?.call() ?? items;
+      final scrollController = ScrollController();
       _overlayEntry ??= OverlayEntry(
         builder: (context) => Positioned(
           left: offset.dx,
           top: offset.dy + size.height - (widget.label != null ? 20 : -5),
           width: size.width,
-          child: CompositedTransformFollower(
-            link: _layerLink,
-            showWhenUnlinked: false,
-            offset: Offset(0.0, size.height - (widget.label != null ? 20 : -5)),
-            child: Material(
-              elevation: 5,
-              borderRadius: BorderRadius.circular(5),
-              color: suggestionBackgroundColor,
-              child: Container(
-                constraints: BoxConstraints(maxHeight: widget.maxHeight),
-                child: Visibility(
+          child: MouseRegion(
+            onEnter: (event) {
+              isHover = true;
+            },
+            onExit: (event) {
+              isHover = false;
+            },
+            child: CompositedTransformFollower(
+              link: _layerLink,
+              showWhenUnlinked: false,
+              offset: Offset(0.0, size.height - (widget.label != null ? 20 : -5)),
+              child: Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(5),
+                color: suggestionBackgroundColor,
+                child: Container(
+                  constraints: BoxConstraints(maxHeight: widget.maxHeight),
                   child: Scrollbar(
+                    controller: scrollController,
+                    interactive: true,
                     child: ListView.builder(
+                      controller: scrollController,
                       itemBuilder: (context, index) {
                         final item = displayItems[index];
                         final isSelected = item == selectedValue;
@@ -130,6 +141,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
                           onTap: () {
                             _controller.text = item.toString();
                             widget.onSelect.call(item);
+                            closeOverlay();
                           },
                           title: Text(
                             item.toString(),
@@ -204,6 +216,11 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
                   helperText: widget.helperText,
                 ),
                 controller: _controller,
+                onTapOutside: (event) {
+                  if (!isHover) {
+                    closeOverlay();
+                  }
+                },
                 onTap: openOverlay,
                 focusNode: _focusNode,
                 onEditingComplete: () => closeOverlay(),
