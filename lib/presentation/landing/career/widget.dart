@@ -4,21 +4,12 @@ import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 class WaveContainer extends StatefulWidget {
-  final String title;
-  final String subTitle;
-  final String? content;
-  final VoidCallback onTap;
-  final Color color;
+  final InternshipRole role;
   const WaveContainer({
     super.key,
-    required this.title,
-    required this.onTap,
-    required this.color,
-    required this.subTitle,
-    this.content,
+    required this.role,
   });
 
   @override
@@ -29,6 +20,7 @@ class _WaveContainerState extends State<WaveContainer> {
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
+    final role = widget.role;
     return InkWell(
       hoverColor: Colors.transparent,
       onHover: (value) {
@@ -36,13 +28,13 @@ class _WaveContainerState extends State<WaveContainer> {
           isHover = value;
         });
       },
-      onTap: widget.onTap,
+      onTap: role.showDialog,
       child: Container(
         decoration: BoxDecoration(
           boxShadow: isHover
               ? [
                   BoxShadow(
-                    color: widget.color.withOpacity(0.5),
+                    color: role.color.withOpacity(0.5),
                     offset: const Offset(0, 7),
                     blurRadius: 29,
                   ),
@@ -54,7 +46,7 @@ class _WaveContainerState extends State<WaveContainer> {
           child: ClipPath(
             clipper: WaveClipper(),
             child: Container(
-              color: widget.color,
+              color: role.color,
               constraints: const BoxConstraints(minWidth: 200, minHeight: 95),
               width: 250,
               height: 120,
@@ -64,7 +56,7 @@ class _WaveContainerState extends State<WaveContainer> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.title,
+                    role.title,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -73,7 +65,7 @@ class _WaveContainerState extends State<WaveContainer> {
                   ),
                   4.hSpace,
                   Text(
-                    widget.subTitle,
+                    role.subtitle,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,
@@ -81,7 +73,7 @@ class _WaveContainerState extends State<WaveContainer> {
                   ),
                   4.hSpace,
                   Text(
-                    widget.content ?? '',
+                    role.content ?? '',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 10,
@@ -209,93 +201,57 @@ class CareerWidget extends StatelessWidget {
           Positioned(
             left: 100.w,
             top: 150.w,
-            child: WaveContainer(
-              title: InternshipRole.sales.title,
-              subTitle: InternshipRole.sales.subtitle,
-              onTap: () {
-                SmartDialog.show(
-                  builder: (context) => InternshipRole.sales.background,
-                );
-              },
-              color: InternshipRole.sales.color,
-              content: InternshipRole.sales.content,
+            child: const WaveContainer(
+              role: InternshipRole.sales,
             ),
           ),
           Positioned(
             right: 100.w,
             top: 150.w,
-            child: WaveContainer(
-              title: InternshipRole.procurement.title,
-              subTitle: InternshipRole.procurement.subtitle,
-              onTap: () {},
-              color: InternshipRole.procurement.color,
-              content: InternshipRole.procurement.content,
+            child: const WaveContainer(
+              role: InternshipRole.procurement,
             ),
           ),
           Positioned(
             left: 150.w,
             top: 300.w,
-            child: WaveContainer(
-              title: InternshipRole.tradeMarketing.title,
-              subTitle: InternshipRole.tradeMarketing.subtitle,
-              onTap: () {},
-              color: InternshipRole.tradeMarketing.color,
-              content: InternshipRole.tradeMarketing.content,
+            child: const WaveContainer(
+              role: InternshipRole.tradeMarketing,
             ),
           ),
           Positioned(
             right: 150.w,
             top: 300.w,
-            child: WaveContainer(
-              title: InternshipRole.rtm.title,
-              subTitle: InternshipRole.rtm.subtitle,
-              onTap: () {},
-              color: InternshipRole.rtm.color,
-              content: InternshipRole.rtm.content,
+            child: const WaveContainer(
+              role: InternshipRole.rtm,
             ),
           ),
           Positioned(
             left: 200.w,
             top: 450.w,
-            child: WaveContainer(
-              title: InternshipRole.itDataAnalyst.title,
-              subTitle: InternshipRole.itDataAnalyst.subtitle,
-              onTap: () {},
-              color: InternshipRole.itDataAnalyst.color,
-              content: InternshipRole.itDataAnalyst.content,
+            child: const WaveContainer(
+              role: InternshipRole.itDataAnalyst,
             ),
           ),
           Positioned(
             right: 200.w,
             top: 450.w,
-            child: WaveContainer(
-              title: InternshipRole.itPrivacy.title,
-              subTitle: InternshipRole.itPrivacy.subtitle,
-              onTap: () {},
-              color: InternshipRole.itPrivacy.color,
-              content: InternshipRole.itPrivacy.content,
+            child: const WaveContainer(
+              role: InternshipRole.itPrivacy,
             ),
           ),
           Positioned(
             left: 250.w,
             top: 600.w,
-            child: WaveContainer(
-              title: InternshipRole.keyAccountOnPremise.title,
-              subTitle: InternshipRole.keyAccountOnPremise.subtitle,
-              onTap: () {},
-              color: InternshipRole.keyAccountOnPremise.color,
-              content: InternshipRole.keyAccountOnPremise.content,
+            child: const WaveContainer(
+              role: InternshipRole.keyAccountOnPremise,
             ),
           ),
           Positioned(
             right: 250.w,
             top: 600.w,
-            child: WaveContainer(
-              title: InternshipRole.keyAccountOffPremise.title,
-              subTitle: InternshipRole.keyAccountOffPremise.subtitle,
-              onTap: () {},
-              color: InternshipRole.keyAccountOffPremise.color,
-              content: InternshipRole.keyAccountOffPremise.content,
+            child: const WaveContainer(
+              role: InternshipRole.keyAccountOffPremise,
             ),
           ),
         ],
