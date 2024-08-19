@@ -99,7 +99,7 @@ enum InternshipRole {
           child: SizedBox.shrink(),
         );
         if (this == sales) {
-          left = Column();
+          left = const Column();
         }
         return Container(
           decoration: BoxDecoration(

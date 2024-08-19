@@ -3,10 +3,11 @@ import 'package:coke_platform/presentation/admin/page.dart';
 import 'package:coke_platform/presentation/admin/page/login/page.dart';
 import 'package:coke_platform/presentation/application/page.dart';
 import 'package:coke_platform/presentation/contestant/page.dart';
-import 'package:coke_platform/presentation/landing/page.dart';
 import 'package:coke_platform/service/firebase/auth.dart';
 import 'package:coke_platform/service/firebase/role.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../presentation/landing/page.dart';
 
 class AppRouter {
   static final router = GoRouter(

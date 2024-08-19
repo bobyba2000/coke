@@ -1,3 +1,4 @@
+import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -22,8 +23,8 @@ class OverviewWidget extends StatelessWidget {
             top: 0,
             left: 0,
             child: Assets.images.overview.overview1.image(
-              height: 900.h,
-              fit: BoxFit.fitHeight,
+              width: 900.w,
+              fit: BoxFit.fitWidth,
             ),
           ),
           Row(
@@ -31,20 +32,35 @@ class OverviewWidget extends StatelessWidget {
               const Expanded(
                 child: SizedBox.shrink(),
               ),
+              50.w.wSpace,
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Assets.images.cokeFresh.image(),
+                    Assets.images.overview.title.image(
+                      width: 550.w,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Assets.images.fizzUp.image(),
+                      child: Assets.images.overview.tagLine.image(
+                        width: 550.w,
+                      ),
                     ),
                   ],
                 ),
               )
             ],
           ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Assets.images.logoWhite.image(
+                width: 180,
+              ),
+            ),
+          )
         ],
       ),
     );

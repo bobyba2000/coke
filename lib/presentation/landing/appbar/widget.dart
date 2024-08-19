@@ -10,7 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class LandingPageAppbar extends StatelessWidget {
-  const LandingPageAppbar({super.key});
+  final bool showLogo;
+  const LandingPageAppbar({super.key, this.showLogo = false});
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +23,19 @@ class LandingPageAppbar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Assets.images.logoWhite.image(
-            width: 160,
-          ),
+          if (showLogo)
+            Assets.images.logoWhite.image(
+              width: 160,
+            ),
           const Spacer(),
-          CustomButton(
+          CustomFilledButton(
             title: S.current.applyNow,
             onTap: () {
               context.go('/apply');
             },
           ),
           24.wSpace,
-          CustomButton(
+          CustomTextButton(
             title: AppDependencies.injector.get<FirebaseAuthService>().isUserSignedIn() ? S.current.profile : S.current.login,
             onTap: () {
               context.go('/login');

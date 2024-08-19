@@ -18,6 +18,14 @@ extension NumExtension on num {
     }
   }
 
+  double get wMin {
+    if (this < w) {
+      return toDouble();
+    } else {
+      return w;
+    }
+  }
+
   double get hMax {
     if (this > h) {
       return toDouble();

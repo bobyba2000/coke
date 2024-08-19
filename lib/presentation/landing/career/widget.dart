@@ -1,5 +1,4 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
-import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
@@ -31,6 +30,7 @@ class _WaveContainerState extends State<WaveContainer> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      hoverColor: Colors.transparent,
       onHover: (value) {
         setState(() {
           isHover = value;
@@ -40,10 +40,10 @@ class _WaveContainerState extends State<WaveContainer> {
       child: Container(
         decoration: BoxDecoration(
           boxShadow: isHover
-              ? const [
+              ? [
                   BoxShadow(
-                    color: Colors.white70,
-                    offset: Offset(0, 7),
+                    color: widget.color.withOpacity(0.5),
+                    offset: const Offset(0, 7),
                     blurRadius: 29,
                   ),
                 ]
@@ -56,14 +56,15 @@ class _WaveContainerState extends State<WaveContainer> {
             child: Container(
               color: widget.color,
               constraints: const BoxConstraints(minWidth: 200, minHeight: 95),
-              width: 200.w,
-              height: 95.w,
-              padding: const EdgeInsets.only(top: 12),
+              width: 250,
+              height: 120,
+              padding: const EdgeInsets.only(top: 24, left: 12, right: 12),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.title.toUpperCase(),
+                    widget.title,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -154,28 +155,30 @@ class CareerWidget extends StatelessWidget {
         children: [
           Assets.images.career.background.image(
             width: 1400.w,
-            height: 780.w,
-            fit: BoxFit.fitWidth,
+            height: 900.h,
+            fit: BoxFit.fill,
           ),
-          Align(
-            alignment: Alignment.center,
+          Positioned(
+            top: 200.h,
+            left: 457.w,
+            right: 457.w,
             child: Assets.images.career.model.image(
               width: 486.w,
               fit: BoxFit.fitWidth,
             ),
           ),
           Positioned(
-            left: 24,
-            right: 24,
-            top: 10,
+            left: 300.w,
+            right: 300.w,
+            top: 40,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   S.current.careerDesired,
                   style: textTheme.displaySmall?.copyWith(
-                    color: ColorConstants.colorFFF220,
-                    fontSize: 48.spMax,
+                    color: const Color(0xFFBA5D1B),
+                    fontSize: 38,
                   ),
                 ),
                 RichText(
@@ -183,14 +186,14 @@ class CareerWidget extends StatelessWidget {
                   text: TextSpan(
                     text: S.current.careerDesiredSubtitle1,
                     style: textTheme.bodyLarge?.copyWith(
-                      color: Colors.white,
+                      color: const Color(0xFFBA5D1B),
                     ),
                     children: [
                       TextSpan(
                         text: S.current.careerDesiredSubtitle2,
                         style: textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: const Color(0xFFBA5D1B),
                         ),
                       ),
                       TextSpan(
