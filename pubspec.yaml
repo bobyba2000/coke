@@ -64,6 +64,7 @@ flutter:
     - assets/images/overview/
     - assets/images/essence/
     - assets/images/career/
+    - assets/images/journey/
     - assets/resources/
     - assets/font/
   fonts:

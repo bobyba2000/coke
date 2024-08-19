@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/presentation/landing/about/widget.dart';
-import 'package:coke_platform/presentation/landing/appbar/widget.dart';
 import 'package:coke_platform/presentation/landing/essence/widget.dart';
+import 'package:coke_platform/presentation/landing/journey/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -110,7 +110,9 @@ class _LandingPageState extends State<LandingPage> {
                         Positioned(
                           bottom: 0,
                           right: 90.w,
-                          child: Assets.images.about.model.image(),
+                          child: Assets.images.about.model.image(
+                            height: 800.h,
+                          ),
                         ),
                       ],
                     ),
@@ -149,6 +151,11 @@ class _LandingPageState extends State<LandingPage> {
                     width: 1400.w,
                     color: const Color(0xFFf1feff),
                   ),
+                  Container(
+                    height: 900.h,
+                    width: 1400.w,
+                    color: Colors.white,
+                  ),
                 ],
               ),
             ),
@@ -170,43 +177,32 @@ class _LandingPageState extends State<LandingPage> {
                     page: page,
                   ),
                   const CareerWidget(),
+                  const JourneyWidget(),
                 ],
               ),
             ),
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 200),
-                opacity: isScrolling ? 0 : 1,
-                child: LandingPageAppbar(
-                  showLogo: page != 0,
-                ),
-              ),
-            ),
-            Positioned(
-              right: 20,
-              bottom: 10,
-              child: Builder(builder: (context) {
-                LandingPageType type = LandingPageType.values[page];
+            // Positioned(
+            //   right: 20,
+            //   bottom: 10,
+            //   child: Builder(builder: (context) {
+            //     LandingPageType type = LandingPageType.values[page];
 
-                return AnimatedOpacity(
-                  opacity: isScrollbarHover ? 1 : 0,
-                  duration: const Duration(milliseconds: 200),
-                  child: ProgressWidget(
-                    current: type,
-                    onSelect: (value) {
-                      _page.animateToPage(
-                        value.index,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.linear,
-                      );
-                    },
-                  ),
-                );
-              }),
-            )
+            //     return AnimatedOpacity(
+            //       opacity: isScrollbarHover ? 1 : 0,
+            //       duration: const Duration(milliseconds: 200),
+            //       child: ProgressWidget(
+            //         current: type,
+            //         onSelect: (value) {
+            //           _page.animateToPage(
+            //             value.index,
+            //             duration: const Duration(milliseconds: 200),
+            //             curve: Curves.linear,
+            //           );
+            //         },
+            //       ),
+            //     );
+            //   }),
+            // )
           ],
         ),
       ),

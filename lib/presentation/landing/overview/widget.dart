@@ -1,8 +1,11 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../appbar/widget.dart';
 
 class OverviewWidget extends StatelessWidget {
   const OverviewWidget({super.key});
@@ -52,15 +55,15 @@ class OverviewWidget extends StatelessWidget {
               )
             ],
           ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Assets.images.logoWhite.image(
-                width: 180,
-              ),
+          Positioned(
+            top: 0,
+            height: 80,
+            left: 0,
+            right: 0,
+            child: LandingPageAppbar(
+              showLogo: true,
             ),
-          )
+          ),
         ],
       ),
     );

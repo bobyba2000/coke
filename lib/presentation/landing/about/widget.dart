@@ -40,11 +40,11 @@ class AboutWidget extends StatelessWidget {
             children: [
               100.w.wSpace,
               SizedBox(
-                width: 550.wMax,
+                width: 450.w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    100.h.hSpace,
                     Text(
                       S.current.aboutTheProgram.toUpperCase(),
                       style: textTheme.displaySmall?.copyWith(
