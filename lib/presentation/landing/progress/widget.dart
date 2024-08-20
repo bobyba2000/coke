@@ -24,7 +24,7 @@ class ProgressWidget extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    150.h.hSpace,
+                    150.w.hSpace,
                     Text(
                       S.current.processTitle,
                       style: TextStyle(
@@ -55,7 +55,7 @@ class ProgressWidget extends StatelessWidget {
                     fit: StackFit.expand,
                     children: [
                       Positioned(
-                        top: 50.h,
+                        top: 20.w,
                         left: 0,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -97,7 +97,7 @@ class ProgressWidget extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 50.h + 80.w,
+                        top: 20.w + 80.w,
                         left: 120.w,
                         child: Container(
                           decoration: BoxDecoration(
@@ -123,7 +123,7 @@ class ProgressWidget extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 102.h,
+                        top: 102.w,
                         left: 150.w,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -144,7 +144,7 @@ class ProgressWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            16.hSpace,
+                            16.w.hSpace,
                             Text(
                               '3 days',
                               style: TextStyle(
@@ -153,7 +153,7 @@ class ProgressWidget extends StatelessWidget {
                                 fontSize: 16.sp,
                               ),
                             ),
-                            6.hSpace,
+                            6.w.hSpace,
                             Text(
                               '(after the\nassignment assigned)',
                               style: TextStyle(
@@ -192,7 +192,7 @@ class ProgressWidget extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 72.h,
+                        top: 50.w,
                         left: 350.w,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -204,7 +204,7 @@ class ProgressWidget extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                            16.hSpace,
+                            16.w.hSpace,
                             WaterBubble(
                               size: 130.w,
                               color: Colors.white,
@@ -221,7 +221,7 @@ class ProgressWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            16.hSpace,
+                            16.w.hSpace,
                             Text(
                               '1-3 days',
                               style: TextStyle(
@@ -230,7 +230,7 @@ class ProgressWidget extends StatelessWidget {
                                 fontSize: 16.sp,
                               ),
                             ),
-                            6.hSpace,
+                            6.w.hSpace,
                             Text(
                               '(depending on function)',
                               style: TextStyle(
@@ -281,7 +281,7 @@ class ProgressWidget extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                            16.hSpace,
+                            16.w.hSpace,
                             WaterBubble(
                               size: 150.w,
                               color: Colors.white,
@@ -298,7 +298,7 @@ class ProgressWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            16.hSpace,
+                            16.w.hSpace,
                             Text(
                               '10 days',
                               style: TextStyle(
@@ -307,7 +307,7 @@ class ProgressWidget extends StatelessWidget {
                                 fontSize: 16.sp,
                               ),
                             ),
-                            6.hSpace,
+                            6.w.hSpace,
                             Text(
                               '(after the\nafter acceptance)',
                               style: TextStyle(

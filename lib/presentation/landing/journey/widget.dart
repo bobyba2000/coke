@@ -165,7 +165,7 @@ class JourneyWidget2 extends StatelessWidget {
           const Spacer(),
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 24),
+            padding: EdgeInsets.symmetric(vertical: 24.w),
             color: const Color(0xFFD6F5F4),
             alignment: Alignment.center,
             child: Text(

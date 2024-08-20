@@ -194,29 +194,34 @@ class EssenceWidget2 extends StatefulWidget {
 class _EssenceWidget2State extends State<EssenceWidget2> {
   @override
   Widget build(BuildContext context) {
-    return ScrollTransformItem(builder: (scrollOffset) {
-      double percentage = 0;
-      if (scrollOffset > 2000.w) {
-        percentage = min(max((scrollOffset - 2000.w) / 400.w, 0), 1);
-      }
+    return ScrollTransformItem(
+      builder: (scrollOffset) {
+        double percentage = 0;
+        if (scrollOffset > 2000.w) {
+          percentage = min(max((scrollOffset - 2000.w) / 400.w, 0), 1);
+        }
 
-      return Opacity(
-        opacity: percentage,
-        child: SizedBox(
-          height: 800.w,
-          child: Column(
-            children: [
-              const Spacer(),
-              Assets.images.essence.en2.image(
-                width: 1200.w,
-                height: 630.h,
-                fit: BoxFit.scaleDown,
-              ),
-              50.w.hSpace,
-            ],
+        if (1400.w * 1.5 < 900.h) {
+          percentage = 1;
+        }
+
+        return Opacity(
+          opacity: percentage,
+          child: SizedBox(
+            height: 800.w,
+            child: Column(
+              children: [
+                const Spacer(),
+                Assets.images.essence.en2.image(
+                  width: 1200.w,
+                  fit: BoxFit.contain,
+                ),
+                50.w.hSpace,
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
