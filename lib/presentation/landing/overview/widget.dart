@@ -55,7 +55,7 @@ class OverviewWidget extends StatelessWidget {
               )
             ],
           ),
-          Positioned(
+          const Positioned(
             top: 0,
             height: 80,
             left: 0,

@@ -7,6 +7,7 @@ import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -90,8 +91,11 @@ class _EssenceWidgetState extends State<EssenceWidget> with AutomaticKeepAliveCl
           Positioned(
             left: 300.w,
             top: 200.w,
-            child: Assets.images.essence.model.image(
-              width: 600.w,
+            child: FadeInDown(
+              globalKey: GlobalKey(),
+              child: Assets.images.essence.model.image(
+                width: 600.w,
+              ),
             ),
           ),
           SingleChildScrollView(
@@ -146,7 +150,7 @@ class _EssenceWidgetState extends State<EssenceWidget> with AutomaticKeepAliveCl
                                 },
                               ),
                             ),
-                            if (scrollOffset < 10.h)
+                            if (scrollOffset < 20.h)
                               Positioned(
                                 left: 300.w,
                                 top: 200.w,

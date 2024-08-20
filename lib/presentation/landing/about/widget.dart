@@ -1,6 +1,5 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/constants/color.dart';
-import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/button/custom.dart';
 import 'package:flutter/material.dart';
@@ -31,11 +30,7 @@ class AboutWidget extends StatelessWidget {
         fit: StackFit.expand,
         alignment: Alignment.topCenter,
         children: [
-          Positioned(
-            top: 60.h,
-            left: 90.w,
-            child: Assets.images.about.background.image(),
-          ),
+        
           Row(
             children: [
               100.w.wSpace,

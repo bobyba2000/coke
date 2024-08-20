@@ -6,6 +6,7 @@ import 'package:coke_platform/presentation/landing/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/journey/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'career/widget.dart';
@@ -108,10 +109,20 @@ class _LandingPageState extends State<LandingPage> {
                           fit: BoxFit.fill,
                         ),
                         Positioned(
+                          bottom: 400.h,
+                          left: 90.w,
+                          child: ZoomIn(
+                            globalKey: GlobalKey(),
+                            child: Assets.images.about.background.image(),
+                          ),
+                        ),
+                        Positioned(
                           bottom: 0,
-                          right: 90.w,
+                          right: 815.h > 950.w ? 90.h : 90.w,
                           child: Assets.images.about.model.image(
-                            height: 800.h,
+                            height: 815.h,
+                            width: 950.w,
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ],
@@ -159,50 +170,23 @@ class _LandingPageState extends State<LandingPage> {
                 ],
               ),
             ),
-            Scrollbar(
+            PageView(
               controller: _page,
-              thumbVisibility: true,
-              trackVisibility: true,
-              child: PageView(
-                controller: _page,
-                onPageChanged: (value) {
-                  page = value;
-                  setState(() {});
-                },
-                scrollDirection: Axis.vertical,
-                children: [
-                  const OverviewWidget(),
-                  const AboutWidget(),
-                  EssenceWidget(
-                    page: page,
-                  ),
-                  const CareerWidget(),
-                  const JourneyWidget(),
-                ],
-              ),
+              onPageChanged: (value) {
+                page = value;
+                setState(() {});
+              },
+              scrollDirection: Axis.vertical,
+              children: [
+                const OverviewWidget(),
+                const AboutWidget(),
+                EssenceWidget(
+                  page: page,
+                ),
+                const CareerWidget(),
+                const JourneyWidget(),
+              ],
             ),
-            // Positioned(
-            //   right: 20,
-            //   bottom: 10,
-            //   child: Builder(builder: (context) {
-            //     LandingPageType type = LandingPageType.values[page];
-
-            //     return AnimatedOpacity(
-            //       opacity: isScrollbarHover ? 1 : 0,
-            //       duration: const Duration(milliseconds: 200),
-            //       child: ProgressWidget(
-            //         current: type,
-            //         onSelect: (value) {
-            //           _page.animateToPage(
-            //             value.index,
-            //             duration: const Duration(milliseconds: 200),
-            //             curve: Curves.linear,
-            //           );
-            //         },
-            //       ),
-            //     );
-            //   }),
-            // )
           ],
         ),
       ),
