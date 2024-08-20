@@ -15,7 +15,7 @@ class CustomScrollWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       controller: controller,
-      physics: CustomPageScrollPhysics(),
+      physics: 1400.w * 1.5 < 900.h ? null : CustomPageScrollPhysics(),
       child: ChangeNotifierProvider(
         create: (context) => controller,
         child: Column(

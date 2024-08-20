@@ -39,10 +39,14 @@ class _LandingPageState extends State<LandingPage> {
   @override
   void initState() {
     _page.addListener(() {
-      if (_page.offset < 1600.w) {
+      if (1400.w * 1.5 < 900.h) {
         _background.jumpTo(_page.offset);
-      } else if (_page.offset > 2400.w) {
-        _background.jumpTo(_page.offset - 800.w);
+      } else {
+        if (_page.offset < 1600.w) {
+          _background.jumpTo(_page.offset);
+        } else if (_page.offset > 2400.w) {
+          _background.jumpTo(_page.offset - 800.w);
+        }
       }
     });
 
@@ -145,7 +149,7 @@ class _LandingPageState extends State<LandingPage> {
                   ),
                   Container(
                     width: 1400.w,
-                    height: 900.w,
+                    height: 1400.w * 1.5 < 900.h ? 1800.w : 900.w,
                     alignment: Alignment.bottomCenter,
                     child: Stack(
                       fit: StackFit.expand,
@@ -153,18 +157,18 @@ class _LandingPageState extends State<LandingPage> {
                       children: [
                         Container(
                           color: const Color(0xFF406eb6),
-                          height: 800.w,
+                          height: 1400.w * 1.5 < 900.h ? 1700.w : 800.w,
                           margin: EdgeInsets.only(bottom: 100.w),
                           width: double.infinity,
                           child: Assets.images.essence.background.image(
-                            height: 800.w,
+                            height: 1400.w * 1.5 < 900.h ? 1700.w : 800.w,
                             width: double.infinity,
                             fit: BoxFit.fill,
                           ),
                         ),
                         Positioned(
                           left: 300.w,
-                          top: 200.w,
+                          top: 1400.w * 1.5 < 900.h ? 1000.w : 200.w,
                           child: Assets.images.essence.model.image(
                             width: 600.w,
                           ),

@@ -36,6 +36,9 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
             percentage = 2;
           }
         }
+        if (1400.w * 1.5 < 900.h) {
+          percentage = 1;
+        }
         return percentage;
       },
       builder: (scrollOffset) {
@@ -51,6 +54,9 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
           } else {
             percentage = 0;
           }
+        }
+        if (1400.w * 1.5 < 900.h) {
+          percentage = 1;
         }
         return SizedBox(
           width: 1400.w,
@@ -74,7 +80,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                   },
                 ),
               ),
-              if (scrollOffset < heightBefore + 10.w)
+              if (1400.w * 1.5 < 900.h || scrollOffset < heightBefore + 10.w)
                 Positioned(
                   left: 300.w,
                   top: 200.w,
