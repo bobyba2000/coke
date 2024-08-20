@@ -39,56 +39,56 @@ enum InternshipRole {
   }
 
   Widget get background {
-    final width = 1200.w;
-    final height = 675.w;
+    final width = 1400.w;
+    final height = 900.h;
     switch (this) {
       case InternshipRole.procurement:
         return Assets.images.career.procurement.image(
           height: height,
           width: width,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         );
       case InternshipRole.tradeMarketing:
         return Assets.images.career.tradeMkt.image(
           height: height,
           width: width,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         );
       case InternshipRole.rtm:
         return Assets.images.career.rtm.image(
           height: height,
           width: width,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         );
       case InternshipRole.keyAccountOnPremise:
         return Assets.images.career.onPremise.image(
           height: height,
           width: width,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         );
       case InternshipRole.keyAccountOffPremise:
         return Assets.images.career.offPremise.image(
           height: height,
           width: width,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         );
       case InternshipRole.itDataAnalyst:
         return Assets.images.career.itData.image(
           height: height,
           width: width,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         );
       case InternshipRole.itPrivacy:
         return Assets.images.career.itPrivacy.image(
           height: height,
           width: width,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         );
       case InternshipRole.sales:
         return Assets.images.career.sales.image(
           height: height,
           width: width,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
         );
     }
   }
@@ -123,7 +123,7 @@ enum InternshipRole {
           S.current.keyRoleResponsibilities,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 20.spMin,
             color: foreground,
           ),
         ),
@@ -144,7 +144,7 @@ enum InternshipRole {
                       child: Icon(
                         Icons.circle,
                         color: foreground,
-                        size: 10,
+                        size: 10.spMin,
                       ),
                     ),
                   ),
@@ -153,7 +153,7 @@ enum InternshipRole {
                       item,
                       style: TextStyle(
                         color: foreground,
-                        fontSize: 16,
+                        fontSize: 16.spMin,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -205,7 +205,7 @@ enum InternshipRole {
           S.current.jobOverview,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 20.spMin,
             color: foreground,
           ),
         ),
@@ -226,7 +226,7 @@ enum InternshipRole {
                       child: Icon(
                         Icons.circle,
                         color: foreground,
-                        size: 10,
+                        size: 10.spMin,
                       ),
                     ),
                   ),
@@ -235,7 +235,7 @@ enum InternshipRole {
                       item,
                       style: TextStyle(
                         color: foreground,
-                        fontSize: 16,
+                        fontSize: 16.spMin,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -265,8 +265,8 @@ enum InternshipRole {
                             borderRadius: BorderRadius.circular(0),
                             color: Colors.white,
                           ),
-                          constraints: const BoxConstraints(
-                            maxWidth: 260,
+                          constraints: BoxConstraints(
+                            maxWidth: 260.w,
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -279,10 +279,10 @@ enum InternshipRole {
                                   children: [
                                     Text(
                                       e.toString(),
-                                      style: const TextStyle(
-                                        fontSize: 12,
+                                      style: TextStyle(
+                                        fontSize: 12.spMin,
                                         fontWeight: FontWeight.bold,
-                                        color: Color(0xFF5B2707),
+                                        color: const Color(0xFF5B2707),
                                       ),
                                     ),
                                     10.hSpace,
@@ -296,10 +296,10 @@ enum InternshipRole {
                                               width: 90,
                                               child: Text(
                                                 e,
-                                                style: const TextStyle(
-                                                  fontSize: 12,
+                                                style: TextStyle(
+                                                  fontSize: 12.spMin,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color(0xFF5B2707),
+                                                  color: const Color(0xFF5B2707),
                                                 ),
                                               ),
                                             ),
@@ -311,7 +311,7 @@ enum InternshipRole {
                               ),
                               10.hSpace,
                               Assets.images.career.dropdown.image(
-                                width: 260,
+                                width: 260.w,
                                 fit: BoxFit.fitWidth,
                               ),
                             ],
@@ -327,8 +327,8 @@ enum InternshipRole {
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                         child: Text(
                           e.toString(),
-                          style: const TextStyle(
-                            fontSize: 16,
+                          style: TextStyle(
+                            fontSize: 16.spMin,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),
@@ -353,22 +353,22 @@ enum InternshipRole {
           children: [
             Text(
               title.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 52,
+              style: TextStyle(
+                fontSize: 52.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
-            12.hSpace,
+            12.w.hSpace,
             Text(
               subtitle.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 19,
+              style: TextStyle(
+                fontSize: 19.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
-            20.h.hSpace,
+            20.w.hSpace,
           ],
         );
       case InternshipRole.tradeMarketing:
@@ -378,22 +378,22 @@ enum InternshipRole {
           children: [
             Text(
               title.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 52,
+              style: TextStyle(
+                fontSize: 52.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
-            12.hSpace,
+            12.w.hSpace,
             Text(
               subtitle.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 19,
+              style: TextStyle(
+                fontSize: 19.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
-            100.h.hSpace,
+            56.w.hSpace,
           ],
         );
       case InternshipRole.rtm:
@@ -403,19 +403,19 @@ enum InternshipRole {
           children: [
             Text(
               title.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 52,
+              style: TextStyle(
+                fontSize: 52.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
             12.hSpace,
             Text(
               subtitle.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 19,
+              style: TextStyle(
+                fontSize: 19.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
             60.h.hSpace,
@@ -429,19 +429,19 @@ enum InternshipRole {
           children: [
             Text(
               title.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 52,
+              style: TextStyle(
+                fontSize: 52.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
             12.hSpace,
             Text(
               '$subtitle $content'.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 19,
+              style: TextStyle(
+                fontSize: 19.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
             100.h.hSpace,
@@ -453,20 +453,20 @@ enum InternshipRole {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 52,
+              title,
+              style: TextStyle(
+                fontSize: 52.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFE6A00),
+                color: const Color(0xFFFE6A00),
               ),
             ),
             12.hSpace,
             Text(
               subtitle.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 19,
+              style: TextStyle(
+                fontSize: 19.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFE6A00),
+                color: const Color(0xFFFE6A00),
               ),
             ),
             100.h.hSpace,
@@ -479,19 +479,19 @@ enum InternshipRole {
           children: [
             Text(
               title.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 52,
+              style: TextStyle(
+                fontSize: 52.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
             12.hSpace,
             Text(
               subtitle.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 19,
+              style: TextStyle(
+                fontSize: 19.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
             40.h.hSpace,
@@ -504,10 +504,10 @@ enum InternshipRole {
           children: [
             Text(
               title.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 52,
+              style: TextStyle(
+                fontSize: 52.spMin,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFFDF056),
+                color: const Color(0xFFFDF056),
               ),
             ),
             120.h.hSpace,
@@ -525,7 +525,7 @@ enum InternshipRole {
         this == InternshipRole.keyAccountOffPremise) {
       final foreground = this == InternshipRole.tradeMarketing ? const Color(0xFFAA7047) : Colors.white;
       widget = Padding(
-        padding: EdgeInsets.only(left: 80.w, top: 80.h),
+        padding: EdgeInsets.only(left: 80.w, top: 80.w),
         child: SizedBox(
           width: 650.w,
           child: Column(
@@ -533,16 +533,16 @@ enum InternshipRole {
             children: [
               titleWidget(),
               overview(),
-              20.hSpace,
+              20.w.hSpace,
               responsibilities(),
-              14.hSpace,
+              14.w.hSpace,
               RichText(
                 text: TextSpan(
                   text: '${S.current.note}: ',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
-                    fontSize: 14,
+                    fontSize: 14.spMin,
                     color: foreground,
                   ),
                   children: [
@@ -550,7 +550,7 @@ enum InternshipRole {
                       text: note,
                       style: TextStyle(
                         fontStyle: FontStyle.italic,
-                        fontSize: 14,
+                        fontSize: 14.spMin,
                         color: foreground,
                         fontWeight: FontWeight.normal,
                       ),
@@ -580,16 +580,16 @@ enum InternshipRole {
             children: [
               titleWidget(),
               overview(),
-              20.hSpace,
+              20.w.hSpace,
               responsibilities(),
-              14.hSpace,
+              14.w.hSpace,
               RichText(
                 text: TextSpan(
                   text: '${S.current.note}: ',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
-                    fontSize: 14,
+                    fontSize: 14.spMin,
                     color: foreground,
                   ),
                   children: [
@@ -598,7 +598,7 @@ enum InternshipRole {
                       style: TextStyle(
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.normal,
-                        fontSize: 14,
+                        fontSize: 14.spMin,
                         color: foreground,
                       ),
                     ),
