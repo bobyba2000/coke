@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomFilledButton extends StatefulWidget {
   final String title;
@@ -30,14 +31,14 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
           borderRadius: BorderRadius.circular(8),
           color: backgroundColor,
         ),
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 40),
+        padding: EdgeInsets.symmetric(vertical: 14.w, horizontal: 40.w),
         duration: const Duration(milliseconds: 200),
         child: Text(
           widget.title,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             color: foreground,
-            fontSize: 18,
+            fontSize: 18.spMin,
           ),
         ),
       ),
@@ -70,14 +71,14 @@ class _CustomTextButtonState extends State<CustomTextButton> {
           borderRadius: BorderRadius.circular(8),
           color: backgroundColor,
         ),
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 40),
+        padding: EdgeInsets.symmetric(vertical: 14.w, horizontal: 40.w),
         duration: const Duration(milliseconds: 200),
         child: Text(
           widget.title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: foreground,
-            fontSize: 18,
+            fontSize: 18.spMin,
           ),
         ),
       ),

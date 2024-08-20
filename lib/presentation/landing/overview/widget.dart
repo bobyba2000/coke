@@ -13,21 +13,22 @@ class OverviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: 900.h,
+      width: 1400.w,
+      height: 700.w,
       child: Stack(
         fit: StackFit.expand,
         children: [
           Assets.images.overview.background.image(
-            height: 900.h,
-            fit: BoxFit.cover,
+            height: 600.w,
+            width: 700.w,
+            fit: BoxFit.fitWidth,
           ),
           Positioned(
             top: 0,
             left: 0,
             child: Assets.images.overview.overview1.image(
-              width: 900.w,
-              fit: BoxFit.fitWidth,
+              height: 600.w,
+              fit: BoxFit.fitHeight,
             ),
           ),
           Row(
@@ -57,7 +58,6 @@ class OverviewWidget extends StatelessWidget {
           ),
           const Positioned(
             top: 0,
-            height: 80,
             left: 0,
             right: 0,
             child: LandingPageAppbar(

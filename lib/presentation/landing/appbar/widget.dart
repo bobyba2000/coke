@@ -16,16 +16,16 @@ class LandingPageAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
       padding: EdgeInsets.only(
         left: 30.w,
         right: 30.w,
+        top: 10.w,
       ),
       child: Row(
         children: [
           if (showLogo)
             Assets.images.logoWhite.image(
-              width: 160,
+              width: 180.w,
             ),
           const Spacer(),
           CustomFilledButton(

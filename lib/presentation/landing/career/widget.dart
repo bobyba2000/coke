@@ -140,13 +140,13 @@ class CareerWidget extends StatelessWidget {
     final textTheme = theme.textTheme;
     return SizedBox(
       width: 1400.w,
-      height: 780.w,
+      height: 800.w,
       child: Stack(
         fit: StackFit.expand,
         children: [
           Assets.images.career.background.image(
             width: 1400.w,
-            height: 900.h,
+            height: 800.w,
             fit: BoxFit.fill,
           ),
           Positioned(
