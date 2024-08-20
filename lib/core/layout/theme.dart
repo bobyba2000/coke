@@ -1,3 +1,4 @@
+import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,10 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ThemeData themeData(BuildContext context) {
   return ThemeData(
     useMaterial3: false,
-    primaryColor: const Color(0xFFE51D2A),
+    primaryColor: ColorConstants.teal,
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
-      primary: Color(0xFFE51D2A),
+      primary: ColorConstants.teal,
       onPrimary: Colors.white,
       secondary: Colors.white,
       onSecondary: Colors.black,
@@ -26,7 +27,9 @@ ThemeData themeData(BuildContext context) {
     ),
     fontFamily: FontFamily.poppins,
     radioTheme: const RadioThemeData(
-      fillColor: MaterialStatePropertyAll(Color(0xFFE51D2A)),
+      fillColor: MaterialStatePropertyAll(
+        ColorConstants.teal,
+      ),
     ),
     scrollbarTheme: ScrollbarThemeData(
       trackColor: MaterialStatePropertyAll(
@@ -35,35 +38,35 @@ ThemeData themeData(BuildContext context) {
     ),
     textTheme: TextTheme(
       titleLarge: TextStyle(
-        fontSize: 35.spMax,
+        fontSize: 35.spMin,
         fontWeight: FontWeight.w600,
       ),
       displayLarge: TextStyle(
-        fontSize: 22.spMax,
+        fontSize: 22.spMin,
         fontWeight: FontWeight.bold,
       ),
       displaySmall: TextStyle(
-        fontSize: 16.spMax,
+        fontSize: 16.spMin,
         fontWeight: FontWeight.bold,
       ),
       bodyLarge: TextStyle(
-        fontSize: 16.spMax,
+        fontSize: 16.spMin,
         fontWeight: FontWeight.w400,
       ),
       bodyMedium: TextStyle(
-        fontSize: 12.spMax,
+        fontSize: 12.spMin,
         fontWeight: FontWeight.w400,
       ),
       bodySmall: TextStyle(
-        fontSize: 8.spMax,
+        fontSize: 8.spMin,
         fontWeight: FontWeight.w400,
       ),
       titleMedium: TextStyle(
-        fontSize: 16.spMax,
+        fontSize: 16.spMin,
         fontWeight: FontWeight.w400,
       ),
       headlineMedium: TextStyle(
-        fontSize: 18.spMax,
+        fontSize: 18.spMin,
         fontWeight: FontWeight.w500,
       ),
     ),

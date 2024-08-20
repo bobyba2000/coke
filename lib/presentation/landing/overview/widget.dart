@@ -8,26 +8,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../appbar/widget.dart';
 
 class OverviewWidget extends StatelessWidget {
-  const OverviewWidget({super.key});
+  final bool isApplyPage;
+  final bool isLoginPage;
+  const OverviewWidget({
+    super.key,
+    this.isApplyPage = false,
+    this.isLoginPage = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 1400.w,
-      height: 700.w,
+      height: isApplyPage || isLoginPage ? 400.w : 700.w,
       child: Stack(
         fit: StackFit.expand,
         children: [
           Assets.images.overview.background.image(
             height: 600.w,
-            width: 700.w,
+            width: isApplyPage || isLoginPage ? 400.w : 700.w,
             fit: BoxFit.fitWidth,
           ),
           Positioned(
             top: 0,
             left: 0,
             child: Assets.images.overview.overview1.image(
-              height: 600.w,
+              height: isApplyPage || isLoginPage ? 400.w : 600.w,
               fit: BoxFit.fitHeight,
             ),
           ),
@@ -56,12 +62,14 @@ class OverviewWidget extends StatelessWidget {
               )
             ],
           ),
-          const Positioned(
+          Positioned(
             top: 0,
             left: 0,
             right: 0,
             child: LandingPageAppbar(
               showLogo: true,
+              showApplyBtn: !isApplyPage,
+              showLoginBtn: !isLoginPage,
             ),
           ),
         ],

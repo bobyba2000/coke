@@ -1,4 +1,5 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:coke_platform/model/firebase/contestant/education/model.dart';
@@ -131,7 +132,9 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
       width: 1100.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: theme.dividerColor),
+        border: Border.all(
+          color: ColorConstants.teal,
+        ),
       ),
       padding: EdgeInsets.symmetric(horizontal: 64.w, vertical: 64.h),
       child: Column(
@@ -143,7 +146,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
             children: [
               LinearProgressIndicator(
                 value: currentStep.step,
-                color: colorScheme.primary,
+                color: ColorConstants.teal,
                 minHeight: 10.w,
                 backgroundColor: const Color(0xFFe9ecef),
                 borderRadius: BorderRadius.circular(5),
@@ -170,7 +173,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
                         height: 16.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.w),
-                          color: e.index > currentStep.index ? const Color(0xFFe9ecef) : colorScheme.primary,
+                          color: e.index > currentStep.index ? const Color(0xFFe9ecef) : ColorConstants.teal,
                         ),
                       ),
                     ),

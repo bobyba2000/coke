@@ -1,6 +1,8 @@
+import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final TextEditingController? inputController;
@@ -181,22 +183,22 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 ),
             border: widget.border ??
                 OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).dividerColor,
+                  borderSide: const BorderSide(
+                    color: ColorConstants.teal,
                   ),
                   borderRadius: BorderRadius.circular(12),
                 ),
             enabledBorder: widget.border ??
                 OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).dividerColor,
+                  borderSide: const BorderSide(
+                    color: ColorConstants.teal,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
             focusedBorder: widget.border ??
                 OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).dividerColor,
+                  borderSide: const BorderSide(
+                    color: ColorConstants.teal,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -212,10 +214,14 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             helperStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Colors.grey,
                 ),
-            contentPadding: widget.padding ?? const EdgeInsets.all(15),
-            suffixIconConstraints: const BoxConstraints(maxHeight: 24),
-            prefixIconConstraints: const BoxConstraints(
-              maxHeight: 24,
+            contentPadding: widget.padding ??
+                EdgeInsets.symmetric(
+                  horizontal: 15.w,
+                  vertical: 4.w,
+                ),
+            suffixIconConstraints: BoxConstraints(maxHeight: 12.w),
+            prefixIconConstraints: BoxConstraints(
+              maxHeight: 12.w,
             ),
             prefixIcon: widget.prefixIcon,
             suffixIcon: widget.obscureText

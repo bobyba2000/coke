@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,8 +43,8 @@ class AutoCompleteWidget<T> extends StatefulWidget {
 class _AutoCompleteWidgetState<T> extends State<AutoCompleteWidget<T>> {
   final _controller = TextEditingController();
   InputBorder get _inputBorder => OutlineInputBorder(
-        borderSide: BorderSide(
-          color: Theme.of(context).dividerColor,
+        borderSide: const BorderSide(
+          color: ColorConstants.teal,
         ),
         borderRadius: BorderRadius.circular(12),
       );

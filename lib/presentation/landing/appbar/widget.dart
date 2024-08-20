@@ -11,7 +11,14 @@ import 'package:go_router/go_router.dart';
 
 class LandingPageAppbar extends StatelessWidget {
   final bool showLogo;
-  const LandingPageAppbar({super.key, this.showLogo = false});
+  final bool showLoginBtn;
+  final bool showApplyBtn;
+  const LandingPageAppbar({
+    super.key,
+    this.showLogo = false,
+    this.showApplyBtn = true,
+    this.showLoginBtn = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +31,30 @@ class LandingPageAppbar extends StatelessWidget {
       child: Row(
         children: [
           if (showLogo)
-            Assets.images.logoWhite.image(
-              width: 180.w,
+            InkWell(
+              onTap: () {
+                context.go('/');
+              },
+              child: Assets.images.logoWhite.image(
+                width: 180.w,
+              ),
             ),
           const Spacer(),
-          CustomFilledButton(
-            title: S.current.applyNow,
-            onTap: () {
-              context.go('/apply');
-            },
-          ),
+          if (showApplyBtn)
+            CustomFilledButton(
+              title: S.current.applyNow,
+              onTap: () {
+                context.go('/apply');
+              },
+            ),
           24.wSpace,
-          CustomTextButton(
-            title: AppDependencies.injector.get<FirebaseAuthService>().isUserSignedIn() ? S.current.profile : S.current.login,
-            onTap: () {
-              context.go('/login');
-            },
-          ),
+          if (showLoginBtn)
+            CustomTextButton(
+              title: AppDependencies.injector.get<FirebaseAuthService>().isUserSignedIn() ? S.current.profile : S.current.login,
+              onTap: () {
+                context.go('/login');
+              },
+            ),
           24.wSpace,
           const LanguageSwitch(),
         ],

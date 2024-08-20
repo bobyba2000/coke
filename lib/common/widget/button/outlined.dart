@@ -1,3 +1,4 @@
+import 'package:coke_platform/constants/color.dart';
 import 'package:flutter/material.dart';
 
 class CustomOutlinedButton extends StatefulWidget {
@@ -23,20 +24,16 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final background = widget.enabled && isHover
-        ? widget.color ?? colorScheme.primary
-        : colorScheme.onPrimary;
+    final background = widget.enabled && isHover ? widget.color ?? ColorConstants.teal : colorScheme.onPrimary;
     final foreground = widget.enabled && isHover
         ? colorScheme.onPrimary
         : widget.enabled
-            ? widget.color ?? colorScheme.primary
+            ? widget.color ?? ColorConstants.teal
             : Colors.grey;
     final border = widget.enabled && isHover
         ? null
         : Border.all(
-            color: widget.enabled
-                ? widget.color ?? colorScheme.primary
-                : Colors.grey,
+            color: widget.enabled ? widget.color ?? ColorConstants.teal : Colors.grey,
           );
     return InkWell(
       onTap: widget.onTap,

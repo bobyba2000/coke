@@ -4,9 +4,11 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/loading_utility.dart';
 import 'package:coke_platform/common/utility/validator.dart';
 import 'package:coke_platform/common/widget/field/textfield_widget.dart';
+import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:coke_platform/service/firebase/auth.dart';
 import 'package:coke_platform/service/firebase/role.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +36,11 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
         backgroundColor: Colors.white,
         body: Stack(
           children: [
-            Assets.images.background.image(
-              width: double.infinity,
-              fit: BoxFit.fitWidth,
+            Container(
+              color: ColorConstants.teal,
+              child: const OverviewWidget(
+                isLoginPage: true,
+              ),
             ),
             SizedBox(
               height: double.infinity,
@@ -125,7 +129,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.r),
-                                color: Colors.black,
+                                color: ColorConstants.teal,
                               ),
                               padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 12.h),
                               alignment: Alignment.center,
