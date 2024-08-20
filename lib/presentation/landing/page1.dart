@@ -67,7 +67,7 @@ class CustomPageScrollPhysics extends PageScrollPhysics {
     if (trueIndex >= stops.length) {
       return stops.last;
     }
-    if (trueIndex < -1) {
+    if (trueIndex < 0) {
       return stops.first;
     }
     return stops[trueIndex];
