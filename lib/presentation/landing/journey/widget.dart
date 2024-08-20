@@ -123,18 +123,28 @@ class JourneyWidget1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 900.h,
       width: 1400.w,
+      height: 700.w,
       child: Column(
         children: [
-          200.h.hSpace,
+          80.w.hSpace,
+          Text(
+            S.current.cokeJourney,
+            style: TextStyle(
+              fontSize: 45.sp,
+              color: const Color(0xFFE7661F),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const Spacer(),
           LocaleUtility.locale.value.languageCode == 'en'
               ? Assets.images.journey.en.image(
-                  width: 1200.w,
+                  width: 1300.w,
                 )
               : Assets.images.journey.vi.image(
-                  width: 1200.w,
+                  width: 1300.w,
                 ),
+          const Spacer(),
         ],
       ),
     );
@@ -147,12 +157,12 @@ class JourneyWidget2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 900.h,
+      height: 800.w,
       width: 1400.w,
       padding: EdgeInsets.symmetric(horizontal: 100.w),
       child: Column(
         children: [
-          200.h.hSpace,
+          const Spacer(),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 24),
@@ -163,43 +173,39 @@ class JourneyWidget2 extends StatelessWidget {
               style: TextStyle(fontSize: 22.sp, color: const Color(0xFF1A6CC8), fontWeight: FontWeight.bold),
             ),
           ),
-          40.hSpace,
-          Expanded(
-            child: SingleChildScrollView(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: JourneyCharacter.f.widget,
-                  ),
-                  16.w.wSpace,
-                  Expanded(
-                    child: JourneyCharacter.r.widget,
-                  ),
-                  16.w.wSpace,
-                  Expanded(
-                    child: JourneyCharacter.e.widget,
-                  ),
-                  16.w.wSpace,
-                  Expanded(
-                    child: JourneyCharacter.s.widget,
-                  ),
-                  16.w.wSpace,
-                  Expanded(
-                    child: JourneyCharacter.h.widget,
-                  ),
-                ],
+          40.w.hSpace,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: JourneyCharacter.f.widget,
               ),
-            ),
+              16.w.wSpace,
+              Expanded(
+                child: JourneyCharacter.r.widget,
+              ),
+              16.w.wSpace,
+              Expanded(
+                child: JourneyCharacter.e.widget,
+              ),
+              16.w.wSpace,
+              Expanded(
+                child: JourneyCharacter.s.widget,
+              ),
+              16.w.wSpace,
+              Expanded(
+                child: JourneyCharacter.h.widget,
+              ),
+            ],
           ),
-          16.hSpace,
+          const Spacer(),
           CustomFilledButton(
             title: S.current.applyNow,
             onTap: () {
               context.go('/apply');
             },
           ),
-          50.h.hSpace
+          50.w.hSpace
         ],
       ),
     );

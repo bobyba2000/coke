@@ -348,5 +348,9 @@
     "hContent": "Chương trình của chúng tôi chú trọng vào việc nâng cao kỹ năng cần thiết cho vai trò của bạn thông qua những kinh nghiệm làm việc thực tiễn. Đa dạng điểm chạm với những bộ phận khác nhau trong môi trường doanh nghiệp của chúng tôi sẽ giúp bạn trau dồi năng lực chuyên môn và thúc đẩy sự phát triển cá nhân của bạn.​",
     "processTitle": "Quy trình tuyển chọn​",
     "processContent": "Để trở thành một trong những Coke Fresh 2024 tài năng, bạn cần chinh phục một lộ trình tuyển chọn “thần tốc”, nơi những năng lực của bạn tỏa sáng.​",
-    "onlyDaysLeft": "Chỉ còn %s ngày để ứng tuyển"
+    "onlyDaysLeft": "Chỉ còn %s ngày để ứng tuyển",
+    "days": "Ngày",
+    "hours": "Giờ",
+    "minutes": "Phút",
+    "seconds": "Giây"
 }

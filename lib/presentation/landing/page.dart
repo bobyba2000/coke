@@ -12,7 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'countdown/widget.dart';
+import 'journey/widget.dart';
 import 'page1.dart';
+import 'progress/widget.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -178,6 +181,7 @@ class _LandingPageState extends State<LandingPage> {
                                 style: TextStyle(
                                   color: ColorConstants.colorFFF220,
                                   fontSize: 45.sp,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
@@ -195,48 +199,17 @@ class _LandingPageState extends State<LandingPage> {
                     ),
                   ),
                   Container(
-                    height: 800.w,
+                    height: 700.w,
                     width: 1400.w,
                     color: const Color(0xFFf1feff),
                   ),
                   Container(
-                    height: 900.h,
+                    height: 1500.w,
                     width: 1400.w,
                     color: Colors.white,
-                    child: Column(
-                      children: [
-                        80.h.hSpace,
-                        Text(
-                          S.current.cokeJourney,
-                          style: TextStyle(
-                            fontSize: 45.sp,
-                            color: const Color(0xFFE7661F),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                   Container(
-                    height: 900.h,
-                    width: 1400.w,
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        80.h.hSpace,
-                        Text(
-                          S.current.cokeJourney,
-                          style: TextStyle(
-                            fontSize: 45.sp,
-                            color: const Color(0xFFE7661F),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 1100.h,
+                    height: 1000.w,
                     width: 1400.w,
                     color: const Color(0xFF9833ff),
                     child: Stack(
@@ -245,7 +218,7 @@ class _LandingPageState extends State<LandingPage> {
                         Positioned(
                           top: 0,
                           left: 0,
-                          height: 100.h,
+                          height: 100.w,
                           width: 1400.w,
                           child: Assets.images.progress.transition.image(
                             fit: BoxFit.fill,
@@ -253,14 +226,14 @@ class _LandingPageState extends State<LandingPage> {
                         ),
                         Assets.images.progress.background.image(
                           width: 1400.w,
-                          height: 1100.h,
+                          height: 1000.w,
                           fit: BoxFit.fill,
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    height: 700.h,
+                    height: 800.w,
                     width: 1400.w,
                     color: const Color(0xFF31cccc),
                     child: Stack(
@@ -289,19 +262,13 @@ class _LandingPageState extends State<LandingPage> {
               children: [
                 const OverviewWidget(),
                 const AboutWidget(),
-
                 const EssenceWidget1(),
                 const EssenceWidget2(),
                 const CareerWidget(),
-                // Column(
-                //   mainAxisSize: MainAxisSize.min,
-                //   children: [
-                //     const JourneyWidget1(),
-                //     const JourneyWidget2(),
-                //   ],
-                // ),
-                // const ProgressWidget(),
-                // const CountdownWidget(),
+                const JourneyWidget1(),
+                const JourneyWidget2(),
+                const ProgressWidget(),
+                const CountdownWidget(),
               ],
             ),
             // PageView(

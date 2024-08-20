@@ -48,7 +48,7 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
     final days = duration.inDays % 60;
 
     return SizedBox(
-      height: 900.h,
+      height: 800.w,
       width: 1400.w,
       child: Center(
         child: Column(
@@ -69,13 +69,25 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                timeBox(days),
+                timeBox(
+                  days,
+                  S.current.days,
+                ),
                 32.w.wSpace,
-                timeBox(hours),
+                timeBox(
+                  hours,
+                  S.current.hours,
+                ),
                 32.wSpace,
-                timeBox(minutes),
+                timeBox(
+                  minutes,
+                  S.current.minutes,
+                ),
                 32.w.wSpace,
-                timeBox(seconds),
+                timeBox(
+                  seconds,
+                  S.current.seconds,
+                ),
               ],
             ),
             60.h.hSpace,
@@ -91,30 +103,45 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
     );
   }
 
-  Widget timeBox(int value) {
-    return Container(
-      height: 170,
-      width: 170,
-      color: const Color(0xFF074343),
-      padding: const EdgeInsets.all(4),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: const Color(0xFF099A9A),
-            width: 1.5,
+  Widget timeBox(
+    int value,
+    String title,
+  ) {
+    return Column(
+      children: [
+        Container(
+          height: 170.w,
+          width: 170.w,
+          color: const Color(0xFF074343),
+          padding: const EdgeInsets.all(4),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color(0xFF099A9A),
+                width: 1.5,
+              ),
+              color: Colors.white,
+            ),
+            alignment: Alignment.center,
+            child: SpinnerText(
+              text: to2DigitString(value),
+              textStyle: TextStyle(
+                fontSize: 64.spMin,
+                color: const Color(0xFF049999),
+                fontWeight: FontWeight.w300,
+              ),
+            ),
           ),
-          color: Colors.white,
         ),
-        alignment: Alignment.center,
-        child: SpinnerText(
-          text: to2DigitString(value),
-          textStyle: const TextStyle(
-            fontSize: 64,
-            color: Color(0xFF049999),
-            fontWeight: FontWeight.w300,
+        16.w.hSpace,
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 32.spMin,
+            color: const Color(0xFF083A3A),
           ),
         ),
-      ),
+      ],
     );
   }
 

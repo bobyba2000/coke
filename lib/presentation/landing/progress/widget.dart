@@ -3,9 +3,7 @@ import 'dart:math';
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/overall/bubble.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProgressWidget extends StatelessWidget {
@@ -14,7 +12,7 @@ class ProgressWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 900.h,
+      height: 800.w,
       width: 1400.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,

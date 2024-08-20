@@ -34,6 +34,11 @@ class CustomPageScrollPhysics extends PageScrollPhysics {
     1600.w,
     2400.w,
     3200.w,
+    4000.w,
+    4700.w,
+    5500.w,
+    6300.w,
+    7100.w,
   ];
 
   @override

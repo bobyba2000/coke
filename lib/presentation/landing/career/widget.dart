@@ -42,14 +42,14 @@ class _WaveContainerState extends State<WaveContainer> {
               : [],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8.r),
           child: ClipPath(
             clipper: WaveClipper(),
             child: Container(
               color: role.color,
-              width: 250.w,
-              height: 120.w,
-              padding: const EdgeInsets.only(top: 24, left: 12, right: 12),
+              width: 200.w,
+              height: 96.w,
+              alignment: Alignment.center,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +62,7 @@ class _WaveContainerState extends State<WaveContainer> {
                       fontSize: 20.spMin,
                     ),
                   ),
-                  4.hSpace,
+                  4.wMin.hSpace,
                   Text(
                     role.subtitle,
                     style: TextStyle(
@@ -70,15 +70,20 @@ class _WaveContainerState extends State<WaveContainer> {
                       fontSize: 14.spMin,
                     ),
                   ),
-                  4.hSpace,
-                  Text(
-                    role.content ?? '',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10.spMin,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  )
+                  if ((role.content ?? '').isNotEmpty)
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 4.wMin,
+                      ),
+                      child: Text(
+                        role.content ?? '',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10.spMin,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    )
                 ],
               ),
             ),
@@ -99,10 +104,10 @@ class WaveClipper extends CustomClipper<Path> {
 
     // Create a smoother wave-like curve at the top border
     var firstControlPoint = Offset(size.width / 4, 0);
-    var firstEndPoint = Offset(size.width / 2, 15.w);
+    var firstEndPoint = Offset(size.width / 2, 12.w);
 
-    var secondControlPoint = Offset(3 * size.width / 4, 30.w);
-    var secondEndPoint = Offset(size.width, 15.w);
+    var secondControlPoint = Offset(3 * size.width / 4, 24.w);
+    var secondEndPoint = Offset(size.width, 12.w);
 
     path.quadraticBezierTo(
       firstControlPoint.dx,
@@ -150,7 +155,7 @@ class CareerWidget extends StatelessWidget {
             fit: BoxFit.fill,
           ),
           Positioned(
-            top: 200.h,
+            top: 200.w,
             left: 457.w,
             right: 457.w,
             child: Assets.images.career.model.image(
@@ -169,7 +174,7 @@ class CareerWidget extends StatelessWidget {
                   S.current.careerDesired,
                   style: textTheme.displaySmall?.copyWith(
                     color: const Color(0xFFBA5D1B),
-                    fontSize: 38,
+                    fontSize: 45.sp,
                   ),
                 ),
                 RichText(
@@ -178,12 +183,14 @@ class CareerWidget extends StatelessWidget {
                     text: S.current.careerDesiredSubtitle1,
                     style: textTheme.bodyLarge?.copyWith(
                       color: const Color(0xFFBA5D1B),
+                      fontSize: 22.sp,
                     ),
                     children: [
                       TextSpan(
                         text: S.current.careerDesiredSubtitle2,
                         style: textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
+                          fontSize: 22.sp,
                           color: const Color(0xFFBA5D1B),
                         ),
                       ),
