@@ -14,7 +14,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'career/widget.dart';
 import 'countdown/widget.dart';
 import 'progress/widget.dart';
-import 'widget/progress.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

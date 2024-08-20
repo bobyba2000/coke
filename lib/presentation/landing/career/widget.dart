@@ -47,9 +47,8 @@ class _WaveContainerState extends State<WaveContainer> {
             clipper: WaveClipper(),
             child: Container(
               color: role.color,
-              constraints: const BoxConstraints(minWidth: 200, minHeight: 95),
-              width: 250,
-              height: 120,
+              width: 250.w,
+              height: 120.w,
               padding: const EdgeInsets.only(top: 24, left: 12, right: 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,26 +56,26 @@ class _WaveContainerState extends State<WaveContainer> {
                 children: [
                   Text(
                     role.title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 20.spMin,
                     ),
                   ),
                   4.hSpace,
                   Text(
                     role.subtitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
-                      fontSize: 14,
+                      fontSize: 14.spMin,
                     ),
                   ),
                   4.hSpace,
                   Text(
                     role.content ?? '',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
-                      fontSize: 10,
+                      fontSize: 10.spMin,
                       fontStyle: FontStyle.italic,
                     ),
                   )

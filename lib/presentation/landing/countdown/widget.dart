@@ -41,6 +41,7 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final seconds = duration.inSeconds % 60;
     final minutes = duration.inMinutes % 60;
     final hours = duration.inHours % 60;

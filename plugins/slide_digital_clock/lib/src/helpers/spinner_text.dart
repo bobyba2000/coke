@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SpinnerText extends StatefulWidget {
-  SpinnerText({required this.text, this.textStyle, this.animationStyle});
+  const SpinnerText({Key? key, required this.text, this.textStyle, this.animationStyle}) : super(key: key);
 
   final String text;
   final TextStyle? textStyle;
   final Curve? animationStyle;
 
+  @override
   _SpinnerTextState createState() => _SpinnerTextState();
 }
 

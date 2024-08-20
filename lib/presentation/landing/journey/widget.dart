@@ -61,6 +61,26 @@ enum JourneyCharacter {
   }
 
   Widget get widget {
+    final titleStr = title.split(';');
+    Widget titleWidget = Text(
+      titleStr.last,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 20.sp,
+        color: const Color(0xFF035858),
+      ),
+    );
+    Widget subTitle = const SizedBox.shrink();
+    if (titleStr.length > 1) {
+      subTitle = Text(
+        titleStr.first,
+        style: TextStyle(
+          fontSize: 10.sp,
+          fontStyle: FontStyle.italic,
+          color: const Color(0xFF035858),
+        ),
+      );
+    }
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,14 +101,8 @@ enum JourneyCharacter {
           ),
         ),
         20.h.hSpace,
-        Text(
-          title.toUpperCase(),
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20.sp,
-            color: const Color(0xFF035858),
-          ),
-        ),
+        titleWidget,
+        subTitle,
         10.hSpace,
         Text(
           content,
@@ -178,7 +192,7 @@ class JourneyWidget2 extends StatelessWidget {
               ),
             ),
           ),
-          100.h.hSpace,
+          16.hSpace,
           CustomFilledButton(
             title: S.current.applyNow,
             onTap: () {

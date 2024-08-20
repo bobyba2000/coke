@@ -17,33 +17,42 @@ class ProgressWidget extends StatelessWidget {
       height: 900.h,
       width: 1400.w,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          600.w.wSpace,
-          Expanded(
-            child: Column(
-              children: [
-                150.h.hSpace,
-                Text(
-                  S.current.processTitle,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 45.sp,
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
+          Column(
+            children: [
+              SizedBox(
+                width: 700.w,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    150.h.hSpace,
+                    Text(
+                      S.current.processTitle,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 45.sp,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    10.h.hSpace,
+                    Text(
+                      S.current.processContent,
+                      style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 22.sp,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    10.h.hSpace,
+                  ],
                 ),
-                10.h.hSpace,
-                Text(
-                  S.current.processContent,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 22.sp,
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                10.h.hSpace,
-                Expanded(
+              ),
+              Expanded(
+                child: SizedBox(
+                  width: 800.w,
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
@@ -315,8 +324,8 @@ class ProgressWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           100.w.wSpace,
         ],
