@@ -49,6 +49,8 @@ dependencies:
   flutter_smart_dialog: ^4.9.8
   provider: ^6.1.2
   flutter_animate_on_scroll: ^0.1.1
+  slide_digital_clock: 
+    path: plugins/slide_digital_clock
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,6 +68,7 @@ flutter:
     - assets/images/essence/
     - assets/images/career/
     - assets/images/journey/
+    - assets/images/progress/
     - assets/resources/
     - assets/font/
   fonts:

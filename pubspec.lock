@@ -1050,6 +1050,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slide_digital_clock:
+    dependency: "direct main"
+    description:
+      path: "plugins/slide_digital_clock"
+      relative: true
+    source: path
+    version: "1.0.3"
   source_gen:
     dependency: transitive
     description:

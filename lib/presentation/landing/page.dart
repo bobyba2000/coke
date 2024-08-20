@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/about/widget.dart';
 import 'package:coke_platform/presentation/landing/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/journey/widget.dart';
@@ -10,6 +12,8 @@ import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'career/widget.dart';
+import 'countdown/widget.dart';
+import 'progress/widget.dart';
 import 'widget/progress.dart';
 
 class LandingPage extends StatefulWidget {
@@ -27,6 +31,8 @@ class _LandingPageState extends State<LandingPage> {
   num previousPosition = 0;
   int page = 0;
   bool isScrollbarHover = false;
+
+  final journey1Key = GlobalKey();
 
   @override
   void initState() {
@@ -166,6 +172,83 @@ class _LandingPageState extends State<LandingPage> {
                     height: 900.h,
                     width: 1400.w,
                     color: Colors.white,
+                    child: Column(
+                      children: [
+                        80.h.hSpace,
+                        Text(
+                          S.current.cokeJourney,
+                          style: TextStyle(
+                            fontSize: 45.sp,
+                            color: const Color(0xFFE7661F),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 900.h,
+                    width: 1400.w,
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        80.h.hSpace,
+                        Text(
+                          S.current.cokeJourney,
+                          style: TextStyle(
+                            fontSize: 45.sp,
+                            color: const Color(0xFFE7661F),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 1100.h,
+                    width: 1400.w,
+                    color: const Color(0xFF9833ff),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          height: 100.h,
+                          width: 1400.w,
+                          child: Assets.images.progress.transition.image(
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Assets.images.progress.background.image(
+                          width: 1400.w,
+                          height: 1100.h,
+                          fit: BoxFit.fill,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 700.h,
+                    width: 1400.w,
+                    color: const Color(0xFF31cccc),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Assets.images.about.background.image(),
+                        Positioned(
+                          bottom: 0,
+                          width: 1400.w,
+                          height: 100.h,
+                          left: 0,
+                          child: Assets.images.progress.bottom.image(
+                            width: 1400.w,
+                            height: 100.h,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -184,7 +267,10 @@ class _LandingPageState extends State<LandingPage> {
                   page: page,
                 ),
                 const CareerWidget(),
-                const JourneyWidget(),
+                const JourneyWidget1(),
+                const JourneyWidget2(),
+                const ProgressWidget(),
+                const CountdownWidget(),
               ],
             ),
           ],
