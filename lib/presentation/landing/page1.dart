@@ -15,7 +15,7 @@ class CustomScrollWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       controller: controller,
-      physics: 1400.w * 1.5 < 900.h ? null : CustomPageScrollPhysics(),
+      // physics: 1400.w * 1.5 < 900.h ? null : CustomPageScrollPhysics(),
       child: ChangeNotifierProvider(
         create: (context) => controller,
         child: Column(
@@ -46,7 +46,8 @@ class CustomPageScrollPhysics extends PageScrollPhysics {
     return CustomPageScrollPhysics(parent: buildParent(ancestor));
   }
 
-  double _getTargetPixels(ScrollMetrics position, Tolerance tolerance, double velocity) {
+  double _getTargetPixels(
+      ScrollMetrics position, Tolerance tolerance, double velocity) {
     double ratio = 0;
     int index = 0;
     for (var i = 0; i < stops.length; i++) {
@@ -70,18 +71,26 @@ class CustomPageScrollPhysics extends PageScrollPhysics {
     if (trueIndex < 0) {
       return stops.first;
     }
+    final previousPart = trueIndex == 0 ? 0 : stops[trueIndex - 1];
+    final height = stops[trueIndex] - previousPart;
+    // if (height > 900.h && (stops[trueIndex] - position.pixels) / height < 0.5) {
+    //   return position.pixels;
+    // }
     return stops[trueIndex];
   }
 
   @override
-  Simulation? createBallisticSimulation(ScrollMetrics position, double velocity) {
-    if ((velocity <= 0.0 && position.pixels <= position.minScrollExtent) || (velocity >= 0.0 && position.pixels >= position.maxScrollExtent)) {
+  Simulation? createBallisticSimulation(
+      ScrollMetrics position, double velocity) {
+    if ((velocity <= 0.0 && position.pixels <= position.minScrollExtent) ||
+        (velocity >= 0.0 && position.pixels >= position.maxScrollExtent)) {
       return super.createBallisticSimulation(position, velocity);
     }
     final Tolerance tolerance = toleranceFor(position);
     final double target = _getTargetPixels(position, tolerance, velocity);
     if (target != position.pixels) {
-      return ScrollSpringSimulation(spring, position.pixels, target, velocity, tolerance: tolerance);
+      return ScrollSpringSimulation(spring, position.pixels, target, velocity,
+          tolerance: tolerance);
     }
     return null;
   }
