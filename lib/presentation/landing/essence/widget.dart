@@ -213,13 +213,13 @@ class _EssenceWidget2State extends State<EssenceWidget2> {
         return Opacity(
           opacity: percentage,
           child: SizedBox(
-            height: 800.w,
+            height: 900.w,
             child: ValueListenableBuilder(
               valueListenable: LocaleUtility.locale,
               builder: (context, locale, child) {
                 return Column(
                   children: [
-                    150.w.hSpace,
+                    200.w.hSpace,
                     locale.languageCode == 'en'
                         ? Assets.images.essence.winning.image(
                             height: 350.w,
