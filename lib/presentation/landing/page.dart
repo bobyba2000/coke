@@ -201,11 +201,6 @@ class _LandingPageState extends State<LandingPage> {
                                     ),
                                   ],
                                 ),
-                                Assets.images.essence.bottom.image(
-                                  width: 1400.w,
-                                  height: 120.w,
-                                  fit: BoxFit.fill,
-                                ),
                               ],
                             ),
                           ),

@@ -210,20 +210,37 @@ class _EssenceWidget2State extends State<EssenceWidget2> {
         if (1400.w * 1.5 < 900.h) {
           percentage = 1;
         }
-
         return Opacity(
           opacity: percentage,
           child: SizedBox(
             height: 800.w,
-            child: Column(
-              children: [
-                const Spacer(),
-                Assets.images.essence.en2.image(
-                  width: 1200.w,
-                  fit: BoxFit.contain,
-                ),
-                50.w.hSpace,
-              ],
+            child: ValueListenableBuilder(
+              valueListenable: LocaleUtility.locale,
+              builder: (context, locale, child) {
+                return Column(
+                  children: [
+                    150.w.hSpace,
+                    locale.languageCode == 'en'
+                        ? Assets.images.essence.winning.image(
+                            height: 350.w,
+                            fit: BoxFit.fitHeight,
+                          )
+                        : Assets.images.essence.winningVi.image(
+                            height: 350.w,
+                            fit: BoxFit.fitHeight,
+                          ),
+                    locale.languageCode == 'en'
+                        ? Assets.images.essence.en2.image(
+                            width: 1400.w,
+                            fit: BoxFit.fitWidth,
+                          )
+                        : Assets.images.essence.vi2.image(
+                            width: 1400.w,
+                            fit: BoxFit.fitWidth,
+                          ),
+                  ],
+                );
+              },
             ),
           ),
         );
