@@ -670,11 +670,13 @@ enum InternshipRole {
                 bottom: 50.wMin,
                 child: SizedBox(
                   width: width,
-                  child: Row(
-                    children: [
-                      left,
-                      right,
-                    ],
+                  child: SelectionArea(
+                    child: Row(
+                      children: [
+                        left,
+                        right,
+                      ],
+                    ),
                   ),
                 ),
               ),

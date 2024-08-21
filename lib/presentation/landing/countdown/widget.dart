@@ -61,7 +61,7 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
               ),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 45.sp,
+                fontSize: 38.sp,
                 color: Colors.white,
               ),
             ),

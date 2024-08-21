@@ -133,14 +133,6 @@ class _LandingPageState extends State<LandingPage> {
                             width: 1400.w,
                             fit: BoxFit.fill,
                           ),
-                          Positioned(
-                            bottom: 400.h,
-                            left: 90.w,
-                            child: ZoomIn(
-                              globalKey: GlobalKey(),
-                              child: Assets.images.about.background.image(),
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -219,7 +211,7 @@ class _LandingPageState extends State<LandingPage> {
                                   S.current.essenceTitle.toUpperCase(),
                                   style: TextStyle(
                                     color: const Color(0xFF19FFFE),
-                                    fontSize: 45.sp,
+                                    fontSize: 38.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -249,7 +241,7 @@ class _LandingPageState extends State<LandingPage> {
                       color: Colors.white,
                     ),
                     SizedBox(
-                      height: 1000.w,
+                      height: 1120.w,
                       width: 1400.w,
                       child: Stack(
                         fit: StackFit.expand,
@@ -280,14 +272,14 @@ class _LandingPageState extends State<LandingPage> {
                           ),
                           Assets.images.progress.background.image(
                             width: 1400.w,
-                            height: 1000.w,
+                            height: 1120.w,
                             fit: BoxFit.fill,
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      height: 600.w,
+                      height: 480.w,
                       width: 1400.w,
                       color: const Color(0xFF31cccc),
                       child: Stack(

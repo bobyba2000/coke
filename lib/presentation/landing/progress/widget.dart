@@ -29,7 +29,7 @@ class ProgressWidget extends StatelessWidget {
                       S.current.processTitle.toUpperCase(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 45.sp,
+                        fontSize: 38.sp,
                         color: Colors.white,
                       ),
                       textAlign: TextAlign.center,

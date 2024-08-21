@@ -30,7 +30,7 @@ class AboutWidget extends StatelessWidget {
         children: [
           100.w.wSpace,
           SizedBox(
-            width: 500.w,
+            width: 480.w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,8 +38,8 @@ class AboutWidget extends StatelessWidget {
                 Text(
                   S.current.aboutTheProgram.toUpperCase(),
                   style: textTheme.displaySmall?.copyWith(
-                    color: ColorConstants.color3F6DB8,
-                    fontSize: 48.sp,
+                    color: const Color(0xFF084A99),
+                    fontSize: 40.sp,
                   ),
                 ),
                 16.hSpace,

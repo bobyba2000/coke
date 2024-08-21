@@ -173,7 +173,7 @@ class CareerWidget extends StatelessWidget {
                   S.current.careerDesired.toUpperCase(),
                   style: textTheme.displaySmall?.copyWith(
                     color: const Color(0xFFBA5D1B),
-                    fontSize: 45.sp,
+                    fontSize: 38.sp,
                   ),
                   textAlign: TextAlign.center,
                 ),

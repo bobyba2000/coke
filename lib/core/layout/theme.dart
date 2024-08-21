@@ -40,6 +40,7 @@ ThemeData themeData(BuildContext context) {
           TextStyle(
             fontSize: 16.spMin,
             fontWeight: FontWeight.w500,
+            fontFamily: FontFamily.poppins,
           ),
         ),
       ),

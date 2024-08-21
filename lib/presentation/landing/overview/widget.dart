@@ -24,11 +24,6 @@ class OverviewWidget extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Assets.images.overview.background.image(
-            height: 600.w,
-            width: isApplyPage || isLoginPage ? 400.w : 700.w,
-            fit: BoxFit.fitWidth,
-          ),
           Positioned(
             top: 0,
             left: 0,

@@ -37,7 +37,7 @@ dependencies:
   flutter_dropzone: ^4.0.1
   file_picker: ^8.0.5
   dotted_border: ^2.1.0
-  url_launcher: ^6.2.4
+  url_launcher: ^6.3.0
   month_picker_dialog: ^2.12.0
   firebase_core: 2.31.0
   firebase_auth: 4.19.4
@@ -71,6 +71,7 @@ flutter:
     - assets/images/journey/
     - assets/images/progress/
     - assets/images/countdown/
+    - assets/images/footer/
     - assets/resources/
     - assets/font/
   fonts:

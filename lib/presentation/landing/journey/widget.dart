@@ -95,7 +95,7 @@ enum JourneyCharacter {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: color,
-                fontSize: 45.sp,
+                fontSize: 38.sp,
               ),
             ),
           ),
@@ -131,7 +131,7 @@ class JourneyWidget1 extends StatelessWidget {
           Text(
             S.current.cokeJourney.toUpperCase(),
             style: TextStyle(
-              fontSize: 45.sp,
+              fontSize: 38.sp,
               color: const Color(0xFFE7661F),
               fontWeight: FontWeight.bold,
             ),
