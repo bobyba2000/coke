@@ -71,7 +71,7 @@ class _CustomTextButtonState extends State<CustomTextButton> {
           borderRadius: BorderRadius.circular(8),
           color: backgroundColor,
         ),
-        padding: EdgeInsets.symmetric(vertical: 14.w, horizontal: 40.w),
+        padding: EdgeInsets.symmetric(vertical: 14.w, horizontal: 20.w),
         duration: const Duration(milliseconds: 200),
         child: Text(
           widget.title,

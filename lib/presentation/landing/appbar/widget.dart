@@ -26,7 +26,7 @@ class LandingPageAppbar extends StatelessWidget {
       padding: EdgeInsets.only(
         left: 30.w,
         right: 30.w,
-        top: 10.w,
+        top: 5.w,
       ),
       child: Row(
         children: [
@@ -37,7 +37,7 @@ class LandingPageAppbar extends StatelessWidget {
                 context.go('/');
               },
               child: Assets.images.logoWhite.image(
-                width: 180.w,
+                width: 240.w,
               ),
             ),
           Expanded(
@@ -54,11 +54,7 @@ class LandingPageAppbar extends StatelessWidget {
                 24.wSpace,
                 if (showLoginBtn)
                   CustomTextButton(
-                    title: AppDependencies.injector
-                            .get<FirebaseAuthService>()
-                            .isUserSignedIn()
-                        ? S.current.profile
-                        : S.current.login,
+                    title: AppDependencies.injector.get<FirebaseAuthService>().isUserSignedIn() ? S.current.profile : S.current.login,
                     onTap: () {
                       context.go('/login');
                     },
