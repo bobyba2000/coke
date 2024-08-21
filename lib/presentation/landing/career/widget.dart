@@ -59,7 +59,7 @@ class _WaveContainerState extends State<WaveContainer> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-                      fontSize: 20.spMin,
+                      fontSize: 18.spMin,
                     ),
                   ),
                   4.wMin.hSpace,
@@ -67,7 +67,7 @@ class _WaveContainerState extends State<WaveContainer> {
                     role.subtitle,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 14.spMin,
+                      fontSize: 12.spMin,
                     ),
                   ),
                   if ((role.content ?? '').isNotEmpty)
