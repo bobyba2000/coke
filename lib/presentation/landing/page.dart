@@ -125,13 +125,13 @@ class _LandingPageState extends State<LandingPage> {
                 children: [
                   Container(
                     color: const Color(0xFF3f6db8),
-                    height: 1602.w,
+                    height: 1700.w,
                     width: 1400.w,
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
                         Assets.images.landingPageBackground.image(
-                          height: 1600.w,
+                          height: 1700.w,
                           width: 1400.w,
                           fit: BoxFit.fill,
                         ),
@@ -143,21 +143,13 @@ class _LandingPageState extends State<LandingPage> {
                             child: Assets.images.about.background.image(),
                           ),
                         ),
-                        Positioned(
-                          bottom: 120.w,
-                          right: 90.w,
-                          child: Assets.images.about.model.image(
-                            width: 800.w,
-                            fit: BoxFit.fitWidth,
-                          ),
-                        ),
                       ],
                     ),
                   ),
                   Container(
                     width: 1400.w,
                     color: const Color(0xFF3f6db8),
-                    height: 1400.w * 1.5 < 900.h ? 1800.w : 900.w,
+                    height: 1400.w * 1.5 < 900.h ? 1700.w : 800.w,
                     child: Stack(
                       fit: StackFit.expand,
                       alignment: Alignment.bottomCenter,
@@ -169,10 +161,10 @@ class _LandingPageState extends State<LandingPage> {
                           right: 0,
                           child: Container(
                             color: const Color(0xFF3f6db8),
-                            height: 1400.w * 1.5 < 900.h ? 1700.w : 800.w,
+                            height: 1400.w * 1.5 < 900.h ? 1600.w : 700.w,
                             width: double.infinity,
                             child: Assets.images.essence.background.image(
-                              height: 1400.w * 1.5 < 900.h ? 1700.w : 800.w,
+                              height: 1400.w * 1.5 < 900.h ? 1600.w : 700.w,
                               width: double.infinity,
                               fit: BoxFit.fill,
                             ),
@@ -180,7 +172,7 @@ class _LandingPageState extends State<LandingPage> {
                         ),
                         Positioned(
                           left: 300.w,
-                          top: 1400.w * 1.5 < 900.h ? 1000.w : 200.w,
+                          top: 1400.w * 1.5 < 900.h ? 900.w : 100.w,
                           child: Assets.images.essence.model.image(
                             width: 600.w,
                           ),
@@ -221,7 +213,7 @@ class _LandingPageState extends State<LandingPage> {
                         Positioned(
                           left: 300.w,
                           right: 300.w,
-                          top: 80.w,
+                          top: 0.w,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -320,8 +312,7 @@ class _LandingPageState extends State<LandingPage> {
                   Builder(
                     builder: (context) {
                       if (footerKey.currentContext != null) {
-                        final box = footerKey.currentContext!.findRenderObject()
-                            as RenderBox;
+                        final box = footerKey.currentContext!.findRenderObject() as RenderBox;
                         return SizedBox(
                           width: 1400.w,
                           height: box.size.height,
