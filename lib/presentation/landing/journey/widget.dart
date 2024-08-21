@@ -129,7 +129,7 @@ class JourneyWidget1 extends StatelessWidget {
         children: [
           80.w.hSpace,
           Text(
-            S.current.cokeJourney,
+            S.current.cokeJourney.toUpperCase(),
             style: TextStyle(
               fontSize: 45.sp,
               color: const Color(0xFFE7661F),

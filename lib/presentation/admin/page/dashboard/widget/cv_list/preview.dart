@@ -560,8 +560,8 @@ class PreviewContestantDialog extends StatelessWidget {
       constraints: BoxConstraints(
         minWidth: 400.w,
       ),
-      child: RichText(
-        text: TextSpan(
+      child: SelectableText.rich(
+        TextSpan(
           text: '$title: ',
           style: textTheme.bodyLarge?.copyWith(
             fontWeight: FontWeight.bold,

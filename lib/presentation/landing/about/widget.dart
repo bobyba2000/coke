@@ -43,8 +43,8 @@ class AboutWidget extends StatelessWidget {
                   ),
                 ),
                 16.hSpace,
-                RichText(
-                  text: TextSpan(
+                SelectableText.rich(
+                  TextSpan(
                     text: S.current.aboutTheProgramContent1,
                     style: normal,
                     children: [

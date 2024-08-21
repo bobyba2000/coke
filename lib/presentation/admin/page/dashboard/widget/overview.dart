@@ -76,8 +76,8 @@ class _OverviewWidgetState extends State<OverviewWidget> {
                   ],
                 ),
               ),
-              RichText(
-                text: TextSpan(
+              SelectableText.rich(
+                TextSpan(
                   text: widget.totalCVs.toStringWithSeperator(),
                   style: textTheme.displayLarge?.copyWith(
                     color: colorScheme.primary,

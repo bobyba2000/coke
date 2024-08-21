@@ -26,7 +26,7 @@ class ProgressWidget extends StatelessWidget {
                   children: [
                     200.w.hSpace,
                     Text(
-                      S.current.processTitle,
+                      S.current.processTitle.toUpperCase(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 45.sp,

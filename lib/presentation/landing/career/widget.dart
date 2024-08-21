@@ -163,8 +163,8 @@ class CareerWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 400.w,
-            right: 400.w,
+            left: 375.w,
+            right: 375.w,
             top: 80.w,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -175,11 +175,11 @@ class CareerWidget extends StatelessWidget {
                     color: const Color(0xFFBA5D1B),
                     fontSize: 45.sp,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 8.w.hSpace,
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
+                SelectableText.rich(
+                  TextSpan(
                     text: S.current.careerDesiredSubtitle1,
                     style: textTheme.bodyLarge?.copyWith(
                       color: const Color(0xFFBA5D1B),
@@ -199,6 +199,7 @@ class CareerWidget extends StatelessWidget {
                       ),
                     ],
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 40.hSpace,
               ],
