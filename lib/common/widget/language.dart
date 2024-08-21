@@ -7,6 +7,8 @@ import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 enum LanguageType {
   vietnamese,
   english;
@@ -24,9 +26,15 @@ enum LanguageType {
   Widget get icon {
     switch (this) {
       case LanguageType.vietnamese:
-        return Assets.images.vi.image();
+        return Assets.images.vi.image(
+          width: 30.w,
+          fit: BoxFit.fitWidth,
+        );
       case LanguageType.english:
-        return Assets.images.en.image();
+        return Assets.images.en.image(
+          width: 30.w,
+          fit: BoxFit.fitWidth,
+        );
     }
   }
 }
@@ -40,14 +48,17 @@ class LanguageSwitch extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: LocaleUtility.locale,
       builder: (BuildContext context, Locale value, Widget? child) {
-        final data = value.languageCode == 'vi' ? LanguageType.vietnamese : LanguageType.english;
+        final data = value.languageCode == 'vi'
+            ? LanguageType.vietnamese
+            : LanguageType.english;
         return PopupMenuButton(
           tooltip: S.current.languageTooltip,
           itemBuilder: (context) => LanguageType.values
               .map(
                 (e) => PopupMenuItem(
                   onTap: () {
-                    final languageCode = e == LanguageType.vietnamese ? 'vi' : 'en';
+                    final languageCode =
+                        e == LanguageType.vietnamese ? 'vi' : 'en';
                     LocaleUtility.saveLocale(languageCode);
                     LocaleUtility.locale.value = Locale(languageCode);
                     if (needToRefresh) {
@@ -58,8 +69,8 @@ class LanguageSwitch extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(
-                        width: 30,
-                        height: 30,
+                        width: 30.w,
+                        height: 30.w,
                         child: e.icon,
                       ),
                       8.wSpace,

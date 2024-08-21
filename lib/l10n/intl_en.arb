@@ -352,5 +352,7 @@
     "days": "Days",
     "hours": "Hours",
     "minutes": "Minutes",
-    "seconds": "Seconds"
+    "seconds": "Seconds",
+    "developmentJourney": "Development Journey",
+    "selectionProcess": "Selection Process"
 }

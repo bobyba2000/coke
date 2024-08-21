@@ -156,17 +156,16 @@ class CareerWidget extends StatelessWidget {
           ),
           Positioned(
             top: 200.w,
-            left: 457.w,
-            right: 457.w,
+            left: 500.w,
+            right: 500.w,
             child: Assets.images.career.model.image(
-              width: 486.w,
               fit: BoxFit.fitWidth,
             ),
           ),
           Positioned(
             left: 300.w,
             right: 300.w,
-            top: 40,
+            top: 80.w,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -177,20 +176,21 @@ class CareerWidget extends StatelessWidget {
                     fontSize: 45.sp,
                   ),
                 ),
+                10.w.wSpace,
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     text: S.current.careerDesiredSubtitle1,
                     style: textTheme.bodyLarge?.copyWith(
                       color: const Color(0xFFBA5D1B),
-                      fontSize: 22.sp,
+                      fontSize: 16.sp,
                     ),
                     children: [
                       TextSpan(
                         text: S.current.careerDesiredSubtitle2,
                         style: textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
-                          fontSize: 22.sp,
+                          fontSize: 16.sp,
                           color: const Color(0xFFBA5D1B),
                         ),
                       ),
@@ -206,56 +206,56 @@ class CareerWidget extends StatelessWidget {
           ),
           Positioned(
             left: 100.w,
-            top: 150.w,
+            top: 200.w,
             child: const WaveContainer(
               role: InternshipRole.sales,
             ),
           ),
           Positioned(
             right: 100.w,
-            top: 150.w,
+            top: 200.w,
             child: const WaveContainer(
               role: InternshipRole.procurement,
             ),
           ),
           Positioned(
             left: 150.w,
-            top: 300.w,
+            top: 350.w,
             child: const WaveContainer(
               role: InternshipRole.tradeMarketing,
             ),
           ),
           Positioned(
             right: 150.w,
-            top: 300.w,
+            top: 350.w,
             child: const WaveContainer(
               role: InternshipRole.rtm,
             ),
           ),
           Positioned(
             left: 200.w,
-            top: 450.w,
+            top: 500.w,
             child: const WaveContainer(
               role: InternshipRole.itDataAnalyst,
             ),
           ),
           Positioned(
             right: 200.w,
-            top: 450.w,
+            top: 500.w,
             child: const WaveContainer(
               role: InternshipRole.itPrivacy,
             ),
           ),
           Positioned(
             left: 250.w,
-            top: 600.w,
+            top: 650.w,
             child: const WaveContainer(
               role: InternshipRole.keyAccountOnPremise,
             ),
           ),
           Positioned(
             right: 250.w,
-            top: 600.w,
+            top: 650.w,
             child: const WaveContainer(
               role: InternshipRole.keyAccountOffPremise,
             ),

@@ -30,6 +30,7 @@ class LandingPageAppbar extends StatelessWidget {
       ),
       child: Row(
         children: [
+          const Spacer(),
           if (showLogo)
             InkWell(
               onTap: () {
@@ -39,24 +40,34 @@ class LandingPageAppbar extends StatelessWidget {
                 width: 180.w,
               ),
             ),
-          const Spacer(),
-          if (showApplyBtn)
-            CustomFilledButton(
-              title: S.current.applyNow,
-              onTap: () {
-                context.go('/apply');
-              },
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (showApplyBtn)
+                  CustomFilledButton(
+                    title: S.current.applyNow,
+                    onTap: () {
+                      context.go('/apply');
+                    },
+                  ),
+                24.wSpace,
+                if (showLoginBtn)
+                  CustomTextButton(
+                    title: AppDependencies.injector
+                            .get<FirebaseAuthService>()
+                            .isUserSignedIn()
+                        ? S.current.profile
+                        : S.current.login,
+                    onTap: () {
+                      context.go('/login');
+                    },
+                  ),
+                24.wSpace,
+                const LanguageSwitch(),
+              ],
             ),
-          24.wSpace,
-          if (showLoginBtn)
-            CustomTextButton(
-              title: AppDependencies.injector.get<FirebaseAuthService>().isUserSignedIn() ? S.current.profile : S.current.login,
-              onTap: () {
-                context.go('/login');
-              },
-            ),
-          24.wSpace,
-          const LanguageSwitch(),
+          )
         ],
       ),
     );

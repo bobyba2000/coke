@@ -70,6 +70,7 @@ flutter:
     - assets/images/career/
     - assets/images/journey/
     - assets/images/progress/
+    - assets/images/countdown/
     - assets/resources/
     - assets/font/
   fonts:

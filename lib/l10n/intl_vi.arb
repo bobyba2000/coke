@@ -352,5 +352,7 @@
     "days": "Ngày",
     "hours": "Giờ",
     "minutes": "Phút",
-    "seconds": "Giây"
+    "seconds": "Giây",
+    "developmentJourney": "Lộ trình phát triển",
+    "selectionProcess": "Quy trình tuyển chọn"
 }
