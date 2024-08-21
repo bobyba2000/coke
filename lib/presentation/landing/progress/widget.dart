@@ -24,7 +24,7 @@ class ProgressWidget extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    150.w.hSpace,
+                    200.w.hSpace,
                     Text(
                       S.current.processTitle,
                       style: TextStyle(

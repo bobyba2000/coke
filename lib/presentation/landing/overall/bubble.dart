@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WaterBubble extends StatefulWidget {
   final double size;
@@ -68,8 +69,8 @@ class _WaterBubbleState extends State<WaterBubble> with SingleTickerProviderStat
                     color: Colors.white.withOpacity(
                       0.2,
                     ),
-                    blurRadius: _animation.value,
-                    spreadRadius: _animation.value,
+                    blurRadius: _animation.value.w,
+                    spreadRadius: _animation.value.w,
                   ),
                 ],
               ),

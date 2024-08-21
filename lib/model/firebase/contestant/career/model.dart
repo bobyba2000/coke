@@ -133,7 +133,7 @@ enum InternshipRole {
           (index) {
             final item = data[index];
             return Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: EdgeInsets.only(bottom: 10.wMin),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -248,10 +248,10 @@ enum InternshipRole {
         Visibility(
           visible: this == sales,
           child: Padding(
-            padding: const EdgeInsets.only(top: 12),
+            padding: EdgeInsets.only(top: 12.wMin),
             child: Wrap(
-              runSpacing: 12,
-              spacing: 12,
+              runSpacing: 12.wMin,
+              spacing: 12.wMin,
               children: LocationModel.values
                   .map(
                     (e) => Tooltip(
@@ -370,7 +370,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            12.w.hSpace,
+            12.wMin.hSpace,
             Text(
               subtitle.toUpperCase(),
               style: TextStyle(
@@ -379,7 +379,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            20.w.hSpace,
+            20.wMin.hSpace,
           ],
         );
       case InternshipRole.tradeMarketing:
@@ -395,7 +395,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            12.w.hSpace,
+            12.wMin.hSpace,
             Text(
               subtitle.toUpperCase(),
               style: TextStyle(
@@ -404,7 +404,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            56.w.hSpace,
+            56.wMin.hSpace,
           ],
         );
       case InternshipRole.rtm:
@@ -420,7 +420,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            12.hSpace,
+            12.wMin.hSpace,
             Text(
               subtitle.toUpperCase(),
               style: TextStyle(
@@ -429,7 +429,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            60.h.hSpace,
+            60.wMin.hSpace,
           ],
         );
       case InternshipRole.keyAccountOnPremise:
@@ -446,7 +446,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            12.hSpace,
+            12.wMin.hSpace,
             Text(
               '$subtitle $content'.toUpperCase(),
               style: TextStyle(
@@ -455,7 +455,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            100.h.hSpace,
+            100.wMin.hSpace,
           ],
         );
       case InternshipRole.itDataAnalyst:
@@ -471,7 +471,7 @@ enum InternshipRole {
                 color: const Color(0xFFFE6A00),
               ),
             ),
-            12.hSpace,
+            12.wMin.hSpace,
             Text(
               subtitle.toUpperCase(),
               style: TextStyle(
@@ -480,7 +480,7 @@ enum InternshipRole {
                 color: const Color(0xFFFE6A00),
               ),
             ),
-            100.h.hSpace,
+            100.wMin.hSpace,
           ],
         );
       case InternshipRole.itPrivacy:
@@ -496,7 +496,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            12.hSpace,
+            12.wMin.hSpace,
             Text(
               subtitle.toUpperCase(),
               style: TextStyle(
@@ -505,7 +505,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            40.h.hSpace,
+            40.wMin.hSpace,
           ],
         );
       case InternshipRole.sales:
@@ -521,7 +521,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            120.h.hSpace,
+            120.wMin.hSpace,
           ],
         );
     }
@@ -667,7 +667,7 @@ enum InternshipRole {
               background,
               Positioned(
                 top: 0,
-                bottom: 50.h,
+                bottom: 50.wMin,
                 child: SizedBox(
                   width: width,
                   child: Row(
@@ -679,15 +679,15 @@ enum InternshipRole {
                 ),
               ),
               Positioned(
-                top: 40,
-                right: 40,
+                top: 40.wMin,
+                right: 40.wMin,
                 child: IconButton(
                   onPressed: () {
                     SmartDialog.dismiss();
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.close,
-                    size: 40,
+                    size: 40.wMin,
                   ),
                 ),
               ),
