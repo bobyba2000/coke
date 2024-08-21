@@ -59,7 +59,7 @@ class _WaveContainerState extends State<WaveContainer> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: role.foregroundColor,
-                      fontSize: 16.spMin,
+                      fontSize: 18.spMin,
                     ),
                   ),
                   4.wMin.hSpace,
