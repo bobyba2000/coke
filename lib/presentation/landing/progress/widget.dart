@@ -61,7 +61,7 @@ class ProgressWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              'By 10th Sep',
+                              S.current.by10Sep,
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 color: Colors.white,
@@ -74,7 +74,7 @@ class ProgressWidget extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: Text(
-                                  'Online\nApplication',
+                                  S.current.onlineApplication,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -86,7 +86,7 @@ class ProgressWidget extends StatelessWidget {
                             ),
                             16.hSpace,
                             Text(
-                              '3 weeks',
+                              S.current.in3weeks,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFFfed602),
@@ -134,7 +134,7 @@ class ProgressWidget extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: Text(
-                                  'Online\nAssessment',
+                                  S.current.onlineAssessment,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -146,7 +146,7 @@ class ProgressWidget extends StatelessWidget {
                             ),
                             16.w.hSpace,
                             Text(
-                              '3 days',
+                              S.current.in3Days,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFFfed602),
@@ -155,7 +155,7 @@ class ProgressWidget extends StatelessWidget {
                             ),
                             6.w.hSpace,
                             Text(
-                              '(after the\nassignment assigned)',
+                              S.current.afterAssignment,
                               style: TextStyle(
                                 color: const Color(0xFFfed602),
                                 fontSize: 12.sp,
@@ -198,7 +198,7 @@ class ProgressWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              '18th Sep - 21st Sep',
+                              S.current.from18to21,
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 color: Colors.white,
@@ -211,7 +211,7 @@ class ProgressWidget extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: Text(
-                                  'Launchpad\nday',
+                                  S.current.launchPadDay,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -223,7 +223,7 @@ class ProgressWidget extends StatelessWidget {
                             ),
                             16.w.hSpace,
                             Text(
-                              '1-3 days',
+                              S.current.in1to3,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFFfed602),
@@ -232,7 +232,7 @@ class ProgressWidget extends StatelessWidget {
                             ),
                             6.w.hSpace,
                             Text(
-                              '(depending on function)',
+                              S.current.dependOnFunction,
                               style: TextStyle(
                                 color: const Color(0xFFfed602),
                                 fontSize: 12.sp,
@@ -275,7 +275,7 @@ class ProgressWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              '30th Sep',
+                              S.current.by30Sep,
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 color: Colors.white,
@@ -288,7 +288,7 @@ class ProgressWidget extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: Text(
-                                  'Onboarding',
+                                  S.current.onboarding,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
@@ -300,7 +300,7 @@ class ProgressWidget extends StatelessWidget {
                             ),
                             16.w.hSpace,
                             Text(
-                              '10 days',
+                              S.current.in10Days,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFFfed602),
@@ -309,7 +309,7 @@ class ProgressWidget extends StatelessWidget {
                             ),
                             6.w.hSpace,
                             Text(
-                              '(after the\nafter acceptance)',
+                              S.current.afterAcceptance,
                               style: TextStyle(
                                 color: const Color(0xFFfed602),
                                 fontSize: 12.sp,

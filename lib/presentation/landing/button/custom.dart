@@ -28,7 +28,7 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
       }),
       child: AnimatedContainer(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(6),
           color: backgroundColor,
         ),
         padding: EdgeInsets.symmetric(vertical: 14.w, horizontal: 40.w),

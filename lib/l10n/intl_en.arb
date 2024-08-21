@@ -354,5 +354,19 @@
     "minutes": "Minutes",
     "seconds": "Seconds",
     "developmentJourney": "Development Journey",
-    "selectionProcess": "Selection Process"
+    "selectionProcess": "Selection Process",
+    "by10Sep": "By 10th Sep",
+    "in3weeks": "3 weeks",
+    "onlineApplication": "Online\nApplication",
+    "onlineAssessment": "Online\nAssessment",
+    "in3Days": "3 days",
+    "afterAssignment": "(after the\nassignment assigned)",
+    "from18to21": "18th Sep - 21st Sep",
+    "launchPadDay": "Launchpad\nday",
+    "in1to3": "1-3 days",
+    "dependOnFunction": "(depending on function)",
+    "by30Sep": "30th Sep",
+    "onboarding": "Onboarding",
+    "in10Days": "10 days",
+    "afterAcceptance": "(after the\nafter acceptance)"
 }

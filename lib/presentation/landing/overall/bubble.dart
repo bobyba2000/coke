@@ -28,7 +28,7 @@ class _WaterBubbleState extends State<WaterBubble> with SingleTickerProviderStat
       vsync: this,
     )..repeat(reverse: true);
 
-    _animation = Tween<double>(begin: 0, end: 15).animate(
+    _animation = Tween<double>(begin: 0, end: 30).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOut,
@@ -58,10 +58,9 @@ class _WaterBubbleState extends State<WaterBubble> with SingleTickerProviderStat
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    Colors.transparent,
-                    color.withOpacity(0.8),
+                    color.withOpacity(0.1),
+                    color.withOpacity(0.3),
                   ],
-                  center: const Alignment(-0.3, -0.3),
                   radius: 0.8,
                 ),
                 boxShadow: [

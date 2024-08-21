@@ -47,9 +47,9 @@ class _WaveContainerState extends State<WaveContainer> {
             clipper: WaveClipper(),
             child: Container(
               color: role.color,
-              width: 200.w,
-              height: 96.w,
-              alignment: Alignment.center,
+              width: 175.w,
+              height: 95.w,
+              padding: EdgeInsets.all(10.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -58,16 +58,16 @@ class _WaveContainerState extends State<WaveContainer> {
                     role.title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 18.spMin,
+                      color: role.foregroundColor,
+                      fontSize: 16.spMin,
                     ),
                   ),
                   4.wMin.hSpace,
                   Text(
                     role.subtitle,
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12.spMin,
+                      color: role.foregroundColor,
+                      fontSize: 10.spMin,
                     ),
                   ),
                   if ((role.content ?? '').isNotEmpty)
@@ -78,8 +78,8 @@ class _WaveContainerState extends State<WaveContainer> {
                       child: Text(
                         role.content ?? '',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10.spMin,
+                          color: role.foregroundColor,
+                          fontSize: 8.spMin,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
@@ -155,7 +155,7 @@ class CareerWidget extends StatelessWidget {
             fit: BoxFit.fill,
           ),
           Positioned(
-            top: 200.w,
+            top: 250.w,
             left: 500.w,
             right: 500.w,
             child: Assets.images.career.model.image(
@@ -163,20 +163,20 @@ class CareerWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 300.w,
-            right: 300.w,
+            left: 400.w,
+            right: 400.w,
             top: 80.w,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  S.current.careerDesired,
+                  S.current.careerDesired.toUpperCase(),
                   style: textTheme.displaySmall?.copyWith(
                     color: const Color(0xFFBA5D1B),
                     fontSize: 45.sp,
                   ),
                 ),
-                10.w.wSpace,
+                8.w.hSpace,
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(

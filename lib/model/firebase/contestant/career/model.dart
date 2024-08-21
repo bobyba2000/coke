@@ -3,7 +3,9 @@ import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -323,13 +325,24 @@ enum InternshipRole {
                           ),
                         ),
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                        child: Text(
-                          e.toString(),
-                          style: TextStyle(
-                            fontSize: 16.spMin,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              e.toString(),
+                              style: TextStyle(
+                                fontSize: 16.spMin,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
+                            12.w.wSpace,
+                            Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.white,
+                              size: 14.sp,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -530,30 +543,38 @@ enum InternshipRole {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               titleWidget(),
-              overview(),
-              20.w.hSpace,
-              responsibilities(),
-              14.w.hSpace,
-              RichText(
-                text: TextSpan(
-                  text: '${S.current.note}: ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 14.spMin,
-                    color: foreground,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: note,
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        fontSize: 14.spMin,
-                        color: foreground,
-                        fontWeight: FontWeight.normal,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      overview(),
+                      20.w.hSpace,
+                      responsibilities(),
+                      14.w.hSpace,
+                      RichText(
+                        text: TextSpan(
+                          text: '${S.current.note}: ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 14.spMin,
+                            color: foreground,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: note,
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontSize: 14.spMin,
+                                color: foreground,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -570,37 +591,48 @@ enum InternshipRole {
     if (this == InternshipRole.rtm || this == InternshipRole.itPrivacy || this == InternshipRole.keyAccountOnPremise) {
       final foreground = this == InternshipRole.tradeMarketing ? const Color(0xFFAA7047) : Colors.white;
       widget = Padding(
-        padding: EdgeInsets.only(right: 80.w, top: 80.h),
+        padding: EdgeInsets.only(
+          right: 80.w,
+          top: 80.h,
+        ),
         child: SizedBox(
           width: 650.w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               titleWidget(),
-              overview(),
-              20.w.hSpace,
-              responsibilities(),
-              14.w.hSpace,
-              RichText(
-                text: TextSpan(
-                  text: '${S.current.note}: ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 14.spMin,
-                    color: foreground,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: note,
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14.spMin,
-                        color: foreground,
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      overview(),
+                      20.w.hSpace,
+                      responsibilities(),
+                      14.w.hSpace,
+                      RichText(
+                        text: TextSpan(
+                          text: '${S.current.note}: ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 14.spMin,
+                            color: foreground,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: note,
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 14.spMin,
+                                color: foreground,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -618,21 +650,33 @@ enum InternshipRole {
         Widget left = leftWidget();
         Widget right = rightWidget();
 
+        double width = 1400.w;
+        double height = 800.w;
+        if (height > 900.h) {
+          width = (1400 * 900 / 800).h;
+        }
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           ),
-          width: 1400.w,
-          height: 900.h,
+          width: width,
+          height: height,
           child: Stack(
             fit: StackFit.expand,
             children: [
               background,
-              Row(
-                children: [
-                  left,
-                  right,
-                ],
+              Positioned(
+                top: 0,
+                bottom: 50.h,
+                child: SizedBox(
+                  width: width,
+                  child: Row(
+                    children: [
+                      left,
+                      right,
+                    ],
+                  ),
+                ),
               ),
               Positioned(
                 top: 40,
@@ -705,6 +749,15 @@ enum InternshipRole {
         return const Color(0xFF28a549);
       case InternshipRole.sales:
         return const Color(0xFFfe0036);
+    }
+  }
+
+  Color get foregroundColor {
+    switch (this) {
+      case InternshipRole.tradeMarketing:
+        return const Color(0xFF9B3D03);
+      default:
+        return Colors.white;
     }
   }
 

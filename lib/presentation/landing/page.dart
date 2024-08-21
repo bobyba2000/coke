@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/dialog.dart';
 import 'package:coke_platform/common/utility/share_preference.dart';
-import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/about/widget.dart';
@@ -36,7 +35,7 @@ class _LandingPageState extends State<LandingPage> {
   int page = 0;
   bool isScrollbarHover = false;
 
-  // final journey1Key = GlobalKey();
+  final journey1Key = GlobalKey();
   final footerKey = GlobalKey();
 
   @override
@@ -219,11 +218,12 @@ class _LandingPageState extends State<LandingPage> {
                                 Text(
                                   S.current.essenceTitle.toUpperCase(),
                                   style: TextStyle(
-                                    color: ColorConstants.colorFFF220,
+                                    color: const Color(0xFF19FFFE),
                                     fontSize: 45.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
+                                8.hSpace,
                                 Text(
                                   S.current.essenceContent1,
                                   style: TextStyle(
@@ -238,9 +238,8 @@ class _LandingPageState extends State<LandingPage> {
                         ],
                       ),
                     ),
-                    100.w.hSpace,
                     Container(
-                      height: 700.w,
+                      height: 800.w,
                       width: 1400.w,
                       color: const Color(0xFFf1feff),
                     ),
@@ -288,22 +287,37 @@ class _LandingPageState extends State<LandingPage> {
                       ),
                     ),
                     Container(
-                      height: 900.w,
+                      height: 600.w,
                       width: 1400.w,
                       color: const Color(0xFF31cccc),
                       child: Stack(
-                        fit: StackFit.expand,
                         children: [
-                          Assets.images.countdown.background.image(),
+                          Assets.images.countdown.background.image(
+                            height: 600.w,
+                            width: 1400.w,
+                            fit: BoxFit.fill,
+                          ),
                           Positioned(
                             bottom: 0,
                             width: 1400.w,
                             height: 100.h,
                             left: 0,
-                            child: Assets.images.progress.bottom.image(
-                              width: 1400.w,
-                              height: 100.w,
-                              fit: BoxFit.fill,
+                            child: Stack(
+                              children: [
+                                Assets.images.progress.bottom.image(
+                                  width: 1400.w,
+                                  height: 100.w,
+                                  fit: BoxFit.fill,
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  child: Container(
+                                    color: const Color(0xFF28A549),
+                                    height: 10,
+                                    width: 1400.w,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -313,12 +327,14 @@ class _LandingPageState extends State<LandingPage> {
                       builder: (context) {
                         if (footerKey.currentContext != null) {
                           final box = footerKey.currentContext!.findRenderObject() as RenderBox;
-                          return SizedBox(
+                          return Container(
+                            color: const Color(0xFF28A549),
                             width: 1400.w,
                             height: box.size.height,
                           );
                         }
-                        return SizedBox(
+                        return Container(
+                          color: const Color(0xFF28A549),
                           width: 1400.w,
                           height: 450.w,
                         );
