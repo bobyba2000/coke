@@ -34,15 +34,15 @@ class CustomPageScrollPhysics extends PageScrollPhysics {
   double beforePos = 0;
   final List<double> stops = [
     800.w,
-    1600.w,
+    1700.w,
     2500.w,
-    3300.w,
-    4100.w,
-    4800.w,
-    5600.w,
-    6400.w,
-    7200.w,
-    7650.w,
+    3350.w,
+    4150.w,
+    4850.w,
+    5650.w,
+    6450.w,
+    7250.w,
+    7700.w,
   ];
 
   @override
@@ -56,28 +56,53 @@ class CustomPageScrollPhysics extends PageScrollPhysics {
     double velocity,
     AxisDirection direction,
   ) {
-    double ratio = 0;
-    int index = -1;
     bool isScrollDown = position.pixels > beforePos;
+    if (isScrollDown) {
+      double ratio = 0;
+      int index = -1;
+      for (var i = 0; i < stops.length; i++) {
+        final stop = stops[i];
+        if (position.pixels <= stop) {
+          ratio =
+              (stop - position.pixels) / (stop - (i == 0 ? 0 : stops[i - 1]));
+          break;
+        }
+        index = i;
+      }
+      int trueIndex = index;
+      if (isScrollDown) {
+        ratio += 0.5;
+      } else {
+        ratio -= 0.5;
+      }
+      trueIndex = ((index + ratio).roundToDouble()).toInt();
+      if (trueIndex == index) {
+        return position.pixels;
+      }
+
+      if (trueIndex >= stops.length) {
+        return stops.last;
+      }
+      if (trueIndex < 0) {
+        return 0;
+      }
+      return stops[trueIndex];
+    }
+    final pixels = position.pixels;
+    int index = -1;
+    double previousStop = 0;
     for (var i = 0; i < stops.length; i++) {
       final stop = stops[i];
-      if (position.pixels <= stop) {
-        ratio = (stop - position.pixels) / (stop - (i == 0 ? 0 : stops[i - 1]));
+      if (position.pixels < stop) {
         break;
       }
       index = i;
+      previousStop = stop;
     }
-    int trueIndex = index;
-    if (isScrollDown) {
-      ratio += 0.5;
-    } else {
-      index += 1;
-      ratio -= 0.5;
+    if (previousStop == pixels) {
+      return pixels;
     }
-    trueIndex = ((index + ratio).roundToDouble()).toInt();
-    if (trueIndex == index) {
-      return position.pixels;
-    }
+    final trueIndex = index;
 
     if (trueIndex >= stops.length) {
       return stops.last;
@@ -85,11 +110,6 @@ class CustomPageScrollPhysics extends PageScrollPhysics {
     if (trueIndex < 0) {
       return 0;
     }
-    // final previousPart = trueIndex == 0 ? 0 : stops[trueIndex - 1];
-    // final height = stops[trueIndex] - previousPart;
-    // if (height > 900.h && (stops[trueIndex] - position.pixels) / height < 0.5) {
-    //   return position.pixels;
-    // }
     return stops[trueIndex];
   }
 

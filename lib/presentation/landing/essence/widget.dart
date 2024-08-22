@@ -24,7 +24,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
     return ScrollTransformItem(
       scaleBuilder: (scrollOffset) {
         double percentage = 1;
-        final heightBefore = 1600.w;
+        final heightBefore = 1700.w;
 
         if (scrollOffset > heightBefore) {
           if (scrollOffset - heightBefore < 400.w) {
@@ -43,7 +43,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
       },
       builder: (scrollOffset) {
         double percentage = 1;
-        final heightBefore = 1600.w;
+        final heightBefore = 1700.w;
 
         if (scrollOffset > heightBefore) {
           if (scrollOffset - heightBefore < 400.w) {
@@ -108,7 +108,8 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                 return Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(top: 2.spMax),
@@ -148,7 +149,8 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                 return Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(top: 2.spMax),
