@@ -32,20 +32,7 @@ ThemeData themeData(BuildContext context) {
         ColorConstants.teal,
       ),
     ),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        foregroundColor: const MaterialStatePropertyAll(
-          Colors.white,
-        ),
-        textStyle: MaterialStatePropertyAll(
-          TextStyle(
-            fontSize: 16.spMin,
-            fontWeight: FontWeight.w500,
-            fontFamily: FontFamily.poppins,
-          ),
-        ),
-      ),
-    ),
+
     // scrollbarTheme: ScrollbarThemeData(
     //   trackColor: MaterialStatePropertyAll(
     //     Colors.white.withOpacity(0.3),

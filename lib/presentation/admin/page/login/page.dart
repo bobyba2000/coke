@@ -4,13 +4,16 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/loading_utility.dart';
 import 'package:coke_platform/common/utility/validator.dart';
 import 'package:coke_platform/common/widget/field/textfield_widget.dart';
+import 'package:coke_platform/common/widget/language.dart';
 import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/core/dependencies/app_dependencies.dart';
+import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:coke_platform/service/firebase/auth.dart';
 import 'package:coke_platform/service/firebase/role.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,11 +38,24 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
         backgroundColor: Colors.white,
         body: Stack(
           children: [
-            Container(
-              color: ColorConstants.teal,
-              child: const OverviewWidget(
-                isLoginPage: true,
-              ),
+            Stack(
+              children: [
+                SizedBox(
+                  height: 350.w,
+                  width: 1400.w,
+                  child: ClipRect(
+                    child: Assets.images.header.image(
+                      width: 1400.w,
+                      fit: BoxFit.none,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 40.w,
+                  top: 10.w,
+                  child: const LanguageSwitch(),
+                )
+              ],
             ),
             SizedBox(
               height: double.infinity,
@@ -60,7 +76,8 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                     child: Form(
                       key: form,
                       child: Column(
@@ -94,9 +111,12 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                                 try {
                                   LoadingUtility.show();
                                   final auth = service;
-                                  await auth.signInWithEmailAndPassword(email, password);
-                                  final roleService = AppDependencies.injector.get<FirebaseRoleService>();
-                                  final role = await roleService.getUserRole(auth.getUserId()!);
+                                  await auth.signInWithEmailAndPassword(
+                                      email, password);
+                                  final roleService = AppDependencies.injector
+                                      .get<FirebaseRoleService>();
+                                  final role = await roleService
+                                      .getUserRole(auth.getUserId()!);
                                   if (role == 'Admin') {
                                     context.go('/admin');
                                   } else {
@@ -108,7 +128,8 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                                     builder: (context) => AlertDialog(
                                       title: Text(
                                         'Error',
-                                        style: TextStyle(fontSize: 26.sp, color: Colors.red),
+                                        style: TextStyle(
+                                            fontSize: 26.sp, color: Colors.red),
                                       ),
                                       content: Text(
                                         e.toString(),
@@ -130,14 +151,15 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                                 borderRadius: BorderRadius.circular(12.r),
                                 color: ColorConstants.teal,
                               ),
-                              padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 12.h),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 40.w, vertical: 6.w),
                               alignment: Alignment.center,
                               child: Text(
                                 'Sign In',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 22.sp,
+                                  fontSize: 18.sp,
                                 ),
                               ),
                             ),

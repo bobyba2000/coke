@@ -369,5 +369,9 @@
     "by30Sep": "30/09",
     "onboarding": "Chính thức\ngia nhập",
     "in10Days": "10 ngày",
-    "afterAcceptance": "(từ khi\nxác nhận làm việc)"
+    "afterAcceptance": "(từ khi\nxác nhận làm việc)",
+    "onlineApplicationTitle": "Ứng tuyển trực tuyến",
+    "onlineAssessmentTitle": "Đánh giá năng lực trực tuyến",
+    "launchPadDayTitle": "Đánh giá năng lực tập trung",
+    "onboardingTitle": "Chính thức gia nhập"
 }

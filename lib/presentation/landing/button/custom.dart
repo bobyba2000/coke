@@ -1,13 +1,16 @@
+import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomFilledButton extends StatefulWidget {
   final String title;
   final VoidCallback onTap;
+  final Color? color;
   const CustomFilledButton({
     super.key,
     required this.title,
     required this.onTap,
+    this.color,
   });
 
   @override
@@ -19,7 +22,10 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = isHover ? const Color.fromARGB(255, 211, 2, 47) : const Color(0xFFFE0138);
+    final backgroundColor = isHover
+        ? widget.color?.withOpacity(0.7) ??
+            const Color.fromARGB(255, 211, 2, 47)
+        : widget.color ?? const Color(0xFFFE0138);
     const foreground = Colors.white;
     return InkWell(
       onTap: widget.onTap,
@@ -31,7 +37,8 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
           borderRadius: BorderRadius.circular(6),
           color: backgroundColor,
         ),
-        padding: EdgeInsets.symmetric(vertical: 14.w, horizontal: 40.w),
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(vertical: 14.wMin, horizontal: 40.wMin),
         duration: const Duration(milliseconds: 200),
         child: Text(
           widget.title,
@@ -59,7 +66,8 @@ class _CustomTextButtonState extends State<CustomTextButton> {
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = isHover ? const Color(0xFFFE0138) : Colors.transparent;
+    final backgroundColor =
+        isHover ? const Color(0xFFFE0138) : Colors.transparent;
     final foreground = isHover ? Colors.white : const Color(0xFF4E5156);
     return InkWell(
       onTap: widget.onTap,
