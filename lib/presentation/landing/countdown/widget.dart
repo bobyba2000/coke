@@ -34,7 +34,7 @@ class _CountdownWidgetState extends State<CountdownWidget>
   }
 
   String to2DigitString(int value) {
-    if (value < 9) {
+    if (value < 10) {
       return '0$value';
     }
     return '$value';
@@ -56,7 +56,6 @@ class _CountdownWidgetState extends State<CountdownWidget>
           mainAxisSize: MainAxisSize.min,
           children: [
             40.w.hSpace,
-            
             Text(
               sprintf(
                 S.current.onlyDaysLeft,
