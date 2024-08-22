@@ -43,10 +43,12 @@ class _LandingPageState extends State<LandingPage> {
       if (1400.w * 1.5 < 900.h) {
         _background.jumpTo(_page.offset);
       } else {
-        if (_page.offset < 1600.w) {
+        if (_page.offset < 1700.w) {
           _background.jumpTo(_page.offset);
-        } else if (_page.offset > 2400.w) {
+        } else if (_page.offset > 2500.w) {
           _background.jumpTo(_page.offset - 800.w);
+        } else {
+          _background.jumpTo(1700.w);
         }
       }
     });
@@ -318,7 +320,8 @@ class _LandingPageState extends State<LandingPage> {
                     Builder(
                       builder: (context) {
                         if (footerKey.currentContext != null) {
-                          final box = footerKey.currentContext!.findRenderObject() as RenderBox;
+                          final box = footerKey.currentContext!
+                              .findRenderObject() as RenderBox;
                           return Container(
                             color: const Color(0xFF28A549),
                             width: 1400.w,
