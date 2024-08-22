@@ -1,3 +1,4 @@
+import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
@@ -45,43 +46,51 @@ ThemeData themeData(BuildContext context) {
         ),
       ),
     ),
-    scrollbarTheme: ScrollbarThemeData(
-      trackColor: MaterialStatePropertyAll(
-        Colors.white.withOpacity(0.3),
-      ),
-    ),
+    // scrollbarTheme: ScrollbarThemeData(
+    //   trackColor: MaterialStatePropertyAll(
+    //     Colors.white.withOpacity(0.3),
+    //   ),
+    // ),
     textTheme: TextTheme(
       titleLarge: TextStyle(
         fontSize: 35.spMin,
         fontWeight: FontWeight.w600,
+        height: 1.15.wMax,
       ),
       displayLarge: TextStyle(
         fontSize: 22.spMin,
         fontWeight: FontWeight.bold,
+        height: 1.15.wMax,
       ),
       displaySmall: TextStyle(
         fontSize: 16.spMin,
         fontWeight: FontWeight.bold,
+        height: 1.15.wMax,
       ),
       bodyLarge: TextStyle(
         fontSize: 16.spMin,
         fontWeight: FontWeight.w400,
+        height: 1.15.wMax,
       ),
       bodyMedium: TextStyle(
         fontSize: 12.spMin,
         fontWeight: FontWeight.w400,
+        height: 1.15.wMax,
       ),
       bodySmall: TextStyle(
         fontSize: 8.spMin,
         fontWeight: FontWeight.w400,
+        height: 1.15.wMax,
       ),
       titleMedium: TextStyle(
         fontSize: 16.spMin,
         fontWeight: FontWeight.w400,
+        height: 1.15.wMax,
       ),
       headlineMedium: TextStyle(
         fontSize: 18.spMin,
         fontWeight: FontWeight.w500,
+        height: 1.15.wMax,
       ),
     ),
   );

@@ -48,7 +48,9 @@ class MyApp extends StatelessWidget {
           builder: (context, child) {
             return MaterialApp.router(
               routerConfig: AppRouter.router,
-              scrollBehavior: MyCustomScrollBehavior(),
+              scrollBehavior: MyCustomScrollBehavior().copyWith(
+                scrollbars: false,
+              ),
               debugShowCheckedModeBanner: false,
               theme: themeData(context),
               localizationsDelegates: const [

@@ -47,9 +47,13 @@ class _WaveContainerState extends State<WaveContainer> {
             clipper: WaveClipper(),
             child: Container(
               color: role.color,
-              width: 175.w,
+              width: 200.w,
               height: 95.w,
-              padding: EdgeInsets.all(10.w),
+              padding: EdgeInsets.symmetric(
+                horizontal: 10.w,
+              ).copyWith(
+                top: 15.w,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -67,7 +71,7 @@ class _WaveContainerState extends State<WaveContainer> {
                     role.subtitle,
                     style: TextStyle(
                       color: role.foregroundColor,
-                      fontSize: 10.spMin,
+                      fontSize: 14.spMin,
                     ),
                   ),
                   if ((role.content ?? '').isNotEmpty)
@@ -79,7 +83,7 @@ class _WaveContainerState extends State<WaveContainer> {
                         role.content ?? '',
                         style: TextStyle(
                           color: role.foregroundColor,
-                          fontSize: 8.spMin,
+                          fontSize: 10.spMin,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
