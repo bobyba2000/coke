@@ -1,5 +1,4 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
-import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/button/custom.dart';
 import 'package:flutter/material.dart';
@@ -15,22 +14,24 @@ class AboutWidget extends StatelessWidget {
     final textTheme = theme.textTheme;
     final normal = textTheme.bodyLarge?.copyWith(
       color: const Color(0xFF403815),
-      fontSize: 14.sp,
+      fontSize: 16.sp,
+      height: 1.15.wMax,
       fontWeight: FontWeight.w500,
     );
     final bold = textTheme.bodyLarge?.copyWith(
       fontWeight: FontWeight.bold,
       color: const Color(0xFF403815),
-      fontSize: 14.sp,
+      fontSize: 16.sp,
+      height: 1.15.wMax,
     );
     return SizedBox(
       width: 1400.w,
       height: 900.w,
       child: Row(
         children: [
-          100.w.wSpace,
+          50.w.wSpace,
           SizedBox(
-            width: 480.w,
+            width: 525.w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +40,7 @@ class AboutWidget extends StatelessWidget {
                   S.current.aboutTheProgram.toUpperCase(),
                   style: textTheme.displaySmall?.copyWith(
                     color: const Color(0xFF084A99),
-                    fontSize: 40.sp,
+                    fontSize: 36.sp,
                   ),
                 ),
                 16.hSpace,

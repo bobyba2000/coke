@@ -39,7 +39,8 @@ class ProgressWidget extends StatelessWidget {
                       S.current.processContent,
                       style: TextStyle(
                         fontWeight: FontWeight.normal,
-                        fontSize: 22.sp,
+                        fontSize: 16.sp,
+                        height: 1.15.wMax,
                         color: Colors.white,
                       ),
                       textAlign: TextAlign.center,

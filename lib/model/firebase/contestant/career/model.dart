@@ -3,9 +3,7 @@ import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -127,7 +125,7 @@ enum InternshipRole {
             color: foreground,
           ),
         ),
-        12.hSpace,
+        12.w.hSpace,
         ...List.generate(
           data.length,
           (index) {
@@ -209,13 +207,13 @@ enum InternshipRole {
             color: foreground,
           ),
         ),
-        12.hSpace,
+        12.w.hSpace,
         ...List.generate(
           items.length,
           (index) {
             final item = items[index];
             return Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: EdgeInsets.only(bottom: 10.w),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -266,7 +264,7 @@ enum InternshipRole {
                             color: Colors.white,
                           ),
                           constraints: BoxConstraints(
-                            maxWidth: 260.w,
+                            maxWidth: 260,
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -404,7 +402,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            56.wMin.hSpace,
+            75.w.hSpace,
           ],
         );
       case InternshipRole.rtm:
@@ -429,7 +427,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            60.wMin.hSpace,
+            50.wMin.hSpace,
           ],
         );
       case InternshipRole.keyAccountOnPremise:

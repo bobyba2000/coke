@@ -184,6 +184,7 @@ class CareerWidget extends StatelessWidget {
                     style: textTheme.bodyLarge?.copyWith(
                       color: const Color(0xFFBA5D1B),
                       fontSize: 16.sp,
+                      height: 1.15.wMax,
                     ),
                     children: [
                       TextSpan(
@@ -191,6 +192,7 @@ class CareerWidget extends StatelessWidget {
                         style: textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 16.sp,
+                          height: 1.15.wMax,
                           color: const Color(0xFFBA5D1B),
                         ),
                       ),

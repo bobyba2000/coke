@@ -11,7 +11,6 @@ import 'package:coke_platform/presentation/landing/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/footer/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'countdown/widget.dart';
@@ -161,7 +160,7 @@ class _LandingPageState extends State<LandingPage> {
                             ),
                           ),
                           Positioned(
-                            left: 300.w,
+                            left: 350.w,
                             top: 1400.w * 1.5 < 900.h ? 900.w : 100.w,
                             child: Assets.images.essence.model.image(
                               width: 600.w,
@@ -221,6 +220,7 @@ class _LandingPageState extends State<LandingPage> {
                                   style: TextStyle(
                                     fontSize: 16.sp,
                                     color: Colors.white,
+                                    height: 1.15.wMax,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -298,7 +298,7 @@ class _LandingPageState extends State<LandingPage> {
                               children: [
                                 Assets.images.progress.bottom.image(
                                   width: 1400.w,
-                                  height: 100.w,
+                                  height: 100.h,
                                   fit: BoxFit.fill,
                                 ),
                                 Positioned(

@@ -71,8 +71,8 @@ class CustomPageScrollPhysics extends PageScrollPhysics {
     if (trueIndex < 0) {
       return stops.first;
     }
-    final previousPart = trueIndex == 0 ? 0 : stops[trueIndex - 1];
-    final height = stops[trueIndex] - previousPart;
+    // final previousPart = trueIndex == 0 ? 0 : stops[trueIndex - 1];
+    // final height = stops[trueIndex] - previousPart;
     // if (height > 900.h && (stops[trueIndex] - position.pixels) / height < 0.5) {
     //   return position.pixels;
     // }

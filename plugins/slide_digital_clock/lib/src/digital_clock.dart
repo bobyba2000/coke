@@ -6,7 +6,8 @@ import 'helpers/clock_model.dart';
 import 'helpers/spinner_text.dart';
 
 class DigitalClock extends StatefulWidget {
-  DigitalClock({
+  const DigitalClock({
+    Key? key,
     this.is24HourTimeFormat,
     this.showSecondsDigit,
     this.colon,
@@ -22,7 +23,7 @@ class DigitalClock extends StatefulWidget {
     this.hourMinuteDigitTextStyle,
     this.secondDigitTextStyle,
     this.amPmDigitTextStyle,
-  });
+  }) : super(key: key);
 
   /// am or pm
   final bool? is24HourTimeFormat;
@@ -143,12 +144,9 @@ class _DigitalClockState extends State<DigitalClock> {
         alignment: AlignmentDirectional.center,
         decoration: widget.hourDigitDecoration,
         child: SpinnerText(
-          text: _clockModel.is24HourTimeFormat
-              ? hTOhh_24hTrue(_clockModel.hour)
-              : hTOhh_24hFalse(_clockModel.hour)[0],
+          text: _clockModel.is24HourTimeFormat ? hTOhh_24hTrue(_clockModel.hour) : hTOhh_24hFalse(_clockModel.hour)[0],
           animationStyle: widget.digitAnimationStyle,
-          textStyle: widget.hourMinuteDigitTextStyle ??
-              Theme.of(context).textTheme.bodyText1,
+          textStyle: widget.hourMinuteDigitTextStyle ?? Theme.of(context).textTheme.bodyText1,
         ),
       );
 
@@ -159,8 +157,7 @@ class _DigitalClockState extends State<DigitalClock> {
         child: SpinnerText(
           text: mTOmm(_clockModel.minute),
           animationStyle: widget.digitAnimationStyle,
-          textStyle: widget.hourMinuteDigitTextStyle ??
-              Theme.of(context).textTheme.bodyText1,
+          textStyle: widget.hourMinuteDigitTextStyle ?? Theme.of(context).textTheme.bodyText1,
         ),
       );
 
@@ -173,8 +170,7 @@ class _DigitalClockState extends State<DigitalClock> {
           child: SpinnerText(
               text: sTOss(_clockModel.second),
               animationStyle: widget.digitAnimationStyle,
-              textStyle: widget.secondDigitTextStyle ??
-                  Theme.of(context).textTheme.caption!.copyWith(fontSize: 10)),
+              textStyle: widget.secondDigitTextStyle ?? Theme.of(context).textTheme.caption!.copyWith(fontSize: 10)),
         )
       : SizedBox();
 
@@ -185,11 +181,7 @@ class _DigitalClockState extends State<DigitalClock> {
           alignment: AlignmentDirectional.center,
           child: Text(
             " " + hTOhh_24hFalse(_clockModel.hour)[1],
-            style: widget.amPmDigitTextStyle ??
-                Theme.of(context)
-                    .textTheme
-                    .caption!
-                    .copyWith(fontSize: 10, fontWeight: FontWeight.bold),
+            style: widget.amPmDigitTextStyle ?? Theme.of(context).textTheme.caption!.copyWith(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         );
 }

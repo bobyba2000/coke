@@ -82,7 +82,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
               ),
               if (1400.w * 1.5 < 900.h || scrollOffset < heightBefore + 10.w)
                 Positioned(
-                  left: 300.w,
+                  left: 350.w,
                   top: 200.w,
                   child: Assets.images.essence.model.image(
                     width: 600.w,
