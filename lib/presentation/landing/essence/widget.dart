@@ -93,10 +93,11 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    450.w.hSpace,
+                    500.w.hSpace,
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        100.w.wSpace,
+                        200.w.wSpace,
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,20 +107,22 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                               (index) {
                                 final sale = sales[index];
                                 return Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
+                                  padding: EdgeInsets.only(bottom: 8.wMin),
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(top: 2.spMax),
+                                        padding: EdgeInsets.only(
+                                          top: 6.spMin,
+                                        ),
                                         child: Icon(
                                           Icons.circle,
                                           color: Colors.white,
                                           size: 10.spMin,
                                         ),
                                       ),
-                                      16.wSpace,
+                                      16.w.wSpace,
                                       Expanded(
                                         child: Text(
                                           sale,
@@ -137,7 +140,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                             ),
                           ),
                         ),
-                        400.w.wSpace,
+                        500.w.wSpace,
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,20 +150,20 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                               (index) {
                                 final other = others[index];
                                 return Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
+                                  padding: EdgeInsets.only(bottom: 8.wMin),
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(top: 2.spMax),
+                                        padding: EdgeInsets.only(top: 6.spMin),
                                         child: Icon(
                                           Icons.circle,
                                           color: Colors.white,
                                           size: 10.spMin,
                                         ),
                                       ),
-                                      16.wSpace,
+                                      16.w.wSpace,
                                       Expanded(
                                         child: Text(
                                           other,
@@ -178,7 +181,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                             ),
                           ),
                         ),
-                        100.w.wSpace,
+                        200.w.wSpace,
                       ],
                     ),
                   ],

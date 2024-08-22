@@ -125,6 +125,7 @@ enum InternshipRole {
             fontWeight: FontWeight.bold,
             fontSize: 20.spMin,
             color: foreground,
+            height: 1.15.wMax,
           ),
         ),
         12.w.hSpace,
@@ -142,7 +143,7 @@ enum InternshipRole {
                         (this != InternshipRole.rtm &&
                             this != InternshipRole.tradeMarketing),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 2.spMax, right: 16),
+                      padding: EdgeInsets.only(top: 4.spMax, right: 16),
                       child: Icon(
                         Icons.circle,
                         color: foreground,
@@ -157,6 +158,7 @@ enum InternshipRole {
                         color: foreground,
                         fontSize: 16.spMin,
                         fontWeight: FontWeight.w500,
+                        height: 1.15.wMax,
                       ),
                     ),
                   ),
@@ -226,7 +228,7 @@ enum InternshipRole {
                   Visibility(
                     visible: !item.startsWith('(*)'),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 2.spMax, right: 16),
+                      padding: EdgeInsets.only(top: 4.spMax, right: 16.wMin),
                       child: Icon(
                         Icons.circle,
                         color: foreground,
@@ -241,6 +243,7 @@ enum InternshipRole {
                         color: foreground,
                         fontSize: 16.spMin,
                         fontWeight: FontWeight.w500,
+                        height: 1.15.wMax,
                       ),
                     ),
                   ),
@@ -277,6 +280,7 @@ enum InternshipRole {
                                     fontSize: 16.spMin,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
+                                    height: 1.15.wMax,
                                   ),
                                 ),
                                 12.w.wSpace,
@@ -355,7 +359,7 @@ enum InternshipRole {
                                     ),
                                     10.hSpace,
                                     Assets.images.career.dropdown.image(
-                                      width: 260.w,
+                                      width: 260,
                                       fit: BoxFit.fitWidth,
                                     ),
                                   ],
@@ -379,6 +383,7 @@ enum InternshipRole {
                                       fontSize: 16.spMin,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.white,
+                                      height: 1.15.wMax,
                                     ),
                                   ),
                                   12.w.wSpace,
@@ -400,7 +405,7 @@ enum InternshipRole {
     );
   }
 
-  Widget titleWidget() {
+  Widget titleWidget(double width) {
     switch (this) {
       case InternshipRole.procurement:
         return Column(
@@ -440,7 +445,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            12.wMin.hSpace,
+            (2 * width / 1400).hSpace,
             Text(
               subtitle.toUpperCase(),
               style: TextStyle(
@@ -449,7 +454,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            75.w.hSpace,
+            (80 * width / 1400).hSpace,
           ],
         );
       case InternshipRole.rtm:
@@ -478,6 +483,30 @@ enum InternshipRole {
           ],
         );
       case InternshipRole.keyAccountOnPremise:
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title.toUpperCase(),
+              style: TextStyle(
+                fontSize: 52.spMin,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFFFDF056),
+              ),
+            ),
+            12.wMin.hSpace,
+            Text(
+              '$subtitle $content'.toUpperCase(),
+              style: TextStyle(
+                fontSize: 19.spMin,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFFFDF056),
+              ),
+            ),
+            (20 * width / 1400).w.hSpace,
+          ],
+        );
       case InternshipRole.keyAccountOffPremise:
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -572,7 +601,7 @@ enum InternshipRole {
     }
   }
 
-  Widget leftWidget() {
+  Widget leftWidget(double width) {
     Widget widget = const Expanded(child: SizedBox.shrink());
     if (this == sales ||
         this == InternshipRole.procurement ||
@@ -583,16 +612,18 @@ enum InternshipRole {
           ? const Color(0xFFAA7047)
           : Colors.white;
       widget = Padding(
-        padding: EdgeInsets.only(left: 80.w, top: 80.w),
+        padding: EdgeInsets.only(
+            left: width * 80 / 1400, top: (80 * width / 1400).w),
         child: SizedBox(
-          width: 650.w,
+          width: width * 650 / 1400,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              titleWidget(),
+              titleWidget(width),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       overview(),
                       20.w.hSpace,
@@ -633,7 +664,7 @@ enum InternshipRole {
     return widget;
   }
 
-  Widget rightWidget() {
+  Widget rightWidget(double width) {
     Widget widget = const Expanded(child: SizedBox.shrink());
     if (this == InternshipRole.rtm ||
         this == InternshipRole.itPrivacy ||
@@ -643,15 +674,15 @@ enum InternshipRole {
           : Colors.white;
       widget = Padding(
         padding: EdgeInsets.only(
-          right: 80.w,
-          top: 80.h,
+          right: width * 80 / 1400,
+          top: 80 * width / 1400,
         ),
         child: SizedBox(
-          width: 650.w,
+          width: width * 650 / 1400,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              titleWidget(),
+              titleWidget(width),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -698,14 +729,13 @@ enum InternshipRole {
   Future<void> showDialog() async {
     SmartDialog.show(
       builder: (context) {
-        Widget left = leftWidget();
-        Widget right = rightWidget();
-
         double width = 1400.w;
         double height = 800.w;
         if (height > 900.h) {
           width = (1400 * 900 / 800).h;
         }
+        Widget left = leftWidget(width);
+        Widget right = rightWidget(width);
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),

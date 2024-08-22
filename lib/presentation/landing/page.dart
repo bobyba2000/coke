@@ -11,6 +11,7 @@ import 'package:coke_platform/presentation/landing/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/footer/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'countdown/widget.dart';
@@ -242,73 +243,90 @@ class _LandingPageState extends State<LandingPage> {
                       width: 1400.w,
                       color: Colors.white,
                     ),
-                    SizedBox(
-                      height: 1120.w,
-                      width: 1400.w,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                width: 1400.w,
-                                height: 10,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                width: 1400.w,
-                                height: 1000.w - 10,
-                                color: const Color(0xFF9833ff),
-                              )
-                            ],
-                          ),
-                          Positioned(
-                            top: 0,
-                            left: 0,
-                            height: 100.w,
-                            width: 1400.w,
-                            child: Assets.images.progress.transition.image(
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Assets.images.progress.background.image(
-                            width: 1400.w,
-                            height: 1120.w,
-                            fit: BoxFit.fill,
-                          ),
-                        ],
-                      ),
-                    ),
                     Container(
-                      height: 480.w,
-                      width: 1400.w,
-                      color: const Color(0xFF31cccc),
-                      child: Stack(
+                      color: const Color(0xFF30cccc),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Assets.images.countdown.background.image(
-                            height: 600.w,
+                          Container(
+                            height: 1120.w,
                             width: 1400.w,
-                            fit: BoxFit.fill,
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            width: 1400.w,
-                            height: 100.h,
-                            left: 0,
                             child: Stack(
+                              fit: StackFit.expand,
                               children: [
-                                Assets.images.progress.bottom.image(
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Container(
+                                      width: 1400.w,
+                                      height: 10,
+                                      color: Colors.white,
+                                    ),
+                                    Container(
+                                      width: 1400.w,
+                                      height: 1000.w - 10,
+                                      color: const Color(0xFF9833ff),
+                                    )
+                                  ],
+                                ),
+                                Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  height: 100.w,
                                   width: 1400.w,
-                                  height: 100.h,
+                                  child:
+                                      Assets.images.progress.transition.image(
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Assets.images.progress.background.image(
+                                  width: 1400.w,
+                                  height: 1120.w,
                                   fit: BoxFit.fill,
                                 ),
                                 Positioned(
                                   bottom: 0,
                                   child: Container(
-                                    color: const Color(0xFF28A549),
                                     height: 10,
+                                    color: const Color(0xFF30cccc),
                                     width: 1400.w,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 500.w,
+                            width: 1400.w,
+                            color: const Color(0xFF31cccc),
+                            child: Stack(
+                              children: [
+                                Assets.images.countdown.background.image(
+                                  height: 600.w,
+                                  width: 1400.w,
+                                  fit: BoxFit.fill,
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  width: 1400.w,
+                                  height: 100.h,
+                                  left: 0,
+                                  child: Stack(
+                                    children: [
+                                      Assets.images.progress.bottom.image(
+                                        width: 1400.w,
+                                        height: 100.h,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      Positioned(
+                                        bottom: 0,
+                                        child: Container(
+                                          color: const Color(0xFF28A549),
+                                          height: 10,
+                                          width: 1400.w,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],

@@ -49,6 +49,7 @@ class ProgressWidget extends StatelessWidget {
                   ],
                 ),
               ),
+              50.w.hSpace,
               Expanded(
                 child: SizedBox(
                   width: 800.w,
@@ -73,13 +74,14 @@ class ProgressWidget extends StatelessWidget {
                               size: 100.w,
                               color: Colors.white,
                               child: Padding(
-                                padding: const EdgeInsets.all(8),
+                                padding: EdgeInsets.all(8.w),
                                 child: Text(
                                   S.current.onlineApplication,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
-                                    fontSize: 14.sp,
+                                    fontSize: 14.spMin,
+                                    height: 1.15.wMax,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -133,13 +135,14 @@ class ProgressWidget extends StatelessWidget {
                               size: 120.w,
                               color: Colors.white,
                               child: Padding(
-                                padding: const EdgeInsets.all(8),
+                                padding: EdgeInsets.all(8.w),
                                 child: Text(
                                   S.current.onlineAssessment,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
-                                    fontSize: 14.sp,
+                                    fontSize: 14.spMin,
+                                    height: 1.15.wMax,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -210,13 +213,14 @@ class ProgressWidget extends StatelessWidget {
                               size: 130.w,
                               color: Colors.white,
                               child: Padding(
-                                padding: const EdgeInsets.all(8),
+                                padding: EdgeInsets.all(8.w),
                                 child: Text(
                                   S.current.launchPadDay,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
-                                    fontSize: 16.sp,
+                                    fontSize: 16.spMin,
+                                    height: 1.15.wMax,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
@@ -287,13 +291,14 @@ class ProgressWidget extends StatelessWidget {
                               size: 150.w,
                               color: Colors.white,
                               child: Padding(
-                                padding: const EdgeInsets.all(8),
+                                padding: EdgeInsets.all(8.w),
                                 child: Text(
                                   S.current.onboarding,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
-                                    fontSize: 16.sp,
+                                    fontSize: 16.spMin,
+                                    height: 1.15.wMax,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),

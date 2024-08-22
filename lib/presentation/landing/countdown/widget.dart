@@ -16,7 +16,8 @@ class CountdownWidget extends StatefulWidget {
   State<CountdownWidget> createState() => _CountdownWidgetState();
 }
 
-class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAliveClientMixin {
+class _CountdownWidgetState extends State<CountdownWidget>
+    with AutomaticKeepAliveClientMixin {
   DateTime dueDate = DateTime(2024, 9, 30);
   Duration duration = const Duration();
   late final Timer _timer;
@@ -44,8 +45,8 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
     super.build(context);
     final seconds = duration.inSeconds % 60;
     final minutes = duration.inMinutes % 60;
-    final hours = duration.inHours % 60;
-    final days = duration.inDays % 60;
+    final hours = duration.inHours % 24;
+    final days = duration.inDays;
 
     return SizedBox(
       height: 800.w,
@@ -54,6 +55,8 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            40.w.hSpace,
+            
             Text(
               sprintf(
                 S.current.onlyDaysLeft,
@@ -65,7 +68,7 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
                 color: Colors.white,
               ),
             ),
-            60.h.hSpace,
+            60.w.hSpace,
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -78,7 +81,7 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
                   hours,
                   S.current.hours,
                 ),
-                32.wSpace,
+                32.w.wSpace,
                 timeBox(
                   minutes,
                   S.current.minutes,
@@ -90,7 +93,7 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
                 ),
               ],
             ),
-            60.h.hSpace,
+            60.w.hSpace,
             CustomFilledButton(
               title: S.current.applyNow,
               onTap: () {
