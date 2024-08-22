@@ -461,6 +461,7 @@ class _PersonalPreviewState extends State<PersonalPreview> {
                       MailRequestModel(
                         name: widget.personal.preferName.isEmpty ? widget.personal.fullName : widget.personal.preferName,
                         email: widget.personal.email,
+                        fullname: widget.personal.fullName,
                         language: LocaleUtility.locale.value.languageCode,
                       ),
                     );

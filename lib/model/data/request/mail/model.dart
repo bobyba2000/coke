@@ -7,11 +7,13 @@ class MailRequestModel extends BaseRequestModel {
   final String name;
   final String email;
   final String language;
+  final String fullname;
 
   MailRequestModel({
     required this.name,
     required this.email,
     required this.language,
+    required this.fullname,
   });
 
   @override
