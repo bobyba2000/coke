@@ -53,7 +53,7 @@ class FooterWidget extends StatelessWidget {
                     title: S.current.about,
                     onTap: () {
                       controller.animateTo(
-                        700.w,
+                        800.w,
                         duration: const Duration(milliseconds: 1000),
                         curve: Curves.linear,
                       );
@@ -64,7 +64,7 @@ class FooterWidget extends StatelessWidget {
                     title: S.current.candidateProfile,
                     onTap: () {
                       controller.animateTo(
-                        1600.w,
+                        1700.w,
                         duration: const Duration(milliseconds: 1000),
                         curve: Curves.linear,
                       );
@@ -80,7 +80,7 @@ class FooterWidget extends StatelessWidget {
                   FooterTextButton(
                     onTap: () {
                       controller.animateTo(
-                        3200.w,
+                        3350.w,
                         duration: const Duration(milliseconds: 600),
                         curve: Curves.linear,
                       );
@@ -91,7 +91,7 @@ class FooterWidget extends StatelessWidget {
                   FooterTextButton(
                     onTap: () {
                       controller.animateTo(
-                        4000.w,
+                        4150.w,
                         duration: const Duration(milliseconds: 600),
                         curve: Curves.linear,
                       );
@@ -102,7 +102,7 @@ class FooterWidget extends StatelessWidget {
                   FooterTextButton(
                     onTap: () {
                       controller.animateTo(
-                        5700.w,
+                        5650.w,
                         duration: const Duration(milliseconds: 200),
                         curve: Curves.linear,
                       );
@@ -118,21 +118,24 @@ class FooterWidget extends StatelessWidget {
                   FooterIconButton(
                     child: Assets.images.footer.facebook.image(),
                     onTap: () {
-                      launchUrlString('https://www.facebook.com/ccbvl?mibextid=ZbWKwL');
+                      launchUrlString(
+                          'https://www.facebook.com/ccbvl?mibextid=ZbWKwL');
                     },
                   ),
                   24.w.wSpace,
                   FooterIconButton(
                     child: Assets.images.footer.group.image(),
                     onTap: () {
-                      launchUrlString('https://www.facebook.com/groups/cocacolayoungtalents/?ref=share&mibextid=NSMWBT');
+                      launchUrlString(
+                          'https://www.facebook.com/groups/cocacolayoungtalents/?ref=share&mibextid=NSMWBT');
                     },
                   ),
                   24.w.wSpace,
                   FooterIconButton(
                     child: Assets.images.footer.linkedin.image(),
                     onTap: () {
-                      launchUrlString('https://www.linkedin.com/company/cocacolavietnam/');
+                      launchUrlString(
+                          'https://www.linkedin.com/company/cocacolavietnam/');
                     },
                   ),
                   24.w.wSpace,
