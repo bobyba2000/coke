@@ -93,11 +93,10 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    500.w.hSpace,
+                    450.w.hSpace,
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        200.w.wSpace,
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +113,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(
-                                          top: 6.spMin,
+                                          top: 8.sp,
                                         ),
                                         child: Icon(
                                           Icons.circle,
@@ -128,7 +127,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                           sale,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 14.spMin,
+                                            fontSize: 16.sp,
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
@@ -140,7 +139,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                             ),
                           ),
                         ),
-                        500.w.wSpace,
+                        400.w.wSpace,
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +155,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(top: 6.spMin),
+                                        padding: EdgeInsets.only(top: 8.sp),
                                         child: Icon(
                                           Icons.circle,
                                           color: Colors.white,
@@ -169,7 +168,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                           other,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 14.spMin,
+                                            fontSize: 16.sp,
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
@@ -181,7 +180,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                             ),
                           ),
                         ),
-                        200.w.wSpace,
+                        150.w.wSpace,
                       ],
                     ),
                   ],
