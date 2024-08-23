@@ -52,6 +52,7 @@ dependencies:
   slide_digital_clock: 
     path: plugins/slide_digital_clock
   snappy_list_view: ^0.1.0
+  easy_debounce: ^2.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

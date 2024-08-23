@@ -110,11 +110,15 @@ class AboutWidget extends StatelessWidget {
                   ),
                 ),
                 24.hSpace,
-                CustomFilledButton(
-                  title: S.current.applyNow,
-                  onTap: () {
-                    context.go('/apply');
-                  },
+                Row(
+                  children: [
+                    CustomFilledButton(
+                      title: S.current.applyNow,
+                      onTap: () {
+                        context.go('/apply');
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),

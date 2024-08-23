@@ -16,8 +16,7 @@ class CountdownWidget extends StatefulWidget {
   State<CountdownWidget> createState() => _CountdownWidgetState();
 }
 
-class _CountdownWidgetState extends State<CountdownWidget>
-    with AutomaticKeepAliveClientMixin {
+class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAliveClientMixin {
   DateTime dueDate = DateTime(2024, 9, 30);
   Duration duration = const Duration();
   late final Timer _timer;
@@ -93,11 +92,16 @@ class _CountdownWidgetState extends State<CountdownWidget>
               ],
             ),
             60.w.hSpace,
-            CustomFilledButton(
-              title: S.current.applyNow,
-              onTap: () {
-                context.go('/apply');
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomFilledButton(
+                  title: S.current.applyNow,
+                  onTap: () {
+                    context.go('/apply');
+                  },
+                ),
+              ],
             ),
           ],
         ),

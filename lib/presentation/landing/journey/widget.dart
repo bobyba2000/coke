@@ -177,10 +177,7 @@ class JourneyWidget2 extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               S.current.journeyTimeline.toUpperCase(),
-              style: TextStyle(
-                  fontSize: 22.sp,
-                  color: const Color(0xFF1A6CC8),
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 22.sp, color: const Color(0xFF1A6CC8), fontWeight: FontWeight.bold),
             ),
           ),
           40.w.hSpace,
@@ -209,11 +206,16 @@ class JourneyWidget2 extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          CustomFilledButton(
-            title: S.current.applyNow,
-            onTap: () {
-              context.go('/apply');
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomFilledButton(
+                title: S.current.applyNow,
+                onTap: () {
+                  context.go('/apply');
+                },
+              ),
+            ],
           ),
           50.w.hSpace
         ],
