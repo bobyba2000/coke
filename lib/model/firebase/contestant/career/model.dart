@@ -123,7 +123,7 @@ enum InternshipRole {
           S.current.keyRoleResponsibilities,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20.spMin,
+            fontSize: 16.spMin,
             color: foreground,
             height: 1.15.wMax,
           ),
@@ -134,7 +134,7 @@ enum InternshipRole {
           (index) {
             final item = data[index];
             return Padding(
-              padding: EdgeInsets.only(bottom: 10.wMin),
+              padding: EdgeInsets.only(bottom: 6.wMin),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -147,7 +147,7 @@ enum InternshipRole {
                       child: Icon(
                         Icons.circle,
                         color: foreground,
-                        size: 10.spMin,
+                        size: 7.spMin,
                       ),
                     ),
                   ),
@@ -156,8 +156,8 @@ enum InternshipRole {
                       item,
                       style: TextStyle(
                         color: foreground,
-                        fontSize: 16.spMin,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 14.spMin,
+                        fontWeight: FontWeight.w400,
                         height: 1.15.wMax,
                       ),
                     ),
@@ -211,7 +211,7 @@ enum InternshipRole {
           S.current.jobOverview,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20.spMin,
+            fontSize: 16.spMin,
             color: foreground,
           ),
         ),
@@ -221,18 +221,18 @@ enum InternshipRole {
           (index) {
             final item = items[index];
             return Padding(
-              padding: EdgeInsets.only(bottom: 10.w),
+              padding: EdgeInsets.only(bottom: 6.wMin),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Visibility(
                     visible: !item.startsWith('(*)'),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 4.spMax, right: 16.wMin),
+                      padding: EdgeInsets.only(top: 4.spMax, right: 14.wMin),
                       child: Icon(
                         Icons.circle,
                         color: foreground,
-                        size: 10.spMin,
+                        size: 7.spMin,
                       ),
                     ),
                   ),
@@ -241,8 +241,8 @@ enum InternshipRole {
                       item,
                       style: TextStyle(
                         color: foreground,
-                        fontSize: 16.spMin,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 14.spMin,
+                        fontWeight: FontWeight.w400,
                         height: 1.15.wMax,
                       ),
                     ),
@@ -277,17 +277,11 @@ enum InternshipRole {
                                 Text(
                                   e.toString(),
                                   style: TextStyle(
-                                    fontSize: 16.spMin,
-                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14.spMin,
+                                    fontWeight: FontWeight.w400,
                                     color: Colors.white,
                                     height: 1.15.wMax,
                                   ),
-                                ),
-                                12.w.wSpace,
-                                Icon(
-                                  Icons.arrow_drop_down,
-                                  color: Colors.white,
-                                  size: 14.sp,
                                 ),
                               ],
                             ),
@@ -320,7 +314,7 @@ enum InternshipRole {
                                           Text(
                                             e.toString(),
                                             style: TextStyle(
-                                              fontSize: 12.spMin,
+                                              fontSize: 14.spMin,
                                               fontWeight: FontWeight.bold,
                                               color: const Color(0xFF5B2707),
                                             ),
@@ -345,7 +339,7 @@ enum InternshipRole {
                                                       style: TextStyle(
                                                         fontSize: 12.spMin,
                                                         fontWeight:
-                                                            FontWeight.w500,
+                                                            FontWeight.w400,
                                                         color: const Color(
                                                             0xFF5B2707),
                                                       ),
@@ -380,8 +374,8 @@ enum InternshipRole {
                                   Text(
                                     e.toString(),
                                     style: TextStyle(
-                                      fontSize: 16.spMin,
-                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14.spMin,
+                                      fontWeight: FontWeight.w400,
                                       color: Colors.white,
                                       height: 1.15.wMax,
                                     ),
@@ -390,7 +384,7 @@ enum InternshipRole {
                                   Icon(
                                     Icons.arrow_drop_down,
                                     color: Colors.white,
-                                    size: 14.sp,
+                                    size: 12.sp,
                                   ),
                                 ],
                               ),
@@ -1037,11 +1031,11 @@ enum InternshipRole {
 enum LocationModel {
   northEast,
   northWest,
-  hanoi,
   centralProvinces,
   southProvinces,
-  hochiminh,
-  mekongDelta;
+  mekongDelta,
+  hanoi,
+  hochiminh;
 
   @override
   String toString() {
@@ -1076,7 +1070,7 @@ enum LocationModel {
       case LocationModel.hochiminh:
         return 'Ho Chi Minh City';
       case LocationModel.mekongDelta:
-        return 'Can Tho City, An Giang Province, Dong Thap Province, Long An Province, Tien Giang Province, Vinh Long Province, Ben Tre Province, Tra Vinh Province, Soc Trang Province, Hau Giang Province, Bac Lieu Province, Ca Mau Province, Kien Giang Province';
+        return 'Can Tho, An Giang, Dong Thap, Long An, Tien Giang, Vinh Long, Ben Tre, Tra Vinh, Soc Trang, Hau Giang, Bac Lieu, Ca Mau, Kien Giang';
       case LocationModel.southProvinces:
         return 'Binh Duong, Binh Phuoc, Tay Ninh, Dong Nai, Ba Ria- Vung Tau, Ninh Thuan, Binh Thuan, Lam Dong, Dak Lak, Dak Nong, Khanh Hoa';
     }
@@ -1095,7 +1089,7 @@ enum LocationModel {
       case LocationModel.hochiminh:
         return 'Thành phố Hồ Chí Minh';
       case LocationModel.mekongDelta:
-        return 'TP. Cần Thơ, tỉnh An Giang, tỉnh Đồng Tháp, tỉnh Long An, tỉnh Tiền Giang, tỉnh Vĩnh Long, tỉnh Bến Tre, tỉnh Trà Vinh, tỉnh Sóc Trăng, tỉnh Hậu Giang, tỉnh Bạc Liêu, tỉnh Cà Mau, tỉnh Kiên Giang​';
+        return 'Cần Thơ, An Giang, Đồng Tháp, Long An, Tiền Giang, Vĩnh Long, Bến Tre, Trà Vinh, Sóc Trăng, Hậu Giang, Bạc Liêu, Cà Mau, Kiên Giang​';
       case LocationModel.southProvinces:
         return 'Bình Dương, Bình Phước, Tây Ninh, Đồng Nai, Bà Rịa- Vũng Tàu, Ninh Thuận, Bình Thuận, Lâm Đồng, Dak Lak, Dak Nong, Khánh Hòa​​';
     }

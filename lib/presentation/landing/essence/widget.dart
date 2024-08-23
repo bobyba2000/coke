@@ -97,6 +97,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        150.w.wSpace,
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
