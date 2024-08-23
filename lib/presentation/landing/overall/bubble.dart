@@ -16,7 +16,8 @@ class WaterBubble extends StatefulWidget {
   State<WaterBubble> createState() => _WaterBubbleState();
 }
 
-class _WaterBubbleState extends State<WaterBubble> with SingleTickerProviderStateMixin {
+class _WaterBubbleState extends State<WaterBubble>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -29,7 +30,7 @@ class _WaterBubbleState extends State<WaterBubble> with SingleTickerProviderStat
       vsync: this,
     )..repeat(reverse: true);
 
-    _animation = Tween<double>(begin: 0, end: 30).animate(
+    _animation = Tween<double>(begin: 0, end: 10).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOut,
@@ -69,8 +70,8 @@ class _WaterBubbleState extends State<WaterBubble> with SingleTickerProviderStat
                     color: Colors.white.withOpacity(
                       0.2,
                     ),
-                    blurRadius: _animation.value.w,
-                    spreadRadius: _animation.value.w,
+                    blurRadius: _animation.value.w * 3,
+                    spreadRadius: _animation.value.w * 3,
                   ),
                 ],
               ),

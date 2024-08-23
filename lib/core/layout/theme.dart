@@ -42,42 +42,42 @@ ThemeData themeData(BuildContext context) {
       titleLarge: TextStyle(
         fontSize: 35.spMin,
         fontWeight: FontWeight.w600,
-        height: 1.15.wMax,
+        height: 1.3.wMax,
       ),
       displayLarge: TextStyle(
         fontSize: 22.spMin,
         fontWeight: FontWeight.bold,
-        height: 1.15.wMax,
+        height: 1.3.wMax,
       ),
       displaySmall: TextStyle(
         fontSize: 16.spMin,
         fontWeight: FontWeight.bold,
-        height: 1.15.wMax,
+        height: 1.3.wMax,
       ),
       bodyLarge: TextStyle(
         fontSize: 16.spMin,
         fontWeight: FontWeight.w400,
-        height: 1.15.wMax,
+        height: 1.3.wMax,
       ),
       bodyMedium: TextStyle(
         fontSize: 12.spMin,
         fontWeight: FontWeight.w400,
-        height: 1.15.wMax,
+        height: 1.3.wMax,
       ),
       bodySmall: TextStyle(
         fontSize: 8.spMin,
         fontWeight: FontWeight.w400,
-        height: 1.15.wMax,
+        height: 1.3.wMax,
       ),
       titleMedium: TextStyle(
         fontSize: 16.spMin,
         fontWeight: FontWeight.w400,
-        height: 1.15.wMax,
+        height: 1.3.wMax,
       ),
       headlineMedium: TextStyle(
         fontSize: 18.spMin,
         fontWeight: FontWeight.w500,
-        height: 1.15.wMax,
+        height: 1.3.wMax,
       ),
     ),
   );

@@ -15,14 +15,14 @@ class AboutWidget extends StatelessWidget {
     final normal = textTheme.bodyLarge?.copyWith(
       color: const Color(0xFF403815),
       fontSize: 16.sp,
-      height: 1.15.wMax,
+      height: 1.3.wMax,
       fontWeight: FontWeight.w500,
     );
     final bold = textTheme.bodyLarge?.copyWith(
       fontWeight: FontWeight.bold,
       color: const Color(0xFF403815),
       fontSize: 16.sp,
-      height: 1.15.wMax,
+      height: 1.3.wMax,
     );
     return SizedBox(
       width: 1400.w,

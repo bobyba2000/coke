@@ -40,15 +40,9 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
           children: [
             Stack(
               children: [
-                SizedBox(
-                  height: 350.w,
+                Assets.images.header.image(
                   width: 1400.w,
-                  child: ClipRect(
-                    child: Assets.images.header.image(
-                      width: 1400.w,
-                      fit: BoxFit.none,
-                    ),
-                  ),
+                  fit: BoxFit.fitWidth,
                 ),
                 Positioned(
                   right: 40.w,

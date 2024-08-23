@@ -16,7 +16,8 @@ class CountdownWidget extends StatefulWidget {
   State<CountdownWidget> createState() => _CountdownWidgetState();
 }
 
-class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAliveClientMixin {
+class _CountdownWidgetState extends State<CountdownWidget>
+    with AutomaticKeepAliveClientMixin {
   DateTime dueDate = DateTime(2024, 9, 30);
   Duration duration = const Duration();
   late final Timer _timer;
@@ -54,12 +55,12 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            40.w.hSpace,
+            200.w.hSpace,
             Text(
               sprintf(
                 S.current.onlyDaysLeft,
                 [to2DigitString(days)],
-              ),
+              ).toUpperCase(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 38.sp,

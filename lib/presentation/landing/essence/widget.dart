@@ -128,8 +128,8 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                           sale,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16.spMin,
+                                            fontWeight: FontWeight.w400,
                                           ),
                                         ),
                                       ),
@@ -169,8 +169,8 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                           other,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16.spMin,
+                                            fontWeight: FontWeight.w400,
                                           ),
                                         ),
                                       ),

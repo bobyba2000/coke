@@ -205,7 +205,7 @@ class _LandingPageState extends State<LandingPage> {
                           Positioned(
                             left: 300.w,
                             right: 300.w,
-                            top: 0.w,
+                            top: 10.w,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -223,7 +223,7 @@ class _LandingPageState extends State<LandingPage> {
                                   style: TextStyle(
                                     fontSize: 16.sp,
                                     color: Colors.white,
-                                    height: 1.15.wMax,
+                                    height: 1.3.wMax,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),

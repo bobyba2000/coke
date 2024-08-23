@@ -114,10 +114,11 @@ enum JourneyCharacter {
           content,
           style: TextStyle(
             fontWeight: FontWeight.normal,
-            fontSize: 16.sp,
+            fontSize: 16.spMin,
             height: 1.1.wMax,
             color: const Color(0xFF035858),
           ),
+          textAlign: TextAlign.justify,
         ),
       ],
     );
@@ -177,7 +178,10 @@ class JourneyWidget2 extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               S.current.journeyTimeline.toUpperCase(),
-              style: TextStyle(fontSize: 22.sp, color: const Color(0xFF1A6CC8), fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 22.sp,
+                  color: const Color(0xFF1A6CC8),
+                  fontWeight: FontWeight.bold),
             ),
           ),
           40.w.hSpace,
