@@ -16,8 +16,7 @@ class CountdownWidget extends StatefulWidget {
   State<CountdownWidget> createState() => _CountdownWidgetState();
 }
 
-class _CountdownWidgetState extends State<CountdownWidget>
-    with AutomaticKeepAliveClientMixin {
+class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAliveClientMixin {
   DateTime dueDate = DateTime(2024, 9, 30);
   Duration duration = const Duration();
   late final Timer _timer;
@@ -135,7 +134,7 @@ class _CountdownWidgetState extends State<CountdownWidget>
               textStyle: TextStyle(
                 fontSize: 64.spMin,
                 color: const Color(0xFF049999),
-                fontWeight: FontWeight.w300,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),

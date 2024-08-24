@@ -5,11 +5,15 @@ import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/common/widget/scroll/scroll_transform_item.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EssenceWidget1 extends StatefulWidget {
-  const EssenceWidget1({super.key});
+  final GlobalKey essence1Key;
+  const EssenceWidget1({super.key, required this.essence1Key});
 
   @override
   State<EssenceWidget1> createState() => _EssenceWidget1State();
@@ -109,8 +113,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                 return Padding(
                                   padding: EdgeInsets.only(bottom: 8.wMin),
                                   child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(
@@ -152,8 +155,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                 return Padding(
                                   padding: EdgeInsets.only(bottom: 8.wMin),
                                   child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(top: 8.sp),
@@ -225,24 +227,55 @@ class _EssenceWidget2State extends State<EssenceWidget2> {
                 return Column(
                   children: [
                     200.w.hSpace,
-                    locale.languageCode == 'en'
-                        ? Assets.images.essence.winning.image(
-                            height: 350.w,
-                            fit: BoxFit.fitHeight,
-                          )
-                        : Assets.images.essence.winningVi.image(
-                            height: 350.w,
-                            fit: BoxFit.fitHeight,
+                    Expanded(
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Positioned(
+                            left: 25.w,
+                            right: 25.w,
+                            child: locale.languageCode == 'en'
+                                ? Assets.images.essence.winning.image(
+                                    height: 350.w,
+                                    fit: BoxFit.fitHeight,
+                                  )
+                                : Assets.images.essence.winningVi.image(
+                                    height: 350.w,
+                                    fit: BoxFit.fitHeight,
+                                  ),
                           ),
-                    locale.languageCode == 'en'
-                        ? Assets.images.essence.en2.image(
-                            width: 1400.w,
-                            fit: BoxFit.fitWidth,
-                          )
-                        : Assets.images.essence.vi2.image(
-                            width: 1400.w,
-                            fit: BoxFit.fitWidth,
+                          Positioned(
+                            top: 300.w,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                locale.languageCode == 'en'
+                                    ? Assets.images.essence.en2.image(
+                                        width: 1400.w,
+                                        fit: BoxFit.fitWidth,
+                                      )
+                                    : Assets.images.essence.vi2.image(
+                                        width: 1400.w,
+                                        fit: BoxFit.fitWidth,
+                                      ),
+                                Positioned(
+                                  top: 280.w,
+                                  child: Text(
+                                    S.current.functionalSkillsText,
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: const Color(0xFFfe6a00),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+                        ],
+                      ),
+                    ),
                   ],
                 );
               },

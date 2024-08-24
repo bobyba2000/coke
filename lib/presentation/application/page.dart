@@ -7,6 +7,7 @@ import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/application/form/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class ApplicationPage extends StatefulWidget {
   const ApplicationPage({super.key});
@@ -60,7 +61,19 @@ class _ApplicationPageState extends State<ApplicationPage> {
                           right: 40.w,
                           top: 10.w,
                           child: const LanguageSwitch(),
-                        )
+                        ),
+                        Positioned(
+                          top: 10.w,
+                          left: (1400.w - 240) / 2,
+                          child: InkWell(
+                            onTap: () {
+                              context.go('/');
+                            },
+                            child: Assets.images.logoWhite.image(
+                              width: 240,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     45.hSpace,

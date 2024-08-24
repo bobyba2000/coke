@@ -480,7 +480,7 @@ enum InternshipRole {
             ),
             12.wMin.hSpace,
             Text(
-              '$subtitle $content'.toUpperCase(),
+              '$subtitle\n$content'.toUpperCase(),
               style: TextStyle(
                 fontSize: 19.spMin,
                 fontWeight: FontWeight.bold,
@@ -505,7 +505,7 @@ enum InternshipRole {
             ),
             12.wMin.hSpace,
             Text(
-              '$subtitle $content'.toUpperCase(),
+              '$subtitle\n$content'.toUpperCase(),
               style: TextStyle(
                 fontSize: 19.spMin,
                 fontWeight: FontWeight.bold,
@@ -521,7 +521,7 @@ enum InternshipRole {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title,
+              S.current.itBreakDown.toUpperCase(),
               style: TextStyle(
                 fontSize: 52.spMin,
                 fontWeight: FontWeight.bold,
@@ -546,7 +546,7 @@ enum InternshipRole {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title.toUpperCase(),
+              S.current.itBreakDown.toUpperCase(),
               style: TextStyle(
                 fontSize: 52.spMin,
                 fontWeight: FontWeight.bold,

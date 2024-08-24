@@ -6,6 +6,7 @@ import 'package:coke_platform/presentation/landing/button/custom.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -191,7 +192,8 @@ enum JourneyCharacter {
 }
 
 class JourneyWidget1 extends StatelessWidget {
-  const JourneyWidget1({super.key});
+  final GlobalKey flowKey;
+  const JourneyWidget1({super.key, required this.flowKey});
 
   @override
   Widget build(BuildContext context) {
@@ -210,13 +212,16 @@ class JourneyWidget1 extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          LocaleUtility.locale.value.languageCode == 'en'
-              ? Assets.images.journey.en.image(
-                  width: 1300.w,
-                )
-              : Assets.images.journey.vi.image(
-                  width: 1300.w,
-                ),
+          FadeInLeft(
+            globalKey: flowKey,
+            child: LocaleUtility.locale.value.languageCode == 'en'
+                ? Assets.images.journey.en.image(
+                    width: 1300.w,
+                  )
+                : Assets.images.journey.vi.image(
+                    width: 1300.w,
+                  ),
+          ),
           const Spacer(),
         ],
       ),

@@ -3,6 +3,7 @@ import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WaveContainer extends StatefulWidget {
@@ -141,7 +142,11 @@ class WaveClipper extends CustomClipper<Path> {
 }
 
 class CareerWidget extends StatelessWidget {
-  const CareerWidget({super.key});
+  final GlobalKey modelKey;
+  const CareerWidget({
+    super.key,
+    required this.modelKey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -162,8 +167,12 @@ class CareerWidget extends StatelessWidget {
             top: 250.w,
             left: 500.w,
             right: 500.w,
-            child: Assets.images.career.model.image(
-              fit: BoxFit.fitWidth,
+            child: ZoomIn(
+              globalKey: modelKey,
+              duration: const Duration(milliseconds: 600),
+              child: Assets.images.career.model.image(
+                fit: BoxFit.fitWidth,
+              ),
             ),
           ),
           Positioned(

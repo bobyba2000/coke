@@ -11,6 +11,7 @@ import 'package:coke_platform/presentation/landing/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/footer/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'countdown/widget.dart';
@@ -36,6 +37,10 @@ class _LandingPageState extends State<LandingPage> {
 
   final journey1Key = GlobalKey();
   final footerKey = GlobalKey();
+
+  final careerModelKey = GlobalKey();
+  final journeyFlowKey = GlobalKey();
+  final essence1Key = GlobalKey();
 
   @override
   void initState() {
@@ -273,8 +278,7 @@ class _LandingPageState extends State<LandingPage> {
                                   left: 0,
                                   height: 100.w,
                                   width: 1400.w,
-                                  child:
-                                      Assets.images.progress.transition.image(
+                                  child: Assets.images.progress.transition.image(
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -337,8 +341,7 @@ class _LandingPageState extends State<LandingPage> {
                     Builder(
                       builder: (context) {
                         if (footerKey.currentContext != null) {
-                          final box = footerKey.currentContext!
-                              .findRenderObject() as RenderBox;
+                          final box = footerKey.currentContext!.findRenderObject() as RenderBox;
                           return Container(
                             color: const Color(0xFF28A549),
                             width: 1400.w,
@@ -361,10 +364,16 @@ class _LandingPageState extends State<LandingPage> {
                 children: [
                   const OverviewWidget(),
                   const AboutWidget(),
-                  const EssenceWidget1(),
+                  EssenceWidget1(
+                    essence1Key: essence1Key,
+                  ),
                   const EssenceWidget2(),
-                  const CareerWidget(),
-                  const JourneyWidget1(),
+                  CareerWidget(
+                    modelKey: careerModelKey,
+                  ),
+                  JourneyWidget1(
+                    flowKey: journeyFlowKey,
+                  ),
                   const JourneyWidget2(),
                   const ProgressWidget(),
                   const CountdownWidget(),

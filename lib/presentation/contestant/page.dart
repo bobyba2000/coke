@@ -11,6 +11,7 @@ import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/button/custom.dart';
 import 'package:coke_platform/service/firebase/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
@@ -72,6 +73,7 @@ class ContestantPage extends StatefulWidget {
 class _ContestantPageState extends State<ContestantPage> {
   final service = AppDependencies.injector.get<FirebaseAuthService>();
   ContestantStatus currentStep = ContestantStatus.onlineApplication;
+  bool showStatus = false;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -112,72 +114,11 @@ class _ContestantPageState extends State<ContestantPage> {
                       ),
                       padding: EdgeInsets.symmetric(
                         horizontal: 64.w,
-                        vertical: 64.h,
+                        vertical: 40.h,
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Stack(
-                            clipBehavior: Clip.none,
-                            alignment: Alignment.center,
-                            children: [
-                              LinearProgressIndicator(
-                                value: currentStep.step,
-                                color: ColorConstants.teal,
-                                minHeight: 10.w,
-                                backgroundColor: const Color(0xFFe9ecef),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              ...ContestantStatus.values.map(
-                                (e) => Positioned(
-                                  left: e.position * 672.w - 20.w - (e.toString().length / 2) * 6.spMin,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        e.toString(),
-                                        style: textTheme.bodyLarge?.copyWith(
-                                          color: e.index % 2 == 0
-                                              ? e.index <= currentStep.index
-                                                  ? ColorConstants.teal
-                                                  : Colors.grey
-                                              : Colors.transparent,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      8.hSpace,
-                                      Container(
-                                        width: 20.w,
-                                        height: 20.w,
-                                        color: Colors.white,
-                                        alignment: Alignment.center,
-                                        child: Container(
-                                          width: 16.w,
-                                          height: 16.w,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(16.w),
-                                            color: e.index > currentStep.index ? const Color(0xFFe9ecef) : ColorConstants.teal,
-                                          ),
-                                        ),
-                                      ),
-                                      8.hSpace,
-                                      Text(
-                                        e.toString(),
-                                        style: textTheme.bodyLarge?.copyWith(
-                                          color: e.index % 2 != 0
-                                              ? e.index <= currentStep.index
-                                                  ? ColorConstants.teal
-                                                  : Colors.grey
-                                              : Colors.transparent,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          64.hMax.hSpace,
                           Text(
                             S.current.personalInformation,
                             style: TextStyle(
@@ -186,47 +127,115 @@ class _ContestantPageState extends State<ContestantPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          40.wMin.hSpace,
-                          SizedBox(
-                            width: 400.w,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                TextFieldWidget(
-                                  label: S.current.email,
-                                  initText: service.getUserEmail(),
-                                  readOnly: true,
-                                ),
-                                16.w.hSpace,
-                                TextFieldWidget(
-                                  label: S.current.fullName,
-                                  initText: service.getUserName(),
-                                  readOnly: true,
-                                ),
-                                16.w.hSpace,
-                              ],
+                          30.hSpace,
+                          Visibility(
+                            visible: showStatus,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                bottom: 64.hMax,
+                                top: 40,
+                              ),
+                              child: Stack(
+                                clipBehavior: Clip.none,
+                                alignment: Alignment.center,
+                                children: [
+                                  LinearProgressIndicator(
+                                    value: currentStep.step,
+                                    color: ColorConstants.teal,
+                                    minHeight: 10.w,
+                                    backgroundColor: const Color(0xFFe9ecef),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  ...ContestantStatus.values.map(
+                                    (e) => Positioned(
+                                      left: e.position * 672.w - 20.w - (e.toString().length / 2) * 6.spMin,
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            e.toString(),
+                                            style: textTheme.bodyLarge?.copyWith(
+                                              color: e.index % 2 == 0
+                                                  ? e.index <= currentStep.index
+                                                      ? ColorConstants.teal
+                                                      : Colors.grey
+                                                  : Colors.transparent,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          8.hSpace,
+                                          Container(
+                                            width: 20.w,
+                                            height: 20.w,
+                                            color: Colors.white,
+                                            alignment: Alignment.center,
+                                            child: Container(
+                                              width: 16.w,
+                                              height: 16.w,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(16.w),
+                                                color: e.index > currentStep.index ? const Color(0xFFe9ecef) : ColorConstants.teal,
+                                              ),
+                                            ),
+                                          ),
+                                          8.hSpace,
+                                          Text(
+                                            e.toString(),
+                                            style: textTheme.bodyLarge?.copyWith(
+                                              color: e.index % 2 != 0
+                                                  ? e.index <= currentStep.index
+                                                      ? ColorConstants.teal
+                                                      : Colors.grey
+                                                  : Colors.transparent,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
+                          // SizedBox(
+                          //   width: 400.w,
+                          //   child: Text(
+                          //     '${S.current.hello}${service.getUserName()}',
+                          //     style: TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       color: ColorConstants.teal,
+                          //       fontSize: 24.sp,
+                          //     ),
+                          //   ),
+                          // ),
+                          // 8.hSpace,
                           SizedBox(
                             width: 400.w,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Expanded(
-                                  child: CustomFilledButton(
-                                    color: ColorConstants.teal,
-                                    title: S.current.changePassword,
-                                    onTap: () => changePassword(context),
-                                  ),
-                                ),
-                                16.w.wSpace,
-                                Expanded(
-                                  child: CustomFilledButton(
-                                    title: S.current.signOut,
-                                    onTap: () => logout(context),
-                                  ),
-                                ),
-                              ],
+                            child: CustomFilledButton(
+                              color: ColorConstants.teal,
+                              title: S.current.viewApplicationStatus,
+                              onTap: () {
+                                setState(() {
+                                  showStatus = true;
+                                });
+                              },
+                            ),
+                          ),
+                          16.hSpace,
+                          SizedBox(
+                            width: 400.w,
+                            child: CustomFilledButton(
+                              color: ColorConstants.teal,
+                              title: S.current.changePassword,
+                              onTap: () => changePassword(context),
+                            ),
+                          ),
+                          16.hSpace,
+                          SizedBox(
+                            width: 400.w,
+                            child: CustomFilledButton(
+                              title: S.current.signOut,
+                              onTap: () => logout(context),
                             ),
                           ),
                         ],

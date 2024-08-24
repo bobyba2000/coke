@@ -52,7 +52,7 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
   Future<void> scrollDown() async {
     final List<double> stops = [
       0,
-      700.w,
+      800.w,
       1700.w,
       2500.w,
       3350.w,
@@ -70,7 +70,7 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
     final currentPixels = widget.controller.position.pixels;
 
     isScrolling = true;
-    if (currentPixels + 1050.h < heightPart && index != 1 && index != 3) {
+    if (currentPixels + 1050.h < heightPart && index != 1 && index != 3 && index != 2) {
       index--;
       await widget.controller.animateTo(
         heightPart - 1050.h,
