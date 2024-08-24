@@ -11,7 +11,6 @@ import 'package:coke_platform/presentation/landing/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/footer/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'countdown/widget.dart';
