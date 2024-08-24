@@ -295,8 +295,9 @@
     "aboutTheProgramContent14": "Apply to Coke Fresh 2024 to FIZZ UP your passion!​​​",
     "usedEmail": "This email has already been used for another existing application. You should only apply once for the program.",
     "essenceTitle": "The Essence of a Coke Fresh",
+    "essenceTitleMobile": "The Essence of\na Coke Fresh",
     "essenceContent1": "Our functional trainee positions call for dynamic and motivated individuals who exemplify the core characteristics described below",
-    "saleRole": "Sales Role (General Trade channel)​",
+    "saleRole": "Sales Role​",
     "saleRoleContent": "Final year students or Fresh Graduates from University/ College nationwide​;Less than 1 year of working experience​;GPA from 6.0/10 or equivalent​;Open for any educational major​;Working Location: at a city/province in one of our 7 sales regions nationwide – North East, North West, Ha Noi, Central Provinces, South Provinces, Ho Chi Minh, Mekong Delta​",
     "otherRole": "Other roles",
     "otherRoleContent": "Third-year or Final year students or Fresh Graduates from University nationwide​;Less than 1 year of working experience​;GPA from 7.0/10.0 or equivalent​;Educational major differs depending on the specific requirements of functional roles​;Working Location: Ho Chi Minh city​;English proficiency​",
@@ -374,5 +375,15 @@
     "onlineApplicationTitle": "Online Application",
     "onlineAssessmentTitle": "Online Assessment",
     "launchPadDayTitle": "Launchpad day",
-    "onboardingTitle": "Onboarding"
+    "onboardingTitle": "Onboarding",
+    "integrity": "Integrity",
+    "eagerToLearn": "Eagerness\nto learn",
+    "adaptability": "Adaptability",
+    "learningAgility": "Learning\nAgility",
+    "teamPlayer": "Team-layer",
+    "resilence": "Resilence",
+    "growthMindset": "Growth\nmindset",
+    "accountability": "\nAccountability\n",
+    "resultOrientation": "Result\nOrientation",
+    "winningAttribute": "Winning Attributes"
 }

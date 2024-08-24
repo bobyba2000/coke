@@ -22,11 +22,10 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = isHover
-        ? widget.color?.withOpacity(0.7) ??
-            const Color.fromARGB(255, 211, 2, 47)
-        : widget.color ?? const Color(0xFFFE0138);
+    final backgroundColor =
+        isHover ? widget.color?.withOpacity(0.7) ?? const Color.fromARGB(255, 211, 2, 47) : widget.color ?? const Color(0xFFFE0138);
     const foreground = Colors.white;
+    bool isMobile = 1400.w < 500;
     return InkWell(
       onTap: widget.onTap,
       onHover: (value) => setState(() {
@@ -38,14 +37,17 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
           color: backgroundColor,
         ),
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: 14.wMin, horizontal: 40.wMin),
+        padding: EdgeInsets.symmetric(
+          vertical: isMobile ? 14.wMax : 14.wMin,
+          horizontal: isMobile ? 40.wMax : 40.wMin,
+        ),
         duration: const Duration(milliseconds: 200),
         child: Text(
           widget.title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: foreground,
-            fontSize: 18.spMin,
+            fontSize: isMobile ? 18.spMax : 18.spMin,
           ),
         ),
       ),
@@ -66,8 +68,7 @@ class _CustomTextButtonState extends State<CustomTextButton> {
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
-    final backgroundColor =
-        isHover ? const Color(0xFFFE0138) : Colors.transparent;
+    final backgroundColor = isHover ? const Color(0xFFFE0138) : Colors.transparent;
     final foreground = isHover ? Colors.white : const Color(0xFF4E5156);
     return InkWell(
       onTap: widget.onTap,

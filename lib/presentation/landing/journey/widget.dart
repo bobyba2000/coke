@@ -3,6 +3,7 @@ import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/button/custom.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,6 +59,70 @@ enum JourneyCharacter {
       case JourneyCharacter.h:
         return const Color(0xFF486EB3);
     }
+  }
+
+  Widget get mobileWidget {
+    final titleStr = title.split(';');
+    Widget titleWidget = Text(
+      titleStr.last,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        color: const Color(0xFF035858),
+      ),
+    );
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            16.wSpace,
+            Container(
+              alignment: Alignment.center,
+              width: 40,
+              color: const Color(0xFFD6F5F4),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    name.toUpperCase(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: color,
+                      fontSize: 36,
+                      height: 0.8,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            16.wSpace,
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  titleWidget,
+                  10.hSpace,
+                  Text(
+                    content,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                      height: 1.15,
+                      color: Color(0xFF035858),
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
+            ),
+            16.wSpace,
+          ],
+        ),
+      ),
+    );
   }
 
   Widget get widget {
@@ -179,9 +244,10 @@ class JourneyWidget2 extends StatelessWidget {
             child: Text(
               S.current.journeyTimeline.toUpperCase(),
               style: TextStyle(
-                  fontSize: 22.sp,
-                  color: const Color(0xFF1A6CC8),
-                  fontWeight: FontWeight.bold),
+                fontSize: 22.sp,
+                color: const Color(0xFF1A6CC8),
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           40.w.hSpace,

@@ -280,6 +280,7 @@
     "aboutTheProgramContent14": "Nhanh tay ứng tuyển cho Coke Fresh 2024 và KHAI TỎA đam mê của bạn!​​",
     "usedEmail": "Địa chỉ email này đã trùng với một đơn ứng tuyển trước đó. Bạn vui lòng chỉ ứng tuyển 1 lần cho chương trình.",
     "essenceTitle": "Chân dung ứng viên Coke Fresh​",
+    "essenceTitleMobile": "Chân dung ứng viên\nCoke Fresh",
     "essenceContent1": "Chương trình mang đến cơ hội rộng mở cho tất cả các bạn trẻ năng động, nhiệt huyết và thể hiện những đặc điểm chung phù hợp cho các vị trí tập sự tại công ty Coca-Cola Việt Nam như sau:​",
     "saleRole": "Các vị trí thuộc bộ phận Bán hàng (Kênh truyền thống)​",
     "saleRoleContent": "Sinh viên năm cuối hoặc Tân Cử nhân tốt nghiệp từ Đại học/Cao đẳng trên toàn quốc​;Có ít hơn 1 năm kinh nghiệm làm việc​;Điểm trung bình tích lũy từ 6.0/10 trở lên hoặc tương đương​;Chuyên ngành không giới hạn​;Địa điểm làm việc: tại 1 tỉnh thành thuộc 1 trong 7 Vùng kinh doanh trên toàn quốc của Coca-Cola: Đông Bắc, Tây Bắc, Hà Nội, Miền Trung, Miền Đông Nam Bộ, TP Hồ Chí Minh, Đb. Sông Cửu Long",
@@ -375,5 +376,15 @@
     "onlineApplicationTitle": "Ứng tuyển trực tuyến",
     "onlineAssessmentTitle": "Đánh giá năng lực trực tuyến",
     "launchPadDayTitle": "Đánh giá năng lực tập trung",
-    "onboardingTitle": "Chính thức gia nhập"
+    "onboardingTitle": "Chính thức gia nhập",
+    "integrity": "Tính\nliêm chính",
+    "eagerToLearn": "Đam mê\nhọc hỏi",
+    "adaptability": "Thích ứng\nnhanh nhạy",
+    "learningAgility": "Học tập\nlinh hoạt",
+    "teamPlayer": "Tinh thần\nđội nhóm",
+    "resilence": "Sự\nkiên hoạt",
+    "growthMindset": "Tư duy\ncầu tiến",
+    "accountability": "Tinh thần\ntrách nhiệm",
+    "resultOrientation": "Hướng tới\nkết quả",
+    "winningAttribute": "Phẩm chất nổi bật"
 }

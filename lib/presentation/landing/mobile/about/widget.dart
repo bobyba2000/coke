@@ -1,0 +1,123 @@
+import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/generated/l10n.dart';
+import 'package:coke_platform/presentation/landing/button/custom.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+class MobileAboutWidget extends StatefulWidget {
+  const MobileAboutWidget({super.key});
+
+  @override
+  State<MobileAboutWidget> createState() => _MobileAboutWidgetState();
+}
+
+class _MobileAboutWidgetState extends State<MobileAboutWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final normal = textTheme.bodyLarge?.copyWith(
+      color: const Color(0xFF403815),
+      fontSize: 16,
+      height: 1.3.wMax,
+      fontWeight: FontWeight.w500,
+    );
+    final bold = textTheme.bodyLarge?.copyWith(
+      fontWeight: FontWeight.bold,
+      color: const Color(0xFF403815),
+      fontSize: 16,
+      height: 1.3.wMax,
+    );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            S.current.aboutTheProgram.toUpperCase(),
+            style: textTheme.displaySmall?.copyWith(
+              color: const Color(0xFF084A99),
+              fontSize: 36,
+            ),
+          ),
+          16.hSpace,
+          SelectableText.rich(
+            TextSpan(
+              text: S.current.aboutTheProgramContent1,
+              style: normal,
+              children: [
+                TextSpan(
+                  text: S.current.aboutTheProgramContent1,
+                  style: normal,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent2,
+                  style: bold,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent3,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent4,
+                  style: bold,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent5,
+                  style: normal,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent6,
+                  style: bold,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent7,
+                  style: normal,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent8,
+                  style: bold,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent9,
+                  style: normal,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent10,
+                  style: bold,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent11,
+                  style: normal,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent12,
+                  style: bold,
+                ),
+                TextSpan(
+                  text: S.current.aboutTheProgramContent13,
+                  style: normal,
+                ),
+              ],
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            S.current.aboutTheProgramContent14,
+            style: bold?.copyWith(
+              color: const Color(0xFF0F4D91),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          24.hSpace,
+          CustomFilledButton(
+            title: S.current.applyNow,
+            onTap: () {
+              context.go('/apply');
+            },
+          ),
+          18.hSpace,
+        ],
+      ),
+    );
+  }
+}
