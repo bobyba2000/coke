@@ -13,15 +13,16 @@ class MobileJourneyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: 1400.w,
+      color: Colors.white,
       child: Column(
         children: [
           24.hSpace,
           Text(
             S.current.cokeJourney.toUpperCase(),
             style: const TextStyle(
-              fontSize: 36,
+              fontSize: 24,
               color: Color(0xFFE7661F),
               fontWeight: FontWeight.bold,
             ),

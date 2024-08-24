@@ -27,12 +27,12 @@ class WinningAttributeWidget extends StatelessWidget {
           ),
         ],
       ),
-      padding: const EdgeInsets.all(52),
+      padding: const EdgeInsets.all(36),
       alignment: Alignment.center,
       child: Text(
         title,
         style: const TextStyle(
-          fontSize: 18,
+          fontSize: 14,
           color: Color(0xFF4975ba),
           fontWeight: FontWeight.w700,
         ),
@@ -62,7 +62,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
     final sales = S.current.saleRoleContent.split(';');
     final others = S.current.otherRoleContent.split(';');
     return SizedBox(
-      height: 1880,
+      height: 1500,
       child: Stack(
         children: [
           Positioned(
@@ -90,7 +90,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Color(0xFF19FFFE),
-                          fontSize: 36,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -98,7 +98,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                       Text(
                         S.current.essenceContent1,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Colors.white,
                           height: 1.3.wMax,
                         ),
@@ -118,7 +118,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                         S.current.saleRole,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 24,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -133,7 +133,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                               sale,
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -161,7 +161,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                         S.current.otherRole,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 24,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -176,7 +176,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                               other,
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w400,
                               ),
                               textAlign: TextAlign.end,
@@ -193,13 +193,13 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Color(0xFFf1feff),
-                    fontSize: 36,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 16.hSpace,
                 SizedBox(
-                  height: 1000,
+                  height: 750,
                   child: Stack(
                     children: [
                       ...[
@@ -214,9 +214,9 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                         S.current.resultOrientation,
                       ].asMap().entries.map(
                             (e) => Positioned(
-                              top: e.key % 2 == 0 ? 200 * (e.key / 2) : (200 * (e.key / 2)),
-                              left: e.key % 2 == 0 ? 16 + Random().nextInt(44).toDouble() : null,
-                              right: e.key % 2 == 1 ? 16 + Random().nextInt(44).toDouble() : null,
+                              top: e.key % 2 == 0 ? 150 * (e.key / 2) : (150 * (e.key / 2)),
+                              left: e.key % 2 == 0 ? 24 + Random().nextInt(44).toDouble() : null,
+                              right: e.key % 2 == 1 ? 24 + Random().nextInt(44).toDouble() : null,
                               child: WinningAttributeWidget(title: e.value),
                             ),
                           ),

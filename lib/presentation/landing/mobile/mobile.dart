@@ -1,15 +1,13 @@
 import 'dart:math';
 
-import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
-import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/mobile/about/widget.dart';
+import 'package:coke_platform/presentation/landing/mobile/countdown/widget.dart';
 import 'package:coke_platform/presentation/landing/mobile/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/mobile/journey/widget.dart';
 import 'package:coke_platform/presentation/landing/mobile/progress/widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'career/widget.dart';
@@ -23,7 +21,12 @@ class MobileLandingPage extends StatefulWidget {
 
 class _MobileLandingPageState extends State<MobileLandingPage> {
   final ScrollController _background = ScrollController();
-  final ScrollController _page = ScrollController();
+  final overviewKey = GlobalKey();
+  final aboutKey = GlobalKey();
+  final essenceKey = GlobalKey();
+  final careerKey = GlobalKey();
+  final journalKey = GlobalKey();
+  final progressKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,10 +45,13 @@ class _MobileLandingPageState extends State<MobileLandingPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Assets.images.overview.mobile.image(
+                        key: overviewKey,
                         width: 1400.w,
                         fit: BoxFit.fitWidth,
                       ),
-                      const MobileAboutWidget(),
+                      MobileAboutWidget(
+                        key: aboutKey,
+                      ),
                       Stack(
                         children: [
                           Transform.rotate(
@@ -65,10 +71,27 @@ class _MobileLandingPageState extends State<MobileLandingPage> {
                     ],
                   ),
                 ),
-                const EssenceWidget(),
-                const MobileCareerWidget(),
-                const MobileJourneyWidget(),
-                const MobileProgressWidget(),
+                EssenceWidget(
+                  key: essenceKey,
+                ),
+                MobileCareerWidget(
+                  key: careerKey,
+                ),
+                MobileJourneyWidget(
+                  key: journalKey,
+                ),
+                MobileProgressWidget(
+                  key: progressKey,
+                ),
+                MobileCountdownWidget(
+                  controller: _background,
+                  overview: overviewKey,
+                  about: aboutKey,
+                  essence: essenceKey,
+                  career: careerKey,
+                  journey: journalKey,
+                  progress: progressKey,
+                ),
               ],
             ),
           ),

@@ -10,14 +10,10 @@ import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/button/custom.dart';
 import 'package:coke_platform/service/firebase/auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
-
-import '../landing/overview/widget.dart';
 
 enum ContestantStatus {
   onlineApplication,
@@ -134,9 +130,7 @@ class _ContestantPageState extends State<ContestantPage> {
                               ),
                               ...ContestantStatus.values.map(
                                 (e) => Positioned(
-                                  left: e.position * 672.w -
-                                      20.w -
-                                      (e.toString().length / 2) * 6.spMin,
+                                  left: e.position * 672.w - 20.w - (e.toString().length / 2) * 6.spMin,
                                   child: Column(
                                     children: [
                                       Text(
@@ -160,11 +154,8 @@ class _ContestantPageState extends State<ContestantPage> {
                                           width: 16.w,
                                           height: 16.w,
                                           decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(16.w),
-                                            color: e.index > currentStep.index
-                                                ? const Color(0xFFe9ecef)
-                                                : ColorConstants.teal,
+                                            borderRadius: BorderRadius.circular(16.w),
+                                            color: e.index > currentStep.index ? const Color(0xFFe9ecef) : ColorConstants.teal,
                                           ),
                                         ),
                                       ),
@@ -316,8 +307,7 @@ class _ContestantPageState extends State<ContestantPage> {
               TextButton(
                 onPressed: () async {
                   if (form.currentState!.validate()) {
-                    final authService =
-                        AppDependencies.injector.get<FirebaseAuthService>();
+                    final authService = AppDependencies.injector.get<FirebaseAuthService>();
                     LoadingUtility.show();
                     try {
                       await authService.changePassword(password);

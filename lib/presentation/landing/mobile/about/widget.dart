@@ -18,14 +18,14 @@ class _MobileAboutWidgetState extends State<MobileAboutWidget> {
     final textTheme = theme.textTheme;
     final normal = textTheme.bodyLarge?.copyWith(
       color: const Color(0xFF403815),
-      fontSize: 16,
+      fontSize: 14,
       height: 1.3.wMax,
       fontWeight: FontWeight.w500,
     );
     final bold = textTheme.bodyLarge?.copyWith(
       fontWeight: FontWeight.bold,
       color: const Color(0xFF403815),
-      fontSize: 16,
+      fontSize: 14,
       height: 1.3.wMax,
     );
     return Padding(
@@ -37,7 +37,7 @@ class _MobileAboutWidgetState extends State<MobileAboutWidget> {
             S.current.aboutTheProgram.toUpperCase(),
             style: textTheme.displaySmall?.copyWith(
               color: const Color(0xFF084A99),
-              fontSize: 36,
+              fontSize: 24,
             ),
           ),
           16.hSpace,

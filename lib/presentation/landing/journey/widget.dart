@@ -65,10 +65,10 @@ enum JourneyCharacter {
     final titleStr = title.split(';');
     Widget titleWidget = Text(
       titleStr.last,
-      style: TextStyle(
+      style: const TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 20,
-        color: const Color(0xFF035858),
+        fontSize: 16,
+        color: Color(0xFF035858),
       ),
     );
     return Padding(
@@ -90,7 +90,7 @@ enum JourneyCharacter {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: color,
-                      fontSize: 36,
+                      fontSize: 24,
                       height: 0.8,
                     ),
                   ),
@@ -104,12 +104,12 @@ enum JourneyCharacter {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   titleWidget,
-                  10.hSpace,
+                  4.hSpace,
                   Text(
                     content,
                     style: const TextStyle(
                       fontWeight: FontWeight.normal,
-                      fontSize: 16,
+                      fontSize: 14,
                       height: 1.15,
                       color: Color(0xFF035858),
                     ),

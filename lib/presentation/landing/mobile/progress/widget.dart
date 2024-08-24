@@ -1,9 +1,10 @@
+import 'dart:math';
+
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/overall/bubble.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MobileProgressWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class MobileProgressWidget extends StatelessWidget {
             S.current.processTitle.toUpperCase(),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 36,
+              fontSize: 24,
               color: Colors.white,
             ),
             textAlign: TextAlign.center,
@@ -33,17 +34,21 @@ class MobileProgressWidget extends StatelessWidget {
               S.current.processContent,
               style: const TextStyle(
                 fontWeight: FontWeight.normal,
-                fontSize: 16,
+                fontSize: 14,
                 height: 1.3,
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,
             ),
           ),
+          8.hSpace,
           Stack(
             children: [
-              Assets.images.progress.background.image(
-                width: 1400.w,
+              Padding(
+                padding: const EdgeInsets.only(top: 48),
+                child: Assets.images.progress.background.image(
+                  width: 1400.w,
+                ),
               ),
               Row(
                 children: [
@@ -51,7 +56,7 @@ class MobileProgressWidget extends StatelessWidget {
                     child: SizedBox.shrink(),
                   ),
                   SizedBox(
-                    width: 800.w,
+                    width: 1000.w,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -63,47 +68,67 @@ class MobileProgressWidget extends StatelessWidget {
                                 children: [
                                   Text(
                                     S.current.by10Sep,
-                                    style: TextStyle(
-                                      fontSize: 12,
+                                    style: const TextStyle(
+                                      fontSize: 10,
                                       color: Colors.white,
                                     ),
                                   ),
-                                  16.hSpace,
+                                  4.hSpace,
                                   WaterBubble(
-                                    size: 80,
+                                    size: 72,
                                     color: Colors.white,
                                     child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Text(
                                         S.current.onlineApplication,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
-                                          fontSize: 12,
+                                          fontSize: 10,
                                           height: 1.3,
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
-                                  16.hSpace,
+                                  4.hSpace,
                                   Text(
                                     S.current.in3weeks,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: const Color(0xFFfed602),
-                                      fontSize: 12,
+                                      color: Color(0xFFfed602),
+                                      fontSize: 10,
                                     ),
                                   ),
                                 ],
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white.withOpacity(
+                                      0.2,
+                                    ),
+                                    blurRadius: 4,
+                                    spreadRadius: 2,
+                                  ),
+                                ],
+                              ),
+                              child: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.white,
+                                size: 16,
                               ),
                             ),
                             Expanded(
                                 child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
+                                18.hSpace,
                                 WaterBubble(
-                                  size: 85,
+                                  size: 72,
                                   color: Colors.white,
                                   child: Padding(
                                     padding: EdgeInsets.all(8.w),
@@ -112,24 +137,159 @@ class MobileProgressWidget extends StatelessWidget {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
-                                        fontSize: 12,
+                                        fontSize: 8,
                                         height: 1.3.wMax,
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
                                 ),
-                                16.hSpace,
+                                4.hSpace,
                                 Text(
                                   S.current.in3Days,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFFfed602),
+                                    color: Color(0xFFfed602),
                                     fontSize: 12,
                                   ),
                                 ),
                               ],
                             ))
+                          ],
+                        ),
+                        8.hSpace,
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 64),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white.withOpacity(
+                                      0.2,
+                                    ),
+                                    blurRadius: 4,
+                                    spreadRadius: 2,
+                                  ),
+                                ],
+                              ),
+                              child: Transform.rotate(
+                                angle: pi / 2,
+                                child: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        8.hSpace,
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    S.current.by30Sep,
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  4.hSpace,
+                                  WaterBubble(
+                                    size: 72,
+                                    color: Colors.white,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.w),
+                                      child: Text(
+                                        S.current.onboarding,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontSize: 8,
+                                          height: 1.3.wMax,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                  4.hSpace,
+                                  Text(
+                                    S.current.in10Days,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFfed602),
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white.withOpacity(
+                                      0.2,
+                                    ),
+                                    blurRadius: 4,
+                                    spreadRadius: 2,
+                                  ),
+                                ],
+                              ),
+                              child: const Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.white,
+                                size: 16,
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    S.current.from18to21,
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  4.hSpace,
+                                  WaterBubble(
+                                    size: 72,
+                                    color: Colors.white,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Text(
+                                        S.current.launchPadDay,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontSize: 10,
+                                          height: 1.3,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                  4.hSpace,
+                                  Text(
+                                    S.current.in1to3,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFfed602),
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -141,7 +301,6 @@ class MobileProgressWidget extends StatelessWidget {
           ),
         ],
       ),
-      // child: Assets.images.progress.,
     );
   }
 }

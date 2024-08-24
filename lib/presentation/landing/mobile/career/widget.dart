@@ -3,6 +3,7 @@ import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 class WaveContainer extends StatefulWidget {
   final InternshipRole role;
@@ -29,7 +30,73 @@ class _WaveContainerState extends State<WaveContainer> {
             isHover = value;
           });
         },
-        onTap: role.showDialog,
+        onTap: () {
+          SmartDialog.show(
+            builder: (context) {
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: role.color,
+                ),
+                margin: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      role.title.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: role.foregroundColor,
+                      ),
+                    ),
+                    4.hSpace,
+                    Text(
+                      role.subtitle.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: role.foregroundColor,
+                      ),
+                    ),
+                    Divider(
+                      color: role.foregroundColor,
+                      thickness: 1,
+                    ),
+                    role.overview(),
+                    6.hSpace,
+                    role.responsibilities(),
+                    6.hSpace,
+                    RichText(
+                      text: TextSpan(
+                        text: '${S.current.note}: ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 12,
+                          color: role.foregroundColor,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: role.note,
+                            style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontSize: 12,
+                              color: role.foregroundColor,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
         child: Container(
           decoration: BoxDecoration(
             boxShadow: isHover
@@ -48,7 +115,7 @@ class _WaveContainerState extends State<WaveContainer> {
               clipper: WaveClipper(),
               child: Container(
                 color: role.color,
-                height: 125,
+                height: 120,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
                 ).copyWith(
@@ -63,15 +130,15 @@ class _WaveContainerState extends State<WaveContainer> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: role.foregroundColor,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                     ),
-                    4.wMin.hSpace,
+                    4.hSpace,
                     Text(
                       role.subtitle,
                       style: TextStyle(
                         color: role.foregroundColor,
-                        fontSize: 14,
+                        fontSize: 12,
                       ),
                     ),
                     if ((role.content ?? '').isNotEmpty)
@@ -157,7 +224,7 @@ class MobileCareerWidget extends StatelessWidget {
             S.current.careerDesired.toUpperCase(),
             style: const TextStyle(
               color: Color(0xFFBA5D1B),
-              fontSize: 36,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
@@ -168,7 +235,7 @@ class MobileCareerWidget extends StatelessWidget {
               text: S.current.careerDesiredSubtitle1,
               style: TextStyle(
                 color: const Color(0xFFBA5D1B),
-                fontSize: 16,
+                fontSize: 14,
                 height: 1.3.wMax,
               ),
               children: [
@@ -176,7 +243,7 @@ class MobileCareerWidget extends StatelessWidget {
                   text: S.current.careerDesiredSubtitle2,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: 14,
                     height: 1.3.wMax,
                     color: const Color(0xFFBA5D1B),
                   ),

@@ -11,7 +11,6 @@ import 'package:coke_platform/presentation/landing/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/footer/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'countdown/widget.dart';
@@ -248,7 +247,7 @@ class _LandingPageState extends State<LandingPage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
+                          SizedBox(
                             height: 1120.w,
                             width: 1400.w,
                             child: Stack(
