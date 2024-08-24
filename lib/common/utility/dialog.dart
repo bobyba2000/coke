@@ -1,8 +1,10 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/common/widget/language.dart';
+import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DialogUtility {
   static Future<void> showErrorDialog(
@@ -104,6 +106,7 @@ class DialogUtility {
 
   static Future<void> showLanguagePicker(BuildContext context, {required String title}) {
     LanguageType language = LocaleUtility.locale.value.languageCode == 'vi' ? LanguageType.vietnamese : LanguageType.english;
+    final isMobile = 1400.w < 500;
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -125,6 +128,7 @@ class DialogUtility {
                 title,
                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
                       color: Theme.of(context).colorScheme.onBackground,
+                      fontSize: isMobile ? 14 : null,
                     ),
               ),
               8.hSpace,
@@ -144,6 +148,7 @@ class DialogUtility {
               S.current.cancel,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).colorScheme.error,
+                    fontSize: isMobile ? 10 : null,
                   ),
             ),
           ),
@@ -158,6 +163,7 @@ class DialogUtility {
               S.current.confirm,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
+                    fontSize: isMobile ? 10 : null,
                   ),
             ),
           ),
@@ -191,6 +197,7 @@ class _LanguageDialogState extends State<LanguageDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = 1400.w < 500;
     const values = LanguageType.values;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -209,6 +216,12 @@ class _LanguageDialogState extends State<LanguageDialog> {
             },
             title: Text(
               language.toString(),
+              style: isMobile
+                  ? TextStyle(
+                      fontSize: 10,
+                      color: type == language ? ColorConstants.teal : Colors.black,
+                    )
+                  : null,
             ),
           );
         },

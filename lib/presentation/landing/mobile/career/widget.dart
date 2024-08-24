@@ -1,4 +1,6 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/common/utility/dialog.dart';
+import 'package:coke_platform/common/utility/share_preference.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,6 +22,27 @@ class WaveContainer extends StatefulWidget {
 
 class _WaveContainerState extends State<WaveContainer> {
   bool isHover = false;
+
+  @override
+  void initState() {
+    Future.delayed(
+      const Duration(milliseconds: 200),
+      () {
+        SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
+          if (!value) {
+            DialogUtility.showLanguagePicker(
+              context,
+              title: S.current.languagePickerLandingPage,
+            ).then(
+              (value) => SharePreferenceUtitlity.markShowLanguagePopup(),
+            );
+          }
+        });
+      },
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final role = widget.role;
@@ -34,9 +57,12 @@ class _WaveContainerState extends State<WaveContainer> {
         },
         onTap: () {
           SmartDialog.show(
+            maskColor: Colors.black87,
             builder: (context) {
               return Container(
-                height: 700.h - 100,
+                constraints: BoxConstraints(
+                  maxHeight: 700.h - 40,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: role.color,
@@ -59,7 +85,7 @@ class _WaveContainerState extends State<WaveContainer> {
                     Text(
                       role.subtitle.toUpperCase(),
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                         color: role.foregroundColor,
                       ),
@@ -68,7 +94,7 @@ class _WaveContainerState extends State<WaveContainer> {
                       color: role.foregroundColor,
                       thickness: 1,
                     ),
-                    Expanded(
+                    Flexible(
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -82,7 +108,7 @@ class _WaveContainerState extends State<WaveContainer> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FontStyle.italic,
-                                  fontSize: 12,
+                                  fontSize: 10,
                                   color: role.foregroundColor,
                                 ),
                                 children: [
@@ -90,7 +116,7 @@ class _WaveContainerState extends State<WaveContainer> {
                                     text: role.note,
                                     style: TextStyle(
                                       fontStyle: FontStyle.italic,
-                                      fontSize: 12,
+                                      fontSize: 10,
                                       color: role.foregroundColor,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -126,7 +152,7 @@ class _WaveContainerState extends State<WaveContainer> {
               clipper: WaveClipper(),
               child: Container(
                 color: role.color,
-                height: 120,
+                height: 110,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
                 ).copyWith(
@@ -141,7 +167,7 @@ class _WaveContainerState extends State<WaveContainer> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: role.foregroundColor,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                     4.hSpace,
@@ -149,7 +175,7 @@ class _WaveContainerState extends State<WaveContainer> {
                       role.subtitle,
                       style: TextStyle(
                         color: role.foregroundColor,
-                        fontSize: 12,
+                        fontSize: 10,
                       ),
                     ),
                     if ((role.content ?? '').isNotEmpty)
@@ -246,7 +272,7 @@ class MobileCareerWidget extends StatelessWidget {
               text: S.current.careerDesiredSubtitle1,
               style: TextStyle(
                 color: const Color(0xFFBA5D1B),
-                fontSize: 14,
+                fontSize: 10,
                 height: 1.3.wMax,
               ),
               children: [
@@ -254,7 +280,7 @@ class MobileCareerWidget extends StatelessWidget {
                   text: S.current.careerDesiredSubtitle2,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: 10,
                     height: 1.3.wMax,
                     color: const Color(0xFFBA5D1B),
                   ),

@@ -38,8 +38,8 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
         ),
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(
-          vertical: isMobile ? 14.wMax : 14.wMin,
-          horizontal: isMobile ? 40.wMax : 40.wMin,
+          vertical: isMobile ? 10.wMax : 14.wMin,
+          horizontal: isMobile ? 16.wMax : 40.wMin,
         ),
         duration: const Duration(milliseconds: 200),
         child: Text(
@@ -47,7 +47,7 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: foreground,
-            fontSize: isMobile ? 18.spMax : 18.spMin,
+            fontSize: isMobile ? 14.spMax : 18.spMin,
           ),
         ),
       ),

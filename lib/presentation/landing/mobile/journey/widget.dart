@@ -46,7 +46,7 @@ class MobileJourneyWidget extends StatelessWidget {
             child: Text(
               S.current.journeyTimeline.toUpperCase(),
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 10,
                 color: Color(0xFF1A6CC8),
                 fontWeight: FontWeight.bold,
               ),
@@ -58,14 +58,16 @@ class MobileJourneyWidget extends StatelessWidget {
             (e) => e.mobileWidget,
           ),
           24.hSpace,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: CustomFilledButton(
-              title: S.current.applyNow,
-              onTap: () {
-                context.go('/apply');
-              },
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomFilledButton(
+                title: S.current.applyNow,
+                onTap: () {
+                  context.go('/apply');
+                },
+              ),
+            ],
           ),
           16.hSpace,
           Container(

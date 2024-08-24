@@ -10,7 +10,9 @@ import 'package:coke_platform/presentation/landing/mobile/progress/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'appbar/widget.dart';
 import 'career/widget.dart';
+import 'drawer/widget.dart';
 
 class MobileLandingPage extends StatefulWidget {
   const MobileLandingPage({super.key});
@@ -30,7 +32,16 @@ class _MobileLandingPageState extends State<MobileLandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      appBar: const MobileAppbar(),
+      drawer: MobileDrawer(
+        controller: _background,
+        overview: overviewKey,
+        about: aboutKey,
+        essence: essenceKey,
+        career: careerKey,
+        journey: journalKey,
+        progress: progressKey,
+      ),
       body: SingleChildScrollView(
         controller: _background,
         child: Column(

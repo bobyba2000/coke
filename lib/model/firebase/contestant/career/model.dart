@@ -122,7 +122,7 @@ enum InternshipRole {
           S.current.keyRoleResponsibilities,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: isMobile ? 14 : 16.spMin,
+            fontSize: isMobile ? 10 : 16.spMin,
             color: foreground,
             height: 1.3.wMax,
           ),
@@ -210,7 +210,7 @@ enum InternshipRole {
           S.current.jobOverview,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: isMobile ? 14 : 16.spMin,
+            fontSize: isMobile ? 10 : 16.spMin,
             color: foreground,
           ),
         ),
@@ -287,6 +287,7 @@ enum InternshipRole {
                             ),
                           )
                         : Tooltip(
+                            triggerMode: TooltipTriggerMode.tap,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(0),
                             ),
@@ -312,7 +313,7 @@ enum InternshipRole {
                                           Text(
                                             e.toString(),
                                             style: TextStyle(
-                                              fontSize: isMobile ? 14 : 14.spMin,
+                                              fontSize: isMobile ? 10 : 14.spMin,
                                               fontWeight: FontWeight.bold,
                                               color: const Color(0xFF5B2707),
                                             ),

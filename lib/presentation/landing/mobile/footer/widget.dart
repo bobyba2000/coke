@@ -188,9 +188,10 @@ class MobileFooterWidget extends StatelessWidget {
           const Text(
             '© 2024 Coca-Cola Beverages Vietnam. All rights reserved.',
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               color: Colors.white,
             ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
@@ -271,7 +272,7 @@ class _FooterTextButtonState extends State<FooterTextButton> {
         child: Text(
           widget.title,
           style: const TextStyle(
-            fontSize: 14,
+            fontSize: 10,
             fontWeight: FontWeight.normal,
             color: Colors.white,
           ),

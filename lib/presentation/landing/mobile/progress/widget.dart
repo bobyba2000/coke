@@ -34,7 +34,7 @@ class MobileProgressWidget extends StatelessWidget {
               S.current.processContent,
               style: const TextStyle(
                 fontWeight: FontWeight.normal,
-                fontSize: 14,
+                fontSize: 10,
                 height: 1.3,
                 color: Colors.white,
               ),
@@ -45,7 +45,7 @@ class MobileProgressWidget extends StatelessWidget {
           Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 48),
+                padding: const EdgeInsets.only(top: 70),
                 child: Assets.images.progress.background.image(
                   width: 1400.w,
                 ),
@@ -137,7 +137,7 @@ class MobileProgressWidget extends StatelessWidget {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
-                                        fontSize: 8,
+                                        fontSize: 10,
                                         height: 1.3.wMax,
                                       ),
                                       textAlign: TextAlign.center,
@@ -150,7 +150,7 @@ class MobileProgressWidget extends StatelessWidget {
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Color(0xFFfed602),
-                                    fontSize: 12,
+                                    fontSize: 10,
                                   ),
                                 ),
                               ],
@@ -211,7 +211,7 @@ class MobileProgressWidget extends StatelessWidget {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
-                                          fontSize: 8,
+                                          fontSize: 10,
                                           height: 1.3.wMax,
                                         ),
                                         textAlign: TextAlign.center,
@@ -224,7 +224,7 @@ class MobileProgressWidget extends StatelessWidget {
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Color(0xFFfed602),
-                                      fontSize: 12,
+                                      fontSize: 10,
                                     ),
                                   ),
                                 ],

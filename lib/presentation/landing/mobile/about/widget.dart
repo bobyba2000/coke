@@ -18,14 +18,14 @@ class _MobileAboutWidgetState extends State<MobileAboutWidget> {
     final textTheme = theme.textTheme;
     final normal = textTheme.bodyLarge?.copyWith(
       color: const Color(0xFF403815),
-      fontSize: 14,
+      fontSize: 10,
       height: 1.3.wMax,
       fontWeight: FontWeight.w500,
     );
     final bold = textTheme.bodyLarge?.copyWith(
       fontWeight: FontWeight.bold,
       color: const Color(0xFF403815),
-      fontSize: 14,
+      fontSize: 10,
       height: 1.3.wMax,
     );
     return Padding(
@@ -109,11 +109,16 @@ class _MobileAboutWidgetState extends State<MobileAboutWidget> {
             textAlign: TextAlign.center,
           ),
           24.hSpace,
-          CustomFilledButton(
-            title: S.current.applyNow,
-            onTap: () {
-              context.go('/apply');
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomFilledButton(
+                title: S.current.applyNow,
+                onTap: () {
+                  context.go('/apply');
+                },
+              ),
+            ],
           ),
           18.hSpace,
         ],

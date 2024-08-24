@@ -390,5 +390,6 @@
     "winningAttribute": "Winning Attributes",
     "functionalSkillsText": "Drawing from the defined responsibilities of each role, having a strong set of\nfunctional-related competitive skills is your ticket to bring versatility, problem-solving\nabilities and adaptability to the table.​",
     "viewApplicationStatus": "View application status",
-    "hello": "Hello, "
+    "hello": "Hello, ",
+    "functionalSkillsTextMobile": "Drawing from the defined responsibilities of each role, having a strong set of functional-related competitive skills is your ticket to bring versatility, problem-solving abilities and adaptability to the table.​"
 }

@@ -110,7 +110,7 @@ enum JourneyCharacter {
                     content,
                     style: const TextStyle(
                       fontWeight: FontWeight.normal,
-                      fontSize: 14,
+                      fontSize: 10,
                       height: 1.15,
                       color: Color(0xFF035858),
                     ),
