@@ -30,6 +30,7 @@ class _MobileLandingPageState extends State<MobileLandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Stack(
         fit: StackFit.expand,
         children: [

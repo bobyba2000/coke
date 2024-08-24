@@ -1,7 +1,9 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
@@ -34,6 +36,7 @@ class _WaveContainerState extends State<WaveContainer> {
           SmartDialog.show(
             builder: (context) {
               return Container(
+                height: 700.h - 100,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   color: role.color,
@@ -65,30 +68,38 @@ class _WaveContainerState extends State<WaveContainer> {
                       color: role.foregroundColor,
                       thickness: 1,
                     ),
-                    role.overview(),
-                    6.hSpace,
-                    role.responsibilities(),
-                    6.hSpace,
-                    RichText(
-                      text: TextSpan(
-                        text: '${S.current.note}: ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 12,
-                          color: role.foregroundColor,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: role.note,
-                            style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontSize: 12,
-                              color: role.foregroundColor,
-                              fontWeight: FontWeight.normal,
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            role.overview(),
+                            6.hSpace,
+                            role.responsibilities(),
+                            6.hSpace,
+                            RichText(
+                              text: TextSpan(
+                                text: '${S.current.note}: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 12,
+                                  color: role.foregroundColor,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: role.note,
+                                    style: TextStyle(
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 12,
+                                      color: role.foregroundColor,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
