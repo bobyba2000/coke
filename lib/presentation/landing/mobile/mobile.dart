@@ -31,72 +31,67 @@ class _MobileLandingPageState extends State<MobileLandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          SingleChildScrollView(
-            controller: _background,
-            child: Column(
-              children: [
-                Container(
-                  color: ColorConstants.teal,
-                  width: 1400.w,
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
+      body: SingleChildScrollView(
+        controller: _background,
+        child: Column(
+          children: [
+            Container(
+              color: ColorConstants.teal,
+              width: 1400.w,
+              alignment: Alignment.topCenter,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Assets.images.overview.mobile.image(
+                    key: overviewKey,
+                    width: 1400.w,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  MobileAboutWidget(
+                    key: aboutKey,
+                  ),
+                  Stack(
                     children: [
-                      Assets.images.overview.mobile.image(
-                        key: overviewKey,
-                        width: 1400.w,
-                        fit: BoxFit.fitWidth,
+                      Transform.rotate(
+                        angle: -pi,
+                        child: Assets.images.essence.bottom.image(),
                       ),
-                      MobileAboutWidget(
-                        key: aboutKey,
-                      ),
-                      Stack(
-                        children: [
-                          Transform.rotate(
-                            angle: -pi,
-                            child: Assets.images.essence.bottom.image(),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            child: Container(
-                              color: const Color(0xFF3f6db8),
-                              height: 5,
-                              width: 1400.w,
-                            ),
-                          ),
-                        ],
+                      Positioned(
+                        bottom: 0,
+                        child: Container(
+                          color: const Color(0xFF3f6db8),
+                          height: 5,
+                          width: 1400.w,
+                        ),
                       ),
                     ],
                   ),
-                ),
-                EssenceWidget(
-                  key: essenceKey,
-                ),
-                MobileCareerWidget(
-                  key: careerKey,
-                ),
-                MobileJourneyWidget(
-                  key: journalKey,
-                ),
-                MobileProgressWidget(
-                  key: progressKey,
-                ),
-                MobileCountdownWidget(
-                  controller: _background,
-                  overview: overviewKey,
-                  about: aboutKey,
-                  essence: essenceKey,
-                  career: careerKey,
-                  journey: journalKey,
-                  progress: progressKey,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            EssenceWidget(
+              key: essenceKey,
+            ),
+            MobileCareerWidget(
+              key: careerKey,
+            ),
+            MobileJourneyWidget(
+              key: journalKey,
+            ),
+            MobileProgressWidget(
+              key: progressKey,
+            ),
+            MobileCountdownWidget(
+              controller: _background,
+              overview: overviewKey,
+              about: aboutKey,
+              essence: essenceKey,
+              career: careerKey,
+              journey: journalKey,
+              progress: progressKey,
+            ),
+          ],
+        ),
       ),
     );
   }

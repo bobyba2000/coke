@@ -312,7 +312,7 @@ enum InternshipRole {
                                           Text(
                                             e.toString(),
                                             style: TextStyle(
-                                              fontSize: isMobile ? 6 : 14.spMin,
+                                              fontSize: isMobile ? 14 : 14.spMin,
                                               fontWeight: FontWeight.bold,
                                               color: const Color(0xFF5B2707),
                                             ),
