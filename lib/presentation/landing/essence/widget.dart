@@ -94,7 +94,7 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    450.w.hSpace,
+                    500.w.hSpace,
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -242,7 +242,7 @@ class _EssenceWidget2State extends State<EssenceWidget2> {
                                   ),
                           ),
                           Positioned(
-                            top: 300.w,
+                            top: 290.w,
                             child: Stack(
                               alignment: Alignment.center,
                               children: [

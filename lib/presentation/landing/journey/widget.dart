@@ -187,7 +187,7 @@ enum JourneyCharacter {
             height: 1.1.wMax,
             color: const Color(0xFF035858),
           ),
-          textAlign: TextAlign.justify,
+          textAlign: LocaleUtility.locale.value.languageCode == 'en' ? TextAlign.left : TextAlign.justify,
         ),
       ],
     );

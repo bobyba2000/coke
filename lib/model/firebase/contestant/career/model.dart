@@ -504,7 +504,6 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            12.wMin.hSpace,
             Text(
               '$subtitle\n$content'.toUpperCase(),
               style: TextStyle(
@@ -513,7 +512,7 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            100.wMin.hSpace,
+            24.wMin.hSpace,
           ],
         );
       case InternshipRole.itDataAnalyst:

@@ -33,7 +33,7 @@ class DialogUtility {
             onPressed: () => Navigator.pop(context),
             child: Text(
               S.current.confirm,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: Theme.of(context).textTheme.displayLarge?.copyWith(
                     color: Theme.of(context).colorScheme.error,
                   ),
             ),

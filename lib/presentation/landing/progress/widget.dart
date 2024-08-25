@@ -71,7 +71,7 @@ class ProgressWidget extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'By 16',
+                                        '(By 16',
                                         style: TextStyle(
                                           fontSize: 12.sp,
                                           color: Colors.white,
@@ -85,7 +85,7 @@ class ProgressWidget extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        ' Sep',
+                                        ' Sep)',
                                         style: TextStyle(
                                           fontSize: 12.sp,
                                           color: Colors.white,
