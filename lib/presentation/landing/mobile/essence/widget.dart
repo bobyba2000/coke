@@ -93,7 +93,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          8.hSpace,
+                          12.hSpace,
                           Text(
                             S.current.essenceContent1,
                             style: TextStyle(
@@ -122,7 +122,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                         children: [
                           Row(
                             children: [
-                              20.wSpace,
+                              30.wSpace,
                               Assets.images.essence.mobileModel.image(
                                 height: 300,
                                 fit: BoxFit.fitHeight,

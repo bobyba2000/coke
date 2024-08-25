@@ -4,6 +4,7 @@ import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/button/custom.dart';
 import 'package:coke_platform/presentation/landing/journey/widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -70,11 +71,30 @@ class MobileJourneyWidget extends StatelessWidget {
             ],
           ),
           16.hSpace,
-          Container(
-            color: const Color(0xFF9833ff),
-            width: 1400.w,
-            child: Assets.images.progress.transition.image(
-              fit: BoxFit.fitWidth,
+          SizedBox(
+            height: 230.w,
+            child: Column(
+              children: [
+                Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Container(
+                      color: const Color(0xFF9833ff),
+                      width: 1400.w,
+                      margin: const EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: Assets.images.progress.transition.image(
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    Container(
+                      color: Colors.white,
+                      height: 5,
+                      width: 1400.w,
+                    )
+                  ],
+                ),
+              ],
             ),
           )
         ],

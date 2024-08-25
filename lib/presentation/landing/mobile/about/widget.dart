@@ -43,7 +43,7 @@ class _MobileAboutWidgetState extends State<MobileAboutWidget> {
                   fontSize: 24,
                 ),
               ),
-              16.hSpace,
+              12.hSpace,
               SelectableText.rich(
                 TextSpan(
                   text: S.current.aboutTheProgramContent1,

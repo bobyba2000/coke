@@ -70,10 +70,10 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
     final currentPixels = widget.controller.position.pixels;
 
     isScrolling = true;
-    if (currentPixels + 1050.h < heightPart && index != 1 && index != 3 && index != 2) {
+    if (currentPixels + 1080.h < heightPart && index != 1 && index != 3 && index != 2) {
       index--;
       await widget.controller.animateTo(
-        heightPart - 1050.h,
+        heightPart - 1080.h,
         duration: const Duration(milliseconds: 400),
         curve: Curves.linear,
       );

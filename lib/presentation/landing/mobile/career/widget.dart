@@ -1,4 +1,5 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:flutter/material.dart';
@@ -123,19 +124,20 @@ class _WaveContainerState extends State<WaveContainer> {
                 : [],
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(8),
             child: ClipPath(
               clipper: WaveClipper(),
               child: Container(
                 color: role.color,
-                height: 110,
+                height: 60,
+                width: 360.w,
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
+                  horizontal: 4,
                 ).copyWith(
-                  top: 20,
+                  top: 12,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -143,29 +145,26 @@ class _WaveContainerState extends State<WaveContainer> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: role.foregroundColor,
-                        fontSize: 14,
+                        fontSize: 10,
                       ),
                     ),
                     Text(
                       role.subtitle,
                       style: TextStyle(
                         color: role.foregroundColor,
-                        fontSize: 10,
+                        fontSize: 6,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                     if ((role.content ?? '').isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 2,
+                      Text(
+                        role.content ?? '',
+                        style: TextStyle(
+                          color: role.foregroundColor,
+                          fontSize: 6,
+                          fontStyle: FontStyle.italic,
                         ),
-                        child: Text(
-                          role.content ?? '',
-                          style: TextStyle(
-                            color: role.foregroundColor,
-                            fontSize: 10,
-                            fontStyle: FontStyle.italic,
-                          ),
-                        ),
+                        textAlign: TextAlign.center,
                       )
                   ],
                 ),
@@ -184,14 +183,14 @@ class WaveClipper extends CustomClipper<Path> {
     var path = Path();
 
     // Start at the top left
-    path.moveTo(0, 30);
+    path.moveTo(0, 15);
 
     // Create a smoother wave-like curve at the top border
     var firstControlPoint = Offset(size.width / 4, 0);
-    var firstEndPoint = Offset(size.width / 2, 24);
+    var firstEndPoint = Offset(size.width / 2, 12);
 
-    var secondControlPoint = Offset(3 * size.width / 4, 48);
-    var secondEndPoint = Offset(size.width, 24);
+    var secondControlPoint = Offset(3 * size.width / 4, 24);
+    var secondEndPoint = Offset(size.width, 12);
 
     path.quadraticBezierTo(
       firstControlPoint.dx,
@@ -232,6 +231,11 @@ class MobileCareerWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Assets.images.career.model.image(
+            width: 800.w,
+            fit: BoxFit.fitWidth,
+          ),
+          40.hSpace,
           Text(
             S.current.careerDesired.toUpperCase(),
             style: const TextStyle(
@@ -241,7 +245,7 @@ class MobileCareerWidget extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          8.w.hSpace,
+          12.hSpace,
           SelectableText.rich(
             TextSpan(
               text: S.current.careerDesiredSubtitle1,
@@ -270,69 +274,49 @@ class MobileCareerWidget extends StatelessWidget {
           16.hSpace,
           Row(
             children: [
-              16.wSpace,
-              const Expanded(
-                child: WaveContainer(
-                  role: InternshipRole.sales,
-                ),
+              const Spacer(),
+              const WaveContainer(
+                role: InternshipRole.sales,
               ),
-              16.wSpace,
-              const Expanded(
-                child: WaveContainer(
-                  role: InternshipRole.procurement,
-                ),
+              50.w.wSpace,
+              const WaveContainer(
+                role: InternshipRole.procurement,
               ),
+              const Spacer(),
             ],
           ),
-          16.hSpace,
           Row(
             children: [
-              16.wSpace,
-              const Expanded(
-                child: WaveContainer(
-                  role: InternshipRole.tradeMarketing,
-                ),
+              const Spacer(),
+              const WaveContainer(
+                role: InternshipRole.tradeMarketing,
               ),
-              16.wSpace,
-              const Expanded(
-                child: WaveContainer(
-                  role: InternshipRole.rtm,
-                ),
+              50.w.wSpace,
+              const WaveContainer(
+                role: InternshipRole.itDataAnalyst,
               ),
+              50.w.wSpace,
+              const WaveContainer(
+                role: InternshipRole.itPrivacy,
+              ),
+              const Spacer(),
             ],
           ),
-          16.hSpace,
           Row(
             children: [
-              16.wSpace,
-              const Expanded(
-                child: WaveContainer(
-                  role: InternshipRole.itDataAnalyst,
-                ),
+              const Spacer(),
+              const WaveContainer(
+                role: InternshipRole.rtm,
               ),
-              16.wSpace,
-              const Expanded(
-                child: WaveContainer(
-                  role: InternshipRole.itPrivacy,
-                ),
+              50.w.wSpace,
+              const WaveContainer(
+                role: InternshipRole.keyAccountOnPremise,
               ),
-            ],
-          ),
-          16.hSpace,
-          Row(
-            children: [
-              16.wSpace,
-              const Expanded(
-                child: WaveContainer(
-                  role: InternshipRole.keyAccountOnPremise,
-                ),
+              50.w.wSpace,
+              const WaveContainer(
+                role: InternshipRole.keyAccountOffPremise,
               ),
-              16.wSpace,
-              const Expanded(
-                child: WaveContainer(
-                  role: InternshipRole.keyAccountOffPremise,
-                ),
-              ),
+              const Spacer(),
             ],
           ),
           24.hSpace,

@@ -74,21 +74,21 @@ class ProgressWidget extends StatelessWidget {
                                         '(By 16',
                                         style: TextStyle(
                                           fontSize: 12.sp,
-                                          color: Colors.white,
+                                          color: const Color(0xFFfed602),
                                         ),
                                       ),
                                       Text(
                                         'th',
                                         style: TextStyle(
                                           fontSize: 8.sp,
-                                          color: Colors.white,
+                                          color: const Color(0xFFfed602),
                                         ),
                                       ),
                                       Text(
                                         ' Sep)',
                                         style: TextStyle(
                                           fontSize: 12.sp,
-                                          color: Colors.white,
+                                          color: const Color(0xFFfed602),
                                         ),
                                       ),
                                     ],
@@ -97,7 +97,7 @@ class ProgressWidget extends StatelessWidget {
                                     S.current.by16Sep,
                                     style: TextStyle(
                                       fontSize: 12.sp,
-                                      color: Colors.white,
+                                      color: const Color(0xFFfed602),
                                     ),
                                   ),
                             16.hSpace,

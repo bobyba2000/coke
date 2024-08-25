@@ -131,6 +131,7 @@ enum JourneyCharacter {
 
   Widget get widget {
     final titleStr = title.split(';');
+    final isEnglish = LocaleUtility.locale.value.languageCode == 'en';
     Widget titleWidget = SizedBox(
       height: 40.sp,
       child: Text(
@@ -141,6 +142,7 @@ enum JourneyCharacter {
           color: const Color(0xFF035858),
           height: 1.1,
         ),
+        textAlign: isEnglish ? TextAlign.start : TextAlign.center,
       ),
     );
     Widget subTitle = const SizedBox.shrink();
@@ -156,6 +158,7 @@ enum JourneyCharacter {
     }
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: isEnglish ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
         AspectRatio(
           aspectRatio: 2.5,

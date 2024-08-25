@@ -1,4 +1,3 @@
-
 import 'package:coke_platform/common/utility/dialog.dart';
 import 'package:coke_platform/common/utility/share_preference.dart';
 import 'package:coke_platform/constants/color.dart';
@@ -100,7 +99,7 @@ class _MobileLandingPageState extends State<MobileLandingPage> {
                         bottom: 0,
                         child: Assets.images.about.bottom.image(width: 1400.w),
                       ),
-                      Assets.images.about.model.image(width: 1400.w),
+                      Assets.images.about.mobileModel.image(width: 1400.w),
                     ],
                   ),
                   Stack(
@@ -112,7 +111,7 @@ class _MobileLandingPageState extends State<MobileLandingPage> {
                         child: Container(
                           color: const Color(0xFF3f6db8),
                           width: 1400.w,
-                          height: 6,
+                          height: 2,
                         ),
                       ),
                     ],
