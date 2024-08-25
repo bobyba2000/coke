@@ -103,7 +103,16 @@ class _ContestantPageState extends State<ContestantPage> {
                         )
                       ],
                     ),
-                    45.hSpace,
+                    36.hSpace,
+                    Text(
+                      S.current.personalProfile.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 24.spMin,
+                        color: ColorConstants.teal,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    24.hSpace,
                     Container(
                       width: 800.w,
                       decoration: BoxDecoration(
@@ -120,12 +129,36 @@ class _ContestantPageState extends State<ContestantPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            S.current.personalInformation,
+                            service.getUserName()!.toUpperCase(),
                             style: TextStyle(
-                              fontSize: 22.spMin,
+                              fontSize: 20.spMin,
                               color: ColorConstants.teal,
                               fontWeight: FontWeight.bold,
                             ),
+                          ),
+                          4.hSpace,
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.arrow_forward,
+                                color: ColorConstants.teal,
+                                size: 12,
+                              ),
+                              16.wSpace,
+                              Text(
+                                S.current.contestant,
+                                style: TextStyle(
+                                  fontSize: 14.spMin,
+                                ),
+                              ),
+                              16.wSpace,
+                              const Icon(
+                                Icons.arrow_back,
+                                color: ColorConstants.teal,
+                                size: 12,
+                              ),
+                            ],
                           ),
                           30.hSpace,
                           Visibility(

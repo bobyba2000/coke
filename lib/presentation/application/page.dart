@@ -2,6 +2,7 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/dialog.dart';
 import 'package:coke_platform/common/utility/share_preference.dart';
 import 'package:coke_platform/common/widget/language.dart';
+import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/application/form/widget.dart';
@@ -84,7 +85,14 @@ class _ApplicationPageState extends State<ApplicationPage> {
                         ),
                       ],
                     ),
-                    45.hSpace,
+                    36.hSpace,
+                    Text(
+                      S.current.applicationForm.toUpperCase(),
+                      style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                            color: ColorConstants.teal,
+                          ),
+                    ),
+                    24.hSpace,
                     const ApplyFormWidget(),
                     64.hMax.hSpace,
                   ],

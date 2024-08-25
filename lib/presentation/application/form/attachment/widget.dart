@@ -82,12 +82,12 @@ class _AttachmentWidgetState extends State<AttachmentWidget> with Validator {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SubmitRecommendationOption(
-                onChange: (value) {
-                  submitRecommendation = value;
-                },
-              ),
-              16.hSpace,
+              // SubmitRecommendationOption(
+              //   onChange: (value) {
+              //     submitRecommendation = value;
+              //   },
+              // ),
+              // 16.hSpace,
               CustomDropdown(
                 items: channels,
                 label: S.current.hearProgramFrom,

@@ -559,7 +559,7 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                           setState(() {});
                         });
                       },
-                      required: true,
+                      required: false,
                       validator: checkRequired,
                     ),
                   ),

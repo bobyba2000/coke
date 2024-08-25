@@ -239,7 +239,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                     horizontal: isMobile ? 8 : 15.w,
                     vertical: isMobile ? 2 : 4.w,
                   ),
-              suffixIconConstraints: BoxConstraints(maxHeight: isMobile ? 12 : 12.w),
+              suffixIconConstraints: BoxConstraints(maxHeight: isMobile ? 12 : 16.w),
               prefixIconConstraints: BoxConstraints(
                 maxHeight: isMobile ? 12 : 12.w,
               ),

@@ -184,7 +184,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
               ),
             ],
           ),
-          (1400.w < 500 ? 32 : 64.hMax).hSpace,
+          (1400.w < 500 ? 32 : 48.hMax).hSpace,
           ...List.generate(ApplyStep.values.length, (index) {
             final step = ApplyStep.values[index];
             return Visibility(

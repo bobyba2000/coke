@@ -145,6 +145,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
                           onTap: () {
                             _controller.text = item.toString();
                             widget.onSelect.call(item);
+                            Focus.of(context).unfocus();
                             closeOverlay();
                           },
                           title: Text(

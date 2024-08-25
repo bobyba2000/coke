@@ -393,5 +393,8 @@
     "viewApplicationStatus": "Xem trạng thái ứng tuyển",
     "hello": "Xin chào, ",
     "functionalSkillsTextMobile": "Dựa trên các nhiệm vụ cụ thể của từng vị trí, việc sở hữu một bộ kỹ năng vượt trội sẽ là chìa khóa giúp bạn thể hiện sự linh hoạt, sáng tạo và khả năng xử lý hiệu quả các tình huống trong công việc.",
-    "mobileWarning": "Lưu ý: Bạn nên điền đơn ứng tuyển trên máy tính hoặc laptop để có trải nghiệm tối ưu hơn. Điều này sẽ giúp bạn truy cập tất cả thông tin và tính năng để nộp đơn ứng tuyển một cách hoàn chỉnh nhất."
+    "mobileWarning": "Lưu ý: Bạn nên điền đơn ứng tuyển trên máy tính hoặc laptop để có trải nghiệm tối ưu hơn. Điều này sẽ giúp bạn truy cập tất cả thông tin và tính năng để nộp đơn ứng tuyển một cách hoàn chỉnh nhất.",
+    "contestant": "Ứng viên",
+    "personalProfile": "Thông tin cá nhân",
+    "applicationForm": "Hồ sơ ứng tuyển"
 }
