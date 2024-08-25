@@ -7,6 +7,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DialogUtility {
+  static Future<void> showWarningDialog(
+    BuildContext context, {
+    required String title,
+  }) async {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        insetPadding: const EdgeInsets.all(24),
+        contentPadding: const EdgeInsets.all(24).copyWith(bottom: 0),
+        actionsPadding: const EdgeInsets.all(24),
+        titlePadding: const EdgeInsets.all(24).copyWith(bottom: 0),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              S.current.confirm,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   static Future<void> showErrorDialog(
     BuildContext context, {
     required String title,
@@ -74,12 +110,14 @@ class DialogUtility {
                 color: Theme.of(context).colorScheme.onBackground,
               ),
         ),
-        content: Text(
-          message,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
-        ),
+        content: message != ''
+            ? Text(
+                message,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              )
+            : null,
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

@@ -62,6 +62,7 @@ class _FileDropzoneFieldState extends State<FileDropzoneField> {
                   style: textTheme.displaySmall?.copyWith(
                     color: colorScheme.onBackground,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 if (widget.required)
                   Text(
@@ -154,6 +155,7 @@ class _FileDropzoneFieldState extends State<FileDropzoneField> {
                             style: textTheme.bodyLarge?.copyWith(
                               color: colorScheme.onBackground.withOpacity(0.5),
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           2.hSpace,
                           Text(
@@ -162,6 +164,7 @@ class _FileDropzoneFieldState extends State<FileDropzoneField> {
                               color: colorScheme.onBackground.withOpacity(0.5),
                               fontStyle: FontStyle.italic,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           8.hSpace,
                           Icon(

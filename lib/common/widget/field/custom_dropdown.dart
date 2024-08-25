@@ -2,6 +2,7 @@ import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDropdown<T> extends StatefulWidget {
   final List<T> items;
@@ -50,7 +51,9 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
         borderSide: const BorderSide(
           color: ColorConstants.teal,
         ),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(
+          1400.w < 500 ? 6 : 12,
+        ),
       );
 
   @override
@@ -146,6 +149,12 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
                           },
                           title: Text(
                             item.toString(),
+                            style: 1400.w < 500
+                                ? const TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.black,
+                                  )
+                                : null,
                           ),
                           selected: isSelected,
                         );
@@ -169,6 +178,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = 1400.w < 500;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,15 +189,24 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
               children: [
-                Text(
-                  widget.label ?? '',
-                  style: Theme.of(context).textTheme.titleMedium,
+                Flexible(
+                  child: Text(
+                    widget.label ?? '',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontSize: isMobile ? 10 : null,
+                        ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 Visibility(
                   visible: widget.required,
                   child: Text(
                     "*",
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.red),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.red,
+                          fontSize: isMobile ? 10 : null,
+                        ),
                   ),
                 ),
               ],
@@ -201,31 +220,44 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextFormField(
-                readOnly: true,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.all(15),
-                  border: _inputBorder,
-                  enabledBorder: _inputBorder,
-                  focusedBorder: _inputBorder,
-                  focusedErrorBorder: _inputBorder,
-                  hintText: widget.hintText ?? S.current.pleaseSelect,
-                  hintStyle: widget.hintStyle ??
-                      Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Colors.grey,
-                          ),
-                  helperText: widget.helperText,
+              SizedBox(
+                height: isMobile ? 36 : null,
+                child: TextFormField(
+                  style: isMobile
+                      ? const TextStyle(
+                          color: Colors.black,
+                          fontSize: 10,
+                        )
+                      : null,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: isMobile ? 8 : 15.w,
+                      vertical: isMobile ? 2 : 4.w,
+                    ),
+                    border: _inputBorder,
+                    enabledBorder: _inputBorder,
+                    focusedBorder: _inputBorder,
+                    focusedErrorBorder: _inputBorder,
+                    hintText: widget.hintText ?? S.current.pleaseSelect,
+                    hintStyle: widget.hintStyle ??
+                        Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: Colors.grey,
+                              fontSize: isMobile ? 10 : null,
+                            ),
+                    helperText: widget.helperText,
+                  ),
+                  controller: _controller,
+                  onTapOutside: (event) {
+                    if (!isHover) {
+                      closeOverlay();
+                    }
+                  },
+                  onTap: openOverlay,
+                  focusNode: _focusNode,
+                  onEditingComplete: () => closeOverlay(),
+                  validator: widget.validator,
                 ),
-                controller: _controller,
-                onTapOutside: (event) {
-                  if (!isHover) {
-                    closeOverlay();
-                  }
-                },
-                onTap: openOverlay,
-                focusNode: _focusNode,
-                onEditingComplete: () => closeOverlay(),
-                validator: widget.validator,
               ),
             ],
           ),

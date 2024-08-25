@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -40,7 +41,8 @@ class DatePickerWidget extends StatefulWidget {
     this.firstDate,
     this.lastDate,
     this.dateFormat,
-    this.isMonthOnly = false, this.helperText,
+    this.isMonthOnly = false,
+    this.helperText,
   }) : super(key: key);
 
   @override
@@ -124,6 +126,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
         child: Icon(
           Icons.calendar_today_outlined,
           color: Theme.of(context).primaryColor.withOpacity(0.8),
+          size: 1400.w < 500 ? 8 : null,
         ),
       ),
     );

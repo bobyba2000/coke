@@ -22,7 +22,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
     Future.delayed(
       const Duration(milliseconds: 200),
       () {
-        SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
+        return SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
           if (!value) {
             DialogUtility.showLanguagePicker(
               context,
@@ -33,12 +33,20 @@ class _ApplicationPageState extends State<ApplicationPage> {
           }
         });
       },
-    );
+    ).then((value) {
+      if (1400.w < 500) {
+        DialogUtility.showWarningDialog(
+          context,
+          title: S.current.mobileWarning,
+        );
+      }
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = 1400.w < 500;
     return Title(
       color: Colors.white,
       title: 'Apply Now',
@@ -63,14 +71,14 @@ class _ApplicationPageState extends State<ApplicationPage> {
                           child: const LanguageSwitch(),
                         ),
                         Positioned(
-                          top: 10.w,
-                          left: (1400.w - 240) / 2,
+                          top: isMobile ? 10 : 10.w,
+                          left: (1400.w - (isMobile ? 60 : 240)) / 2,
                           child: InkWell(
                             onTap: () {
                               context.go('/');
                             },
                             child: Assets.images.logoWhite.image(
-                              width: 240,
+                              width: isMobile ? 60 : 240,
                             ),
                           ),
                         ),

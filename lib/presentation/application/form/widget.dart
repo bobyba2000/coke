@@ -129,7 +129,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
     return Container(
-      width: 1100.w,
+      width: 1400.w < 500 ? 1200.w : 1100.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
@@ -147,7 +147,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
               LinearProgressIndicator(
                 value: currentStep.step,
                 color: ColorConstants.teal,
-                minHeight: 10.w,
+                minHeight: 1400.w < 500 ? 10 : 10.w,
                 backgroundColor: const Color(0xFFe9ecef),
                 borderRadius: BorderRadius.circular(5),
               ),
@@ -164,15 +164,17 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
                       color: colorScheme.onPrimary,
                     ),
                     child: Container(
-                      width: 20.w,
-                      height: 20.w,
+                      width: 1400.w < 500 ? 20 : 20.w,
+                      height: 1400.w < 500 ? 20 : 20.w,
                       color: Colors.white,
                       alignment: Alignment.center,
                       child: Container(
-                        width: 16.w,
-                        height: 16.w,
+                        width: 1400.w < 500 ? 16 : 16.w,
+                        height: 1400.w < 500 ? 16 : 16.w,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.w),
+                          borderRadius: BorderRadius.circular(
+                            1400.w < 500 ? 16 : 16.w,
+                          ),
                           color: e.index > currentStep.index ? const Color(0xFFe9ecef) : ColorConstants.teal,
                         ),
                       ),
@@ -182,7 +184,7 @@ class _ApplyFormWidgetState extends State<ApplyFormWidget> {
               ),
             ],
           ),
-          64.hMax.hSpace,
+          (1400.w < 500 ? 32 : 64.hMax).hSpace,
           ...List.generate(ApplyStep.values.length, (index) {
             final step = ApplyStep.values[index];
             return Visibility(

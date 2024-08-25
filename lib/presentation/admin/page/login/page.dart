@@ -9,6 +9,7 @@ import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:coke_platform/presentation/landing/button/custom.dart';
 import 'package:coke_platform/service/firebase/auth.dart';
 import 'package:coke_platform/service/firebase/role.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
   String password = '';
   @override
   Widget build(BuildContext context) {
+    final isMobile = 1400.w < 500;
     return Title(
       color: Theme.of(context).colorScheme.primary,
       title: 'Login',
@@ -48,14 +50,14 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                   child: const LanguageSwitch(),
                 ),
                 Positioned(
-                  top: 10.w,
-                  left: (1400.w - 240) / 2,
+                  top: isMobile ? 10 : 10.w,
+                  left: (1400.w - (isMobile ? 60 : 240)) / 2,
                   child: InkWell(
                     onTap: () {
                       context.go('/');
                     },
                     child: Assets.images.logoWhite.image(
-                      width: 240,
+                      width: isMobile ? 60 : 240,
                     ),
                   ),
                 ),
@@ -68,7 +70,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 600.w,
+                    width: 1400.w < 500 ? 1000.w : 600.w,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -78,9 +80,12 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                         ),
                       ],
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(1400.w < 500 ? 6 : 16),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 1400.w < 500 ? 16 : 24.w,
+                      vertical: 1400.w < 500 ? 16 : 24.h,
+                    ),
                     child: Form(
                       key: form,
                       child: Column(
@@ -108,7 +113,9 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                             },
                           ),
                           SizedBox(height: 40.hMax),
-                          InkWell(
+                          CustomFilledButton(
+                            color: ColorConstants.teal,
+                            title: S.current.login,
                             onTap: () async {
                               if (form.currentState!.validate()) {
                                 try {
@@ -144,23 +151,6 @@ class _AdminLoginPageState extends State<AdminLoginPage> with Validator {
                                 }
                               }
                             },
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.r),
-                                color: ColorConstants.teal,
-                              ),
-                              padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 6.w),
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Sign In',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.sp,
-                                ),
-                              ),
-                            ),
                           ),
                         ],
                       ),

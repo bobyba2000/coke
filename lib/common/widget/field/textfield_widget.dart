@@ -1,7 +1,9 @@
 import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFieldWidget extends StatefulWidget {
@@ -118,6 +120,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = 1400.w < 500;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -126,21 +129,28 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    widget.label ?? "",
-                    style: widget.labelStyle ?? Theme.of(context).textTheme.titleMedium,
+                  Flexible(
+                    child: Text(
+                      widget.label ?? "",
+                      style: widget.labelStyle ??
+                          Theme.of(context).textTheme.titleMedium?.copyWith(
+                                fontSize: isMobile ? 10 : null,
+                              ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   Visibility(
                     visible: widget.required,
                     child: Text(
                       "*",
-                      style: (widget.labelStyle ?? Theme.of(context).textTheme.titleMedium)?.copyWith(color: Colors.red),
+                      style: (widget.labelStyle ?? Theme.of(context).textTheme.titleMedium)?.copyWith(
+                        color: Colors.red,
+                        fontSize: isMobile ? 10 : null,
+                      ),
                     ),
                   ),
-                  const Spacer(),
-                  widget.leftLabel ?? const SizedBox()
                 ],
               ),
             )),
@@ -149,108 +159,119 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             widget.aboveHelperText!,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Colors.grey,
+                  fontSize: isMobile ? 8 : null,
                 ),
           ),
-        TextFormField(
-          focusNode: widget.focusNode,
-          controller: inputController,
-          obscureText: _obscureText,
-          onFieldSubmitted: widget.onFieldSubmitted,
-          readOnly: widget.readOnly,
-          cursorColor: widget.cursorColor,
-          onTap: () {
-            widget.onTap?.call();
-            if (widget.isAutoSelectAll) {
-              inputController.selection = TextSelection(
-                baseOffset: 0,
-                extentOffset: inputController.value.text.length,
-              );
-            }
-          },
-          style: widget.textStyle,
-          textAlign: widget.textAlign ?? TextAlign.start,
-          inputFormatters: widget.inputFormatters,
-          maxLines: widget.maxLines ?? 1,
-          enabled: widget.enabled,
-          autofocus: widget.autoFocus ?? false,
-          maxLength: widget.maxLength,
-          decoration: InputDecoration(
-            helperMaxLines: 4,
-            helperText: widget.helperText,
-            filled: widget.filled ?? true,
-            hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Colors.grey,
-                ),
-            border: widget.border ??
-                OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: ColorConstants.teal,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-            enabledBorder: widget.border ??
-                OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: ColorConstants.teal,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-            focusedBorder: widget.border ??
-                OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: ColorConstants.teal,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-            errorBorder: widget.border ??
-                OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.error,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-            fillColor: Colors.white,
-            hintText: widget.hintText ?? S.current.pleaseFillIn,
-            helperStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey,
-                ),
-            contentPadding: widget.padding ??
-                EdgeInsets.symmetric(
-                  horizontal: 15.w,
-                  vertical: 4.w,
-                ),
-            suffixIconConstraints: BoxConstraints(maxHeight: 12.w),
-            prefixIconConstraints: BoxConstraints(
-              maxHeight: 12.w,
-            ),
-            prefixIcon: widget.prefixIcon,
-            suffixIcon: widget.obscureText
-                ? GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Icon(
-                        _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                        color: const Color(0xFF646464),
-                      ),
-                    ),
+        SizedBox(
+          height: isMobile ? 36 : null,
+          child: TextFormField(
+            focusNode: widget.focusNode,
+            controller: inputController,
+            obscureText: _obscureText,
+            onFieldSubmitted: widget.onFieldSubmitted,
+            readOnly: widget.readOnly,
+            cursorColor: widget.cursorColor,
+            style: isMobile
+                ? const TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
                   )
-                : widget.suffixIcon,
+                : widget.textStyle,
+            onTap: () {
+              widget.onTap?.call();
+              if (widget.isAutoSelectAll) {
+                inputController.selection = TextSelection(
+                  baseOffset: 0,
+                  extentOffset: inputController.value.text.length,
+                );
+              }
+            },
+            textAlign: widget.textAlign ?? TextAlign.start,
+            inputFormatters: widget.inputFormatters,
+            maxLines: widget.maxLines ?? 1,
+            enabled: widget.enabled,
+            autofocus: widget.autoFocus ?? false,
+            maxLength: widget.maxLength,
+            decoration: InputDecoration(
+              helperMaxLines: 4,
+              helperText: widget.helperText,
+              filled: widget.filled ?? true,
+              hintStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Colors.grey,
+                    fontSize: isMobile ? 10 : null,
+                  ),
+              border: widget.border ??
+                  OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: ColorConstants.teal,
+                    ),
+                    borderRadius: BorderRadius.circular(isMobile ? 6 : 12),
+                  ),
+              enabledBorder: widget.border ??
+                  OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: ColorConstants.teal,
+                    ),
+                    borderRadius: BorderRadius.circular(isMobile ? 6 : 8),
+                  ),
+              focusedBorder: widget.border ??
+                  OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: ColorConstants.teal,
+                    ),
+                    borderRadius: BorderRadius.circular(isMobile ? 6 : 8),
+                  ),
+              errorBorder: widget.border ??
+                  OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                    borderRadius: BorderRadius.circular(isMobile ? 6 : 8),
+                  ),
+              fillColor: Colors.white,
+              hintText: widget.hintText ?? S.current.pleaseFillIn,
+              helperStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Colors.grey,
+                    fontSize: isMobile ? 8 : null,
+                  ),
+              contentPadding: widget.padding ??
+                  EdgeInsets.symmetric(
+                    horizontal: isMobile ? 8 : 15.w,
+                    vertical: isMobile ? 2 : 4.w,
+                  ),
+              suffixIconConstraints: BoxConstraints(maxHeight: isMobile ? 12 : 12.w),
+              prefixIconConstraints: BoxConstraints(
+                maxHeight: isMobile ? 12 : 12.w,
+              ),
+              prefixIcon: widget.prefixIcon,
+              suffixIcon: widget.obscureText
+                  ? GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Icon(
+                          _obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                          color: const Color(0xFF646464),
+                        ),
+                      ),
+                    )
+                  : widget.suffixIcon,
+            ),
+            keyboardType: widget.textInputType,
+            onChanged: (value) {
+              text = value;
+              widget.onChanged?.call(text);
+              if (widget.maxWords != null) {
+                setState(() {});
+              }
+            },
+            validator: widget.validator,
           ),
-          keyboardType: widget.textInputType,
-          onChanged: (value) {
-            text = value;
-            widget.onChanged?.call(text);
-            if (widget.maxWords != null) {
-              setState(() {});
-            }
-          },
-          validator: widget.validator,
         ),
         if (widget.maxWords != null)
           Align(

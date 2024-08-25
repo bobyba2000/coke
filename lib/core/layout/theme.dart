@@ -45,22 +45,22 @@ ThemeData themeData(BuildContext context) {
         height: 1.3.wMax,
       ),
       displayLarge: TextStyle(
-        fontSize: 22.spMin,
+        fontSize: 1400.w < 500 ? 16 : 22.spMin,
         fontWeight: FontWeight.bold,
         height: 1.3.wMax,
       ),
       displaySmall: TextStyle(
-        fontSize: 16.spMin,
+        fontSize: 1400.w < 500 ? 14 : 16.spMin,
         fontWeight: FontWeight.bold,
         height: 1.3.wMax,
       ),
       bodyLarge: TextStyle(
-        fontSize: 16.spMin,
+        fontSize: 1400.w < 500 ? 10 : 16.spMin,
         fontWeight: FontWeight.w400,
         height: 1.3.wMax,
       ),
       bodyMedium: TextStyle(
-        fontSize: 12.spMin,
+        fontSize: 1400.w < 500 ? 8 : 12.spMin,
         fontWeight: FontWeight.w400,
         height: 1.3.wMax,
       ),

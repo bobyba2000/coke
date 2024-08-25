@@ -1,5 +1,6 @@
 import 'package:coke_platform/constants/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomOutlinedButton extends StatefulWidget {
   final String title;
@@ -54,7 +55,10 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton> {
         ),
         child: Text(
           widget.title,
-          style: theme.textTheme.displaySmall?.copyWith(color: foreground),
+          style: theme.textTheme.displaySmall?.copyWith(
+            color: foreground,
+            fontSize: 1400.w < 500 ? 10 : null,
+          ),
         ),
       ),
     );

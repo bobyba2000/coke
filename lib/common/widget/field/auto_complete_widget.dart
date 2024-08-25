@@ -4,6 +4,7 @@ import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AutoCompleteWidget<T> extends StatefulWidget {
   final Future<List<T>> Function(String) getSuggestData;
@@ -46,71 +47,102 @@ class _AutoCompleteWidgetState<T> extends State<AutoCompleteWidget<T>> {
         borderSide: const BorderSide(
           color: ColorConstants.teal,
         ),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(
+          1400.w < 500 ? 6 : 12,
+        ),
       );
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = 1400.w < 500;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Visibility(
+          visible: widget.label != null,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
               children: [
-                Text(
-                  widget.label ?? '',
-                  style: Theme.of(context).textTheme.titleMedium,
+                Flexible(
+                  child: Text(
+                    widget.label ?? '',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontSize: isMobile ? 10 : null,
+                        ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 Visibility(
                   visible: widget.required,
                   child: Text(
                     "*",
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.red),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.red,
+                          fontSize: isMobile ? 10 : null,
+                        ),
                   ),
                 ),
               ],
             ),
           ),
         ),
-        AsyncAutocomplete<T>(
-          controller: _controller,
-          asyncSuggestions: widget.getSuggestData,
-          validator: widget.validator,
-          inputTextStyle: widget.style ?? const TextStyle(),
-          inputFormatter: widget.formatters,
-          maxListHeight: 300,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(15),
-            border: _inputBorder,
-            enabledBorder: _inputBorder,
-            focusedBorder: _inputBorder,
-            focusedErrorBorder: _inputBorder,
-            hintText: widget.hintText ?? S.current.pleaseFillIn,
-            hintStyle: widget.hintStyle ??
-                Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Colors.grey,
+        SizedBox(
+          height: isMobile ? 36 : null,
+          child: AsyncAutocomplete<T>(
+            controller: _controller,
+            asyncSuggestions: widget.getSuggestData,
+            validator: widget.validator,
+            inputTextStyle: isMobile
+                ? const TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                  )
+                : widget.style ?? const TextStyle(),
+            inputFormatter: widget.formatters,
+            maxListHeight: isMobile ? 100 : 300,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 8 : 15.w,
+                vertical: isMobile ? 2 : 4.w,
+              ),
+              border: _inputBorder,
+              enabledBorder: _inputBorder,
+              focusedBorder: _inputBorder,
+              focusedErrorBorder: _inputBorder,
+              hintText: widget.hintText ?? S.current.pleaseFillIn,
+              hintStyle: widget.hintStyle ??
+                  Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Colors.grey,
+                        fontSize: isMobile ? 10 : null,
+                      ),
+              helperText: widget.helperText,
+            ),
+            onTapItem: (data) {
+              _controller.text = data.toString();
+              widget.onTapItem?.call(data);
+            },
+            onSubmitted: (value) {
+              widget.onSubmitted?.call(value);
+            },
+            onChanged: (value) {
+              widget.onChanged?.call(value);
+            },
+            suggestionBuilder: widget.suggestionBuilder ??
+                (T data) => ListTile(
+                      title: Text(
+                        data.toString(),
+                        style: isMobile
+                            ? const TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                              )
+                            : null,
+                      ),
                     ),
-            helperText: widget.helperText,
           ),
-          onTapItem: (data) {
-            _controller.text = data.toString();
-            widget.onTapItem?.call(data);
-          },
-          onSubmitted: (value) {
-            widget.onSubmitted?.call(value);
-          },
-          onChanged: (value) {
-            widget.onChanged?.call(value);
-          },
-          suggestionBuilder: widget.suggestionBuilder ??
-              (T data) => ListTile(
-                    title: Text(
-                      data.toString(),
-                    ),
-                  ),
         ),
       ],
     );
@@ -349,29 +381,32 @@ class _AsyncAutocompleteState<T> extends State<AsyncAutocomplete<T>> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextFormField(
-                  decoration: widget.decoration,
-                  controller: _controller,
-                  key: widget.inputKey,
-                  onTap: widget.onTap?.call(),
-                  inputFormatters: widget.inputFormatter,
-                  autofocus: widget.autofocus,
-                  focusNode: _focusNode,
-                  textCapitalization: widget.textCapitalization,
-                  keyboardType: widget.keyboardType,
-                  cursorColor: widget.cursorColor ?? Colors.blue,
-                  style: widget.inputTextStyle,
-                  onChanged: (value) => widget.onChanged?.call(value),
-                  onSaved: (value) => widget.onSaved?.call(value),
-                  onFieldSubmitted: (value) {
-                    widget.onSubmitted?.call(value);
-                    closeOverlay();
-                    _focusNode.unfocus();
-                  },
-                  onEditingComplete: () => closeOverlay(),
-                  validator: widget.validator
-                  // (value) {}
-                  )
+              SizedBox(
+                height: 1400.w < 500 ? 36 : null,
+                child: TextFormField(
+                    decoration: widget.decoration,
+                    controller: _controller,
+                    key: widget.inputKey,
+                    onTap: widget.onTap?.call(),
+                    inputFormatters: widget.inputFormatter,
+                    autofocus: widget.autofocus,
+                    focusNode: _focusNode,
+                    textCapitalization: widget.textCapitalization,
+                    keyboardType: widget.keyboardType,
+                    cursorColor: widget.cursorColor ?? Colors.blue,
+                    style: widget.inputTextStyle,
+                    onChanged: (value) => widget.onChanged?.call(value),
+                    onSaved: (value) => widget.onSaved?.call(value),
+                    onFieldSubmitted: (value) {
+                      widget.onSubmitted?.call(value);
+                      closeOverlay();
+                      _focusNode.unfocus();
+                    },
+                    onEditingComplete: () => closeOverlay(),
+                    validator: widget.validator
+                    // (value) {}
+                    ),
+              )
             ]));
   }
 
