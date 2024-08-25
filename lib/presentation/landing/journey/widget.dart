@@ -1,7 +1,5 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/locale.dart';
-import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/button/custom.dart';
@@ -89,22 +87,16 @@ enum JourneyCharacter {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AnimatedTextKit(
-                    isRepeatingAnimation: true,
-                    animatedTexts: [
-                      ColorizeAnimatedText(
-                        name.toUpperCase(),
-                        textStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          height: 0.8,
-                        ),
-                        colors: [
-                          color,
-                          ColorConstants.teal,
-                        ],
-                      ),
-                    ],
+                  TextAnimator(
+                    name.toUpperCase(),
+                    initialDelay: Duration(milliseconds: index * 300),
+                    atRestEffect: WidgetRestingEffects.wave(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      height: 0.8,
+                      color: color,
+                    ),
                   ),
                 ],
               ),
@@ -184,21 +176,6 @@ enum JourneyCharacter {
                     color: color,
                   ),
                 ),
-                // TextLiquidFill(text: name.toUpperCase(),),
-                // AnimatedTextKit(
-                //   isRepeatingAnimation: true,
-                //   animatedTexts: [
-                //     WavyAnimatedText(text)
-                //     ColorizeAnimatedText(
-                //       name.toUpperCase(),
-
-                //       colors: [
-                //         color,
-                //         ColorConstants.teal,
-                //       ],
-                //     ),
-                //   ],
-                // ),
                 subTitle,
               ],
             ),
