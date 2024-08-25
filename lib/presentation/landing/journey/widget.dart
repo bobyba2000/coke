@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/locale.dart';
+import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/button/custom.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 enum JourneyCharacter {
   f,
@@ -86,14 +89,22 @@ enum JourneyCharacter {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    name.toUpperCase(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: color,
-                      fontSize: 24,
-                      height: 0.8,
-                    ),
+                  AnimatedTextKit(
+                    isRepeatingAnimation: true,
+                    animatedTexts: [
+                      ColorizeAnimatedText(
+                        name.toUpperCase(),
+                        textStyle: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          height: 0.8,
+                        ),
+                        colors: [
+                          color,
+                          ColorConstants.teal,
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -162,15 +173,32 @@ enum JourneyCharacter {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                TextAnimator(
                   name.toUpperCase(),
+                  initialDelay: Duration(milliseconds: index * 300),
+                  atRestEffect: WidgetRestingEffects.wave(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: color,
                     fontSize: 38.sp,
                     height: 0.8,
+                    color: color,
                   ),
                 ),
+                // TextLiquidFill(text: name.toUpperCase(),),
+                // AnimatedTextKit(
+                //   isRepeatingAnimation: true,
+                //   animatedTexts: [
+                //     WavyAnimatedText(text)
+                //     ColorizeAnimatedText(
+                //       name.toUpperCase(),
+
+                //       colors: [
+                //         color,
+                //         ColorConstants.teal,
+                //       ],
+                //     ),
+                //   ],
+                // ),
                 subTitle,
               ],
             ),
