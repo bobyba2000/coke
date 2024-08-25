@@ -109,27 +109,37 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                     36.hSpace,
                     isEnglish
                         ? Assets.images.essence.winningMobile.image(
-                            height: 150,
+                            height: 175,
                             fit: BoxFit.fitWidth,
                           )
                         : Assets.images.essence.winningMobileVi.image(
-                            height: 150,
+                            height: 175,
                             fit: BoxFit.fitWidth,
                           ),
-                    Row(
-                      children: [
-                        20.wSpace,
-                        Assets.images.essence.mobileModel.image(
-                          height: 300,
-                          fit: BoxFit.fitHeight,
-                        ),
-                      ],
+                    SizedBox(
+                      height: 440,
+                      child: Stack(
+                        children: [
+                          Row(
+                            children: [
+                              20.wSpace,
+                              Assets.images.essence.mobileModel.image(
+                                height: 300,
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ],
+                          ),
+                          Positioned(
+                            top: 150,
+                            child: isEnglish
+                                ? Assets.images.essence.mobileSale.image(
+                                    width: 1400.w,
+                                  )
+                                : Assets.images.essence.mobileSaleVi.image(width: 1400.w),
+                          ),
+                        ],
+                      ),
                     ),
-                    isEnglish
-                        ? Assets.images.essence.mobileSale.image(
-                            width: 1400.w,
-                          )
-                        : Assets.images.essence.mobileSaleVi.image(width: 1400.w),
                     12.hSpace,
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,53 +183,66 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                       ),
                     ),
                     4.hSpace,
-                    isEnglish
-                        ? Assets.images.essence.mobileNonsale.image(
-                            width: 1400.w,
-                          )
-                        : Assets.images.essence.mobileNonsaleVi.image(
-                            width: 1400.w,
+                    Stack(
+                      children: [
+                        Container(
+                          height: 300,
+                          alignment: Alignment.topCenter,
+                          child: isEnglish
+                              ? Assets.images.essence.mobileNonsale.image(
+                                  width: 1400.w,
+                                )
+                              : Assets.images.essence.mobileNonsaleVi.image(
+                                  width: 1400.w,
+                                ),
+                        ),
+                        Positioned(
+                          top: 150,
+                          left: 0,
+                          right: 24,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.generate(
+                              sales.length,
+                              (index) {
+                                final other = others[index];
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                    bottom: 8,
+                                    left: 40,
+                                    right: 16,
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(top: 4),
+                                        child: Icon(
+                                          Icons.circle,
+                                          color: Colors.white,
+                                          size: 6,
+                                        ),
+                                      ),
+                                      8.wSpace,
+                                      Expanded(
+                                        child: Text(
+                                          other,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: List.generate(
-                        sales.length,
-                        (index) {
-                          final other = others[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 8,
-                              left: 40,
-                              right: 16,
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 4),
-                                  child: Icon(
-                                    Icons.circle,
-                                    color: Colors.white,
-                                    size: 6,
-                                  ),
-                                ),
-                                8.wSpace,
-                                Expanded(
-                                  child: Text(
-                                    other,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -232,16 +255,16 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                   alignment: Alignment.center,
                   children: [
                     LocaleUtility.locale.value.languageCode == 'en'
-                        ? Assets.images.essence.en2.image(
+                        ? Assets.images.essence.en2Mobile.image(
                             width: 1400.w,
                             fit: BoxFit.fitWidth,
                           )
-                        : Assets.images.essence.vi2.image(
+                        : Assets.images.essence.vi2Mobile.image(
                             width: 1400.w,
                             fit: BoxFit.fitWidth,
                           ),
                     Positioned(
-                      bottom: 25,
+                      bottom: 30,
                       right: 10,
                       left: 10,
                       child: Text(
