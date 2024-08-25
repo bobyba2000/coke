@@ -128,12 +128,16 @@ enum JourneyCharacter {
 
   Widget get widget {
     final titleStr = title.split(';');
-    Widget titleWidget = Text(
-      titleStr.last,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 20.sp,
-        color: const Color(0xFF035858),
+    Widget titleWidget = SizedBox(
+      height: 40.sp,
+      child: Text(
+        titleStr.last,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20.sp,
+          color: const Color(0xFF035858),
+          height: 1.1,
+        ),
       ),
     );
     Widget subTitle = const SizedBox.shrink();
@@ -149,7 +153,6 @@ enum JourneyCharacter {
     }
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AspectRatio(
           aspectRatio: 2.5,

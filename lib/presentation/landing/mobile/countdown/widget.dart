@@ -36,7 +36,7 @@ class MobileCountdownWidget extends StatefulWidget {
 }
 
 class _MobileCountdownWidgetState extends State<MobileCountdownWidget> with AutomaticKeepAliveClientMixin {
-  DateTime dueDate = DateTime(2024, 9, 30);
+  DateTime dueDate = DateTime(2024, 9, 16, 23, 59, 59);
   Duration duration = const Duration();
   late final Timer _timer;
 

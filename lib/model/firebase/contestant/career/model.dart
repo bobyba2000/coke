@@ -579,7 +579,16 @@ enum InternshipRole {
                 color: const Color(0xFFFDF056),
               ),
             ),
-            120.wMin.hSpace,
+            12.wMin.hSpace,
+            Text(
+              subtitle.toUpperCase(),
+              style: TextStyle(
+                fontSize: 19.spMin,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFFFDF056),
+              ),
+            ),
+            80.wMin.hSpace,
           ],
         );
     }

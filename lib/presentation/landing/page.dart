@@ -43,19 +43,7 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   void initState() {
-    _page.addListener(() {
-      if (1400.w * 1.5 < 900.h) {
-        _background.jumpTo(_page.offset);
-      } else {
-        if (_page.offset < 1700.w) {
-          _background.jumpTo(_page.offset);
-        } else if (_page.offset > 2500.w) {
-          _background.jumpTo(_page.offset - 800.w);
-        } else {
-          _background.jumpTo(1700.w);
-        }
-      }
-    });
+    _page.addListener(manageScroll);
 
     // Future.delayed(
     //   const Duration(milliseconds: 200),
@@ -166,8 +154,8 @@ class _LandingPageState extends State<LandingPage> {
                             ),
                           ),
                           Positioned(
-                            left: 350.w,
-                            top: 1400.w * 1.5 < 900.h ? 900.w : 100.w,
+                            left: 300.w,
+                            top: 1400.w * 1.5 < 900.h ? 900.w : 140.w,
                             child: Assets.images.essence.model.image(
                               width: 600.w,
                             ),
@@ -408,8 +396,23 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 
+  void manageScroll() {
+    if (1400.w * 1.5 < 900.h) {
+      _background.jumpTo(_page.offset);
+    } else {
+      if (_page.offset < 1700.w) {
+        _background.jumpTo(_page.offset);
+      } else if (_page.offset > 2500.w) {
+        _background.jumpTo(_page.offset - 800.w);
+      } else {
+        _background.jumpTo(1700.w);
+      }
+    }
+  }
+
   @override
   void dispose() {
+    _page.removeListener(manageScroll);
     super.dispose();
   }
 }

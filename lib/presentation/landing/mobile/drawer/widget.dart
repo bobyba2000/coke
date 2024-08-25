@@ -71,6 +71,7 @@ class MobileDrawer extends StatelessWidget {
                       duration: const Duration(milliseconds: 1200),
                       curve: Curves.linear,
                     );
+                    Scaffold.of(context).closeDrawer();
                   }
                 },
               ),
@@ -85,10 +86,11 @@ class MobileDrawer extends StatelessWidget {
                     final offset = box.localToGlobal(Offset.zero);
 
                     controller.animateTo(
-                      offset.dy + controller.offset - 40,
+                      offset.dy + controller.offset - 56,
                       duration: const Duration(milliseconds: 1200),
                       curve: Curves.linear,
                     );
+                    Scaffold.of(context).closeDrawer();
                   }
                 },
               ),
@@ -103,10 +105,11 @@ class MobileDrawer extends StatelessWidget {
                     final offset = box.localToGlobal(Offset.zero);
 
                     controller.animateTo(
-                      offset.dy + controller.offset - 40,
+                      offset.dy + controller.offset - 56,
                       duration: const Duration(milliseconds: 1200),
                       curve: Curves.linear,
                     );
+                    Scaffold.of(context).closeDrawer();
                   }
                 },
               ),
@@ -121,10 +124,11 @@ class MobileDrawer extends StatelessWidget {
                     final offset = box.localToGlobal(Offset.zero);
 
                     controller.animateTo(
-                      offset.dy + controller.offset - 40,
+                      offset.dy + controller.offset - 56,
                       duration: const Duration(milliseconds: 1200),
                       curve: Curves.linear,
                     );
+                    Scaffold.of(context).closeDrawer();
                   }
                 },
               ),
@@ -139,10 +143,11 @@ class MobileDrawer extends StatelessWidget {
                     final offset = box.localToGlobal(Offset.zero);
 
                     controller.animateTo(
-                      offset.dy + controller.offset - 40,
+                      offset.dy + controller.offset - 56,
                       duration: const Duration(milliseconds: 1200),
                       curve: Curves.linear,
                     );
+                    Scaffold.of(context).closeDrawer();
                   }
                 },
               ),
@@ -157,10 +162,11 @@ class MobileDrawer extends StatelessWidget {
                     final offset = box.localToGlobal(Offset.zero);
 
                     controller.animateTo(
-                      offset.dy + controller.offset - 40,
+                      offset.dy + controller.offset - 56,
                       duration: const Duration(milliseconds: 1200),
                       curve: Curves.linear,
                     );
+                    Scaffold.of(context).closeDrawer();
                   }
                 },
               ),

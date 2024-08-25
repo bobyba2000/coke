@@ -1,7 +1,9 @@
-import 'dart:math';
 
+import 'package:coke_platform/common/utility/dialog.dart';
+import 'package:coke_platform/common/utility/share_preference.dart';
 import 'package:coke_platform/constants/color.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
+import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/mobile/about/widget.dart';
 import 'package:coke_platform/presentation/landing/mobile/countdown/widget.dart';
 import 'package:coke_platform/presentation/landing/mobile/essence/widget.dart';
@@ -29,6 +31,27 @@ class _MobileLandingPageState extends State<MobileLandingPage> {
   final careerKey = GlobalKey();
   final journalKey = GlobalKey();
   final progressKey = GlobalKey();
+
+  @override
+  void initState() {
+    Future.delayed(
+      const Duration(milliseconds: 200),
+      () {
+        SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
+          if (!value) {
+            DialogUtility.showLanguagePicker(
+              context,
+              title: S.current.languagePickerLandingPage,
+            ).then(
+              (value) => SharePreferenceUtitlity.markShowLanguagePopup(),
+            );
+          }
+        });
+      },
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,27 +84,41 @@ class _MobileLandingPageState extends State<MobileLandingPage> {
                   MobileAboutWidget(
                     key: aboutKey,
                   ),
+                ],
+              ),
+            ),
+            Container(
+              color: ColorConstants.teal,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
                   Stack(
                     children: [
-                      Transform.rotate(
-                        angle: -pi,
-                        child: Assets.images.essence.bottom.image(),
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Assets.images.about.bottom.image(width: 1400.w),
+                      ),
+                      Assets.images.about.model.image(width: 1400.w),
+                    ],
+                  ),
+                  Stack(
+                    children: [
+                      EssenceWidget(
+                        key: essenceKey,
                       ),
                       Positioned(
-                        bottom: 0,
                         child: Container(
                           color: const Color(0xFF3f6db8),
-                          height: 5,
                           width: 1400.w,
+                          height: 6,
                         ),
                       ),
                     ],
                   ),
                 ],
               ),
-            ),
-            EssenceWidget(
-              key: essenceKey,
             ),
             MobileCareerWidget(
               key: careerKey,

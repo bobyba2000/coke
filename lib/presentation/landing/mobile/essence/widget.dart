@@ -4,7 +4,9 @@ import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WinningAttributeWidget extends StatelessWidget {
@@ -62,8 +64,9 @@ class _EssenceWidgetState extends State<EssenceWidget> {
   Widget build(BuildContext context) {
     final sales = S.current.saleRoleContent.split(';');
     final others = S.current.otherRoleContent.split(';');
-    return SizedBox(
-      height: 1100,
+    final isEnglish = LocaleUtility.locale.value.languageCode == 'en';
+    return Container(
+      color: const Color(0xFFf1feff),
       child: Column(
         children: [
           Stack(
@@ -71,6 +74,8 @@ class _EssenceWidgetState extends State<EssenceWidget> {
               Container(
                 color: const Color(0xFF3f6db8),
                 width: 1400.w,
+                margin: const EdgeInsets.only(bottom: 80),
+                padding: const EdgeInsets.only(bottom: 80),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -101,209 +106,154 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                         ],
                       ),
                     ),
-                    24.hSpace,
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            S.current.saleRole,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    36.hSpace,
+                    isEnglish
+                        ? Assets.images.essence.winningMobile.image(
+                            height: 150,
+                            fit: BoxFit.fitWidth,
+                          )
+                        : Assets.images.essence.winningMobileVi.image(
+                            height: 150,
+                            fit: BoxFit.fitWidth,
                           ),
-                          12.hSpace,
-                          ...List.generate(
-                            sales.length,
-                            (index) {
-                              final sale = sales[index];
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  sale,
-                                  style: const TextStyle(
+                    Row(
+                      children: [
+                        20.wSpace,
+                        Assets.images.essence.mobileModel.image(
+                          height: 300,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ],
+                    ),
+                    isEnglish
+                        ? Assets.images.essence.mobileSale.image(
+                            width: 1400.w,
+                          )
+                        : Assets.images.essence.mobileSaleVi.image(width: 1400.w),
+                    12.hSpace,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(
+                        sales.length,
+                        (index) {
+                          final sale = sales[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 8,
+                              left: 40,
+                              right: 16,
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 4),
+                                  child: Icon(
+                                    Icons.circle,
                                     color: Colors.white,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
+                                    size: 6,
                                   ),
                                 ),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    8.hSpace,
-                    const Divider(
-                      indent: 16,
-                      endIndent: 120,
-                      color: Colors.white,
-                      thickness: 2,
-                    ),
-                    8.hSpace,
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            S.current.otherRole,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          12.hSpace,
-                          ...List.generate(
-                            others.length,
-                            (index) {
-                              final other = others[index];
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 8),
-                                child: Text(
-                                  other,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  textAlign: TextAlign.end,
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    16.hSpace,
-                    Text(
-                      S.current.winningAttribute,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Color(0xFFf1feff),
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    16.hSpace,
-                    SizedBox(
-                      height: 450,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              1400.w.wSpace,
-                              Assets.images.essence.mobileModel.image(
-                                width: 200,
-                              ),
-                              Positioned(
-                                top: 20,
-                                left: 25,
-                                child: WinningAttributeWidget(
-                                  title: S.current.adaptability,
-                                ),
-                              ),
-                              Positioned(
-                                top: 100,
-                                left: 50,
-                                child: WinningAttributeWidget(
-                                  title: S.current.learningAgility,
-                                ),
-                              ),
-                              Positioned(
-                                top: 240,
-                                left: 30,
-                                child: WinningAttributeWidget(
-                                  title: S.current.teamPlayer,
-                                ),
-                              ),
-                              Positioned(
-                                top: 30,
-                                right: 10,
-                                child: WinningAttributeWidget(
-                                  title: S.current.resilence,
-                                ),
-                              ),
-                              Positioned(
-                                top: 100,
-                                right: 30,
-                                child: WinningAttributeWidget(
-                                  title: S.current.growthMindset,
-                                ),
-                              ),
-                              Positioned(
-                                top: 180,
-                                right: 5,
-                                child: WinningAttributeWidget(
-                                  title: S.current.accountability,
-                                ),
-                              ),
-                              Positioned(
-                                top: 270,
-                                right: 35,
-                                child: WinningAttributeWidget(
-                                  title: S.current.resultOrientation,
-                                ),
-                              ),
-
-                              // ...[
-                              //   S.current.adaptability,
-                              //   S.current.learningAgility,
-                              //   S.current.teamPlayer,
-                              //   S.current.resilence,
-                              //   S.current.growthMindset,
-                              //   S.current.accountability,
-                              //   S.current.resultOrientation,
-                              // ].asMap().entries.map(
-                              //       (e) => Positioned(
-                              //         top: e.key % 2 == 0 ? 80 * (e.key / 2) : (80 * (e.key / 2)),
-                              //         left: e.key % 2 == 0 ? 24 + Random().nextInt(44).toDouble() : null,
-                              //         right: e.key % 2 == 1 ? 24 + Random().nextInt(44).toDouble() : null,
-                              //         child: WinningAttributeWidget(title: e.value),
-                              //       ),
-                              //     ),
-                            ],
-                          ),
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              LocaleUtility.locale.value.languageCode == 'en'
-                                  ? Assets.images.essence.en2.image(
-                                      width: 1400.w,
-                                      fit: BoxFit.fitWidth,
-                                    )
-                                  : Assets.images.essence.vi2.image(
-                                      width: 1400.w,
-                                      fit: BoxFit.fitWidth,
+                                8.wSpace,
+                                Expanded(
+                                  child: Text(
+                                    sale,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                              Positioned(
-                                bottom: 25,
-                                right: 10,
-                                left: 10,
-                                child: Text(
-                                  S.current.functionalSkillsTextMobile,
-                                  style: const TextStyle(
-                                    fontSize: 10,
-                                    color: Color(0xFFfe6a00),
-                                    fontWeight: FontWeight.w500,
                                   ),
-                                  textAlign: TextAlign.center,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    16.hSpace,
+                    4.hSpace,
+                    isEnglish
+                        ? Assets.images.essence.mobileNonsale.image(
+                            width: 1400.w,
+                          )
+                        : Assets.images.essence.mobileNonsaleVi.image(
+                            width: 1400.w,
+                          ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(
+                        sales.length,
+                        (index) {
+                          final other = others[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 8,
+                              left: 40,
+                              right: 16,
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 4),
+                                  child: Icon(
+                                    Icons.circle,
+                                    color: Colors.white,
+                                    size: 6,
+                                  ),
+                                ),
+                                8.wSpace,
+                                Expanded(
+                                  child: Text(
+                                    other,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 20,
+                right: 0,
+                left: 0,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    LocaleUtility.locale.value.languageCode == 'en'
+                        ? Assets.images.essence.en2.image(
+                            width: 1400.w,
+                            fit: BoxFit.fitWidth,
+                          )
+                        : Assets.images.essence.vi2.image(
+                            width: 1400.w,
+                            fit: BoxFit.fitWidth,
+                          ),
+                    Positioned(
+                      bottom: 25,
+                      right: 10,
+                      left: 10,
+                      child: Text(
+                        S.current.functionalSkillsTextMobile,
+                        style: const TextStyle(
+                          fontSize: 10,
+                          color: Color(0xFFfe6a00),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ],
                 ),
               ),

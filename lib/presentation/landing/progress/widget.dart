@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/overall/bubble.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ class ProgressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final languageCode = LocaleUtility.locale.value.languageCode;
+    final isEnglish = languageCode == 'en';
     return SizedBox(
       height: 800.w,
       width: 1400.w,
@@ -62,13 +65,41 @@ class ProgressWidget extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              S.current.by10Sep,
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                color: Colors.white,
-                              ),
-                            ),
+                            isEnglish
+                                ? Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'By 16',
+                                        style: TextStyle(
+                                          fontSize: 12.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      Text(
+                                        'th',
+                                        style: TextStyle(
+                                          fontSize: 8.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      Text(
+                                        ' Sep',
+                                        style: TextStyle(
+                                          fontSize: 12.sp,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Text(
+                                    S.current.by16Sep,
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                             16.hSpace,
                             WaterBubble(
                               size: 100.w,
@@ -201,14 +232,7 @@ class ProgressWidget extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              S.current.from18to21,
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                color: Colors.white,
-                              ),
-                            ),
-                            16.w.hSpace,
+                            32.w.hSpace,
                             WaterBubble(
                               size: 130.w,
                               color: Colors.white,
@@ -279,14 +303,7 @@ class ProgressWidget extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              S.current.by30Sep,
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                color: Colors.white,
-                              ),
-                            ),
-                            16.w.hSpace,
+                            32.w.hSpace,
                             WaterBubble(
                               size: 150.w,
                               color: Colors.white,

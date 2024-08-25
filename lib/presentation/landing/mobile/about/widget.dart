@@ -28,101 +28,105 @@ class _MobileAboutWidgetState extends State<MobileAboutWidget> {
       fontSize: 10,
       height: 1.3.wMax,
     );
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            S.current.aboutTheProgram.toUpperCase(),
-            style: textTheme.displaySmall?.copyWith(
-              color: const Color(0xFF084A99),
-              fontSize: 24,
-            ),
-          ),
-          16.hSpace,
-          SelectableText.rich(
-            TextSpan(
-              text: S.current.aboutTheProgramContent1,
-              style: normal,
-              children: [
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                S.current.aboutTheProgram.toUpperCase(),
+                style: textTheme.displaySmall?.copyWith(
+                  color: const Color(0xFF084A99),
+                  fontSize: 24,
+                ),
+              ),
+              16.hSpace,
+              SelectableText.rich(
                 TextSpan(
                   text: S.current.aboutTheProgramContent1,
                   style: normal,
+                  children: [
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent1,
+                      style: normal,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent2,
+                      style: bold,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent3,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent4,
+                      style: bold,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent5,
+                      style: normal,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent6,
+                      style: bold,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent7,
+                      style: normal,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent8,
+                      style: bold,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent9,
+                      style: normal,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent10,
+                      style: bold,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent11,
+                      style: normal,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent12,
+                      style: bold,
+                    ),
+                    TextSpan(
+                      text: S.current.aboutTheProgramContent13,
+                      style: normal,
+                    ),
+                  ],
                 ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent2,
-                  style: bold,
+                textAlign: TextAlign.justify,
+              ),
+              Text(
+                S.current.aboutTheProgramContent14,
+                style: bold?.copyWith(
+                  color: const Color(0xFF0F4D91),
                 ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent3,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent4,
-                  style: bold,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent5,
-                  style: normal,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent6,
-                  style: bold,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent7,
-                  style: normal,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent8,
-                  style: bold,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent9,
-                  style: normal,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent10,
-                  style: bold,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent11,
-                  style: normal,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent12,
-                  style: bold,
-                ),
-                TextSpan(
-                  text: S.current.aboutTheProgramContent13,
-                  style: normal,
-                ),
-              ],
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            S.current.aboutTheProgramContent14,
-            style: bold?.copyWith(
-              color: const Color(0xFF0F4D91),
-            ),
-            textAlign: TextAlign.center,
-          ),
-          24.hSpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomFilledButton(
-                title: S.current.applyNow,
-                onTap: () {
-                  context.go('/apply');
-                },
+                textAlign: TextAlign.center,
+              ),
+              24.hSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomFilledButton(
+                    title: S.current.applyNow,
+                    onTap: () {
+                      context.go('/apply');
+                    },
+                  ),
+                ],
               ),
             ],
           ),
-          18.hSpace,
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

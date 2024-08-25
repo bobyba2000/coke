@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/presentation/landing/overall/bubble.dart';
@@ -12,6 +13,8 @@ class MobileProgressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final languageCode = LocaleUtility.locale.value.languageCode;
+    final isEnglish = languageCode == 'en';
     return Container(
       color: const Color(0xFF9833ff),
       child: Column(
@@ -45,7 +48,7 @@ class MobileProgressWidget extends StatelessWidget {
           Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 70),
+                padding: const EdgeInsets.only(top: 64),
                 child: Assets.images.progress.background.image(
                   width: 1400.w,
                 ),
@@ -66,13 +69,41 @@ class MobileProgressWidget extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    S.current.by10Sep,
-                                    style: const TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.white,
-                                    ),
-                                  ),
+                                  isEnglish
+                                      ? const Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'By 16',
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            Text(
+                                              'th',
+                                              style: TextStyle(
+                                                fontSize: 6,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            Text(
+                                              ' Sep',
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Text(
+                                          S.current.by16Sep,
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                   4.hSpace,
                                   WaterBubble(
                                     size: 72,
@@ -193,14 +224,6 @@ class MobileProgressWidget extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    S.current.by30Sep,
-                                    style: const TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  4.hSpace,
                                   WaterBubble(
                                     size: 72,
                                     color: Colors.white,
@@ -253,14 +276,6 @@ class MobileProgressWidget extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(
-                                    S.current.from18to21,
-                                    style: const TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  4.hSpace,
                                   WaterBubble(
                                     size: 72,
                                     color: Colors.white,

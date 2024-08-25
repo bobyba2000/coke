@@ -67,7 +67,6 @@ class _WaveContainerState extends State<WaveContainer> {
                       fontSize: 18.spMin,
                     ),
                   ),
-                  4.wMin.hSpace,
                   Text(
                     role.subtitle,
                     style: TextStyle(
@@ -78,7 +77,7 @@ class _WaveContainerState extends State<WaveContainer> {
                   if ((role.content ?? '').isNotEmpty)
                     Padding(
                       padding: EdgeInsets.only(
-                        top: 4.wMin,
+                        top: 2.wMin,
                       ),
                       child: Text(
                         role.content ?? '',

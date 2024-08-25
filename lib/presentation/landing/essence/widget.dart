@@ -5,10 +5,7 @@ import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/common/widget/scroll/scroll_transform_item.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_animate_on_scroll/flutter_animate_on_scroll.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EssenceWidget1 extends StatefulWidget {
@@ -86,8 +83,8 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
               ),
               if (1400.w * 1.5 < 900.h || scrollOffset < heightBefore + 10.w)
                 Positioned(
-                  left: 350.w,
-                  top: 200.w,
+                  left: 300.w,
+                  top: 240.w,
                   child: Assets.images.essence.model.image(
                     width: 600.w,
                   ),

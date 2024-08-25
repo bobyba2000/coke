@@ -1,11 +1,7 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
-import 'package:coke_platform/common/utility/dialog.dart';
-import 'package:coke_platform/common/utility/share_preference.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
@@ -24,30 +20,10 @@ class _WaveContainerState extends State<WaveContainer> {
   bool isHover = false;
 
   @override
-  void initState() {
-    Future.delayed(
-      const Duration(milliseconds: 200),
-      () {
-        SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
-          if (!value) {
-            DialogUtility.showLanguagePicker(
-              context,
-              title: S.current.languagePickerLandingPage,
-            ).then(
-              (value) => SharePreferenceUtitlity.markShowLanguagePopup(),
-            );
-          }
-        });
-      },
-    );
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final role = widget.role;
     return Padding(
-      padding: const EdgeInsets.only(top: 8),
+      padding: const EdgeInsets.only(top: 16),
       child: InkWell(
         hoverColor: Colors.transparent,
         onHover: (value) {
@@ -83,7 +59,7 @@ class _WaveContainerState extends State<WaveContainer> {
                     ),
                     4.hSpace,
                     Text(
-                      role.subtitle.toUpperCase(),
+                      '${role.subtitle} ${role.content ?? ''}'.toUpperCase(),
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -156,7 +132,7 @@ class _WaveContainerState extends State<WaveContainer> {
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,
                 ).copyWith(
-                  top: 15,
+                  top: 20,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,7 +146,6 @@ class _WaveContainerState extends State<WaveContainer> {
                         fontSize: 14,
                       ),
                     ),
-                    4.hSpace,
                     Text(
                       role.subtitle,
                       style: TextStyle(
@@ -181,7 +156,7 @@ class _WaveContainerState extends State<WaveContainer> {
                     if ((role.content ?? '').isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.only(
-                          top: 4,
+                          top: 2,
                         ),
                         child: Text(
                           role.content ?? '',
