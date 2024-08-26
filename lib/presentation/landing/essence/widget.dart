@@ -242,7 +242,7 @@ class _EssenceWidget2State extends State<EssenceWidget2> {
                                   ),
                           ),
                           Positioned(
-                            top: 250.w,
+                            top: 230.w,
                             child: Stack(
                               alignment: Alignment.center,
                               children: [
