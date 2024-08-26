@@ -36,6 +36,19 @@ enum InternshipRole {
     }
   }
 
+  String? get majorRequired {
+    switch (this) {
+      case InternshipRole.procurement:
+        return S.current.majorProcurement;
+      case InternshipRole.itDataAnalyst:
+        return S.current.majorItAnalytics;
+      case InternshipRole.itPrivacy:
+        return S.current.majorItPrivacy;
+      default:
+        return null;
+    }
+  }
+
   Widget get background {
     final width = 1400.w;
     final height = 900.h;
@@ -168,6 +181,39 @@ enum InternshipRole {
           },
         ),
       ],
+    );
+  }
+
+  Widget get majorRequiredWidget {
+    bool isMobile = 1400.w < 500;
+    if (majorRequired == null) {
+      return const SizedBox.shrink();
+    }
+    final foreground = this == InternshipRole.tradeMarketing ? const Color(0xFFAA7047) : Colors.white;
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: isMobile ? 6 : 12.w,
+      ),
+      child: RichText(
+        text: TextSpan(
+            text: '${S.current.majorRequired}: ',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: isMobile ? 10 : 16.spMin,
+              color: foreground,
+            ),
+            children: [
+              TextSpan(
+                text: majorRequired,
+                style: TextStyle(
+                  color: foreground,
+                  fontSize: isMobile ? 12 : 14.spMin,
+                  fontWeight: FontWeight.w400,
+                  height: 1.3.wMax,
+                ),
+              ),
+            ]),
+      ),
     );
   }
 
@@ -618,6 +664,7 @@ enum InternshipRole {
                       20.w.hSpace,
                       responsibilities(),
                       14.w.hSpace,
+                      majorRequiredWidget,
                       RichText(
                         text: TextSpan(
                           text: '${S.current.note}: ',
@@ -675,6 +722,7 @@ enum InternshipRole {
                       overview(),
                       20.w.hSpace,
                       responsibilities(),
+                      majorRequiredWidget,
                       14.w.hSpace,
                       RichText(
                         text: TextSpan(

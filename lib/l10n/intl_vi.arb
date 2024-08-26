@@ -396,5 +396,9 @@
     "mobileWarning": "Lưu ý: Bạn nên điền đơn ứng tuyển trên máy tính hoặc laptop để có trải nghiệm tối ưu hơn. Điều này sẽ giúp bạn truy cập tất cả thông tin và tính năng để nộp đơn ứng tuyển một cách hoàn chỉnh nhất.",
     "contestant": "Ứng viên",
     "personalProfile": "Thông tin cá nhân",
-    "applicationForm": "Hồ sơ ứng tuyển"
+    "applicationForm": "Hồ sơ ứng tuyển",
+    "majorItAnalytics": "Bằng cấp Cử nhân về chuyên ngành Khoa học Máy tính, Khoa học Dữ liệu , Hệ thống Thông tin hoặc các chuyên môn khác liên quan",
+    "majorItPrivacy": "Bằng cấp Cử nhân về chuyên ngành Luật, Khoa học Máy tính, Hệ thống Thông tin, An ninh mạng (Cybersecurity) hoặc các lĩnh vực liên quan.",
+    "majorProcurement": "Bằng cấp Cử nhân trong chuyên ngành liên quan đến lĩnh vực Kỹ thuật (Ví dụ: Cơ khí & Chế tạo máy/ Điện/ Điện tử/ Xây dựng/ Điều khiển & Tự động hóa, v.v...)",
+    "majorRequired": "YÊU CẦU CHUYÊN NGÀNH"
 }

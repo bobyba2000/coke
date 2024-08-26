@@ -395,5 +395,9 @@
     "mobileWarning": "Please proceed with your application using a PC or laptop for a better experience. This will allow you to access all the information and features needed to complete your application smoothly.",
     "contestant": "Contestant",
     "personalProfile": "Personal Profile",
-    "applicationForm": "Application Form"
+    "applicationForm": "Application Form",
+    "majorItAnalytics": "A Bachelor degree in Computer Science, Data Science, Information Systems, or a related field.",
+    "majorItPrivacy": "A Bachelor degree in Law, Computer Science, Information Systems, Cybersecurity or a related field.",
+    "majorProcurement": "A Bachelor degree in Engineering-related field (E.g. Mechanical/ Electrical/ Electronics/ Civil/ Chemical/ Control & Automation, etc.…)",
+    "majorRequired": "MAJOR REQUIRED"
 }
