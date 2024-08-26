@@ -78,8 +78,8 @@ class _WaveContainerState extends State<WaveContainer> {
                             role.overview(),
                             6.hSpace,
                             role.responsibilities(),
-                            role.majorRequiredWidget,
                             6.hSpace,
+                            role.majorRequiredWidget,
                             RichText(
                               text: TextSpan(
                                 text: '${S.current.note}: ',

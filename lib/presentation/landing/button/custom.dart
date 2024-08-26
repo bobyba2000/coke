@@ -23,7 +23,7 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
   @override
   Widget build(BuildContext context) {
     final backgroundColor =
-        isHover ? widget.color?.withOpacity(0.7) ?? const Color.fromARGB(255, 211, 2, 47) : widget.color ?? const Color(0xFFFE0138);
+        isHover ? widget.color?.withOpacity(0.7) ?? const Color.fromARGB(255, 85, 2, 20) : widget.color ?? const Color(0xFFFE0138);
     const foreground = Colors.white;
     bool isMobile = 1400.w < 500;
     return InkWell(

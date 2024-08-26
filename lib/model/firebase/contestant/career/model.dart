@@ -135,7 +135,7 @@ enum InternshipRole {
           S.current.keyRoleResponsibilities,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: isMobile ? 10 : 16.spMin,
+            fontSize: isMobile ? 12 : 16.spMin,
             color: foreground,
             height: 1.3.wMax,
           ),
@@ -199,7 +199,7 @@ enum InternshipRole {
             text: '${S.current.majorRequired}: ',
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: isMobile ? 10 : 16.spMin,
+              fontSize: isMobile ? 12 : 16.spMin,
               color: foreground,
             ),
             children: [
@@ -722,8 +722,8 @@ enum InternshipRole {
                       overview(),
                       20.w.hSpace,
                       responsibilities(),
-                      majorRequiredWidget,
                       14.w.hSpace,
+                      majorRequiredWidget,
                       RichText(
                         text: TextSpan(
                           text: '${S.current.note}: ',
