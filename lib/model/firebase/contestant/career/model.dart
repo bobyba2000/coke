@@ -152,7 +152,9 @@ enum InternshipRole {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Visibility(
-                    visible: index != 0 || (this != InternshipRole.rtm && this != InternshipRole.tradeMarketing),
+                    visible: index != 0 ||
+                        (this != InternshipRole.rtm &&
+                            this != InternshipRole.tradeMarketing),
                     child: Padding(
                       padding: EdgeInsets.only(
                         top: 4.spMax,
@@ -312,14 +314,16 @@ enum InternshipRole {
               spacing: isMobile ? 6 : 12.wMin,
               children: LocationModel.values
                   .map(
-                    (e) => e == LocationModel.hochiminh || e == LocationModel.hanoi
+                    (e) => e == LocationModel.hochiminh ||
+                            e == LocationModel.hanoi
                         ? Container(
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.white,
                               ),
                             ),
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 6),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -336,6 +340,7 @@ enum InternshipRole {
                             ),
                           )
                         : Tooltip(
+                            showDuration: const Duration(seconds: 5),
                             triggerMode: TooltipTriggerMode.tap,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(0),
@@ -354,15 +359,18 @@ enum InternshipRole {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 20),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 27, vertical: 20),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             e.toString(),
                                             style: TextStyle(
-                                              fontSize: isMobile ? 10 : 14.spMin,
+                                              fontSize:
+                                                  isMobile ? 10 : 14.spMin,
                                               fontWeight: FontWeight.bold,
                                               color: const Color(0xFF5B2707),
                                             ),
@@ -371,7 +379,13 @@ enum InternshipRole {
                                           Wrap(
                                             spacing: 16,
                                             runSpacing: 16,
-                                            children: (LocaleUtility.locale.value.languageCode == 'vi' ? e.citiesVi : e.citiesEn)
+                                            children: (LocaleUtility
+                                                            .locale
+                                                            .value
+                                                            .languageCode ==
+                                                        'vi'
+                                                    ? e.citiesVi
+                                                    : e.citiesEn)
                                                 .split(', ')
                                                 .map(
                                                   (e) => SizedBox(
@@ -379,9 +393,13 @@ enum InternshipRole {
                                                     child: Text(
                                                       e,
                                                       style: TextStyle(
-                                                        fontSize: isMobile ? 12 : 12.spMin,
-                                                        fontWeight: FontWeight.w400,
-                                                        color: const Color(0xFF5B2707),
+                                                        fontSize: isMobile
+                                                            ? 12
+                                                            : 12.spMin,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color: const Color(
+                                                            0xFF5B2707),
                                                       ),
                                                     ),
                                                   ),
@@ -406,7 +424,8 @@ enum InternshipRole {
                                   color: Colors.white,
                                 ),
                               ),
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 6),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -577,7 +596,7 @@ enum InternshipRole {
                 color: const Color(0xFFFE6A00),
               ),
             ),
-            12.wMin.hSpace,
+            4.wMin.hSpace,
             Text(
               subtitle.toUpperCase(),
               style: TextStyle(
@@ -586,7 +605,7 @@ enum InternshipRole {
                 color: const Color(0xFFFE6A00),
               ),
             ),
-            100.wMin.hSpace,
+            80.wMin.hSpace,
           ],
         );
       case InternshipRole.itPrivacy:
@@ -651,7 +670,8 @@ enum InternshipRole {
         this == InternshipRole.keyAccountOffPremise) {
       final foreground = foregroundColor;
       widget = Padding(
-        padding: EdgeInsets.only(left: width * 80 / 1400, top: (80 * width / 1400).w),
+        padding: EdgeInsets.only(
+            left: width * 80 / 1400, top: (80 * width / 1400).w),
         child: SizedBox(
           width: width * 650 / 1400,
           child: Column(
@@ -707,7 +727,9 @@ enum InternshipRole {
 
   Widget rightWidget(double width) {
     Widget widget = const Expanded(child: SizedBox.shrink());
-    if (this == InternshipRole.rtm || this == InternshipRole.itPrivacy || this == InternshipRole.keyAccountOnPremise) {
+    if (this == InternshipRole.rtm ||
+        this == InternshipRole.itPrivacy ||
+        this == InternshipRole.keyAccountOnPremise) {
       final foreground = foregroundColor;
       widget = Padding(
         padding: EdgeInsets.only(
@@ -977,7 +999,8 @@ enum InternshipRole {
       case InternshipRole.itPrivacy:
         return [
           Skill.dataManagement,
-          Skill.forecasting, // Using Risk Analysis as Forecasting, replace with the right skill if needed
+          Skill
+              .forecasting, // Using Risk Analysis as Forecasting, replace with the right skill if needed
           Skill.criticalThinking,
           Skill.problemSolving,
           Skill.communication,
@@ -1199,7 +1222,8 @@ class WorkingLocationModel {
     required this.willingToChange,
   });
 
-  factory WorkingLocationModel.fromJson(Map<String, dynamic> json) => _$WorkingLocationModelFromJson(json);
+  factory WorkingLocationModel.fromJson(Map<String, dynamic> json) =>
+      _$WorkingLocationModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$WorkingLocationModelToJson(this);
 }
@@ -1214,7 +1238,8 @@ class DesiredPathwayModel {
     required this.location,
   });
 
-  factory DesiredPathwayModel.fromJson(Map<String, dynamic> json) => _$DesiredPathwayModelFromJson(json);
+  factory DesiredPathwayModel.fromJson(Map<String, dynamic> json) =>
+      _$DesiredPathwayModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$DesiredPathwayModelToJson(this);
 }
@@ -1250,7 +1275,8 @@ class AvailabilityModel {
     required this.note,
   });
 
-  factory AvailabilityModel.fromJson(Map<String, dynamic> json) => _$AvailabilityModelFromJson(json);
+  factory AvailabilityModel.fromJson(Map<String, dynamic> json) =>
+      _$AvailabilityModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AvailabilityModelToJson(this);
 }
@@ -1307,13 +1333,16 @@ class CareerInfoModel {
     if (availability.type == AvailabilityType.fulltime6Months) {
       return 5;
     } else if (availability.type == AvailabilityType.shiftOff1To2PerWeek) {
-      if (role == InternshipRole.sales || role == InternshipRole.tradeMarketing) {
+      if (role == InternshipRole.sales ||
+          role == InternshipRole.tradeMarketing) {
         return null;
       } else {
         return 3;
       }
     } else if (availability.type == AvailabilityType.shiftOff3PerWeek) {
-      if (role == InternshipRole.itDataAnalyst || role == InternshipRole.itPrivacy || role == InternshipRole.procurement) {
+      if (role == InternshipRole.itDataAnalyst ||
+          role == InternshipRole.itPrivacy ||
+          role == InternshipRole.procurement) {
         return 0;
       }
       return null;
@@ -1342,7 +1371,8 @@ class CareerInfoModel {
     required this.availability,
   });
 
-  factory CareerInfoModel.fromJson(Map<String, dynamic> json) => _$CareerInfoModelFromJson(json);
+  factory CareerInfoModel.fromJson(Map<String, dynamic> json) =>
+      _$CareerInfoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CareerInfoModelToJson(this);
 }

@@ -35,7 +35,8 @@ class MobileCountdownWidget extends StatefulWidget {
   State<MobileCountdownWidget> createState() => _MobileCountdownWidgetState();
 }
 
-class _MobileCountdownWidgetState extends State<MobileCountdownWidget> with AutomaticKeepAliveClientMixin {
+class _MobileCountdownWidgetState extends State<MobileCountdownWidget>
+    with AutomaticKeepAliveClientMixin {
   DateTime dueDate = DateTime(2024, 9, 16, 23, 59, 59);
   Duration duration = const Duration();
   late final Timer _timer;
@@ -77,7 +78,7 @@ class _MobileCountdownWidgetState extends State<MobileCountdownWidget> with Auto
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 sprintf(
-                  S.current.onlyDaysLeft,
+                  S.current.onlyDaysLeftBreakdown,
                   [to2DigitString(days)],
                 ).toUpperCase(),
                 style: const TextStyle(

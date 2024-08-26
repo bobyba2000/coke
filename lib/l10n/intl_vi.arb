@@ -355,6 +355,7 @@
     "processTitle": "Quy trình tuyển chọn​",
     "processContent": "Để trở thành một trong những Coke Fresh 2024 tài năng, bạn cần chinh phục một lộ trình tuyển chọn “thần tốc”, nơi những năng lực của bạn tỏa sáng.​",
     "onlyDaysLeft": "Chỉ còn %s ngày để ứng tuyển",
+    "onlyDaysLeftBreakdown": "Chỉ còn %s ngày để\nứng tuyển",
     "days": "Ngày",
     "hours": "Giờ",
     "minutes": "Phút",

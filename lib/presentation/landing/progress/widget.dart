@@ -60,15 +60,43 @@ class ProgressWidget extends StatelessWidget {
                     fit: StackFit.expand,
                     children: [
                       Positioned(
-                        top: 20.w,
+                        top: 10.w,
                         left: 0,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            WaterBubble(
+                              size: 100.w,
+                              color: Colors.white,
+                              child: Padding(
+                                padding: EdgeInsets.all(8.w),
+                                child: Text(
+                                  S.current.onlineApplication,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 14.spMin,
+                                    height: 1.3.wMax,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                            16.hSpace,
+                            Text(
+                              S.current.in3weeks,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: const Color(0xFFfed602),
+                                fontSize: 16.sp,
+                              ),
+                            ),
+                            6.w.hSpace,
                             isEnglish
                                 ? Row(
                                     mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         '(By 16',
@@ -100,38 +128,11 @@ class ProgressWidget extends StatelessWidget {
                                       color: const Color(0xFFfed602),
                                     ),
                                   ),
-                            16.hSpace,
-                            WaterBubble(
-                              size: 100.w,
-                              color: Colors.white,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.w),
-                                child: Text(
-                                  S.current.onlineApplication,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 14.spMin,
-                                    height: 1.3.wMax,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                            16.hSpace,
-                            Text(
-                              S.current.in3weeks,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xFFfed602),
-                                fontSize: 16.sp,
-                              ),
-                            ),
                           ],
                         ),
                       ),
                       Positioned(
-                        top: 20.w + 80.w,
+                        top: 10.w + 80.w,
                         left: 120.w,
                         child: Container(
                           decoration: BoxDecoration(
@@ -157,7 +158,7 @@ class ProgressWidget extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 102.w,
+                        top: 92.w,
                         left: 150.w,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -201,7 +202,7 @@ class ProgressWidget extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 102.w + 60.w,
+                        top: 92.w + 60.w,
                         left: 150.w + 160.w,
                         child: Container(
                           decoration: BoxDecoration(
@@ -227,7 +228,7 @@ class ProgressWidget extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 50.w,
+                        top: 40.w,
                         left: 350.w,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -272,7 +273,7 @@ class ProgressWidget extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 100.w,
+                        top: 90.w,
                         left: 500.w,
                         child: Container(
                           decoration: BoxDecoration(
@@ -303,7 +304,6 @@ class ProgressWidget extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            32.w.hSpace,
                             WaterBubble(
                               size: 150.w,
                               color: Colors.white,

@@ -26,6 +26,7 @@ class DialogUtility {
           title,
           style: Theme.of(context).textTheme.displayLarge?.copyWith(
                 color: Theme.of(context).colorScheme.onBackground,
+                fontWeight: FontWeight.w400,
               ),
         ),
         actions: [
@@ -142,8 +143,11 @@ class DialogUtility {
     );
   }
 
-  static Future<void> showLanguagePicker(BuildContext context, {required String title}) {
-    LanguageType language = LocaleUtility.locale.value.languageCode == 'vi' ? LanguageType.vietnamese : LanguageType.english;
+  static Future<void> showLanguagePicker(BuildContext context,
+      {required String title}) {
+    LanguageType language = LocaleUtility.locale.value.languageCode == 'vi'
+        ? LanguageType.vietnamese
+        : LanguageType.english;
     final isMobile = 1400.w < 500;
     return showDialog(
       context: context,
@@ -192,7 +196,8 @@ class DialogUtility {
           ),
           TextButton(
             onPressed: () {
-              final languageCode = language == LanguageType.vietnamese ? 'vi' : 'en';
+              final languageCode =
+                  language == LanguageType.vietnamese ? 'vi' : 'en';
               LocaleUtility.saveLocale(languageCode);
               LocaleUtility.locale.value = Locale(languageCode);
               Navigator.pop(context);
@@ -257,7 +262,8 @@ class _LanguageDialogState extends State<LanguageDialog> {
               style: isMobile
                   ? TextStyle(
                       fontSize: 10,
-                      color: type == language ? ColorConstants.teal : Colors.black,
+                      color:
+                          type == language ? ColorConstants.teal : Colors.black,
                     )
                   : null,
             ),

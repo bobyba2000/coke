@@ -110,7 +110,8 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                 return Padding(
                                   padding: EdgeInsets.only(bottom: 8.wMin),
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(
@@ -152,7 +153,8 @@ class _EssenceWidget1State extends State<EssenceWidget1> {
                                 return Padding(
                                   padding: EdgeInsets.only(bottom: 8.wMin),
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(top: 8.sp),
@@ -242,7 +244,7 @@ class _EssenceWidget2State extends State<EssenceWidget2> {
                                   ),
                           ),
                           Positioned(
-                            top: 230.w,
+                            top: 265.w,
                             child: Stack(
                               alignment: Alignment.center,
                               children: [
@@ -256,7 +258,7 @@ class _EssenceWidget2State extends State<EssenceWidget2> {
                                         fit: BoxFit.fitWidth,
                                       ),
                                 Positioned(
-                                  top: 270.w,
+                                  top: 280.w,
                                   child: Text(
                                     S.current.functionalSkillsText,
                                     style: TextStyle(

@@ -51,10 +51,6 @@ class _MobileAboutWidgetState extends State<MobileAboutWidget> {
                   style: normal,
                   children: [
                     TextSpan(
-                      text: S.current.aboutTheProgramContent1,
-                      style: normal,
-                    ),
-                    TextSpan(
                       text: S.current.aboutTheProgramContent2,
                       style: bold,
                     ),
