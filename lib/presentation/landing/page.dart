@@ -69,12 +69,19 @@ class _LandingPageState extends State<LandingPage> {
       const Duration(milliseconds: 200),
       () {
         SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
-          if (!value) {
+          if (value == null ||
+              (value.isBefore(
+                DateTime.now().subtract(
+                  const Duration(
+                    minutes: 5,
+                  ),
+                ),
+              ))) {
             DialogUtility.showLanguagePicker(
               context,
               title: S.current.languagePickerLandingPage,
             ).then(
-              (value) => SharePreferenceUtitlity.markShowLanguagePopup(),
+              (value) => SharePreferenceUtitlity.markShowLanguagePopup(DateTime.now()),
             );
           }
         });

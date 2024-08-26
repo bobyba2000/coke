@@ -23,13 +23,20 @@ class _ApplicationPageState extends State<ApplicationPage> {
     Future.delayed(
       const Duration(milliseconds: 200),
       () {
-        return SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
-          if (!value) {
+        SharePreferenceUtitlity.checkIsShowLanguagePopup().then((value) {
+          if (value == null ||
+              (value.isBefore(
+                DateTime.now().subtract(
+                  const Duration(
+                    minutes: 5,
+                  ),
+                ),
+              ))) {
             DialogUtility.showLanguagePicker(
               context,
               title: S.current.languagePickerApplyPage,
             ).then(
-              (value) => SharePreferenceUtitlity.markShowLanguagePopup(),
+              (value) => SharePreferenceUtitlity.markShowLanguagePopup(DateTime.now()),
             );
           }
         });
