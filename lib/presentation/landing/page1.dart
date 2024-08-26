@@ -29,7 +29,7 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
       1700.w,
       2500.w,
       3350.w,
-      4150.w,
+      4100.w,
       4850.w,
       5650.w,
       6450.w,
@@ -56,7 +56,7 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
       1700.w,
       2500.w,
       3350.w,
-      4150.w,
+      4100.w,
       4850.w,
       5650.w,
       6450.w,
@@ -67,8 +67,10 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
       index++;
     }
     final heightPart = stops[index];
-    final currentPixels = widget.controller.position.pixels;
-
+    num currentPixels = widget.controller.position.pixels;
+    if (index == 4) {
+      currentPixels += 150.w;
+    }
     isScrolling = true;
     if (currentPixels + 1080.h < heightPart && index != 1 && index != 3 && index != 2) {
       index--;

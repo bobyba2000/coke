@@ -242,7 +242,7 @@ class _EssenceWidget2State extends State<EssenceWidget2> {
                                   ),
                           ),
                           Positioned(
-                            top: 290.w,
+                            top: 250.w,
                             child: Stack(
                               alignment: Alignment.center,
                               children: [
@@ -256,7 +256,7 @@ class _EssenceWidget2State extends State<EssenceWidget2> {
                                         fit: BoxFit.fitWidth,
                                       ),
                                 Positioned(
-                                  top: 280.w,
+                                  top: 270.w,
                                   child: Text(
                                     S.current.functionalSkillsText,
                                     style: TextStyle(

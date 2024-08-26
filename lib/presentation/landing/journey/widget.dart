@@ -213,7 +213,7 @@ class JourneyWidget1 extends StatelessWidget {
       height: 700.w,
       child: Column(
         children: [
-          80.w.hSpace,
+          const Spacer(),
           Text(
             S.current.cokeJourney.toUpperCase(),
             style: TextStyle(
@@ -227,11 +227,10 @@ class JourneyWidget1 extends StatelessWidget {
             globalKey: flowKey,
             child: LocaleUtility.locale.value.languageCode == 'en'
                 ? Assets.images.journey.en.image(
-                    width: 1300.w,
+                    width: 1000.w,
+                    height: 570.w,
                   )
-                : Assets.images.journey.vi.image(
-                    width: 1300.w,
-                  ),
+                : Assets.images.journey.vi.image(width: 1000.w, height: 570.w),
           ),
           const Spacer(),
         ],
