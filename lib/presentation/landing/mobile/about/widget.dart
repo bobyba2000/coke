@@ -42,6 +42,7 @@ class _MobileAboutWidgetState extends State<MobileAboutWidget> {
                   color: const Color(0xFF084A99),
                   fontSize: 24,
                 ),
+                textAlign: TextAlign.center,
               ),
               12.hSpace,
               SelectableText.rich(

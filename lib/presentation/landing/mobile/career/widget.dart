@@ -1,5 +1,6 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
+import 'package:coke_platform/generated/fonts.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/career/model.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +75,7 @@ class _WaveContainerState extends State<WaveContainer> {
                     Flexible(
                       child: SingleChildScrollView(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             role.overview(),
                             6.hSpace,
@@ -88,6 +90,7 @@ class _WaveContainerState extends State<WaveContainer> {
                                   fontStyle: FontStyle.italic,
                                   fontSize: 10,
                                   color: role.foregroundColor,
+                                  fontFamily: FontFamily.poppins,
                                 ),
                                 children: [
                                   TextSpan(
@@ -97,6 +100,7 @@ class _WaveContainerState extends State<WaveContainer> {
                                       fontSize: 10,
                                       color: role.foregroundColor,
                                       fontWeight: FontWeight.normal,
+                                      fontFamily: FontFamily.poppins,
                                     ),
                                   ),
                                 ],
@@ -131,7 +135,7 @@ class _WaveContainerState extends State<WaveContainer> {
               child: Container(
                 color: role.color,
                 height: 60,
-                width: 360.w,
+                width: 450.w,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 4,
                 ).copyWith(
@@ -228,51 +232,57 @@ class MobileCareerWidget extends StatelessWidget {
     return Container(
       width: 1400.w,
       color: const Color(0xFFf1feff),
-      padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Assets.images.career.model.image(
-            width: 800.w,
-            fit: BoxFit.fitWidth,
-          ),
-          40.hSpace,
-          Text(
-            S.current.careerDesired.toUpperCase(),
-            style: const TextStyle(
-              color: Color(0xFFBA5D1B),
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          12.hSpace,
-          SelectableText.rich(
-            TextSpan(
-              text: S.current.careerDesiredSubtitle1,
-              style: TextStyle(
-                color: const Color(0xFFBA5D1B),
-                fontSize: 10,
-                height: 1.3.wMax,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                TextSpan(
-                  text: S.current.careerDesiredSubtitle2,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 10,
-                    height: 1.3.wMax,
-                    color: const Color(0xFFBA5D1B),
-                  ),
+                Assets.images.career.model.image(
+                  width: 800.w,
+                  fit: BoxFit.fitWidth,
                 ),
-                TextSpan(
-                  text: S.current.careerDesiredSubtitle3,
+                40.hSpace,
+                Text(
+                  S.current.careerDesired.toUpperCase(),
+                  style: const TextStyle(
+                    color: Color(0xFFBA5D1B),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                12.hSpace,
+                SelectableText.rich(
+                  TextSpan(
+                    text: S.current.careerDesiredSubtitle1,
+                    style: TextStyle(
+                      color: const Color(0xFFBA5D1B),
+                      fontSize: 10,
+                      height: 1.3.wMax,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: S.current.careerDesiredSubtitle2,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                          height: 1.3.wMax,
+                          color: const Color(0xFFBA5D1B),
+                        ),
+                      ),
+                      TextSpan(
+                        text: S.current.careerDesiredSubtitle3,
+                      ),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ],
             ),
-            textAlign: TextAlign.center,
           ),
-          16.hSpace,
           Row(
             children: [
               const Spacer(),
@@ -286,38 +296,38 @@ class MobileCareerWidget extends StatelessWidget {
               const Spacer(),
             ],
           ),
-          Row(
+          const Row(
             children: [
-              const Spacer(),
-              const WaveContainer(
+              Spacer(),
+              WaveContainer(
                 role: InternshipRole.tradeMarketing,
               ),
-              50.w.wSpace,
-              const WaveContainer(
+              Spacer(),
+              WaveContainer(
                 role: InternshipRole.itDataAnalyst,
               ),
-              50.w.wSpace,
-              const WaveContainer(
+              Spacer(),
+              WaveContainer(
                 role: InternshipRole.itPrivacy,
               ),
-              const Spacer(),
+              Spacer(),
             ],
           ),
-          Row(
+          const Row(
             children: [
-              const Spacer(),
-              const WaveContainer(
+              Spacer(),
+              WaveContainer(
                 role: InternshipRole.rtm,
               ),
-              50.w.wSpace,
-              const WaveContainer(
+              Spacer(),
+              WaveContainer(
                 role: InternshipRole.keyAccountOnPremise,
               ),
-              50.w.wSpace,
-              const WaveContainer(
+              Spacer(),
+              WaveContainer(
                 role: InternshipRole.keyAccountOffPremise,
               ),
-              const Spacer(),
+              Spacer(),
             ],
           ),
           24.hSpace,

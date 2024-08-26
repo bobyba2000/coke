@@ -1,6 +1,7 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/common/utility/locale.dart';
 import 'package:coke_platform/generated/assets.gen.dart';
+import 'package:coke_platform/generated/fonts.gen.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/exhibition/model.dart';
 import 'package:flutter/material.dart';
@@ -126,7 +127,7 @@ enum InternshipRole {
         responsibilitiesStr = S.current.itPrivacyResponsibilities;
     }
     final data = responsibilitiesStr.split(';');
-    final foreground = this == InternshipRole.tradeMarketing ? const Color(0xFFAA7047) : Colors.white;
+    final foreground = foregroundColor;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,7 +190,7 @@ enum InternshipRole {
     if (majorRequired == null) {
       return const SizedBox.shrink();
     }
-    final foreground = this == InternshipRole.tradeMarketing ? const Color(0xFFAA7047) : Colors.white;
+    final foreground = foregroundColor;
     return Padding(
       padding: EdgeInsets.only(
         bottom: isMobile ? 6 : 12.w,
@@ -201,6 +202,7 @@ enum InternshipRole {
               fontWeight: FontWeight.bold,
               fontSize: isMobile ? 12 : 16.spMin,
               color: foreground,
+              fontFamily: FontFamily.poppins,
             ),
             children: [
               TextSpan(
@@ -210,6 +212,7 @@ enum InternshipRole {
                   fontSize: isMobile ? 12 : 14.spMin,
                   fontWeight: FontWeight.w400,
                   height: 1.3.wMax,
+                  fontFamily: FontFamily.poppins,
                 ),
               ),
             ]),
@@ -246,7 +249,7 @@ enum InternshipRole {
         overviewStr = S.current.itPrivacyOverview;
     }
     final items = overviewStr.split(';');
-    final foreground = this == InternshipRole.tradeMarketing ? const Color(0xFFAA7047) : Colors.white;
+    final foreground = foregroundColor;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -646,7 +649,7 @@ enum InternshipRole {
         this == InternshipRole.tradeMarketing ||
         this == InternshipRole.itDataAnalyst ||
         this == InternshipRole.keyAccountOffPremise) {
-      final foreground = this == InternshipRole.tradeMarketing ? const Color(0xFFAA7047) : Colors.white;
+      final foreground = foregroundColor;
       widget = Padding(
         padding: EdgeInsets.only(left: width * 80 / 1400, top: (80 * width / 1400).w),
         child: SizedBox(
@@ -673,6 +676,7 @@ enum InternshipRole {
                             fontStyle: FontStyle.italic,
                             fontSize: 14.spMin,
                             color: foreground,
+                            fontFamily: FontFamily.poppins,
                           ),
                           children: [
                             TextSpan(
@@ -682,6 +686,7 @@ enum InternshipRole {
                                 fontSize: 14.spMin,
                                 color: foreground,
                                 fontWeight: FontWeight.normal,
+                                fontFamily: FontFamily.poppins,
                               ),
                             ),
                           ],
@@ -703,7 +708,7 @@ enum InternshipRole {
   Widget rightWidget(double width) {
     Widget widget = const Expanded(child: SizedBox.shrink());
     if (this == InternshipRole.rtm || this == InternshipRole.itPrivacy || this == InternshipRole.keyAccountOnPremise) {
-      final foreground = this == InternshipRole.tradeMarketing ? const Color(0xFFAA7047) : Colors.white;
+      final foreground = foregroundColor;
       widget = Padding(
         padding: EdgeInsets.only(
           right: width * 80 / 1400,
@@ -732,6 +737,7 @@ enum InternshipRole {
                             fontStyle: FontStyle.italic,
                             fontSize: 14.spMin,
                             color: foreground,
+                            fontFamily: FontFamily.poppins,
                           ),
                           children: [
                             TextSpan(
@@ -741,6 +747,7 @@ enum InternshipRole {
                                 fontWeight: FontWeight.normal,
                                 fontSize: 14.spMin,
                                 color: foreground,
+                                fontFamily: FontFamily.poppins,
                               ),
                             ),
                           ],
