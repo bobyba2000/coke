@@ -256,7 +256,7 @@ enum InternshipRole {
           S.current.jobOverview,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: isMobile ? 10 : 16.spMin,
+            fontSize: isMobile ? 12 : 16.spMin,
             color: foreground,
           ),
         ),
