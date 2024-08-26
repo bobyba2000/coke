@@ -73,15 +73,19 @@ class _MobileCountdownWidgetState extends State<MobileCountdownWidget> with Auto
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              sprintf(
-                S.current.onlyDaysLeft,
-                [to2DigitString(days)],
-              ).toUpperCase(),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                sprintf(
+                  S.current.onlyDaysLeft,
+                  [to2DigitString(days)],
+                ).toUpperCase(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
             60.w.hSpace,
