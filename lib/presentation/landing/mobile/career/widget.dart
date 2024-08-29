@@ -300,27 +300,6 @@ class MobileCareerWidget extends StatelessWidget {
             children: [
               Spacer(),
               WaveContainer(
-                role: InternshipRole.tradeMarketing,
-              ),
-              Spacer(),
-              WaveContainer(
-                role: InternshipRole.itDataAnalyst,
-              ),
-              Spacer(),
-              WaveContainer(
-                role: InternshipRole.itPrivacy,
-              ),
-              Spacer(),
-            ],
-          ),
-          const Row(
-            children: [
-              Spacer(),
-              WaveContainer(
-                role: InternshipRole.rtm,
-              ),
-              Spacer(),
-              WaveContainer(
                 role: InternshipRole.keyAccountOnPremise,
               ),
               Spacer(),
@@ -328,6 +307,23 @@ class MobileCareerWidget extends StatelessWidget {
                 role: InternshipRole.keyAccountOffPremise,
               ),
               Spacer(),
+              WaveContainer(
+                role: InternshipRole.itDataAnalyst,
+              ),
+              Spacer(),
+            ],
+          ),
+          Row(
+            children: [
+              const Spacer(),
+              const WaveContainer(
+                role: InternshipRole.tradeMarketing,
+              ),
+              50.w.wSpace,
+              const WaveContainer(
+                role: InternshipRole.rtm,
+              ),
+              const Spacer(),
             ],
           ),
           24.hSpace,

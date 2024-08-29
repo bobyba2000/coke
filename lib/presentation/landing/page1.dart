@@ -29,12 +29,12 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
       1700.w,
       2500.w,
       3350.w,
-      4100.w,
-      4850.w,
-      5650.w,
-      6450.w,
-      7250.w,
-      7700.w,
+      4050.w,
+      4800.w,
+      5600.w,
+      6400.w,
+      7200.w,
+      7650.w,
     ];
     if (index > 0) {
       index--;
@@ -56,12 +56,12 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
       1700.w,
       2500.w,
       3350.w,
-      4100.w,
-      4850.w,
-      5650.w,
-      6450.w,
-      7250.w,
-      7700.w,
+      4050.w,
+      4800.w,
+      5600.w,
+      6400.w,
+      7200.w,
+      7650.w,
     ];
     if (index < stops.length - 1) {
       index++;

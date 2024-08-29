@@ -232,7 +232,7 @@ class _LandingPageState extends State<LandingPage> {
                       ),
                     ),
                     Container(
-                      height: 800.w,
+                      height: 750.w,
                       width: 1400.w,
                       color: const Color(0xFFf1feff),
                     ),
