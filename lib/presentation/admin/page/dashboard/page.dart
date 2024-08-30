@@ -4,7 +4,6 @@ import 'package:coke_platform/presentation/admin/page/dashboard/widget/overview.
 import 'package:coke_platform/service/firebase/contestant.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
 import 'package:logger/logger.dart';
 
@@ -21,7 +20,8 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   List<ContestantModel> datas = [];
-  final contestantService = AppDependencies.injector.get<FirebaseContestantService>();
+  final contestantService =
+      AppDependencies.injector.get<FirebaseContestantService>();
 
   @override
   void initState() {
@@ -37,7 +37,8 @@ class _DashboardPageState extends State<DashboardPage> {
           setState(() {});
         }
         if (widget.contestantKey != null) {
-          final contestant = datas.firstWhereOrNull((element) => element.key == widget.contestantKey);
+          final contestant = datas.firstWhereOrNull(
+              (element) => element.key == widget.contestantKey);
           if (contestant == null) {
             return;
           } else {
@@ -154,10 +155,7 @@ class _DashboardPageState extends State<DashboardPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             20.hSpace,
-            SizedBox(
-              width: 330.w,
-              child: OverviewWidget(totalCVs: datas.length),
-            ),
+            OverviewWidget(contestants: datas),
             16.hSpace,
             CVListWidget(
               contestants: datas,

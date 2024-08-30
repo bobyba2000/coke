@@ -1,5 +1,18 @@
 class OthersConstant {
   static const maxCVCount = 3000;
+  static const maxProcurementCVs = 266;
+  static const maxITCVs = 266;
+  static const maxTradeMKTCVS = 267;
+  static const maxRTMCVs = 267;
+  static const maxKeyAccountOnPremiseCVs = 267;
+  static const maxKeyAccountOffPremiseCVs = 267;
+  static const maxSalesHN = 200;
+  static const maxSalesNorthWest = 200;
+  static const maxSalesNorthEast = 200;
+  static const maxSalesCentral = 200;
+  static const maxSalesSouthProvince = 200;
+  static const maxSalesMekong = 200;
+  static const maxSalesHCM = 200;
 
   static const List<String> companies = [
     'Abbott',

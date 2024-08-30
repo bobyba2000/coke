@@ -1,11 +1,24 @@
+import 'dart:ui';
+
 import 'package:coke_platform/common/extension/datetime_extension.dart';
 import 'package:coke_platform/common/extension/num_extension.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
 import 'package:coke_platform/presentation/admin/page/dashboard/widget/cv_list/preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:sprintf/sprintf.dart';
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        // etc.
+      };
+}
 
 enum ColumnTitle {
   submitTime,
@@ -376,7 +389,9 @@ class _ListContestantTableState extends State<ListContestantTable> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final start = (currentPage) * sizePerPage;
-    final end = (currentPage + 1) * sizePerPage > widget.contestants.length ? widget.contestants.length : (currentPage + 1) * sizePerPage;
+    final end = (currentPage + 1) * sizePerPage > widget.contestants.length
+        ? widget.contestants.length
+        : (currentPage + 1) * sizePerPage;
     int fromPage = currentPage - 1;
     int toPage = fromPage + 4;
     if (toPage > totalPages - 1) {
@@ -387,36 +402,40 @@ class _ListContestantTableState extends State<ListContestantTable> {
       fromPage = 0;
       toPage = totalPages > 4 ? 4 : totalPages;
     }
-    final viewContestants = widget.contestants.sublist(currentPage * sizePerPage, end);
+    final viewContestants =
+        widget.contestants.sublist(currentPage * sizePerPage, end);
     return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: titles
-                      .map(
-                        (e) => TableCellWidget(
-                          value: e.toString(),
-                          isTitle: true,
-                          width: e.width,
+          ScrollConfiguration(
+            behavior: MyCustomScrollBehavior(),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: titles
+                        .map(
+                          (e) => TableCellWidget(
+                            value: e.toString(),
+                            isTitle: true,
+                            width: e.width,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  ...viewContestants.asMap().entries.map(
+                        (e) => TableRowWidget(
+                          contestant: e.value,
+                          titles: titles,
+                          index: currentPage * sizePerPage + e.key,
                         ),
-                      )
-                      .toList(),
-                ),
-                ...viewContestants.asMap().entries.map(
-                      (e) => TableRowWidget(
-                        contestant: e.value,
-                        titles: titles,
-                        index: currentPage * sizePerPage + e.key,
                       ),
-                    ),
-              ],
+                ],
+              ),
             ),
           ),
           8.hSpace,
@@ -454,7 +473,8 @@ class _ListContestantTableState extends State<ListContestantTable> {
                                     color: theme.dividerColor,
                                   )
                                 : null,
-                            color: isSelected ? theme.colorScheme.primary : null,
+                            color:
+                                isSelected ? theme.colorScheme.primary : null,
                           ),
                           height: 30,
                           width: 30,
@@ -463,7 +483,9 @@ class _ListContestantTableState extends State<ListContestantTable> {
                             '${index + 1}',
                             style: TextStyle(
                               fontSize: 12,
-                              color: isSelected ? theme.colorScheme.onPrimary : null,
+                              color: isSelected
+                                  ? theme.colorScheme.onPrimary
+                                  : null,
                               fontWeight: isSelected ? FontWeight.bold : null,
                             ),
                           ),
@@ -544,9 +566,13 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.workingLocationPriority1:
         return contestant.careerInfo.desiredPathway.location.first.toString();
       case ColumnTitle.workingLocationPriority2:
-        return contestant.careerInfo.desiredPathway.location.second?.toString() ?? '';
+        return contestant.careerInfo.desiredPathway.location.second
+                ?.toString() ??
+            '';
       case ColumnTitle.willingToChange:
-        return contestant.careerInfo.desiredPathway.location.willingToChange?.toString() ?? '';
+        return contestant.careerInfo.desiredPathway.location.willingToChange
+                ?.toString() ??
+            '';
       case ColumnTitle.availabilityType:
         return contestant.careerInfo.availability.type.toString();
       case ColumnTitle.availabilityNote:
@@ -732,9 +758,15 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.attachmentPoint:
         return contestant.attachmentPoint.toUIString();
       case ColumnTitle.locationPriority1Point:
-        return contestant.careerInfo.locationPriority1Point(personal.hometown.toString(), personal.currentLocation.toString()).toUIString();
+        return contestant.careerInfo
+            .locationPriority1Point(personal.hometown.toString(),
+                personal.currentLocation.toString())
+            .toUIString();
       case ColumnTitle.locationPriority2Point:
-        return contestant.careerInfo.locationPriority2Point(personal.hometown.toString(), personal.currentLocation.toString()).toUIString();
+        return contestant.careerInfo
+            .locationPriority2Point(personal.hometown.toString(),
+                personal.currentLocation.toString())
+            .toUIString();
       case ColumnTitle.experience1Industry:
         if (experiences.isNotEmpty) {
           return experiences[0].industry.toString();
