@@ -249,7 +249,15 @@ class _DesiredPathwayWidgetState extends State<DesiredPathwayWidget> {
         ),
         8.hSpace,
         CustomDropdown(
-          items: InternshipRole.values,
+          items: const [
+            InternshipRole.sales,
+            InternshipRole.procurement,
+            InternshipRole.itDataAnalyst,
+            InternshipRole.tradeMarketing,
+            InternshipRole.rtm,
+            InternshipRole.keyAccountOnPremise,
+            InternshipRole.keyAccountOffPremise,
+          ],
           onSelect: (value) {
             if (role != value) {
               role = value;

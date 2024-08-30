@@ -153,7 +153,7 @@ class CareerWidget extends StatelessWidget {
     final textTheme = theme.textTheme;
     return SizedBox(
       width: 1400.w,
-      height: 800.w,
+      height: 750.w,
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -221,28 +221,28 @@ class CareerWidget extends StatelessWidget {
           ),
           Positioned(
             left: 100.w,
-            top: 200.w,
+            top: 250.w,
             child: const WaveContainer(
               role: InternshipRole.sales,
             ),
           ),
           Positioned(
             right: 100.w,
-            top: 200.w,
+            top: 312.5.w,
             child: const WaveContainer(
               role: InternshipRole.procurement,
             ),
           ),
           Positioned(
             left: 150.w,
-            top: 350.w,
+            top: 375.w,
             child: const WaveContainer(
               role: InternshipRole.tradeMarketing,
             ),
           ),
           Positioned(
             right: 150.w,
-            top: 350.w,
+            top: 437.5.w,
             child: const WaveContainer(
               role: InternshipRole.rtm,
             ),
@@ -255,22 +255,15 @@ class CareerWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 200.w,
-            top: 500.w,
-            child: const WaveContainer(
-              role: InternshipRole.itPrivacy,
-            ),
-          ),
-          Positioned(
             left: 250.w,
-            top: 650.w,
+            top: 625.w,
             child: const WaveContainer(
               role: InternshipRole.keyAccountOnPremise,
             ),
           ),
           Positioned(
             right: 250.w,
-            top: 650.w,
+            top: 562.5.w,
             child: const WaveContainer(
               role: InternshipRole.keyAccountOffPremise,
             ),

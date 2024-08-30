@@ -29,12 +29,12 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
       1700.w,
       2500.w,
       3350.w,
-      4100.w,
-      4850.w,
-      5650.w,
-      6450.w,
-      7250.w,
-      7700.w,
+      4050.w,
+      4800.w,
+      5600.w,
+      6400.w,
+      7200.w,
+      7650.w,
     ];
     if (index > 0) {
       index--;
@@ -56,26 +56,42 @@ class _CustomScrollWidgetState extends State<CustomScrollWidget> {
       1700.w,
       2500.w,
       3350.w,
-      4100.w,
-      4850.w,
-      5650.w,
-      6450.w,
-      7250.w,
-      7700.w,
+      4050.w,
+      4800.w,
+      5600.w,
+      6400.w,
+      7200.w,
+      7650.w,
     ];
     if (index < stops.length - 1) {
       index++;
     }
     final heightPart = stops[index];
     num currentPixels = widget.controller.position.pixels;
+    num padding = 0;
     if (index == 4) {
-      currentPixels += 150.w;
+      padding = 150.w;
+    }
+    if (index == 5) {
+      padding = 50.w;
+    }
+    if (index == 6) {
+      padding = 60.w;
+    }
+    if (index == 7) {
+      padding = 60.w;
+    }
+    if (index == 8) {
+      padding = 200.w;
+    }
+    if (index == 9) {
+      padding = 150.w;
     }
     isScrolling = true;
-    if (currentPixels + 1080.h < heightPart && index != 1 && index != 3 && index != 2) {
+    if (currentPixels + 900.h < heightPart - padding && index != 1 && index != 3 && index != 2) {
       index--;
       await widget.controller.animateTo(
-        heightPart - 1080.h,
+        heightPart - 900.h - padding,
         duration: const Duration(milliseconds: 400),
         curve: Curves.linear,
       );

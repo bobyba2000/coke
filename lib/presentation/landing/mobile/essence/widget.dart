@@ -262,7 +262,7 @@ class _EssenceWidgetState extends State<EssenceWidget> {
                             fit: BoxFit.fitWidth,
                           ),
                     Positioned(
-                      bottom: 30,
+                      bottom: 35,
                       right: 10,
                       left: 10,
                       child: Text(
