@@ -46,7 +46,7 @@ class ContestantModel {
   ContestantStatus? status;
 
   String get link {
-    return 'https://bobyba2000.github.io/platform-test/admin?contestant=$key';
+    return 'https://fresh-ccbv.com.vn/admin?contestant=$key';
   }
 
   ContestantModel({
