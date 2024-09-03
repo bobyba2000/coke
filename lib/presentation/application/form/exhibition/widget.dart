@@ -560,7 +560,6 @@ class _ProfileExhibitionWidgetState extends State<ProfileExhibitionWidget> with 
                         });
                       },
                       required: false,
-                      validator: checkRequired,
                     ),
                   ),
                   16.wSpace,
