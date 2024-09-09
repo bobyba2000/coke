@@ -13,8 +13,10 @@ import 'package:coke_platform/presentation/landing/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/footer/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 import 'countdown/widget.dart';
 import 'journey/widget.dart';
@@ -84,7 +86,8 @@ class _LandingPageState extends State<LandingPage> {
               context,
               title: S.current.languagePickerLandingPage,
             ).then(
-              (value) => SharePreferenceUtitlity.markShowLanguagePopup(DateTime.now()),
+              (value) =>
+                  SharePreferenceUtitlity.markShowLanguagePopup(DateTime.now()),
             );
           }
         });
@@ -275,7 +278,8 @@ class _LandingPageState extends State<LandingPage> {
                                   left: 0,
                                   height: 100.w,
                                   width: 1400.w,
-                                  child: Assets.images.progress.transition.image(
+                                  child:
+                                      Assets.images.progress.transition.image(
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -338,7 +342,8 @@ class _LandingPageState extends State<LandingPage> {
                     Builder(
                       builder: (context) {
                         if (footerKey.currentContext != null) {
-                          final box = footerKey.currentContext!.findRenderObject() as RenderBox;
+                          final box = footerKey.currentContext!
+                              .findRenderObject() as RenderBox;
                           return Container(
                             color: const Color(0xFF28A549),
                             width: 1400.w,
@@ -359,8 +364,47 @@ class _LandingPageState extends State<LandingPage> {
               CustomScrollWidget(
                 controller: _page,
                 children: [
-                  const OverviewWidget(),
-                  const AboutWidget(),
+                  SizedBox(
+                    height: 1600.w,
+                    width: 1400.w,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        const Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            OverviewWidget(),
+                            AboutWidget(),
+                          ],
+                        ),
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          top: 900.h - 60,
+                          child: Container(
+                            height: 60,
+                            color: const Color(0xFF17559b),
+                            alignment: Alignment.center,
+                            child: InkWell(
+                              onTap: () {
+                                launchUrlString(
+                                    'https://docs.google.com/forms/d/e/1FAIpQLSdliCja3lsveiHngX7ZMQXZuUhEMYK4HzC44hfEe6gO2PiLfw/viewform');
+                              },
+                              child: TextAnimator(
+                                S.current.webminarContent,
+                                atRestEffect: WidgetRestingEffects.slide(),
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   EssenceWidget1(
                     essence1Key: essence1Key,
                   ),
@@ -378,29 +422,6 @@ class _LandingPageState extends State<LandingPage> {
                     controller: _page,
                   ),
                 ],
-              ),
-              Positioned(
-                left: 0,
-                right: 0,
-                top: 900.h - 60,
-                child: Container(
-                  height: 60,
-                  color: const Color(0xFF17559b),
-                  alignment: Alignment.center,
-                  child: InkWell(
-                    onTap: () {
-                      launchUrlString('https://docs.google.com/forms/d/e/1FAIpQLSdliCja3lsveiHngX7ZMQXZuUhEMYK4HzC44hfEe6gO2PiLfw/viewform');
-                    },
-                    child: Marquee(
-                      text: '${S.current.webminarContent}                           ${S.current.webminarContent}',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
@@ -427,6 +448,20 @@ class _LandingPageState extends State<LandingPage> {
   void dispose() {
     _page.removeListener(manageScroll);
     super.dispose();
+  }
+}
+
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
 
@@ -945,7 +980,8 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
 
   // The scroll positions at various scrolling phases.
   late double _startPosition; // At the start, before accelerating.
-  late double _accelerationTarget; // After accelerating, before moving linearly.
+  late double
+      _accelerationTarget; // After accelerating, before moving linearly.
   late double _linearTarget; // After moving linearly, before decelerating.
   late double _decelerationTarget; // After decelerating.
 
@@ -960,8 +996,11 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
   bool _running = false;
   bool _isOnPause = false;
   int _roundCounter = 0;
-  bool get isDone => widget.numberOfRounds == null ? false : widget.numberOfRounds == _roundCounter;
-  bool get showFading => !widget.showFadingOnlyWhenScrolling ? true : !_isOnPause;
+  bool get isDone => widget.numberOfRounds == null
+      ? false
+      : widget.numberOfRounds == _roundCounter;
+  bool get showFading =>
+      !widget.showFadingOnlyWhenScrolling ? true : !_isOnPause;
 
   @override
   void initState() {
@@ -1001,9 +1040,17 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
   void _initialize(BuildContext context) {
     // Calculate lengths (amount of pixels that each phase needs).
     final totalLength = _getTextWidth(context) + widget.blankSpace;
-    final accelerationLength = widget.accelerationCurve.integral * widget.velocity * _accelerationDuration.inMilliseconds / 1000.0;
-    final decelerationLength = widget.decelerationCurve.integral * widget.velocity * _decelerationDuration.inMilliseconds / 1000.0;
-    final linearLength = (totalLength - accelerationLength.abs() - decelerationLength.abs()) * (widget.velocity > 0 ? 1 : -1);
+    final accelerationLength = widget.accelerationCurve.integral *
+        widget.velocity *
+        _accelerationDuration.inMilliseconds /
+        1000.0;
+    final decelerationLength = widget.decelerationCurve.integral *
+        widget.velocity *
+        _decelerationDuration.inMilliseconds /
+        1000.0;
+    final linearLength =
+        (totalLength - accelerationLength.abs() - decelerationLength.abs()) *
+            (widget.velocity > 0 ? 1 : -1);
 
     // Calculate scroll positions at various scrolling phases.
     _startPosition = 2 * totalLength - widget.startPadding;
@@ -1012,8 +1059,11 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
     _decelerationTarget = _linearTarget + decelerationLength;
 
     // Calculate durations for the phases.
-    _totalDuration = _accelerationDuration + _decelerationDuration + Duration(milliseconds: (linearLength / widget.velocity * 1000).toInt());
-    _linearDuration = _totalDuration - _accelerationDuration - _decelerationDuration;
+    _totalDuration = _accelerationDuration +
+        _decelerationDuration +
+        Duration(milliseconds: (linearLength / widget.velocity * 1000).toInt());
+    _linearDuration =
+        _totalDuration - _accelerationDuration - _decelerationDuration;
 
     assert(
       _totalDuration > Duration.zero,
@@ -1097,7 +1147,10 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
 
   /// Returns the width of the text.
   double _getTextWidth(BuildContext context) {
-    final TextPainter textPainter = TextPainter(text: TextSpan(text: widget.text, style: widget.style), maxLines: 1, textDirection: TextDirection.ltr)
+    final TextPainter textPainter = TextPainter(
+        text: TextSpan(text: widget.text, style: widget.style),
+        maxLines: 1,
+        textDirection: TextDirection.ltr)
       ..layout(minWidth: 0, maxWidth: double.infinity);
     return textPainter.size.width;
     // final span = TextSpan(text: widget.text, style: widget.style);
@@ -1128,7 +1181,8 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
         alignment = isHorizontal ? Alignment.topCenter : Alignment.centerLeft;
         break;
       case CrossAxisAlignment.end:
-        alignment = isHorizontal ? Alignment.bottomCenter : Alignment.centerRight;
+        alignment =
+            isHorizontal ? Alignment.bottomCenter : Alignment.centerRight;
         break;
       case CrossAxisAlignment.center:
         alignment = Alignment.center;
@@ -1145,8 +1199,13 @@ class _MarqueeState extends State<Marquee> with SingleTickerProviderStateMixin {
       reverse: widget.textDirection == TextDirection.rtl,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (_, i) {
-        final text = i.isEven ? Text(widget.text, style: widget.style, textScaleFactor: widget.textScaleFactor) : _buildBlankSpace();
-        return alignment == null ? text : Align(alignment: alignment, child: text);
+        final text = i.isEven
+            ? Text(widget.text,
+                style: widget.style, textScaleFactor: widget.textScaleFactor)
+            : _buildBlankSpace();
+        return alignment == null
+            ? text
+            : Align(alignment: alignment, child: text);
       },
     );
 

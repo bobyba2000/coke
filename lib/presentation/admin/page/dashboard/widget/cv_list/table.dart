@@ -6,7 +6,6 @@ import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
 import 'package:coke_platform/presentation/admin/page/dashboard/widget/cv_list/preview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:sprintf/sprintf.dart';
 
