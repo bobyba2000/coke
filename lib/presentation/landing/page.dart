@@ -13,10 +13,7 @@ import 'package:coke_platform/presentation/landing/essence/widget.dart';
 import 'package:coke_platform/presentation/landing/footer/widget.dart';
 import 'package:coke_platform/presentation/landing/overview/widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 import 'countdown/widget.dart';
 import 'journey/widget.dart';
@@ -361,49 +358,8 @@ class _LandingPageState extends State<LandingPage> {
               CustomScrollWidget(
                 controller: _page,
                 children: [
-                  SizedBox(
-                    height: 1600.w,
-                    width: 1400.w,
-                    child: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        const Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            OverviewWidget(),
-                            AboutWidget(),
-                          ],
-                        ),
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          top: 900.h - 60,
-                          child: Container(
-                            height: 60,
-                            color: const Color(0xFF17559b),
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: InkWell(
-                              onTap: () {
-                                launchUrlString(
-                                    'https://docs.google.com/forms/d/e/1FAIpQLSdliCja3lsveiHngX7ZMQXZuUhEMYK4HzC44hfEe6gO2PiLfw/viewform');
-                              },
-                              child: TextAnimator(
-                                S.current.webminarContent,
-                                atRestEffect: WidgetRestingEffects.slide(),
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  const OverviewWidget(),
+                  const AboutWidget(),
                   EssenceWidget1(
                     essence1Key: essence1Key,
                   ),
