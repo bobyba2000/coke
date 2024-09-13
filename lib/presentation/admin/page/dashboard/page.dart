@@ -20,8 +20,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   List<ContestantModel> datas = [];
-  final contestantService =
-      AppDependencies.injector.get<FirebaseContestantService>();
+  final contestantService = AppDependencies.injector.get<FirebaseContestantService>();
 
   @override
   void initState() {
@@ -37,8 +36,7 @@ class _DashboardPageState extends State<DashboardPage> {
           setState(() {});
         }
         if (widget.contestantKey != null) {
-          final contestant = datas.firstWhereOrNull(
-              (element) => element.key == widget.contestantKey);
+          final contestant = datas.firstWhereOrNull((element) => element.key == widget.contestantKey);
           if (contestant == null) {
             return;
           } else {
@@ -46,6 +44,7 @@ class _DashboardPageState extends State<DashboardPage> {
               context: context,
               builder: (context) => PreviewContestantDialog(
                 contestant: contestant,
+                onDelete: () => getData(),
               ),
             );
           }
@@ -159,6 +158,9 @@ class _DashboardPageState extends State<DashboardPage> {
             16.hSpace,
             CVListWidget(
               contestants: datas,
+              onDelete: () {
+                getData();
+              },
             ),
           ],
         ),

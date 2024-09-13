@@ -12,9 +12,10 @@ import 'table.dart';
 
 class CVListWidget extends StatefulWidget {
   final List<ContestantModel> contestants;
+  final VoidCallback onDelete;
   const CVListWidget({
     super.key,
-    required this.contestants,
+    required this.contestants, required this.onDelete,
   });
 
   @override
@@ -94,6 +95,7 @@ class _CVListWidgetState extends State<CVListWidget> {
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
             child: ListContestantTable(
               contestants: widget.contestants,
+              onDelete: widget.onDelete,
             ),
           )
         ],

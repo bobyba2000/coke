@@ -1,16 +1,20 @@
 import 'package:coke_platform/common/extension/datetime_extension.dart';
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/generated/l10n.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
+import 'package:coke_platform/service/firebase/contestant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PreviewContestantDialog extends StatelessWidget {
   final ContestantModel contestant;
+  final VoidCallback onDelete;
   const PreviewContestantDialog({
     super.key,
     required this.contestant,
+    required this.onDelete,
   });
 
   @override
@@ -21,11 +25,29 @@ class PreviewContestantDialog extends StatelessWidget {
     return AlertDialog(
       insetPadding: const EdgeInsets.all(16),
       contentPadding: const EdgeInsets.all(0),
-      actionsPadding: const EdgeInsets.all(0),
+      actionsPadding: const EdgeInsets.all(16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
       titlePadding: const EdgeInsets.all(0),
+      actions: [
+        TextButton(
+          onPressed: () {
+            AppDependencies.injector.get<FirebaseContestantService>().delete(contestant).then((value) {
+              Navigator.pop(context);
+              onDelete.call();
+            });
+          },
+          child: const Text(
+            'Delete',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.red,
+            ),
+          ),
+        ),
+      ],
+      backgroundColor: Theme.of(context).colorScheme.background,
       content: Container(
         width: 800,
         padding: const EdgeInsets.all(20),

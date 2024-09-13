@@ -20,6 +20,10 @@ class FirebaseContestantService {
         );
   }
 
+  Future<void> delete(ContestantModel model) {
+    return FirebaseDatabase.instance.ref('${FirebasePath.contestant}/${model.key}').remove();
+  }
+
   Future<List<ContestantModel>> list() async {
     final response = await FirebaseDatabase.instance.ref(FirebasePath.contestant).orderByChild('submitTime').once();
     List<ContestantModel> res = [];

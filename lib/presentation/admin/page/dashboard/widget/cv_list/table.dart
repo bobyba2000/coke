@@ -354,9 +354,10 @@ enum ColumnTitle {
 
 class ListContestantTable extends StatefulWidget {
   final List<ContestantModel> contestants;
+  final VoidCallback onDelete;
   const ListContestantTable({
     super.key,
-    required this.contestants,
+    required this.contestants, required this.onDelete,
   });
 
   @override
@@ -388,9 +389,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final start = (currentPage) * sizePerPage;
-    final end = (currentPage + 1) * sizePerPage > widget.contestants.length
-        ? widget.contestants.length
-        : (currentPage + 1) * sizePerPage;
+    final end = (currentPage + 1) * sizePerPage > widget.contestants.length ? widget.contestants.length : (currentPage + 1) * sizePerPage;
     int fromPage = currentPage - 1;
     int toPage = fromPage + 4;
     if (toPage > totalPages - 1) {
@@ -401,8 +400,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
       fromPage = 0;
       toPage = totalPages > 4 ? 4 : totalPages;
     }
-    final viewContestants =
-        widget.contestants.sublist(currentPage * sizePerPage, end);
+    final viewContestants = widget.contestants.sublist(currentPage * sizePerPage, end);
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -428,6 +426,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
                   ),
                   ...viewContestants.asMap().entries.map(
                         (e) => TableRowWidget(
+                          onDelete: widget.onDelete,
                           contestant: e.value,
                           titles: titles,
                           index: currentPage * sizePerPage + e.key,
@@ -472,8 +471,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
                                     color: theme.dividerColor,
                                   )
                                 : null,
-                            color:
-                                isSelected ? theme.colorScheme.primary : null,
+                            color: isSelected ? theme.colorScheme.primary : null,
                           ),
                           height: 30,
                           width: 30,
@@ -482,9 +480,7 @@ class _ListContestantTableState extends State<ListContestantTable> {
                             '${index + 1}',
                             style: TextStyle(
                               fontSize: 12,
-                              color: isSelected
-                                  ? theme.colorScheme.onPrimary
-                                  : null,
+                              color: isSelected ? theme.colorScheme.onPrimary : null,
                               fontWeight: isSelected ? FontWeight.bold : null,
                             ),
                           ),
@@ -506,11 +502,13 @@ class TableRowWidget extends StatefulWidget {
   final ContestantModel contestant;
   final List<ColumnTitle> titles;
   final int index;
+  final VoidCallback onDelete;
   const TableRowWidget({
     super.key,
     required this.contestant,
     required this.titles,
     required this.index,
+    required this.onDelete,
   });
 
   @override
@@ -565,13 +563,9 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.workingLocationPriority1:
         return contestant.careerInfo.desiredPathway.location.first.toString();
       case ColumnTitle.workingLocationPriority2:
-        return contestant.careerInfo.desiredPathway.location.second
-                ?.toString() ??
-            '';
+        return contestant.careerInfo.desiredPathway.location.second?.toString() ?? '';
       case ColumnTitle.willingToChange:
-        return contestant.careerInfo.desiredPathway.location.willingToChange
-                ?.toString() ??
-            '';
+        return contestant.careerInfo.desiredPathway.location.willingToChange?.toString() ?? '';
       case ColumnTitle.availabilityType:
         return contestant.careerInfo.availability.type.toString();
       case ColumnTitle.availabilityNote:
@@ -757,15 +751,9 @@ class _TableRowWidgetState extends State<TableRowWidget> {
       case ColumnTitle.attachmentPoint:
         return contestant.attachmentPoint.toUIString();
       case ColumnTitle.locationPriority1Point:
-        return contestant.careerInfo
-            .locationPriority1Point(personal.hometown.toString(),
-                personal.currentLocation.toString())
-            .toUIString();
+        return contestant.careerInfo.locationPriority1Point(personal.hometown.toString(), personal.currentLocation.toString()).toUIString();
       case ColumnTitle.locationPriority2Point:
-        return contestant.careerInfo
-            .locationPriority2Point(personal.hometown.toString(),
-                personal.currentLocation.toString())
-            .toUIString();
+        return contestant.careerInfo.locationPriority2Point(personal.hometown.toString(), personal.currentLocation.toString()).toUIString();
       case ColumnTitle.experience1Industry:
         if (experiences.isNotEmpty) {
           return experiences[0].industry.toString();
@@ -804,6 +792,7 @@ class _TableRowWidgetState extends State<TableRowWidget> {
           context: context,
           builder: (context) => PreviewContestantDialog(
             contestant: widget.contestant,
+            onDelete: widget.onDelete,
           ),
         );
       },
