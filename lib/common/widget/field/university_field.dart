@@ -27,7 +27,9 @@ enum University {
   husVNUHCM,
   utc,
   umpHCM,
-  hmu;
+  hmu,
+  traVinh,
+  kinhBac;
 
   @override
   String toString() {
@@ -82,6 +84,10 @@ enum University {
         return S.current.umpHCM;
       case University.hmu:
         return S.current.hmu;
+      case University.traVinh:
+        return S.current.traVinhUni;
+      case University.kinhBac:
+        return S.current.kinhBacUni;
     }
   }
 }

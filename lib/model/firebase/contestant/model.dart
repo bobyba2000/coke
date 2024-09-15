@@ -96,4 +96,12 @@ class ContestantModel {
   factory ContestantModel.fromJson(Map<String, dynamic> json) => _$ContestantModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ContestantModelToJson(this);
+
+  @override
+  String toString() {
+    String personal = '${personalInfo.email} - ${personalInfo.fullName} - ${personalInfo.hometown.enName} - ${personalInfo.preferName}';
+    String education = '${educationInfo.education} - ${educationInfo.gpa} - ${educationInfo.major} - ${educationInfo.university}';
+    String career = '${careerInfo.availability.type} - ${careerInfo.desiredPathway.role} - ${careerInfo.desiredPathway.location.first}';
+    return '$personal - $education - $career';
+  }
 }

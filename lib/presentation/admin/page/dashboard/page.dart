@@ -1,10 +1,13 @@
 import 'package:coke_platform/common/extension/num_extension.dart';
+import 'package:coke_platform/common/widget/field/textfield_widget.dart';
 import 'package:coke_platform/core/dependencies/app_dependencies.dart';
 import 'package:coke_platform/presentation/admin/page/dashboard/widget/overview.dart';
+import 'package:coke_platform/service/firebase/auth.dart';
 import 'package:coke_platform/service/firebase/contestant.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:coke_platform/model/firebase/contestant/model.dart';
+import 'package:flutter/widgets.dart';
 import 'package:logger/logger.dart';
 
 import 'widget/cv_list/preview.dart';
@@ -21,6 +24,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   List<ContestantModel> datas = [];
   final contestantService = AppDependencies.injector.get<FirebaseContestantService>();
+  String textSearch = '';
 
   @override
   void initState() {
@@ -147,23 +151,52 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final viewData = datas
+        .where(
+          (e) => e.toString().toLowerCase().contains(
+                textSearch.toLowerCase(),
+              ),
+        )
+        .toList();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30).copyWith(top: 10),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            20.hSpace,
-            OverviewWidget(contestants: datas),
-            16.hSpace,
-            CVListWidget(
-              contestants: datas,
-              onDelete: () {
-                getData();
-              },
+      child: Column(
+        children: [
+          AppDependencies.injector.get<FirebaseAuthService>().getUserEmail() == 'bobyba20@gmail.com'
+              ? Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    20.hSpace,
+                    TextFieldWidget(
+                      hintText: 'Search Contestant',
+                      onFieldSubmitted: (value) {
+                        textSearch = value;
+                        setState(() {});
+                      },
+                    ),
+                    20.hSpace,
+                  ],
+                )
+              : 20.hSpace,
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  OverviewWidget(contestants: datas),
+                  16.hSpace,
+                  CVListWidget(
+                    contestants: viewData,
+                    onDelete: () {
+                      getData();
+                    },
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
