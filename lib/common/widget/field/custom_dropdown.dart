@@ -17,6 +17,7 @@ class CustomDropdown<T> extends StatefulWidget {
   final String? helperText;
   final List<T> Function()? getItems;
   final double maxHeight;
+  final bool readOnly;
   const CustomDropdown({
     super.key,
     required this.items,
@@ -31,6 +32,7 @@ class CustomDropdown<T> extends StatefulWidget {
     this.helperText,
     this.getItems,
     this.maxHeight = 300,
+    this.readOnly = false,
   });
 
   @override
@@ -101,6 +103,9 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
   }
 
   void openOverlay() {
+    if (widget.readOnly) {
+      return;
+    }
     if (_overlayEntry == null) {
       RenderBox renderBox = context.findRenderObject() as RenderBox;
       var size = renderBox.size;

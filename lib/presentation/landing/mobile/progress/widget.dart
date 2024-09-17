@@ -98,30 +98,61 @@ class MobileProgressWidget extends StatelessWidget {
                                     ),
                                   ),
                                   isEnglish
-                                      ? const Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                      ? const Column(
                                           children: [
-                                            Text(
-                                              '(By 16',
-                                              style: TextStyle(
-                                                fontSize: 8,
-                                                color: Color(0xFFfed602),
-                                              ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  '(By 16',
+                                                  style: TextStyle(
+                                                    fontSize: 8,
+                                                    color: Color(0xFFfed602),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'th',
+                                                  style: TextStyle(
+                                                    fontSize: 4,
+                                                    color: Color(0xFFfed602),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  ' Sep for Non-Sales',
+                                                  style: TextStyle(
+                                                    fontSize: 8,
+                                                    color: Color(0xFFfed602),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                            Text(
-                                              'th',
-                                              style: TextStyle(
-                                                fontSize: 4,
-                                                color: Color(0xFFfed602),
-                                              ),
-                                            ),
-                                            Text(
-                                              ' Sep)',
-                                              style: TextStyle(
-                                                fontSize: 8,
-                                                color: Color(0xFFfed602),
-                                              ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'By 23',
+                                                  style: TextStyle(
+                                                    fontSize: 8,
+                                                    color: Color(0xFFfed602),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'rd',
+                                                  style: TextStyle(
+                                                    fontSize: 4,
+                                                    color: Color(0xFFfed602),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  ' Sep for Sales)',
+                                                  style: TextStyle(
+                                                    fontSize: 8,
+                                                    color: Color(0xFFfed602),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         )
@@ -131,6 +162,7 @@ class MobileProgressWidget extends StatelessWidget {
                                             fontSize: 8,
                                             color: Color(0xFFfed602),
                                           ),
+                                          textAlign: TextAlign.center,
                                         ),
                                 ],
                               ),
@@ -139,7 +171,7 @@ class MobileProgressWidget extends StatelessWidget {
                         ),
                         Positioned(
                           right: 35,
-                          top: 56,
+                          top: 60,
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [

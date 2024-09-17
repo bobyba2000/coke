@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
-import 'package:sprintf/sprintf.dart';
 
 import '../footer/widget.dart';
 
@@ -35,9 +34,8 @@ class MobileCountdownWidget extends StatefulWidget {
   State<MobileCountdownWidget> createState() => _MobileCountdownWidgetState();
 }
 
-class _MobileCountdownWidgetState extends State<MobileCountdownWidget>
-    with AutomaticKeepAliveClientMixin {
-  DateTime dueDate = DateTime(2024, 9, 16, 23, 59, 59);
+class _MobileCountdownWidgetState extends State<MobileCountdownWidget> with AutomaticKeepAliveClientMixin {
+  DateTime dueDate = DateTime(2024, 9, 23, 23, 59, 59);
   Duration duration = const Duration();
   late final Timer _timer;
 
@@ -77,10 +75,7 @@ class _MobileCountdownWidgetState extends State<MobileCountdownWidget>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                sprintf(
-                  S.current.onlyDaysLeftBreakdown,
-                  [to2DigitString(days)],
-                ).toUpperCase(),
+                S.current.onlyDaysLeftBreakdown.toUpperCase(),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,

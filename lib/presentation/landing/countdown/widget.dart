@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
-import 'package:sprintf/sprintf.dart';
 
 class CountdownWidget extends StatefulWidget {
   const CountdownWidget({super.key});
@@ -17,14 +16,18 @@ class CountdownWidget extends StatefulWidget {
 }
 
 class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAliveClientMixin {
-  DateTime dueDate = DateTime(2024, 9, 16, 23, 59, 59);
+  DateTime dueDate = DateTime(2024, 9, 23, 23, 59, 59);
   Duration duration = const Duration();
   late final Timer _timer;
 
   @override
   void initState() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      duration = dueDate.difference(DateTime.now());
+      if (dueDate.isBefore(DateTime.now())) {
+        duration = Duration.zero;
+      } else {
+        duration = dueDate.difference(DateTime.now());
+      }
       if (mounted) {
         setState(() {});
       }
@@ -56,10 +59,7 @@ class _CountdownWidgetState extends State<CountdownWidget> with AutomaticKeepAli
           children: [
             200.w.hSpace,
             Text(
-              sprintf(
-                S.current.onlyDaysLeft,
-                [to2DigitString(days)],
-              ).toUpperCase(),
+              S.current.onlyDaysLeft.toUpperCase(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 38.sp,

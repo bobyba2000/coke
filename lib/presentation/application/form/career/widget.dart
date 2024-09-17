@@ -18,7 +18,7 @@ class CareerInfoWidget extends StatefulWidget {
 }
 
 class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
-  InternshipRole? role;
+  InternshipRole role = InternshipRole.sales;
   LocationModel? priority1;
   LocationModel? priority2;
   bool? willingToReallocate;
@@ -54,7 +54,7 @@ class _CareerInfoWidgetState extends State<CareerInfoWidget> with Validator {
           ),
           64.h.hSpace,
           DesiredPathwayWidget(
-            onChangeRole: (value) => role = value,
+            onChangeRole: (value) => role = value!,
             onChangeLocationPriority1: (value) => priority1 = value,
             onChangeLocationPriority2: (value) => priority2 = value,
             onChangeWillingToAllocate: (value) => willingToReallocate = value,
@@ -204,7 +204,7 @@ class DesiredPathwayWidget extends StatefulWidget {
 }
 
 class _DesiredPathwayWidgetState extends State<DesiredPathwayWidget> {
-  InternshipRole? role;
+  InternshipRole role = InternshipRole.sales;
   LocationModel? priority1;
   LocationModel? priority2;
   bool? willingToReallocate;
@@ -258,25 +258,26 @@ class _DesiredPathwayWidgetState extends State<DesiredPathwayWidget> {
             InternshipRole.keyAccountOnPremise,
             InternshipRole.keyAccountOffPremise,
           ],
+          readOnly: true,
           onSelect: (value) {
-            if (role != value) {
-              role = value;
+            // if (role != value) {
+            //   role = value;
 
-              if (role != InternshipRole.sales) {
-                priority1 = LocationModel.hochiminh;
-                priority2 = null;
-                willingToReallocate = null;
-              } else {
-                priority1 = null;
-                willingToReallocate = true;
-                priority2Locations = locations;
-              }
-              widget.onChangeRole.call(role);
-              widget.onChangeLocationPriority1.call(priority1);
-              widget.onChangeLocationPriority2.call(priority2);
-              widget.onChangeWillingToAllocate.call(willingToReallocate);
-              setState(() {});
-            }
+            //   if (role != InternshipRole.sales) {
+            //     priority1 = LocationModel.hochiminh;
+            //     priority2 = null;
+            //     willingToReallocate = null;
+            //   } else {
+            //     priority1 = null;
+            //     willingToReallocate = true;
+            //     priority2Locations = locations;
+            //   }
+            //   widget.onChangeRole.call(role);
+            //   widget.onChangeLocationPriority1.call(priority1);
+            //   widget.onChangeLocationPriority2.call(priority2);
+            //   widget.onChangeWillingToAllocate.call(willingToReallocate);
+            //   setState(() {});
+            // }
           },
           value: role,
           required: true,

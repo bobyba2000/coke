@@ -55,12 +55,12 @@ class ProgressWidget extends StatelessWidget {
               50.w.hSpace,
               Expanded(
                 child: SizedBox(
-                  width: 800.w,
+                  width: 900.w,
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
                       Positioned(
-                        top: 10.w,
+                        top: 0.w,
                         left: 0,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -93,31 +93,62 @@ class ProgressWidget extends StatelessWidget {
                             ),
                             6.w.hSpace,
                             isEnglish
-                                ? Row(
+                                ? Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        '(By 16',
-                                        style: TextStyle(
-                                          fontSize: 12.sp,
-                                          color: const Color(0xFFfed602),
-                                        ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '(By 16',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: const Color(0xFFfed602),
+                                            ),
+                                          ),
+                                          Text(
+                                            'th',
+                                            style: TextStyle(
+                                              fontSize: 8.sp,
+                                              color: const Color(0xFFfed602),
+                                            ),
+                                          ),
+                                          Text(
+                                            ' Sep for Non-Sales',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: const Color(0xFFfed602),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        'th',
-                                        style: TextStyle(
-                                          fontSize: 8.sp,
-                                          color: const Color(0xFFfed602),
-                                        ),
-                                      ),
-                                      Text(
-                                        ' Sep)',
-                                        style: TextStyle(
-                                          fontSize: 12.sp,
-                                          color: const Color(0xFFfed602),
-                                        ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'By 23',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: const Color(0xFFfed602),
+                                            ),
+                                          ),
+                                          Text(
+                                            'rd',
+                                            style: TextStyle(
+                                              fontSize: 8.sp,
+                                              color: const Color(0xFFfed602),
+                                            ),
+                                          ),
+                                          Text(
+                                            ' Sep for Sales)',
+                                            style: TextStyle(
+                                              fontSize: 12.sp,
+                                              color: const Color(0xFFfed602),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   )
@@ -127,13 +158,14 @@ class ProgressWidget extends StatelessWidget {
                                       fontSize: 12.sp,
                                       color: const Color(0xFFfed602),
                                     ),
+                                    textAlign: TextAlign.center,
                                   ),
                           ],
                         ),
                       ),
                       Positioned(
-                        top: 10.w + 80.w,
-                        left: 120.w,
+                        top: 10.w + 90.w,
+                        left: 150.w,
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -159,7 +191,7 @@ class ProgressWidget extends StatelessWidget {
                       ),
                       Positioned(
                         top: 92.w,
-                        left: 150.w,
+                        left: 220.w,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -203,7 +235,7 @@ class ProgressWidget extends StatelessWidget {
                       ),
                       Positioned(
                         top: 92.w + 60.w,
-                        left: 150.w + 160.w,
+                        left: 220.w + 160.w,
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -229,7 +261,7 @@ class ProgressWidget extends StatelessWidget {
                       ),
                       Positioned(
                         top: 40.w,
-                        left: 350.w,
+                        left: 420.w,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -274,7 +306,7 @@ class ProgressWidget extends StatelessWidget {
                       ),
                       Positioned(
                         top: 90.w,
-                        left: 500.w,
+                        left: 570.w,
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
@@ -300,7 +332,7 @@ class ProgressWidget extends StatelessWidget {
                       ),
                       Positioned(
                         top: 0.h,
-                        left: 550.w,
+                        left: 620.w,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
