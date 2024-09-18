@@ -35,6 +35,8 @@ class FirebaseContestantService {
       }
     }
 
+    res.sort((a, b) => a.submitTime.compareTo(b.submitTime));
+
     res = res.reversed.toList();
 
     // for (var contestant in res) {
