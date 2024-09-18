@@ -191,7 +191,7 @@ class ExcelService {
             return experiences[2].endDate.toUIDateString;
           }
         case ColumnTitle.submitTime:
-          return DateFormat('hh:mm:ss, dd/MM/yyyy').format(contestant.submitTime);
+          return DateFormat('HH:mm:ss, dd/MM/yyyy').format(contestant.submitTime);
         case ColumnTitle.englishDetail:
           return contestant.exhibition.english?.detail.toString() ?? '';
         case ColumnTitle.attachments:
